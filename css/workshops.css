@@ -1,0 +1,276 @@
+#workshops-main {
+   padding:2rem;
+   border-top: 1px solid black;
+}
+
+
+.workshops-sub-section {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom:1rem;
+	padding-right:1rem;
+}
+
+.workshop-card {
+	width: 100%;
+}
+
+
+.workshop-card+.workshop-card {
+	margin-top: calc(1.3rem*2);
+}
+
+
+.workshop-card::after {
+	content: "";
+	position: absolute;
+	border-bottom: 1px solid rgba(43, 43, 43, 1);
+	width: 100%;
+	left: 0;
+}
+
+.workshop-card:last-child::after {
+	content: "";
+	border-bottom: 0;
+}
+
+
+.workshops-text {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom:0rem;
+	margin:0;
+}
+
+.workshops-button {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom:1rem;
+	margin:0;
+	
+}
+
+
+
+
+.workshops-tag {
+	width: 100%;
+	padding: 0rem;
+	margin:0;
+
+}
+
+.workshops-left {
+	text-align: left;
+	padding: 0rem;
+
+}
+
+.workshops-right {
+	text-align: right;
+	padding: 0rem;
+
+}
+
+
+.workshops-tag-big {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.1rem;
+	color: #2A2A2A;
+	margin:0;
+
+}
+
+.workshops-tag-name {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.3rem;
+	color: #FF46EC;
+	margin-top:0rem;
+	padding-top:1rem;
+	display:inline-block;
+	line-height: 1.7rem;
+	
+}
+
+.workshops-tag-name-invisible {
+    color: #EFEFEF;
+	
+}
+
+
+
+.workshops-tag-last {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.3rem;
+	color: #FF46EC;
+	margin-top:0rem;
+	display:inline-block;
+	line-height: 1.3rem;
+	
+}
+
+.workshops-tag-last-invisible {
+	color: #EFEFEF;
+	
+}
+
+
+
+.workshops-tag-little {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1rem;
+	color: #2A2A2A;
+	display:inline-block;
+	line-height: 1.9rem;
+	margin:0;
+
+}
+
+.workshops-tag-little-2 {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #2A2A2A;
+	margin-top:0rem;
+	text-align: right;
+	padding:0;
+	padding-top:1.3rem;
+	margin:0;
+	line-height: 1rem;
+
+}
+
+.workshops-tag-description {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #2A2A2A;
+	line-height: 1.3rem;
+	margin:0;
+	padding-top:1rem;
+	padding-bottom:2rem;
+	white-space: break-spaces;
+
+}
+
+
+.workshops-pic {
+	width: 100%;
+	padding-top: 1rem;
+	}
+
+
+
+
+
+.signin {
+  border: 0.09rem solid #FF3A17;
+  border-radius: 2rem;
+/*  border-width: 0.07rem;*/
+  padding-top: 0.5rem;
+padding-bottom: 0.4rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 1.5rem;
+  background-color: #EFEFEF;
+}
+
+.signin a {
+    font-family: 'SuisseIntl-Regular', sans-serif;
+	text-decoration: none;
+	color: #FF3A17;
+	font-size: 1rem;
+	line-height: 0;
+}
+
+.signin:hover {
+  background-color: #FF3A17;
+}
+
+.signin:hover a {
+  color: #EFEFEF;
+}
+
+
+
+
+
+
+
+@media (min-width: 900px) {
+
+	.workshops-card-1 {
+		width: 35%;
+		padding-left:11.9%;
+		padding-right:3%;
+		border-right: 1px solid rgba(43, 43, 43, 1);
+		border-bottom: 0px solid rgba(43, 43, 43, 1);
+	}
+	
+	.workshops-card-2 {
+		width: 35%;
+		padding-right:10%;
+		padding-left:5%;
+		padding-top:0;
+
+	}
+	
+	.workshop-card::after {
+	border-bottom: 0;
+}
+	
+	
+	.workshop-card {
+	width: 35%%;
+}
+
+	.workshop-card+.workshop-card {
+	margin-top: 0;
+	}
+	
+	.workshops-tag {
+		width: 50%;
+
+	}
+	
+	.workshops-button {
+	padding-bottom:0rem;
+		
+	}
+	
+	.workshops-tag-last {
+	font-size: 1.1rem;
+	margin-top:1rem;
+	
+	}
+	
+	.workshops-tag-name {
+	padding-top:0rem;
+	
+}
+	
+	.workshops-tag-little-2 {	
+	font-size: 0.7rem;
+
+}
+	
+	.workshops-tag-description {
+	font-size: 0.9rem;
+	line-height: 1.3rem;
+
+}
+	
+	
+	
+}

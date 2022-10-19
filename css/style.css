@@ -1,0 +1,777 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
+/*
+colors:
+red #FF3A17
+pink #FF46ED
+gray 1 #EFEFEF
+gray 2 #E0DFDF
+gray 3 #ABABAB
+black-non-black #2B2B2B
+*/
+
+/*! ------------------------------------------ FONTS ------------------------------------------ */
+
+/*! -------------------ABCCamera */
+
+@font-face {
+	font-family: 'ABCCamera';
+	src: url('../font/ABCCamera-Regular-Trial.woff');
+
+}
+
+@font-face {
+	font-family: 'ABCCamera-Medium';
+	src: url('../font/ABCCamera-Medium-Trial.woff');
+
+}
+
+@font-face {
+	font-family: 'ABCCamera-Regular';
+	src: url('../font/ABCCamera-Regular-Trial.woff2') format('woff2'),
+	url('../font/ABCCamera-Regular-Trial.woff') format('woff');
+}
+
+
+
+/*! -------------------SuisseIntl */
+
+@font-face {
+	font-family: 'SuisseIntl-Light';
+	src: url('../font/suisseintl-light-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Regular';
+	src: url('../font/suisseintl-regular-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Book';
+	src: url('../font/suisseintl-book-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Medium';
+	src: url('../font/suisseintl-medium-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl';
+	src: url('../font/suisseintl-light-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-light-webfont.woff') format('woff'),
+	url('../font/suisseintl-regular-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-regular-webfont.woff') format('woff'),
+	url('../font/suisseintl-book-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-book-webfont.woff') format('woff'),
+	url('../font/suisseintl-medium-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-medium-webfont.woff') format('woff');
+
+}
+
+
+/*! ------------------------------------------ MAIN ------------------------------------------ */
+
+html {
+	font-size: 19px;	/* 1rem = this font-size in pixels */
+}
+
+@media (max-width: 600px) {
+	html {
+		font-size: 14px;
+	}
+}
+
+header {
+	/*	background-color: #EFEFEF;*/
+	background-color: #EFEFEF;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+
+body {
+	background-color: #EFEFEF;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 1rem;
+	
+}
+
+container {
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+	margin-left: 1vh;
+}
+
+.hidden {
+	display: none;
+}
+
+
+
+
+
+/*! ------------------------------------------ MARQUEE ------------------------------------------ */
+
+marquee {
+	direction: left;
+	-webkit-animation: marquee 32s linear infinite;
+	animation: marquee 32s linear infinite;
+	width: 100%;
+	height: auto;
+	position: relative;
+	background-color: #EFEFEF;
+	margin: 0px;
+	border: 0px;
+	padding-top: 0.5rem;
+	padding-bottom: 0.1rem;
+	background-color: #EFEFEF;
+}
+
+
+.imgMarqee {
+	width: 15px;
+	height: 15px;
+}
+
+.marq_text {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	color: #2b2b2b;
+	margin: 0px;
+	border: 0px;
+	padding: 0rem;
+}
+
+
+/*! ------------------------------------------ NAV BAR ------------------------------------------ */
+
+.navbar {
+	background-color: #E0DFDF;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin: 0px;
+	border: 0px;
+}
+
+
+#link_appearance_nav {
+	
+	font-size: 1.3rem;
+	color: #FF3A17;
+	padding-right: 10vh;
+
+}
+
+#link_appearance_nav:hover {
+	color: #E0DFDF;
+
+}
+
+
+
+
+#link_appearance_nav_special {
+	font-size: 9pt;
+	color: #FF46EC;
+}
+
+#link_appearance_nav_special:hover {
+	font-size: 9pt;
+	color: #FF46EC;
+}
+
+
+
+
+/*! ------------------------------------------ LANDING ------------------------------------------ */
+
+.title_super {
+	font-family: 'ABCCamera-Regular', sans-serif;
+	font-size: 4rem;
+	color: #2A2A2A;
+	padding-top: 1.8rem;
+	line-height: 1.2;
+}
+
+.subtitle_super {
+	color: #2A2A2A;
+	line-height: 2.3rem;
+}
+
+.p {
+	padding: 0px;
+	margin: 0px;
+	font-family: 'SuisseIntl-Light', sans-serif;
+}
+
+
+
+
+.title1 {
+	font-family: 'ABCCamera-Regular', sans-serif;
+	font-size: 1.6rem;
+	color: #FF3A17;
+	padding: 0rem;
+	margin-bottom: 1rem;
+}
+
+
+
+.title3 {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size:0.9rem;
+	color: #2B2B2B;
+	padding: 0px;
+	padding-top: 3vh;
+	margin: 0px;
+
+}
+
+.keyreading {
+	padding-right: 2rem;
+
+}
+
+.extra-sources {
+	padding-top: 1rem;
+	padding-right: 2rem;
+	padding-bottom: 0rem;
+	line-height: 0.6rem;
+}
+
+.definition {
+	padding-top: 0vh;
+
+}
+
+.illustration {
+	padding-top: 5vh;
+}
+
+
+.pre-source {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 11px;
+	color: #2B2B2B;
+	margin: 0px;
+	margin-top: 0.4rem;
+}
+
+.text-faq {
+	color: #2b2b2b;
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 2rem;
+}
+
+
+
+
+.source {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 11px;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+}
+
+.source:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+
+.signup {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.2rem;
+	color: #FF3A17;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+.signup:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+
+.read-more {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 0.8rem;
+	color: #FF3A17;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+.read-more:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+
+
+.text2 {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 1rem;
+	color: #2A2A2A;
+	padding: 0;
+	margin: 0px;
+	margin-bottom: 1rem;
+}
+
+
+/*! ------------------------------------------ NETWORK ------------------------------------------ */
+
+#network {
+	background-color: #EFEFEF;
+	padding-top: 1rem;
+
+}
+
+#viz1 {
+	width: 100%;
+	height: auto;
+	padding: 0rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+
+
+
+/*! ------------------------------------------ PILLS ------------------------------------------ */
+
+#pills {
+	background-color: #EFEFEF;
+	/*	background-color: lightblue;*/
+	padding: 0vh;
+	/*	border-top: 3px solid rgba(255, 70, 236, 1);*/
+}
+
+ul#faq-list {
+	list-style-type: none;
+	
+}
+
+ul#faq-list li {
+	
+}
+
+.label {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 0.7rem;
+	color: #FF46ED;
+	padding: 0rem;
+	margin: 0px;
+}
+
+.question {
+	font-size: 1.2rem;
+}
+
+.question2 {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	color: #2b2b2b;
+	text-decoration: none;
+	font-size: 1.2rem;
+	padding-left: 3rem;
+	text-align: left;
+	
+}
+
+#viz2 {
+	width: 100%;
+	height: auto;
+	padding-top: 2vh;
+	padding: 0rem;
+	padding-left: 0rem;
+	padding-right: 1rem;
+}
+
+#viz-q {
+	width: 100%;
+	height: auto;
+	padding-top: 0rem;
+	padding-bottom: 0rem;
+	padding-left: 0rem;
+	padding-right: 0rem;
+}
+
+#viz-q-small {
+	width: 90%;
+	height: auto;
+	padding-top: 0rem;
+	padding-bottom: 0rem;
+	padding-left: 0rem;
+	padding-right: 0rem;
+}
+
+#viz-k {
+	width: 100%;
+	height: auto;
+	padding-top: 3vh;
+}
+
+.intro {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-bottom: 1.8rem;
+}
+
+.source-pack {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+
+@media (min-width: 1200px) {
+	.question2 {
+		font-family: 'SuisseIntl-Book', sans-serif;
+		color: #2b2b2b;
+		text-decoration: none;
+		font-size: 1.2rem;
+		padding-left: 3rem;
+		text-align: left;
+
+	}
+
+	#viz2 {
+		width: 100%;
+		height: auto;
+		padding-top: 2vh;
+		padding: 0rem;
+		padding-left: 0rem;
+		padding-right: 1rem;
+	}
+
+	#viz-q {
+		width: 100%;
+		height: auto;
+		padding-top: 0rem;
+		padding-bottom: 0rem;
+		padding-left: 0rem;
+		padding-right: 0rem;
+	}
+
+	#viz-q-small {
+		width: 90%;
+		height: auto;
+		padding-top: 0rem;
+		padding-bottom: 0rem;
+		padding-left: 0rem;
+		padding-right: 0rem;
+	}
+
+	#viz-k {
+		width: 100%;
+		height: auto;
+		padding-top: 3vh;
+	}
+
+	.intro {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-bottom: 1.8rem;
+	}
+
+	.source-pack {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+	
+	
+}
+
+
+/*! ------------------------------------------ WORKSHOPS ------------------------------------------ */
+
+#workshops {
+	/*	non funziona collegamento da menu come se fosse diverso e non capisco perchè*/
+	background-color: #EFEFEF;
+	padding-top: 80px;
+	margin-bottom: 30px;
+
+}
+
+.pastWorkshop {
+	padding-bottom: 3rem;
+
+}
+
+
+/*! ------------------------------------------ TOOLKIT ------------------------------------------ */
+
+#toolkit {
+	background-color: #EFEFEF;
+	margin-bottom: 30px;
+	padding-top: 80px;
+	height: 1000px;
+}
+
+
+
+
+/*! ------------------------------------------ FOOTER ------------------------------------------ */
+
+/*
+footer {
+	background-color: #FF3A17;
+	padding: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+*/
+
+.final {
+	background-color: #FF3A17;
+	padding: 1rem;
+}
+
+
+
+.link_footer {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	color: #EFEFEF;
+	text-decoration: none;
+	font-size: 1rem;
+}
+
+a.link_footer:hover {
+	color: #ABABAB;
+	text-decoration: none;
+	font-family: 'SuisseIntl-Regular', sans-serif;
+}
+
+#text_footer {
+	padding-right: 10rem;
+	font-family: 'SuisseIntl-Regular', sans-serif;
+}
+
+
+}
+
+/*
+text_footer {
+	font-family: 'SuisseIntl-Regular', monospace;
+	color: #EFEFEF;
+}
+*/
+
+/*! ------------------------------------------ RESPONSIVE ------------------------------------------ */
+
+/*
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+// Small devices (landscape phones, 576px and up)
+	
+QUI PER DESKTOP*/
+
+@media (min-width: 576px) {}
+
+/*// Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) {
+
+	.title_super {
+		font-size: 4rem;
+	}
+
+
+
+}
+
+
+
+
+
+
+/*// Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) {
+
+	.title_super {
+		font-size: 5rem;
+	}
+
+}
+
+
+
+
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+
+@media (min-width: 1200px) {
+
+	.marq_text {
+		font-size: 1.3rem;
+		padding-top: 0.35rem;
+		padding-bottom: 0.35rem;
+	}
+
+
+	#network {
+		padding: 0;
+		margin: 0;
+	}
+
+	.title_super {
+		font-size: 6.4rem;
+	}
+
+	.subtitle_super {
+		font-family: 'SuisseIntl-Regular', sans-serif;
+		color: #2A2A2A;
+		font-size: 1.6rem;
+	}
+
+	.btn-primary {
+		font-family: 'SuisseIntl-Regular', sans-serif;
+		font-size: 1.4rem;
+	}
+
+
+
+	.title1 {
+		font-size: 2.4rem;
+		margin-bottom: 1rem;
+	}
+
+	.mb-0,
+	.my-0 {
+		font-size: 1rem;
+	}
+
+	.intro {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+
+	.text2 {
+		font-family: 'SuisseIntl-Regular', sans-serif;
+		font-size: 1.2rem;
+		color: #2A2A2A;
+		padding: 0;
+		margin: 0px;
+		margin-bottom: 1.2rem;
+	}
+
+	.title2 {
+		font-size: 1rem;
+	}
+
+	#viz1 {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+
+	}
+	.question {
+		font-size: 1.7rem;
+	}
+
+	.question2 {
+		font-size: 1.8rem;
+		padding-left: 15rem;
+	}
+
+	.card-title-future {
+		font-size: 1.5rem;
+	}
+
+	.card-subtitle {
+		font-size: 1.5rem;
+	}
+
+	.card-subtitle-future {
+		font-size: 1.3rem;
+	}
+
+	.card-subtitle-past {
+		font-size: 1rem;
+
+	}
+
+	.card-little-text {
+		font-size: 1.3rem;
+	}
+
+	.card-title-past {
+		margin-bottom: 0rem;
+		font-family: 'SuisseIntl-Medium', sans-serif;
+		font-size: 1.2rem;
+		color: #2b2b2b;
+	}
+
+	
+	.v0-title {
+		margin-bottom: 0rem;
+		font-family: 'SuisseIntl-Medium', sans-serif;
+		font-size: 1.2rem;
+		color: #2b2b2b;
+		padding:0rem;
+		padding-top:1rem;
+	}
+	
+	.v0-subtitle {
+		font-size: 1rem;
+		padding:0rem;
+		padding-top:0.4rem;
+		padding-right:1rem;
+	}
+
+	.card-body {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+		padding-bottom: 2rem;
+	}
+
+	.read-more {
+		font-size: 1.2rem;
+		line-height: 0.9rem;
+	}
+
+	.card-img-top {
+		padding-left: 2.5rem;
+	}
+
+	.card-border3 {
+		border-right: 1px solid rgba(43, 43, 43, 1);
+		border-left: 0px solid rgba(43, 43, 43, 1);
+		border-bottom: 0px solid rgba(43, 43, 43, 1);
+	}
+
+	.final {
+		background-color: #FF3A17;
+		padding: 1rem;
+		padding-left: 2.5rem;
+	}
+
+	.link_footer {
+		font-size: 1rem;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		font-family: 'SuisseIntl-Book';
+		font-size: 1.4rem;
+		color: #FF3A17;
+	}
+	.nav-link-special {
+		font-size: 1.4rem;
+	}
+	.drawer {
+		padding-left: 2.5rem;
+	}
+	.navbar {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+
+	.text1 {
+		font-size: 1.6rem;
+		font-family: 'SuisseIntl-Book';
+	}
+
+}

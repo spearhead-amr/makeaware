@@ -1,0 +1,400 @@
+#pills-main {
+	padding-left:2rem;
+	padding-right:2rem;
+	padding-bottom:0rem;
+	padding-top:2rem;
+	border-top: 1px solid black;
+}
+
+#pills-faq {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+}
+
+questionnaire .h2 {
+	padding-bottom: 3rem;
+
+}
+
+.pills-faq-li {
+	padding-top: 0rem;
+	
+}
+
+.pills-faq-li+.pills-faq-li::before {
+	content: "";
+	border-bottom: 1px solid black;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	
+}
+
+.pills-block {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+}
+
+
+
+#pills-2>.pills-block:hover, #pills-3>.pills-block:hover, #pills-4>.pills-block:hover {
+	cursor: pointer;
+}
+
+#pills-4 {
+	
+
+}
+
+.pills-space {
+	width:0%;
+}
+
+.pills-h3 {
+	margin-top: 0.5rem;
+	padding: 0;
+	color: #FF46EC;
+	font-size: 0.9rem;
+	font-family: 'SuisseIntl-Book', sans-serif;
+	position:relative;
+}
+
+
+.petri-section {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom:0rem;
+	-webkit-box-align: baseline;
+	-ms-flex-align: baseline;
+	align-items: baseline;
+}
+
+ .petri {
+	width:100%;
+	padding-bottom:0rem;
+}
+
+
+.petri-img {
+	width:50%;
+	padding:0;
+	padding-top:1.1rem;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.petri-text {
+	width:100%;
+	padding-top:0rem;
+	margin:0;
+}
+
+
+.petri-title {
+	margin: 0;
+	padding: 0;
+	color: #2B2B2B;
+	font-size: 1rem;
+	font-family: 'SuisseIntl-Book', sans-serif;
+}
+
+.petri-subtitle {
+	margin: 0;
+	padding-top: 0.9rem;
+	color: #2B2B2B;
+	font-size: 0.9rem;
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	line-height: 1.5rem;
+	text-align: left;
+	word-wrap: break-word;
+}
+
+.pills-container {
+	width: 100%;
+}
+
+.pills-container-1 {
+	width: 100%;
+}
+
+
+.pills-container-title-first {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 2rem;
+	margin:0;
+	padding:0;
+    line-height: 2.9rem;
+	color: #FF3A17;
+
+}
+
+.pills-container-title {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 2rem;
+	margin:0;
+	padding:0;
+    line-height: 2.9rem;
+	color: #FF3A17;
+
+}
+
+
+.pills-container-title:hover {
+	color: #ABABAB;
+
+}
+
+
+
+.pills-container-text {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 1.1rem;
+
+}
+
+.pills-container-visualization {
+	width: 100%;
+	background-color: #EFEFEF;
+
+}
+
+.key-reading {
+	width:20%;
+}
+
+.viz-aside {
+	width:100%;
+	padding-top:0rem;
+}
+
+.viz-main {
+	width:100%;
+	padding-top:2rem;
+}
+
+.viz-link {
+	width:100%;
+	line-height: 1rem;
+}
+
+.viz {
+	width:70%;
+	padding-top:2rem;
+}
+
+.viz-title {
+	font-size: 1.1rem;
+	padding-top: 0rem;
+}
+
+.viz-sources {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #2B2B2B;
+	margin: 0px;
+	margin-top: 0.7rem;
+	padding-top:0rem;
+	padding-bottom:0rem;
+	line-height: 1.3rem;
+}
+
+
+.viz-sources a {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.viz-sources a:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+
+.data-source {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #2B2B2B;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.data-source a {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.data-source a:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+	
+.source {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.source a {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.source a:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+
+
+
+@media (min-width: 900px) {
+
+	.pills-container {
+		width: 60%;
+
+	}
+	
+	.pills-container-1 {
+		width: 80%;
+
+	}
+
+	.pills-container-text {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 1rem;
+
+}
+	
+	
+	.viz-aside {
+	width:19%;
+	padding-right:1%;
+		
+	}
+	
+	.viz-main {
+	width:80%;
+	}
+	
+	.viz {
+	width:80%;
+	}
+	
+	.viz-link {
+	width:19%;
+	padding-right:1%;
+	}
+	
+	.viz-sources {
+	font-size: 0.7rem;
+		line-height: 1rem;
+
+}
+
+
+.viz-sources a {
+	font-size: 0.7rem;
+	line-height: 1rem;
+
+}
+
+
+
+
+
+	
+	.viz-title {
+	padding-top: 0.9rem;
+		line-height: 1.4rem;
+		font-size:1rem;
+
+	}
+
+	.data-source {
+	padding-top:0.7rem;
+	padding-bottom:0rem;
+	font-size: 0.7rem;
+	}
+	
+	.source a {
+	padding-top:0.7rem;
+	padding-bottom:0rem;
+	font-size: 0.7rem;
+	}
+
+	.data-source a {
+	font-size: 0.7rem;
+}
+	
+	
+	
+    .petri {
+	width:19%;
+	padding-right:1%;
+
+	}
+	
+	.petri-img {
+	width:90%;
+		padding-top:0;
+
+	}
+	
+	.petri-text {
+	width:100%;
+	padding-top:1rem;
+	margin:0;
+	}
+	
+	
+	.petri-subtitle {
+	margin: 0;
+	padding-top: 0.9rem;
+	color: #2B2B2B;
+	font-size: 0.7rem;
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	line-height: 1rem;
+	text-align: left;
+	word-wrap: break-word;
+	}
+
+	
+	
+	
+	
+	
+}

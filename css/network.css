@@ -1,0 +1,136 @@
+network-main {
+	padding:2rem;
+}
+
+
+.intro {
+	padding:2rem;
+}
+
+.network-section {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-right: 2rem;
+}
+
+
+.intro h1 {
+	font-family: 'SuisseIntl-Book', sans-serif;
+/*	font-size: 13vw;*/
+	font-size: 3.7rem;
+	color: #2A2A2A;
+	padding-top: 1.8rem;
+	margin:0;
+	margin-top:0rem;
+	padding:0;
+	font-weight: normal;
+}
+
+
+
+.network-h3 {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.3rem;
+	color: #2A2A2A;
+	line-height: 1.9rem;
+	margin:0;
+	padding-top:0.7rem;
+	width:100%;
+}
+
+.network-container {
+	text-align: right;
+	padding-top:1rem;
+}
+
+.intro-visualization {
+	padding-top: 1rem;
+	width: 100%;
+
+}
+
+.button-power {
+  border: 0.09rem solid #FF3A17;
+  border-radius: 2rem;
+  padding: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #EFEFEF;
+}
+
+.button-power a {
+    font-family: 'SuisseIntl-Book', sans-serif;
+	text-decoration: none;
+	color: #FF3A17;
+	font-size: 1.3rem;
+}
+
+.button-power:hover {
+  background-color: #FF3A17;
+}
+
+.button-power:hover a {
+  color: #EFEFEF;
+}
+
+
+
+
+
+@media (min-width: 900px) {
+	
+	.intro h1 {
+		font-size: 5rem;
+		margin-top:0rem;
+		
+	}
+
+	.button-power {
+  border: 0.09rem solid #FF3A17;
+  border-radius: 2rem;
+  padding: 1.1rem;
+  padding-top: 1.3rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #EFEFEF;
+}
+
+.button-power a {
+    font-family: 'SuisseIntl-Book', sans-serif;
+	text-decoration: none;
+	color: #FF3A17;
+	font-size: 1.3rem;
+}
+	
+	
+	.intro-visualization {
+		width: 100%;
+
+	}
+
+	.network-h3 {
+		width: 40%;
+		padding-top:0rem;
+		font-size: 1.3rem;
+	padding:0;
+}
+
+	.network-container {
+	text-align: right;
+	padding-top:1rem;
+	width:60%;
+}
+
+	
+	
+	
+
+}

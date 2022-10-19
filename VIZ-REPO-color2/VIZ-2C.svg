@@ -1,0 +1,15 @@
+<svg viewBox="0 0 145 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle r="13.5" transform="matrix(-1 0 0 1 103.5 38.5)" fill="#ABABAB"/>
+<circle r="13.5" transform="matrix(-1 0 0 1 103.5 100.5)" fill="#ABABAB"/>
+<circle r="13.5" transform="matrix(-1 0 0 1 22.5 86.5)" fill="#ABABAB"/>
+<circle r="13.5" transform="matrix(-1 0 0 1 41.5 30.5)" stroke="#E0DFDF" stroke-width="2" stroke-linejoin="round"/>
+<circle r="13.5" transform="matrix(-1 0 0 1 79.5 72.5)" stroke="#E0DFDF" stroke-width="2" stroke-linejoin="round"/>
+<circle r="13.5" transform="matrix(-1 0 0 1 66.5 109.5)" stroke="#E0DFDF" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="72" cy="72" r="71" stroke="#3D13CB" stroke-linejoin="round"/>
+<circle r="7.5" transform="matrix(-1 0 0 1 103.5 38.5)" fill="#00EAE6"/>
+<circle r="7.5" transform="matrix(-1 0 0 1 103.5 100.5)" fill="#00EAE6"/>
+<circle r="7.5" transform="matrix(-1 0 0 1 22.5 86.5)" fill="#00EAE6"/>
+<circle r="7.5" transform="matrix(-1 0 0 1 41.5 30.5)" fill="#DA291C"/>
+<circle r="7.5" transform="matrix(-1 0 0 1 79.5 72.5)" fill="#DA291C"/>
+<circle r="7.5" transform="matrix(-1 0 0 1 66.5 109.5)" fill="#DA291C"/>
+</svg>

@@ -1,0 +1,180 @@
+#questionnaire-main {
+	padding:2rem;
+	padding-top: 4rem;
+}
+
+#questionnaire {
+	padding:0rem;
+}
+
+#header-fixed-top-questionnaire {
+	position: fixed;
+	width: 100%;
+}
+
+
+
+.r-container-text a {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.r-container-text a:hover {
+	color: #ABABAB;
+	text-decoration: none;
+}
+
+
+
+/*! ----anchros - */
+.anchors-questionnaire {
+	position: relative;
+}
+
+
+.q-section {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom:1rem;
+}
+
+.q-section-last {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom:2rem;
+}
+
+
+#form_container {
+	background-color:red;
+}
+
+.form_description h2 {
+	font-size: 10rem;
+}
+
+
+.q-h3 {
+	margin: 0.7;
+	color: #FF46EC;
+	font-size: 0.9rem;
+	font-family: 'SuisseIntl-Book', sans-serif;
+	margin-top: 0.5rem;
+}
+
+.q-container {
+	width: 100%;
+}
+
+.q-aside {
+	width:100%;
+	padding-top:0rem;
+}
+
+
+.q-container-title {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 2rem;
+	margin:0;
+	padding:0;
+    vertical-align: super;
+	line-height: 2.9rem;
+	padding-bottom:2rem;
+
+}
+
+.q-container-title-big {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 3rem;
+	margin:0;
+	padding:0;
+    vertical-align: super;
+	line-height: 2.9rem;
+	padding-bottom:2rem;
+
+}
+
+.q-container-text {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 1rem;
+	margin:0;
+	padding:0;
+
+}
+
+.q-container-text-special {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1rem;
+	margin:0;
+	padding:0;
+	padding-top:1rem;
+	padding-bottom:1rem;
+
+}
+
+
+#mf_iframe {
+/*	background-color: red;*/
+
+}
+
+
+
+#mf_iframe span  {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 2rem;
+	line-height: 1.7rem;
+
+}
+
+.appnitro {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 2rem;
+	line-height: 1.7rem;
+
+}
+
+span .description {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 2rem;
+	line-height: 1.7rem;
+
+}
+
+
+
+
+
+@media (min-width: 900px) {
+	
+	
+	.viz-aside {
+	width:19%;
+	padding-right:1%;
+		
+	}
+	
+	.q-container {
+		width: 60%;
+
+	}
+	
+	.q-aside {
+	width:19%;
+	padding-right:1%;
+		
+	}
+	
+}
