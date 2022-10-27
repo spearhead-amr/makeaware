@@ -179,7 +179,7 @@ questionnaire .h2 {
 
 .viz-main {
 	width:100%;
-	padding-top:2rem;
+	padding-top:0rem;
 }
 
 .viz-link {
@@ -188,9 +188,17 @@ questionnaire .h2 {
 }
 
 .viz {
-	width:70%;
+	width:100%;
 	padding-top:2rem;
 }
+
+.viz-legend-mobile {
+	width:100%;
+	}
+
+.viz-legend-desktop {
+	width:0%;
+	}
 
 .viz-title {
 	font-size: 1.1rem;
@@ -287,12 +295,18 @@ questionnaire .h2 {
 
 .viz-mobile {
   width: 100%;
+    padding-bottom:1rem;
 }
 
 
 @media (min-width: 900px) {
 
-	.pills-container {
+	.viz-main {
+	width:100%;
+	padding-top:2rem;
+}
+    
+    .pills-container {
 		width: 60%;
 
 	}
@@ -320,8 +334,10 @@ questionnaire .h2 {
 	}
 	
 	.viz {
-	width:80%;
+	width:100%;
 	}
+    
+    
 	
 	.viz-link {
 	width:19%;
@@ -409,6 +425,14 @@ questionnaire .h2 {
     .viz-mobile {
     width: 0%;
     }
+    
+    .viz-legend-mobile {
+	width:0%;
+	}
+
+.viz-legend-desktop {
+	width:80%;
+	}
 	
 	
 	
