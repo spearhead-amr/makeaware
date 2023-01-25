@@ -25,6 +25,8 @@
 	text-decoration: none;
 }
 
+
+
 .r-container-text a:hover {
 	color: #ABABAB;
 	text-decoration: none;
@@ -95,6 +97,17 @@
 
 }
 
+.q-container-sub-title {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.3rem;
+	margin:0;
+	padding:0;
+    vertical-align: super;
+	line-height: 2.9rem;
+	padding-bottom:0rem;
+
+}
+
 .q-container-title-big {
 	font-family: 'SuisseIntl-Regular', sans-serif;
 	font-size: 3rem;
@@ -112,6 +125,44 @@
 	margin:0;
 	padding:0;
 
+}
+
+.q-container-text-p {
+	font-family: 'SuisseIntl-Regular', sans-serif;
+	font-size: 1rem;
+	margin:0;
+	padding:0;
+    padding-top:1rem;
+
+}
+
+.q-container-text a {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+.bio {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
+
+
+.bio:hover {
+	color: #ABABAB;
+	text-decoration: none;
 }
 
 .q-container-text-special {
@@ -174,6 +225,14 @@ span .description {
 	.q-aside {
 	width:19%;
 	padding-right:1%;
+        padding-top:0%;
+		
+	}
+    
+    .q-aside-p {
+	width:19%;
+	padding-right:1%;
+        padding-top:1%;
 		
 	}
 	

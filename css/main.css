@@ -326,9 +326,13 @@ footer {
 	width:100%;
 }
 
+.footer-tag-special {
+	width:100%;
+}
+
 .footer-logo {
 	width:40%;
-	padding-top:2rem;
+	padding-top:1rem;
 }
 
 
@@ -361,13 +365,18 @@ footer {
 	}
 
 	.nav-tag-last {
-		width:35%;
+		width:15%;
 		text-align: right;
 	}
 
 
 	.footer-tag {
 		width: 25%;
+
+	}
+    
+    .footer-tag-special {
+		width: 50%;
 
 	}
 	
@@ -386,8 +395,8 @@ footer {
 }
 	
 	.footer-logo {
-	width:60%;
-		padding-top:0;
+	width:70%;
+		padding-top:1rem;
 	}
 	
 	.footer-subtitle {
@@ -406,7 +415,11 @@ footer {
 	padding-top:0rem;
 }
 
-
+.q-container-text-p a {
+	font-size: 0.7rem;
+	padding-top:0rem;
+}
+    
 .footer-subtitle-link a {
 	font-size: 0.7rem;
 	padding-top:0rem;
