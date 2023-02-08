@@ -42,6 +42,17 @@ questionnaire .h2 {
 	padding-top: 1rem; 
 }
 
+.workshop-block {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+    border-top: 1px solid rgba(43, 43, 43, 1);
+}
+
 
 
 #pills-2>.pills-block:hover, #pills-3>.pills-block:hover, #pills-4>.pills-block:hover {
@@ -123,6 +134,10 @@ questionnaire .h2 {
 	width: 100%;
 }
 
+.workshop-container {
+	width: 100%;
+}
+
 .pills-container-1 {
 	width: 100%;
 }
@@ -143,14 +158,51 @@ questionnaire .h2 {
 	font-size: 2rem;
 	margin:0;
 	padding:0;
-    line-height: 2.9rem;
+    line-height: 2.7rem;
 	color: #FF3A17;
+
+}
+
+.workshop-past-title {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.1rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: black;
+
+}
+
+.workshop-past-sub {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: black;
+
+}
+
+.workshop-past-sub-special {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.1rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: #FF3A17;
+    text-decoration: none;
 
 }
 
 
 .pills-container-title:hover {
 	color: #ABABAB;
+
+}
+
+.workshop-past-sub-special:hover {
+	color: #ABABAB;
+    text-decoration: none;
 
 }
 
@@ -287,6 +339,20 @@ questionnaire .h2 {
 	text-decoration: none;
 }
 
+.workshop-past {
+	margin-top:1rem;
+}
+
+
+
+.workshop-past-title {
+	margin-top:1rem;
+}
+
+.workshop-past-sub-first {
+	margin-top:1rem;
+}
+
 
 
 .viz-desktop {
@@ -310,11 +376,20 @@ questionnaire .h2 {
 		width: 60%;
 
 	}
+    
+    .workshop-container {
+		width: 100%;
+
+	}
 	
 	.pills-container-1 {
 		width: 80%;
 
 	}
+    
+    .workshop-past {
+	margin-top:2rem;
+}
 
 	.pills-container-text {
 	font-family: 'SuisseIntl-Regular', sans-serif;
@@ -328,6 +403,13 @@ questionnaire .h2 {
 	padding-right:1%;
 		
 	}
+    
+    .workshop-text {
+	width:24%;
+	padding-right:1%;
+		
+	}
+
 	
 	.viz-main {
 	width:80%;
@@ -358,7 +440,13 @@ questionnaire .h2 {
 }
 
 
-
+.workshop-past-title {
+	margin-top:0rem;
+}
+    
+    .workshop-past-sub-first {
+	margin-top:0rem;
+}
 
 
 	
