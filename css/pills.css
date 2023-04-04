@@ -194,6 +194,17 @@ questionnaire .h2 {
 
 }
 
+.workshop-past-sub-special-pink {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.1rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: #FF46EC;
+    text-decoration: none;
+
+}
+
 
 .pills-container-title:hover {
 	color: #ABABAB;
@@ -201,6 +212,12 @@ questionnaire .h2 {
 }
 
 .workshop-past-sub-special:hover {
+	color: #ABABAB;
+    text-decoration: none;
+
+}
+
+.workshop-past-sub-special-pink:hover {
 	color: #ABABAB;
     text-decoration: none;
 
@@ -381,6 +398,7 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 		width: 100%;
 
 	}
+    
 	
 	.pills-container-1 {
 		width: 80%;
@@ -409,6 +427,14 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 	padding-right:1%;
 		
 	}
+    
+      .workshop-text-description {
+	width:48%;
+	padding-right:1%;
+		
+	}
+    
+    
 
 	
 	.viz-main {
