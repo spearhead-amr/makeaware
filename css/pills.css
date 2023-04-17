@@ -53,7 +53,26 @@ questionnaire .h2 {
     border-top: 1px solid rgba(43, 43, 43, 1);
 }
 
+.workshop-block-bottom {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+    border-bottom: 1px solid rgba(43, 43, 43, 1);
+}
 
+.workshop-block-noborder {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+}
 
 #pills-2>.pills-block:hover, #pills-3>.pills-block:hover, #pills-4>.pills-block:hover {
 	cursor: pointer;

@@ -65,7 +65,7 @@ gray: #FFFFFF
 
 @font-face {
 	font-family: 'SuisseIntl-Bold';
-	src: url('../font/suisseintl-bold-webfont.woff');
+	src: url('../font/suisseintl-bold.woff');
 }
 
 @font-face {
@@ -246,6 +246,14 @@ nav a:hover {
 	width:100%;
 }
 
+.nav-tag-last a {
+	color: #ABABAB;
+}
+
+.nav-tag-last a:hover {
+	color: #FF3A17;
+}
+
 /*! ----anchros - */
 .anchors {
 	position: relative;
@@ -365,8 +373,12 @@ footer {
 	}
 
 	.nav-tag-last {
-		width:15%;
+		font-size: 12px;
+		line-height: 14px;
+		width: 15%;
 		text-align: right;
+		margin-top: auto;
+		margin-bottom: auto;
 	}
 
 
