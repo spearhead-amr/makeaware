@@ -56,6 +56,11 @@ black-non-black #2B2B2B
 }
 
 @font-face {
+	font-family: 'SuisseIntl-Bold';
+	src: url('../font/suisseintl-bold-webfont.woff');
+}
+
+@font-face {
 	font-family: 'SuisseIntl';
 	src: url('../font/suisseintl-light-webfont.woff2') format('woff2'),
 	url('../font/suisseintl-light-webfont.woff') format('woff'),
@@ -64,7 +69,9 @@ black-non-black #2B2B2B
 	url('../font/suisseintl-book-webfont.woff2') format('woff2'),
 	url('../font/suisseintl-book-webfont.woff') format('woff'),
 	url('../font/suisseintl-medium-webfont.woff2') format('woff2'),
-	url('../font/suisseintl-medium-webfont.woff') format('woff');
+	url('../font/suisseintl-medium-webfont.woff') format('woff'),
+	url('../font/suisseintl-bold-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-bold-webfont.woff') format('woff');
 
 }
 

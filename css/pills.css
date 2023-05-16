@@ -13,6 +13,13 @@
 
 }
 
+#protocols-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+}
+
 questionnaire .h2 {
 	padding-bottom: 3rem;
 
@@ -74,7 +81,7 @@ questionnaire .h2 {
 	padding-top: 1rem; 
 }
 
-#pills-2>.pills-block:hover, #pills-3>.pills-block:hover, #pills-4>.pills-block:hover {
+#pills-2>.pills-block:hover, #pills-3>.pills-block:hover, #pills-4>.pills-block:hover, #pills-5>.pills-block:hover, #pills-6>.pills-block:hover, #pills-7>.pills-block:hover {
 	cursor: pointer;
 }
 
@@ -195,7 +202,7 @@ questionnaire .h2 {
 .workshop-past-sub {
 	font-family: 'SuisseIntl-Light', sans-serif;
 	font-size: 0.9rem;
-    line-height: 1.7rem;
+    line-height: 1.4rem;
 	margin:0;
 	padding:0;
 	color: black;
@@ -266,6 +273,11 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 }
 
 .viz-main {
+	width:100%;
+	padding-top:0rem;
+}
+
+.protocol-main {
 	width:100%;
 	padding-top:0rem;
 }
@@ -442,10 +454,15 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 	}
     
     .workshop-text {
-	width:24%;
+	width:19%;
 	padding-right:1%;
 		
 	}
+
+	.workshop-text-other {
+		width:24%;
+		padding-right:1%;
+		}
     
       .workshop-text-description {
 	width:48%;
@@ -454,6 +471,9 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 	}
     
     
+	.protocol-main {
+		width:59%;
+		}
 
 	
 	.viz-main {

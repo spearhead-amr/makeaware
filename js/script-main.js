@@ -102,6 +102,20 @@ for(var i=1; i<pills.length; i++) {
 }
 
 
+// protocols open/close
+var listProto = document.getElementById('protocols-list').children;
+
+//console.log(listProto);
+
+function toggleProto(idP) {
+	document.getElementById(idP).children[1].classList.toggle('hidden');
+}
+
+for(var i=0; i<listProto.length; i++) {
+	toggleProto(listProto[i].id);
+	listProto[i].addEventListener('click', toggle.bind(this, listProto[i].id))
+}
+
 
 // hamburger menu mobile
 
