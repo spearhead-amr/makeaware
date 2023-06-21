@@ -20,6 +20,20 @@
 
 }
 
+ul {
+	list-style-type:disc;
+	margin: 0;
+	padding: 0;
+
+}
+
+ul {
+	list-style-type:disc;
+	margin: 0;
+	padding: 0;
+
+}
+
 questionnaire .h2 {
 	padding-bottom: 3rem;
 
@@ -38,6 +52,29 @@ questionnaire .h2 {
 	left: 0;
 	
 }
+
+
+
+	
+	
+
+
+.protocol-container {
+	padding-left:0rem;
+	padding-right:0rem;
+	padding-bottom:0rem;
+	border-left: 1px solid black;
+}
+
+#circle {
+	position: relative;
+	background-color:  black;
+	margin-left: -4.3vh;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+  }
+
 
 .pills-block {
 	display: -webkit-box;
@@ -220,6 +257,17 @@ questionnaire .h2 {
 
 }
 
+.protocol-download {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 0.9rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: #FF3A17;
+    text-decoration: none;
+
+}
+
 .workshop-past-sub-special-pink {
 	font-family: 'SuisseIntl-Book', sans-serif;
 	font-size: 1.1rem;
@@ -243,6 +291,13 @@ questionnaire .h2 {
 
 }
 
+.protocol-download:hover {
+	color: #ABABAB;
+    text-decoration: none;
+	text-align: center;
+
+}
+
 .workshop-past-sub-special-pink:hover {
 	color: #ABABAB;
     text-decoration: none;
@@ -254,6 +309,13 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 .pills-container-text {
 	font-family: 'SuisseIntl-Regular', sans-serif;
 	font-size: 1.1rem;
+
+}
+
+.protocol-text {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1rem;
+	margin-bottom:1rem;
 
 }
 
@@ -407,6 +469,10 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
   width: 0%;
 }
 
+.protocol-desktop {
+	width: 0%;
+  }
+
 .viz-mobile {
   width: 100%;
     padding-bottom:1rem;
@@ -422,6 +488,11 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
     
     .pills-container {
 		width: 60%;
+
+	}
+
+	.protocol-container {
+		width: 80%;
 
 	}
     
@@ -574,6 +645,10 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
     .viz-desktop {
     width: 100%;
     }
+
+	.protocol-desktop {
+		width: 80%;
+		}
 
     .viz-mobile {
     width: 0%;

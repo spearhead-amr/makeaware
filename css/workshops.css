@@ -3,6 +3,11 @@
    border-top: 1px solid black;
 }
 
+#protocols-main {
+	padding-top:2rem;
+	/* border-top: 1px solid black; */
+ }
+
 
 .workshops-sub-section {
 	display: -webkit-box;
@@ -10,8 +15,12 @@
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding-bottom:3rem;
+	padding-bottom:2rem;
 	padding-right:1rem;
+}
+
+.diagram-protocol {
+	width:30%;
 }
 
 .workshops-sub-section-second-line {
@@ -30,6 +39,8 @@
 .workshop-card {
 	width: 100%;
 }
+
+
 
 
 .workshop-card+.workshop-card {
@@ -100,6 +111,7 @@
 	font-size: 1.1rem;
 	color: #2A2A2A;
 	margin:0;
+	padding-top:1rem;
 
 }
 
@@ -111,14 +123,7 @@
 	padding-top:1rem;
 	display:inline-block;
 	line-height: 1.7rem;
-	text-decoration: none;
 	
-}
-
-.workshops-tag-name:hover {
-	color: #ABABAB;
-    text-decoration: none;
-
 }
 
 .workshops-tag-name-invisible {
@@ -152,6 +157,7 @@
 	display:inline-block;
 	line-height: 1.9rem;
 	margin:0;
+	padding-top:1rem;
 
 }
 
@@ -281,10 +287,29 @@ padding-bottom: 0.4rem;
 	.workshops-card-2 {
 		width: 35%;
 		padding-right:10%;
-		padding-left:5%;
+		padding-left:3%;
 		padding-top:0;
 
 	}
+
+
+	.workshops-card-single-centre {
+		width: 38%;
+		padding-top:1rem;
+		padding-left:1.2rem;
+		padding-right:1.2rem;
+		border-top: 1px solid rgba(43, 43, 43, 1);
+
+	}
+
+	.workshops-card-single-lateral {
+		width: 31%;
+		padding-right:0%;
+		padding-left:0%;
+		padding-top:0;
+
+	}
+	
 	
 	.workshop-card::after {
 	border-bottom: 0;
@@ -292,7 +317,7 @@ padding-bottom: 0.4rem;
 	
 	
 	.workshop-card {
-	width: 35%%;
+	width: 35%;
 }
 
 	.workshop-card+.workshop-card {

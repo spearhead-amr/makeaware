@@ -343,6 +343,11 @@ footer {
 	padding-top:1rem;
 }
 
+.protocol-img {
+	width:20%;
+	align-content: center;
+}
+
 
 
 @media (min-width: 900px) {
@@ -410,6 +415,10 @@ footer {
 	width:60%;
     padding-top:1rem;
 	}
+
+	.protocol-img {
+		width:30%;
+		}
 	
 	.footer-subtitle {
 	font-size: 0.7rem;
