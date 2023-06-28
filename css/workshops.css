@@ -19,7 +19,7 @@
 }
 
 .diagram-protocol {
-	width:30%;
+	width:80%;
 }
 
 .workshops-sub-section-second-line {
@@ -306,6 +306,10 @@ padding-bottom: 0.4rem;
 	border-bottom: 0;
 }
 	
+.diagram-protocol {
+	width:30%;
+}
+
 	
 	.workshop-card {
 	width: 35%%;

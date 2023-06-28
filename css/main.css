@@ -349,10 +349,12 @@ footer {
 	padding-top:1rem;
 }
 
-.protocol-img {
-	width:50%;
-	align-content: center;
+.social-logo {
+	width:2.4rem;
+	padding-top:1rem;
 }
+
+
 
 
 
@@ -422,9 +424,17 @@ footer {
     padding-top:1rem;
 	}
 
-	.protocol-img {
-		width:50%;
-		}
+	.social-logo {
+		width:2.4rem;
+		padding-top:1rem;
+	}
+
+	.social-logo-right {
+		width:2.4rem;
+		padding-left:1rem;
+	}
+
+	
 	
 	.footer-subtitle {
 	font-size: 0.7rem;

@@ -87,7 +87,6 @@ questionnaire .h2 {
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding-bottom: 1rem;
 	padding-top: 1rem; 
 }
 
@@ -340,14 +339,29 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 
 .protocol-text {
 	font-family: 'SuisseIntl-Light', sans-serif;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
     line-height: 1.7rem;
 	margin:0;
 	padding:0;
 	color: black;
-	width:49%;
-		padding-right:1%;
+	width:100%;
+	padding-right:1%;
+	padding-bottom:1%;
 }
+
+.protocol-img {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.2rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: black;
+	width:100%;
+	padding-right:1%;
+	padding-bottom:3%;
+}
+
+
 
 .footer-text {
 	font-family: 'SuisseIntl-Light', sans-serif;
@@ -355,8 +369,8 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 	margin:0;
 	padding:0;
 	color: black;
-	width:49%;
-		padding-right:1%;
+	width:100%;
+	padding-right:1%;
 }
 
 
@@ -555,6 +569,16 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 	font-size: 1rem;
 
 }
+.footer-text {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.1rem;
+	margin:0;
+	padding:0;
+	color: black;
+	width:49%;
+	padding-right:1%;
+}
+
 	
 	
 	.viz-aside {
@@ -567,7 +591,15 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 		width:49%;
 		padding-right:1%;
 			
-		}
+	}
+
+	.protocol-img {
+		width:25%;
+		padding-right:1%;
+			
+	}
+
+	
 
 		.footer-text {
 			width:49%;
@@ -575,11 +607,8 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 				
 			}
 
-		.protocol-img {
-			width:24%;
-			padding-right:1%;
-				
-			}
+		
+		
 
 
 		.workshop-text {
