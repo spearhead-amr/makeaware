@@ -49,6 +49,11 @@ gray: #FFFFFF
 }
 
 @font-face {
+	font-family: 'SuisseIntl-LightItalic';
+	src: url('../font/SuisseIntl-LightItalic.woff');
+}
+
+@font-face {
 	font-family: 'SuisseIntl-Regular';
 	src: url('../font/suisseintl-regular-webfont.woff');
 }
@@ -79,6 +84,7 @@ gray: #FFFFFF
 	url('../font/suisseintl-medium-webfont.woff2') format('woff2'),
 	url('../font/suisseintl-medium-webfont.woff') format('woff'),
 	url('../font/suisseintl-bold-webfont.woff2') format('woff2'),
+	url('../font/SuisseIntl-LightItalic.woff') format('woff'),
 	url('../font/suisseintl-bold-webfont.woff') format('woff');
 
 }
@@ -344,7 +350,7 @@ footer {
 }
 
 .protocol-img {
-	width:20%;
+	width:50%;
 	align-content: center;
 }
 
@@ -417,7 +423,7 @@ footer {
 	}
 
 	.protocol-img {
-		width:30%;
+		width:50%;
 		}
 	
 	.footer-subtitle {

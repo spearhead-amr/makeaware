@@ -15,8 +15,7 @@
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding-bottom:2rem;
-	padding-right:1rem;
+	padding-bottom:3rem;
 }
 
 .diagram-protocol {
@@ -30,7 +29,6 @@
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	padding-bottom:3rem;
-	padding-right:1rem;
     padding-top:3rem;
     border-top: 1px solid rgba(43, 43, 43, 1);
 }
@@ -39,8 +37,6 @@
 .workshop-card {
 	width: 100%;
 }
-
-
 
 
 .workshop-card+.workshop-card {
@@ -93,6 +89,13 @@
 
 }
 
+.workshops-tag-title {
+	width: 100%;
+	padding: 0rem;
+	margin:0;
+
+}
+
 .workshops-left {
 	text-align: left;
 	padding: 0rem;
@@ -111,7 +114,6 @@
 	font-size: 1.1rem;
 	color: #2A2A2A;
 	margin:0;
-	padding-top:1rem;
 
 }
 
@@ -119,8 +121,7 @@
 	font-family: 'SuisseIntl-Book', sans-serif;
 	font-size: 1.3rem;
 	color: #FF46EC;
-	margin-top:0rem;
-	padding-top:1rem;
+	margin-top:1rem;
 	display:inline-block;
 	line-height: 1.7rem;
 	
@@ -152,14 +153,15 @@
 
 .workshops-tag-little {
 	font-family: 'SuisseIntl-Light', sans-serif;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	color: #2A2A2A;
 	display:inline-block;
 	line-height: 1.9rem;
 	margin:0;
-	padding-top:1rem;
 
 }
+
+
 
 .workshops-tag-little-2 {
 	font-family: 'SuisseIntl-Light', sans-serif;
@@ -277,39 +279,28 @@ padding-bottom: 0.4rem;
 @media (min-width: 900px) {
 
 	.workshops-card-1 {
-		width: 35%;
-		padding-left:11.9%;
-		padding-right:3%;
+		width: 28.3%;
+		padding-right:3.5%;
 		border-right: 1px solid rgba(43, 43, 43, 1);
 		border-bottom: 0px solid rgba(43, 43, 43, 1);
 	}
 	
 	.workshops-card-2 {
-		width: 35%;
-		padding-right:10%;
-		padding-left:3%;
+		width: 28.3%;
+		padding-right:3.5%;
+		padding-left:3.5%;
+		padding-top:0;
+		border-right: 1px solid rgba(43, 43, 43, 1);
+
+	}
+
+	.workshops-card-3 {
+		width: 28.3%;
+		/* padding-right:10%; */
+		padding-left:3.5%;
 		padding-top:0;
 
 	}
-
-
-	.workshops-card-single-centre {
-		width: 38%;
-		padding-top:1rem;
-		padding-left:1.2rem;
-		padding-right:1.2rem;
-		border-top: 1px solid rgba(43, 43, 43, 1);
-
-	}
-
-	.workshops-card-single-lateral {
-		width: 31%;
-		padding-right:0%;
-		padding-left:0%;
-		padding-top:0;
-
-	}
-	
 	
 	.workshop-card::after {
 	border-bottom: 0;
@@ -317,7 +308,7 @@ padding-bottom: 0.4rem;
 	
 	
 	.workshop-card {
-	width: 35%;
+	width: 35%%;
 }
 
 	.workshop-card+.workshop-card {
@@ -328,6 +319,11 @@ padding-bottom: 0.4rem;
 		width: 50%;
 
 	}
+
+	.workshops-tag-title {
+		width: 100%;
+
+	}
 	
 	.workshops-button {
 	padding-bottom:0rem;
@@ -336,7 +332,6 @@ padding-bottom: 0.4rem;
 	
 	.workshops-tag-last {
 	font-size: 1.1rem;
-	margin-top:1rem;
 	
 	}
 	

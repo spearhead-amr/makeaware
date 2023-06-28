@@ -21,18 +21,13 @@
 }
 
 ul {
-	list-style-type:disc;
+	list-style-type:none;
 	margin: 0;
 	padding: 0;
 
 }
 
-ul {
-	list-style-type:disc;
-	margin: 0;
-	padding: 0;
 
-}
 
 questionnaire .h2 {
 	padding-bottom: 3rem;
@@ -63,7 +58,7 @@ questionnaire .h2 {
 	padding-left:0rem;
 	padding-right:0rem;
 	padding-bottom:0rem;
-	border-left: 1px solid black;
+	/* border-left: 1px solid black; */
 }
 
 #circle {
@@ -77,6 +72,16 @@ questionnaire .h2 {
 
 
 .pills-block {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+}
+
+.protocols-block {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -236,6 +241,7 @@ questionnaire .h2 {
 
 }
 
+
 .workshop-past-sub {
 	font-family: 'SuisseIntl-Light', sans-serif;
 	font-size: 0.9rem;
@@ -253,6 +259,17 @@ questionnaire .h2 {
 	margin:0;
 	padding:0;
 	color: #FF3A17;
+    text-decoration: none;
+
+}
+
+.protocol-text-question {
+	font-family: 'SuisseIntl-LightItalic', sans-serif;
+	font-size: 1.1rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: #ABABAB;
     text-decoration: none;
 
 }
@@ -291,6 +308,8 @@ questionnaire .h2 {
 
 }
 
+
+
 .protocol-download:hover {
 	color: #ABABAB;
     text-decoration: none;
@@ -312,12 +331,34 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 
 }
 
-.protocol-text {
+.protocol-text-first {
 	font-family: 'SuisseIntl-Light', sans-serif;
 	font-size: 1rem;
-	margin-bottom:1rem;
+	margin-top:rem;
 
 }
+
+.protocol-text {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.1rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding:0;
+	color: black;
+	width:49%;
+		padding-right:1%;
+}
+
+.footer-text {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.1rem;
+	margin:0;
+	padding:0;
+	color: black;
+	width:49%;
+		padding-right:1%;
+}
+
 
 .pills-container-visualization {
 	width: 100%;
@@ -476,7 +517,9 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 .viz-mobile {
   width: 100%;
     padding-bottom:1rem;
+	
 }
+
 
 
 @media (min-width: 900px) {
@@ -501,11 +544,7 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 
 	}
     
-	
-	.pills-container-1 {
-		width: 80%;
 
-	}
     
     .workshop-past {
 	margin-top:2rem;
@@ -524,7 +563,26 @@ Ho preparato i post social e i manifesti per la comunicazione dei due workshop i
 		
 	}
     
-    .workshop-text {
+	.protocol-text {
+		width:49%;
+		padding-right:1%;
+			
+		}
+
+		.footer-text {
+			width:49%;
+			padding-right:1%;
+				
+			}
+
+		.protocol-img {
+			width:24%;
+			padding-right:1%;
+				
+			}
+
+
+		.workshop-text {
 	width:19%;
 	padding-right:1%;
 		
