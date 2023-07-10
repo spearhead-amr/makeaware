@@ -1,0 +1,173 @@
+{
+    "title": "Ball Data from antibiotics questionnarie",
+    "items": [
+   {
+        "dimension": 80,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 4.5,
+        "speedY": 7.102944,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 4.5,
+        "speedY": 7.102944,
+        "color": 1,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 6,
+        "speedY": 9.470592,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 7.5,
+        "speedY": 11.83824,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 6,
+        "speedY": 9.470592,
+        "color": 0,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 4.5,
+        "speedY": 7.102944,
+        "color": 2,
+        "cluster1": 1
+    },
+   {
+        "dimension": 80,
+        "speedX": 4.5,
+        "speedY": 7.102944,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 7.5,
+        "speedY": 11.83824,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 4.5,
+        "speedY": 7.102944,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 7.5,
+        "speedY": 11.83824,
+        "color": 2,
+        "cluster1": 2
+    },
+   {
+        "dimension": 80,
+        "speedX": 0.1,
+        "speedY": 0.1578432,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 6,
+        "speedY": 9.470592,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 4.5,
+        "speedY": 7.102944,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 6,
+        "speedY": 9.470592,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 1,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 7.5,
+        "speedY": 11.83824,
+        "color": 1,
+        "cluster1": 1
+    },
+   {
+        "dimension": 50,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 50,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 80,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 1
+    },
+    {
+        "dimension": 20,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 1
+      }
+]
+}

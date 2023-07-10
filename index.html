@@ -36,8 +36,13 @@
 	<link rel="stylesheet" type="text/css" href="css/network.css">
 	<link rel="stylesheet" type="text/css" href="css/workshops.css">
 	<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
+	<link rel="stylesheet" type="text/css" href="css/vizLanding.css">
 
-
+	<!-- SCRIPT AB VIZ LANDING -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://unpkg.com/gsap"></script>
 
 
 </head>
@@ -115,10 +120,12 @@
 				</div>
 <div id="stop-marquee"></div>
 			</section>
-
-	
-			<div class="intro-visualization">
-
+		</div>
+			<div id="vizLanding"> <!--class="intro-visualization"-->
+				<script src="js/json.js"></script>
+    			<script src="js/viz.js"></script>
+				<!--<canvas id="defaultCanvas1" class="p5Canvas" style="width: 1920px; height: 916px;" width="1920" height="916"></canvas></div>-->
+				<!-- FROM HERE OLD STATIC AB VIZ LANDING
 				<svg viewBox="0 0 1590 564" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_634_499)">
 <circle cx="450.5" cy="432.5" r="47.5" fill="#2A2A2A"/>
@@ -165,11 +172,11 @@
 <rect width="1590" height="564" fill="white"/>
 </clipPath>
 </defs>
-</svg>
+</svg>-->
 
 			</div>
-
-		</div>
+		
+		
 
 
 	</section>
