@@ -1,7 +1,7 @@
-let stories;
+let stories;  // all the loaded stories as an array
 
 let scroll_character_delay = 10;  // milliseconds, speed of the story text appearing
-let story_carousell_interval = 30000; // milliseconds, interval between every story one fully displayed before changing to the next one 
+let story_carousell_interval = 20000; // milliseconds, interval between every story one fully displayed before changing to the next one 
 
 
 // load the JSON story file when the DOM is loaded

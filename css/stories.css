@@ -50,6 +50,9 @@ color-pink {
 
 }
 
+.stories-section {
+	min-height: 100vh;
+}
 
 
 @media (min-width: 900px) {
