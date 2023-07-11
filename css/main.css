@@ -1,11 +1,12 @@
 
 /*
 colors:
-red 3D13CB
+red #FF3A17
 pink #FF46ED
 gray 1 #EFEFEF
 gray 2 #E0DFDF
 gray 3 #ABABAB
+gray 4 #AAA9AA	// stories and dataviz
 black-non-black #2B2B2B
 
 NEW ONES
@@ -14,7 +15,6 @@ turquoise: #00EAE6
 red: #DA291C
 gray: #FFFFFF
 */
-
 
 
 /*! ------------------------------------------ FONTS ------------------------------------------ */
@@ -377,7 +377,7 @@ footer {
 	}
 	
 	.nav-tag {
-		width: 20%;
+		width: calc((100% - 20%) / 5);
 
 	}
 	
