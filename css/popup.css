@@ -1,0 +1,127 @@
+/*! -------------------SuisseIntl */
+
+@font-face {
+	font-family: 'SuisseIntl-Light';
+	src: url('../font/suisseintl-light-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-LightItalic';
+	src: url('../font/SuisseIntl-LightItalic.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Regular';
+	src: url('../font/suisseintl-regular-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Book';
+	src: url('../font/suisseintl-book-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Medium';
+	src: url('../font/suisseintl-medium-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Bold';
+	src: url('../font/suisseintl-bold.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl';
+	src: url('../font/suisseintl-light-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-light-webfont.woff') format('woff'),
+	url('../font/suisseintl-regular-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-regular-webfont.woff') format('woff'),
+	url('../font/suisseintl-book-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-book-webfont.woff') format('woff'),
+	url('../font/suisseintl-medium-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-medium-webfont.woff') format('woff'),
+	url('../font/suisseintl-bold-webfont.woff2') format('woff2'),
+	url('../font/SuisseIntl-LightItalic.woff') format('woff'),
+	url('../font/suisseintl-bold-webfont.woff') format('woff');
+
+}
+
+
+
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 40rem;
+    background-color: white;
+    text-align: left;
+    border-radius: 1rem;
+    padding: 8px;
+    position: absolute;
+top:0rem;
+  right: 40rem;
+    z-index: 1;
+    left: 50%;
+    margin-left: -40rem;
+  }
+
+  .poppy-question {
+    color:black;
+    margin-left: 1rem;
+    font-family: "SuisseIntl-Bold"; 
+    text-align: left;
+    margin-left: 2rem;
+  }
+
+  .poppy-text {
+    color:black;
+    font-family: "SuisseIntl-regular"; 
+    line-height: 1.5rem;;
+    margin-top:1rem;
+    margin-left: 1rem;
+    text-align: left;
+  }
+
+
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+

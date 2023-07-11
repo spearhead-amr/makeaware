@@ -101,6 +101,7 @@ network-main {
   display: inline-block;
   cursor: pointer;
   background-color: #EFEFEF;
+  margin: 0.5rem;
 }
 
 .button-power a {
