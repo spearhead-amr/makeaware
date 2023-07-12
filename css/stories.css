@@ -6,10 +6,6 @@
 	border-top: 1px solid black;
 }
 
-.stories-sub-section {
-
-}
-
 color-red {
 	background-color: #FF3A17;
 	border-radius: 1.9rem;
@@ -42,20 +38,157 @@ color-pink {
 
 }
 
-#stories-carousell-container {
+.stories-section {
+	min-height: calc(100vh - 72px - 2rem);
+	position: relative;
+	overflow: hidden;
+
+}
+
+.stories-sub-section {
+	height: auto;
+}
+
+.stories-container {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 111px;	/* important, to manage the buttons absoulte position correctly */
+	padding-bottom: 3rem;
+
+}
+
+.stories-content {
+	
+}
+
+.stories-buttons-container {
+	padding-bottom: 3rem;
+	position: absolute;
+ 	bottom: 0;
+ 	width: 100%;
+}
+
+.stories-buttons-container .story-button {
+	color: #FF46ED;
+	font-size: 1.5rem;
+	padding: 0.5rem;
+	border-radius: 2.5rem;
+	border: 1px solid #FF46ED;
+}
+
+.stories-buttons-container .story-button:hover {
+	background-color: #FF46ED;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.stories-button-container-2 {
+	position: relative;
+	text-align: center;
+}
+
+.story-button-back {
+	position: absolute;
+	left: 0;
+	cursor: pointer;
+	border: none;
+	color: #FF3A17;
+	font-size: 1rem;
+	bottom: 0;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	padding-right: 1rem;
+}
+
+.story-button-back:before {
+	content: '← ';
+	color: #FF3A17;
+	font-size: 1rem;
+
+}
+
+.stories-content h3 {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1.5rem;
+	color: #FF46ED;
+}
+
+.story-bolder-text-black {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.5rem;
+	padding-bottom: 4rem;
+}
+
+.story-data-policy-paragraph {
+	color: #AAA9AA;
+}
+
+/* --- stories carousell --- */
+
+#story-carousell-container {
+
+}
+
+#stories-carousell {
 	font-family: 'SuisseIntl-Bold', sans-serif;
 	font-size: 2rem;
 	line-height: 3.8rem;
+	margin-bottom: 3rem;
+	min-height: calc(100vh - var(--header-height) - 15rem);
+}
+
+
+
+/* --- story share --- */
+
+#story-share-container {
 
 
 }
 
-.stories-section {
-	min-height: 100vh;
+
+#story-share {
+
 }
 
+
+
+/* --- story form --- */
+
+#story-form-container {
+}
+
+#story-form .honeypot {
+	position: absolute;
+	left: -999999999px;
+	bottom: -999999px;
+}
+
+#story-form {
+	display: float;
+	flex-wrap: warp;
+	justify-content: flex-start;
+	align-content: flex-start;
+}
+
+#story-form *:focus {
+	outline: none;
+}
+
+
+#story-form input {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 1.5rem;
+	color: #AAA9AA;
+	border: none;
+	background: transparent;
+	display: inline;
+}
 
 @media (min-width: 900px) {
 
+	.stories-container, .stories-buttons-container {
+		max-width: 75vw;
+	}
 
 }

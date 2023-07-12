@@ -1,3 +1,93 @@
+/* --- stories -- */
+
+
+// containers
+let story_carousell = document.getElementById('story-carousell-container');
+let story_share = document.getElementById('story-share-container');
+let story_form = document.getElementById('story-form-container');
+let story_thanks = document.getElementById('story-thanks-container');
+
+// buttons
+let button_share = document.getElementById('button-story-share');
+let button_write = document.getElementById('button-story-write');
+let button_submit = document.getElementById('button-story-submit');
+let button_back_to_carousell = document.getElementById('button-back-to-carousell');
+let button_back_to_share = document.getElementById('button-back-to-share');
+let button_thanks_back_to_carousell = document.getElementById('button-thanks-back-to-carousell');
+
+
+let current_container = "form";  // carousell, story, form
+
+
+
+// visibility function
+let changeStoryContainer = function (container) {
+
+  console.log(container);
+
+  current_container = container;
+
+  switch (container) {
+  case 'carousell':
+    story_carousell.style.display = "block";
+    story_share.style.display = "none";
+    story_form.style.display = "none";
+    story_thanks.style.display = "none";
+    break;
+  case 'share':
+    story_carousell.style.display = "none";
+    story_share.style.display = "block";
+    story_form.style.display = "none";
+    story_thanks.style.display = "none";
+    break;
+  case 'form':
+    story_carousell.style.display = "none";
+    story_share.style.display = "none";
+    story_form.style.display = "block";
+    story_thanks.style.display = "none";
+    break;
+  case 'thanks':
+    story_carousell.style.display = "none";
+    story_share.style.display = "none";
+    story_form.style.display = "none";
+    story_thanks.style.display = "block";
+    break;
+  }
+
+}
+
+
+
+// init visibility
+changeStoryContainer(current_container);
+
+// add buttons event listener
+
+button_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
+button_write.addEventListener('click', changeStoryContainer.bind(this, 'form'));
+button_submit.addEventListener('click', changeStoryContainer.bind(this, 'thanks'));
+button_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
+button_back_to_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
+button_thanks_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
+
+
+
+/* ----- form ------ */
+
+let form_inputs = document.querySelector('#story-form').elements;
+
+for(let i=1; i<form_inputs.length; i++) {
+
+  let input = form_inputs[i];
+
+  input.setAttribute('size', input.getAttribute('placeholder').length);
+
+}
+
+
+
+/* ----- stories carousell --- */
+
 let stories;  // all the loaded stories as an array
 
 let scroll_character_delay = 10;  // milliseconds, speed of the story text appearing
@@ -72,7 +162,7 @@ function preapreStory(story) {
 // extra: display the full story without animation
 function displayFullStories() {
 
-  let story = document.getElementById("stories-carousell-container");
+  let story = document.getElementById("stories-carousell");
 
   for(let i=0; i<stories.length; i++) {
     story.innerHTML += stories[i];
@@ -83,7 +173,7 @@ function displayFullStories() {
 // display the text appearing in the HTML
 function scrollText(story, indexes_2D) {
 
-  let story_container = document.getElementById('stories-carousell-container');
+  let story_container = document.getElementById('stories-carousell');
 
   story_container.innerHTML = ""; // erase previous story
 
@@ -168,9 +258,14 @@ function startStoriesCarousell() {
 
   let storyCarousell = function() {
 
-    console.log("current_story: " + current_story);
+    if(current_story == stories.length) {
+      current_story = 0;  // reset the story
+    }
 
     if(current_story < stories.length) {
+
+      console.log("current_story: " + current_story);
+
 
       let _indexes_2D = preapreStory(stories[current_story]);
 
@@ -178,9 +273,7 @@ function startStoriesCarousell() {
 
       current_story++;
     }
-    else {
-      current_story = 0;  // reset the story
-    }
+
 
     setTimeout(storyCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
   }

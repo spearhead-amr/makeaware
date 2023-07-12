@@ -16,6 +16,12 @@ red: #DA291C
 gray: #FFFFFF
 */
 
+/*! --------------- VARIABLES ------------- */
+
+:root {
+	--header-height: 3.8rem;
+}
+
 
 /*! ------------------------------------------ FONTS ------------------------------------------ */
 
@@ -264,6 +270,7 @@ nav a:hover {
 .anchors {
 	position: relative;
 }
+
 
 
 /*! ----footer - */

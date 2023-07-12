@@ -74,7 +74,7 @@
 	
 
 		<!-- nav --->
-		<nav>
+		<nav id="main-nav-menu">
 			<div id="hamburger-menu"></div>
 			
             <div class="nav-tag-first nav-element">
@@ -2178,21 +2178,103 @@ s
 <section id="stories-main">
 
 	<section class="stories-section">
-        <h2>STORIES</h2>
-
+		<div id="stories-h2">
+	        <h2>STORIES</h2>
+	    </div>
         <section class="stories-sub-section">
 
-        	<div id="stories-carousell-container">
-        		<div>
-        			
+
+        	<!-- stories carousell -->
+        	<div class="stories-container" id="story-carousell-container">
+
+        		<div class="stories-content" id="stories-carousell"></div>
+
+	       		<div class="stories-buttons-container">
+	       			<div class="stories-button-container-2">
+	        			<button type="button" class="story-button" id="button-story-share">Share your story</button>
+	        		</div>
         		</div>
-			        		
+
         	</div>
 
 
-        	<div id="stories-form">
-        		
-        	</div>
+        	<!-- story share -->
+        	<div class="stories-container" id="story-share-container">
+
+	        	<div  class="stories-content" id="story-share">
+	        		<h3>Share your story to help others and inspire the research.</h3>
+
+	        		<p class="story-bolder-text-black">What was the reason to take antibiotics last time? Who prescribed them and what were you explained? Did the treatment work? Did any side effects occur? Is there any alternative treatment that works for you?</p>
+
+	        		<p class="story-data-policy-paragraph">Data is collected anonymised and organised openly on the project repository for others to explore.</p>
+	        		
+	        	</div>
+
+	    	    <div class="stories-buttons-container">
+	    	    	<div class="stories-button-container-2">
+		    			<button type="button" id="button-back-to-carousell" class="story-button-back">back to stories</button>
+		    			<button type="button" class="story-button" id="button-story-write">Write your story</button>
+		    		</div>
+	    		</div>
+
+	    	</div>
+
+
+	    	<!-- story form -->
+	    	<div class="stories-container" id="story-form-container">
+
+	        	<div  class="stories-content">
+
+	        		<form method="post" action="" enctype="application/x-www-form-urlencoded" class="story-bolder-text-black" id="story-form">
+
+	        			<div class="honeypot">
+			                <label for="website">Website <abbr title="required">*</abbr></label>
+			                <input type="url" id="website" name="website" tabindex="-1">
+			            </div>
+
+			            <span>I decided to </span>
+
+			            <input type="text" name="one" placeholder="-go to/see/call/text/speak with - (who have you consulted regarding your sickness?)" value="" required>
+
+			            <span> because </span>
+
+			            <input type="text" name="two" placeholder="(what symptoms did you have?)" value="" required>
+
+			            <span>. I was feeling </span>
+
+	        		</form>
+
+	        		<div class="stories-buttons-container">
+	        			<div class="stories-button-container-2">
+		        			<button type="button" id="button-back-to-share" class="story-button-back">back to stories</button>
+		        			<button type="button" class="story-button" id="button-story-submit">Submit</button>
+	        			</div>
+	        		</div>
+	        		
+	        	</div>
+
+	        </div>
+
+	        <!-- story thanks -->
+	    	<div class="stories-container" id="story-thanks-container">
+
+	        	<div  class="stories-content" id="story-thanks">
+
+	        		<h3>Thank you for sharing your story.</h3>
+
+	        		<p class="story-bolder-text-black">Your story has been received and it will be added to our database in the next days, for you and others to explore.</p>
+
+	        		<p class="story-data-policy-paragraph">Data is collected anonymised and organised openly on the project repository for others to explore.</p>
+
+	        		<div class="stories-buttons-container">
+	        			<div class="stories-button-container-2">
+		        			<button type="button" id="button-thanks-back-to-carousell" class="story-button-back">back to stories</button>
+	        			</div>
+	        		</div>
+	        		
+	        	</div>
+
+	        </div>
 
 
 
@@ -2216,7 +2298,7 @@ s
 
         
 
-<section class="workshops-sub-section">
+		<section class="workshops-sub-section">
 
 
     
