@@ -10,7 +10,7 @@ Official release of the online website that it's hosted at https://spearhead-amr
 
 main branch: +-------+-----+
 
-dev branch:  +-+-+-+-^-+-+-^
+dev branch:    +-+-+-+-^-+-+-^
 
 ## dev branch
 
