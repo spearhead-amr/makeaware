@@ -16,14 +16,14 @@ let button_back_to_share = document.getElementById('button-back-to-share');
 let button_thanks_back_to_carousell = document.getElementById('button-thanks-back-to-carousell');
 
 
-let current_container = "form";  // carousell, story, form
+let current_container = "carousell";  // carousell, story, form, thanks
 
 
 
 // visibility function
 let changeStoryContainer = function (container) {
 
-  console.log(container);
+  // console.log(container);
 
   current_container = container;
 
