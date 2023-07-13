@@ -57,7 +57,17 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    color:red;
+    font-size: 3rem;
   }
+
+  .popup:hover {
+    color: gray;
+
+  }
+
+
+
   
   /* The actual popup */
   .popup .popuptext {
@@ -68,28 +78,45 @@
     border-radius: 1rem;
     padding: 8px;
     position: absolute;
-top:0rem;
-  right: 40rem;
+    top:-8rem;
+    right: 40rem;
     z-index: 1;
     left: 50%;
     margin-left: -40rem;
+    border-style: solid;
+    border-color: red;
+    font-size: 1rem;
+    height:80vh;
+    overflow:auto;
   }
 
   .poppy-question {
     color:black;
-    margin-left: 1rem;
     font-family: "SuisseIntl-Bold"; 
     text-align: left;
-    margin-left: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top:0.7rem;
   }
 
+  .poppy-text-first {
+    color:black;
+    font-family: "SuisseIntl-regular"; 
+    line-height: 1.5rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    text-align: left;
+    padding-top:2em;
+  }
+  
   .poppy-text {
     color:black;
     font-family: "SuisseIntl-regular"; 
     line-height: 1.5rem;;
     margin-top:1rem;
-    margin-left: 1rem;
     text-align: left;
+    padding-left:1rem;
+    padding-right:1rem;
   }
 
 
@@ -125,3 +152,34 @@ top:0rem;
   }
 
 
+  .viz-landing-legend {
+    width:80%;
+    padding-left: 2rem;
+    padding-bottom:0.7rem;
+    padding-top:0.5rem;
+    }
+
+    .viz-landing-legend-2 {
+      width:80%;
+      padding-left: 1rem;
+      padding-bottom:0rem;
+      padding-top:0.5rem;
+      }
+
+
+    .q-link {
+        font-family: 'SuisseIntl-Light', sans-serif;
+        font-size: 1rem;
+        color: #FF3A17;
+        padding: 0px;
+        padding-right: 0rem;
+        margin: 0px;
+        border: 0px;
+        text-decoration: none;
+      }
+
+
+      .q-link:hover {
+        color: #ABABAB;
+        text-decoration: none;
+      }
