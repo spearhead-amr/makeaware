@@ -83,9 +83,9 @@ gray: #FFFFFF
 	url('../font/suisseintl-book-webfont.woff') format('woff'),
 	url('../font/suisseintl-medium-webfont.woff2') format('woff2'),
 	url('../font/suisseintl-medium-webfont.woff') format('woff'),
-	url('../font/suisseintl-bold-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-bold.woff2') format('woff2'),
 	url('../font/SuisseIntl-LightItalic.woff') format('woff'),
-	url('../font/suisseintl-bold-webfont.woff') format('woff');
+	url('../font/suisseintl-bold.woff') format('woff');
 
 }
 
