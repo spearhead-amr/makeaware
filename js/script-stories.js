@@ -16,7 +16,7 @@ let button_back_to_share = document.getElementById('button-back-to-share');
 let button_thanks_back_to_carousell = document.getElementById('button-thanks-back-to-carousell');
 
 
-let current_container = "form";  // carousell, story, form, thanks
+let current_container = "carousell";  // carousell, story, form, thanks
 
 
 
@@ -56,6 +56,75 @@ let changeStoryContainer = function (container) {
 
 }
 
+// form validation in JS
+
+function storyFormValidation(action) {
+
+  const spans = document.querySelector('#story-form').children; // all spans
+
+  let isFilled = true;
+
+  // check for edited values
+
+  spans.forEach(el => {
+    if(!el.classList.contains('fixed') && el.dataset.edited != '1') {
+      isFilled = false;
+      el.classList.add('not-filled');
+    }
+  })
+
+
+
+  if(isFilled) {
+
+    // collect story
+
+    let formHTML = "";
+
+    spans.forEach(el => {
+
+      if(el.classList.contains('fixed')) {
+        formHTML += el.innerText;
+      }
+      else if(el.classList.contains('editable')) {
+        formHTML += ' <' + el.dataset.formColor + '>' + el.innerText + '</' + el.dataset.formColor + '> ';
+      }
+
+    })
+
+    let formText = document.querySelector('#story-form').innerText;
+
+
+    //console.log(formText);
+
+    const storyRegExp = /([^a-zA-Z0-9. ()?,’'])/g;
+
+    const isValid = !storyRegExp.test(formText);
+
+    console.log('isValid: ' + isValid);
+
+
+    if(isValid) {
+
+      // reset form
+      spans.forEach(el => {
+        if(!el.classList.contains('fixed')) {
+          el.innerText = el.dataset.placeholder;
+          el.dataset.edited = '0';
+          el.classList.remove('edited');
+          el.classList.remove('color-grey');
+          el.classList.remove('color-red');
+          el.classList.remove('color-pink');
+        }
+      })
+
+      changeStoryContainer(action);
+    }
+
+  }
+
+}
+
 
 
 // init visibility
@@ -65,7 +134,7 @@ changeStoryContainer(current_container);
 
 button_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
 button_write.addEventListener('click', changeStoryContainer.bind(this, 'form'));
-button_submit.addEventListener('click', changeStoryContainer.bind(this, 'thanks'));
+button_submit.addEventListener('click', storyFormValidation.bind(this, 'thanks'));
 button_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
 button_back_to_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
 button_thanks_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
@@ -86,6 +155,7 @@ document.querySelectorAll('.editable').forEach( el => {
         el.dataset.edited = '1' // now edited
         el.classList.add('edited')
         el.classList.add(el.dataset.formColor)
+        el.classList.remove('not-filled')
         el.innerHTML = '' // clear current placeholder
     }
   })
@@ -285,7 +355,7 @@ function startStoriesCarousell() {
 
     if(current_story < stories.length) {
 
-      console.log("current_story: " + current_story);
+      // console.log("current_story: " + current_story);
 
 
       let _indexes_2D = preapreStory(stories[current_story]);

@@ -219,6 +219,9 @@ color-pink {
 	color: black;
 }
 
+#story-form .not-filled {
+	text-decoration: red dotted underline;
+}
 
 
 @media (min-width: 900px) {
