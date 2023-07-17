@@ -16,7 +16,7 @@ let button_back_to_share = document.getElementById('button-back-to-share');
 let button_thanks_back_to_carousell = document.getElementById('button-thanks-back-to-carousell');
 
 
-let current_container = "carousell";  // carousell, story, form, thanks
+let current_container = "form";  // carousell, story, form, thanks
 
 
 
@@ -74,15 +74,36 @@ button_thanks_back_to_carousell.addEventListener('click', changeStoryContainer.b
 
 /* ----- form ------ */
 
-let form_inputs = document.querySelector('#story-form').elements;
+document.querySelectorAll('.editable').forEach( el => {
 
-for(let i=1; i<form_inputs.length; i++) {
+  el.setAttribute('contenteditable', true)
+  el.dataset.edited = '0' // el.dataset -> dataset is used to add custom data to an element
+  el.dataset.placeholder = el.innerHTML // save the placeholder of every element
 
-  let input = form_inputs[i];
+  el.addEventListener('keydown', e => {
+    const el = e.target   // target is the current edited element @event 'keydown'
+    if (el.dataset.edited == '0') { // not edited
+        el.dataset.edited = '1' // now edited
+        el.classList.add('edited')
+        el.classList.add(el.dataset.formColor)
+        el.innerHTML = '' // clear current placeholder
+    }
+  })
 
-  input.setAttribute('size', input.getAttribute('placeholder').length);
+  el.addEventListener('keyup', e => { // e => is quivalent to function(e) {}
+    const el = e.target
+    if (el.dataset.edited == '1') {
+      if (el.innerText.length == 0) { // if no letters from the user...
+        el.dataset.edited = '0'
+        el.classList.remove('edited')
+        el.classList.remove(el.dataset.formColor)
+        el.innerText = el.dataset.placeholder // set the placeholder back as content
+      }
+    }
+  })
 
-}
+
+})
 
 
 

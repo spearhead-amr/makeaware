@@ -38,6 +38,38 @@ color-pink {
 
 }
 
+.color-red {
+	background-color: #FF3A17;
+	border-radius: 1.9rem;
+	-webkit-box-decoration-break: clone;
+	-o-box-decoration-break: clone;
+	box-decoration-break: clone;
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+
+}
+
+.color-grey {
+	background-color: #AAA9AA;
+	border-radius: 1.9rem;
+	-webkit-box-decoration-break: clone;
+	-o-box-decoration-break: clone;
+	box-decoration-break: clone;
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+
+}
+
+.color-pink {
+	background-color: #FF46ED;
+	border-radius: 1.9rem;
+	-webkit-box-decoration-break: clone;
+	-o-box-decoration-break: clone;
+	box-decoration-break: clone;
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+}
+
 .stories-section {
 	min-height: calc(100vh - 72px - 2rem);
 	position: relative;
@@ -158,32 +190,36 @@ color-pink {
 #story-form-container {
 }
 
-#story-form .honeypot {
-	position: absolute;
-	left: -999999999px;
-	bottom: -999999px;
-}
 
 #story-form {
 	display: float;
 	flex-wrap: warp;
 	justify-content: flex-start;
 	align-content: flex-start;
-}
-
-#story-form *:focus {
-	outline: none;
-}
-
-
-#story-form input {
 	font-family: 'SuisseIntl-Book', sans-serif;
-	font-size: 1.5rem;
+	font-size: 2rem;
 	color: #AAA9AA;
 	border: none;
-	background: transparent;
-	display: inline;
+	outline-width: 0;
+	line-height: 2.7rem;
 }
+
+#story-form .editable {
+	-webkit-user-select: none; /* Safari */
+    user-select: none;
+    color: #AAA9AA;
+    outline-width: 0;
+}
+
+#story-form .edited {
+	color: black !important;
+}
+
+#story-form .fixed {
+	color: black;
+}
+
+
 
 @media (min-width: 900px) {
 
