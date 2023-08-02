@@ -19,6 +19,9 @@ let ballMoving = true;
 let anyCollision = false;
 let button;
 let buttonActive = false;
+let labelMouse = ["","",""];
+
+let pointerBall = false;
 
 let font, fontsize = 17;
 
@@ -64,7 +67,8 @@ function setup() {
         abSpeedX[i],        //Speed in x axis
         random(abSpeedX[i]-.5, abSpeedX[i]+.5),        //Speed in y axis
         abColor[i],         //Color from array color
-        questCluster1[i]);  //Cluster 1     
+        questCluster1[i],  //Cluster 1
+        map(100,0,100,0,255));                //Alpha Value
   }
 
   textFont(font);
@@ -107,22 +111,55 @@ function draw() {
   for (let i = 0; i < numBalls; i++){
     makeawarePeople[i].display();
     if (ballMoving){
+      makeawarePeople[i].modifyAlpha(255);
       makeawarePeople[i].move();
       makeawarePeople[i].bounce();
     }
       if(makeawarePeople[i].selected){
         anyCollision = true;
+        makeawarePeople[i].modifyAlpha(255);
         makeawarePeople[i].collided();
       }else if (!anyCollision){
         makeawarePeople[i].checkCollision();
+      } else {
+        makeawarePeople[i].modifyAlpha(120);
       }
   }
+  
+  //Drawing only if necessary, information of balls and relative pointer
+  push();
+  if (mouseX >= width/2){
+    textAlign(RIGHT);
+    fill("#000000");
+    text(labelMouse[0], mouseX - 5,mouseY + 20);
+    text(labelMouse[1], mouseX - 5,mouseY + 20 + highlineCursorText); 
+    text(labelMouse[2], mouseX - 5,mouseY + 20 + highlineCursorText + highlineCursorText);
+  } else {
+    textAlign(LEFT);
+    fill("#000000");
+    text(labelMouse[0], mouseX + 5,mouseY + 20);
+    text(labelMouse[1], mouseX + 5,mouseY + 20 + highlineCursorText); 
+    text(labelMouse[2], mouseX + 5,mouseY + 20 + highlineCursorText + highlineCursorText);
+      }
+  pop();
+  
+  if (pointerBall == true){
+    push();
+    stroke("black");
+    strokeWeight(2);
+    line(mouseX-20,mouseY,mouseX+20,mouseY);
+    line(mouseX,mouseY-20,mouseX,mouseY+20);
+    pop();
+    push();
+  }
 
+  labelMouse = ["","",""];
+  pointerBall = false;
 }
 
 
 class Ball {
-  constructor(dimension, tempX, tempY, tempXspeed, tempYspeed, abColor, questCluster1) {
+  constructor(dimension, tempX, tempY, tempXspeed, tempYspeed, abColor, questCluster1, alphaValueConstr) {
     this.position = createVector(tempX, tempY);
     this.originalVelocity = createVector(tempXspeed, tempYspeed);
     this.velocity = createVector(tempXspeed, tempYspeed);
@@ -131,19 +168,26 @@ class Ball {
     this.color = colors[colorNumber];
     this.selected = false;
     this.cluster1 = questCluster1;
+    console.log(alphaValueConstr);
+    this.alphaValue = alphaValueConstr;
+    this.moveable = true; // Add a moveable flag to control movement
   }
 
   display() {
     strokeWeight(0);
     if(this.dimension < antibioticDimension){
-      fill(this.color);
+      let fillColor = color(this.color);
+      fillColor = color(red(fillColor), green(fillColor), blue(fillColor), this.alphaValue);
+      fill(fillColor);
       circle(this.position.x, this.position.y, 25);
-      fill("#FFFFFF");
+      fill(255,255,255,this.alphaValue);
       circle(this.position.x, this.position.y, antibioticDimension-8);
     } else{
-      fill("#FFFFFF");
+      fill(255,255,255,this.alphaValue);
       circle(this.position.x, this.position.y, this.dimension);
-      fill(this.color);
+      let fillColor = color(this.color);
+      fillColor = color(red(fillColor), green(fillColor), blue(fillColor), this.alphaValue);
+      fill(fillColor);
       circle(this.position.x, this.position.y, antibioticDimension);
     }
 
@@ -152,7 +196,9 @@ class Ball {
   }
 
   move() {
-    this.position.add(this.velocity);
+    if (this.moveable) {
+      this.position.add(this.velocity);
+    }
   }
 
   bounce() {
@@ -171,31 +217,26 @@ class Ball {
         console.log("hit");
         this.originalVelocity = this.velocity;
         this.selected = true;
+        this.moveable = false; // Set moveable to false when collided
       }
     }
 
   collided(){
     this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
     noCursor();
-    push();
-    stroke("black");
-    strokeWeight(2);
-    line(mouseX-20,mouseY,mouseX+20,mouseY);
-    line(mouseX,mouseY-20,mouseX,mouseY+20);
-    pop();
-    push();
+    pointerBall = true;
+
     fill("black");
     //Here the cursor will display the values for each ball
       textAlign(LEFT);
-      textCursorPos = [mouseX + 5, mouseY + 20];
       
       //Here the first answer
       if(this.color === colors[0]){
-        text("Color: I don't know what AMR is", textCursorPos[0],textCursorPos[1]);
+        labelMouse[0] = "Color: I don't know what AMR is";
       }else if(this.color === colors[1]){
-        text("Color: I'm not sure what AMR is", textCursorPos[0],textCursorPos[1]);
+        labelMouse[0] = "Color: I'm not sure what AMR is";
       }else if(this.color === colors[2]){
-        text("Color: I know what AMR is", textCursorPos[0],textCursorPos[1]);
+        labelMouse[0] = "Color: I know what AMR is";
       }else{
         console.error("Color error in JSON file -> Text not displayed");
         console.error(this.color);
@@ -203,19 +244,19 @@ class Ball {
 
       //Here the second answer
       if(this.originalVelocity.x === 0.1 || this.originalVelocity.x === -0.1){
-        text("Velocity: I’ve never consumed antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I’ve never consumed antibiotics";
       }else if(this.originalVelocity.x === 1.5 || this.originalVelocity.x === -1.5){
-        text("Velocity: I consumed the last antibioticics more than 10 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I consumed the last antibioticics more than 10 years ago";
       }else if(this.originalVelocity.x === 3 || this.originalVelocity.x === -3){
-        text("Velocity: I consumed the last antibioticics between 10 and 5 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I consumed the last antibioticics between 10 and 5 years ago";
       }else if(this.originalVelocity.x === 4.5 || this.originalVelocity.x === -4.5){
-        text("Velocity: I consumed the last antibioticics between 5 and 1 year ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I consumed the last antibioticics between 5 and 1 year ago";
       }else if(this.originalVelocity.x === 6 || this.originalVelocity.x === -6){
-        text("Velocity: I've consumed the last antibioticics in the last year", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I've consumed the last antibioticics in the last year";
       }else if(this.originalVelocity.x === 7.5 || this.originalVelocity.x === -7.5){
-        text("Velocity: I've consumed the last antibioticics in the last six months", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I've consumed the last antibioticics in the last six months";
       }else if(this.originalVelocity.x === 10 || this.originalVelocity.x === -10){
-        text("Velocity: I am currently under antibiotic treatment", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        labelMouse[1] = "Velocity: I am currently under antibiotic treatment";
       }else{
         console.error("Speed error in JSON file -> Text not displayed");
         console.error(this.originalVelocity.x);
@@ -223,35 +264,39 @@ class Ball {
 
       //Here the third answer
       if(this.dimension === 110){
-        text("Dimension: I don't want to consume antibiotics for any reason", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I don't want to consume antibiotics for any reason";
       }else if(this.dimension === 95){
-        text("Dimension: I don’t take antibiotics even if prescribed", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I don’t take antibiotics even if prescribed";
       }else if(this.dimension === 80){
-        text("Dimension: I do my best to avoid antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I do my best to avoid antibiotics";
       }else if(this.dimension === 65){
-        text("Dimension: I look for alternatives to antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I look for alternatives to antibiotics";
       }else if(this.dimension === 50){
-        text("Dimension: I follow the prescription", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I follow the prescription";
       }else if(this.dimension === 35){
-        text("Dimension: I take antibiotics even without prescription", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I take antibiotics even without prescription";
       }else if(this.dimension === 20){
-        text("Dimension: I take antibiotics for prevention", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        labelMouse[2] = "Dimension: I take antibiotics for prevention";
       }else{
         console.error("Dimension error in JSON file -> Text not displayed");
         console.error(this.dimension);
       }
 
-    pop();
-    this.velocity = 0;
     if(!this.hit){
       cursor();
       console.log("Not hitted anymore");
       this.selected = false;
       anyCollision = false;
       this.velocity = this.originalVelocity;
-      console.log(this.velocity);
+      //console.log(this.velocity);
+      this.moveable = true; // Set moveable to true when not collided
     }
   }
+
+  modifyAlpha(alphaNew) {
+    this.alphaValue = alphaNew; // Modifying the alphaChannel
+  }
+
   }
 
 function onButtonClick(){
