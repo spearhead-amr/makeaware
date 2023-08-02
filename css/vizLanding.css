@@ -1,0 +1,27 @@
+#vizLanding {
+  overflow: auto;
+}
+
+canvas {
+  display: block;
+}
+
+.btn{
+  font-family: "SuisseIntl-Medium", sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 40px;
+  margin-left: 2rem;
+  cursor: grab;
+}
+
+.pressed{
+  background-color: #FF46ED;
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}

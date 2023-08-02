@@ -1,0 +1,203 @@
+/*! -------------------SuisseIntl */
+
+@font-face {
+	font-family: 'SuisseIntl-Light';
+	src: url('../font/suisseintl-light-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-LightItalic';
+	src: url('../font/SuisseIntl-LightItalic.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Regular';
+	src: url('../font/suisseintl-regular-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Book';
+	src: url('../font/suisseintl-book-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Medium';
+	src: url('../font/suisseintl-medium-webfont.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl-Bold';
+	src: url('../font/suisseintl-bold.woff');
+}
+
+@font-face {
+	font-family: 'SuisseIntl';
+	src: url('../font/suisseintl-light-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-light-webfont.woff') format('woff'),
+	url('../font/suisseintl-regular-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-regular-webfont.woff') format('woff'),
+	url('../font/suisseintl-book-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-book-webfont.woff') format('woff'),
+	url('../font/suisseintl-medium-webfont.woff2') format('woff2'),
+	url('../font/suisseintl-medium-webfont.woff') format('woff'),
+	url('../font/suisseintl-bold-webfont.woff2') format('woff2'),
+	url('../font/SuisseIntl-LightItalic.woff') format('woff'),
+	url('../font/suisseintl-bold-webfont.woff') format('woff');
+
+}
+
+
+
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color:red;
+    font-size: 3rem;
+    top: 7px;
+  }
+
+  .popup:hover {
+    color: gray;
+
+  }
+
+
+
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 40vw;
+    background-color: #efefef;
+    text-align: left;
+    border-radius: 1rem;
+    padding: 8px;
+    position: absolute;
+    top:-6.25rem;
+    right: 0rem;
+    z-index: 1;
+    margin-left: -40rem;
+    border-style: solid;
+    border-color: red;
+    font-size: 1rem;
+    height:75vh;
+    overflow:auto;
+  }
+
+  .poppy-question {
+    color:black;
+    font-family: "SuisseIntl-Bold"; 
+    text-align: left;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top:0.7rem;
+  }
+
+  .poppy-text-first {
+    color:black;
+    font-family: "SuisseIntl-regular"; 
+    line-height: 1.5rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    text-align: left;
+    padding-top:2em;
+  }
+  
+  .poppy-text {
+    color:black;
+    font-family: "SuisseIntl-regular"; 
+    line-height: 1.5rem;;
+    margin-top:1rem;
+    text-align: left;
+    padding-left:1rem;
+    padding-right:1rem;
+  }
+
+
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+
+  .viz-landing-legend {
+    width:80%;
+    padding-left: 2rem;
+    padding-bottom:0.7rem;
+    padding-top:0.5rem;
+    }
+
+    .viz-landing-legend-2 {
+      width:80%;
+      padding-left: 1rem;
+      padding-bottom:0rem;
+      padding-top:0.5rem;
+      }
+
+
+    .q-link {
+        font-family: 'SuisseIntl-Light', sans-serif;
+        font-size: 1rem;
+        color: #FF3A17;
+        padding: 0px;
+        padding-right: 0rem;
+        margin: 0px;
+        border: 0px;
+        text-decoration: none;
+      }
+
+
+      .q-link:hover {
+        color: #ABABAB;
+        text-decoration: none;
+      }
+
+  @media (max-width: 1280px) {
+    .popup .popuptext {
+      width: 60vw;
+    }
+  }
+
+  @media (max-width: 970px) {
+    .popup .popuptext {
+      width: 80vw;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .popup .popuptext {
+      top:-9.55rem;
+    }
+  }

@@ -1,5 +1,6 @@
 var pills_y_top;
 var header_fixer_height_index;
+var main_menu_height;	// main navigation menu height for the in-page anchors offset
 
 
 
@@ -11,6 +12,7 @@ function updateValues() {
 	header_fixer_height_index = document.getElementById('header-fixed-top').clientHeight;
 	//console.log('header_fixer_height_index: ' + header_fixer_height_index);
 
+	main_menu_height = document.getElementById('main-nav-menu').clientHeight;
 	
 }
 
@@ -47,7 +49,7 @@ function updateAnchors() {
 	//console.log(anchors);
 	
 	for(let i=0; i<anchors.length; i++) {
-		anchors[i].style.top = - header_fixer_height_index + 'px';
+		anchors[i].style.top = - main_menu_height + 'px';
 	}
 	
 }
@@ -131,3 +133,8 @@ hamburger.addEventListener('click', menuToggle.bind(this, hamburger.id));
 
 
 
+// When the user clicks on <div>, open the popup
+function myFunction() {
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+  }
