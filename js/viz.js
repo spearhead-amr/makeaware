@@ -211,14 +211,16 @@ class Ball {
   }
 
   checkCollision(){
-    this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
-    
-      if (this.hit){
-        console.log("hit");
-        this.originalVelocity = this.velocity;
-        this.selected = true;
-        this.moveable = false; // Set moveable to false when collided
-      }
+    if (width >= 500){
+      this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
+      
+        if (this.hit){
+          console.log("hit");
+          this.originalVelocity = this.velocity;
+          this.selected = true;
+          this.moveable = false; // Set moveable to false when collided
+        }
+    }
     }
 
   collided(){

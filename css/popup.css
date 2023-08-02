@@ -59,6 +59,7 @@
     user-select: none;
     color:red;
     font-size: 3rem;
+    top: 7px;
   }
 
   .popup:hover {
@@ -72,21 +73,20 @@
   /* The actual popup */
   .popup .popuptext {
     visibility: hidden;
-    width: 40rem;
-    background-color: white;
+    width: 40vw;
+    background-color: #efefef;
     text-align: left;
     border-radius: 1rem;
     padding: 8px;
     position: absolute;
-    top:-8rem;
-    right: 40rem;
+    top:-6.25rem;
+    right: 0rem;
     z-index: 1;
-    left: 50%;
     margin-left: -40rem;
     border-style: solid;
     border-color: red;
     font-size: 1rem;
-    height:80vh;
+    height:75vh;
     overflow:auto;
   }
 
@@ -183,3 +183,21 @@
         color: #ABABAB;
         text-decoration: none;
       }
+
+  @media (max-width: 1280px) {
+    .popup .popuptext {
+      width: 60vw;
+    }
+  }
+
+  @media (max-width: 970px) {
+    .popup .popuptext {
+      width: 80vw;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .popup .popuptext {
+      top:-9.55rem;
+    }
+  }
