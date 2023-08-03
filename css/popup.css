@@ -67,17 +67,18 @@
 
   }
 
-
-
   
   /* The actual popup */
   .popup .popuptext {
     visibility: hidden;
     width: 40vw;
     background-color: #efefef;
-    text-align: left;
+    /* text-align: left; */
     border-radius: 1rem;
-    padding: 8px;
+    padding-left: 2rem;
+    padding-top: 0rem;
+    padding-right  : 2rem;
+    padding-bottom: 0em;
     position: absolute;
     top:-6.25rem;
     right: 0rem;
@@ -89,11 +90,27 @@
     overflow:auto;
   }
 
+  .poppy-close {
+    position:relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color:red;
+    font-size: 3rem;
+    text-align: right; 
+    transform: rotate(-45deg);
+    padding: 0rem;
+  }
+  
+
   .poppy-question {
     color:black;
     font-family: "SuisseIntl-Bold"; 
     text-align: left;
-    padding-left: 2rem;
+    padding-left: 0rem;
     padding-right: 2rem;
     padding-top:0.7rem;
   }
@@ -102,10 +119,9 @@
     color:black;
     font-family: "SuisseIntl-regular"; 
     line-height: 1.5rem;
-    padding-left:1rem;
-    padding-right:1rem;
+    padding-left:rem;
+    padding-right:0rem;
     text-align: left;
-    padding-top:2em;
   }
   
   .poppy-text {
@@ -114,14 +130,33 @@
     line-height: 1.5rem;;
     margin-top:1rem;
     text-align: left;
-    padding-left:1rem;
-    padding-right:1rem;
+  }
+
+  .poppy-text-thin {
+    color:black;
+    font-family: "SuisseIntl-Thin"; 
+    font-size: 0.75rem;
+    margin-top:1rem;
+    text-align: left;
+    padding-left: 2rem;
+    width: 50%;
+  }
+
+  .poppy-text-thin-last {
+    color:black;
+    font-family: "SuisseIntl-Thin"; 
+    font-size: 0.75rem;
+    margin-top:1rem;
+    text-align: left;
+    padding-left: 2rem;
+    width: 50%;
+    padding-bottom:0.4rem;
   }
 
 
   
   /* Popup arrow */
-  .popup .popuptext::after {
+  /* .popup .popuptext::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -130,7 +165,7 @@
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-  }
+  } */
   
   /* Toggle this class - hide and show the popup */
   .popup .show {
@@ -167,7 +202,7 @@
 
 
     .q-link {
-        font-family: 'SuisseIntl-Light', sans-serif;
+        font-family: 'SuisseIntl-Regular', sans-serif;
         font-size: 1rem;
         color: #FF3A17;
         padding: 0px;

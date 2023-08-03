@@ -1,12 +1,12 @@
 #workshops-main {
    padding:2rem;
-   border-top: 1px solid black;
+   border-top: 1.7px solid black;
 }
 
 #protocols-main {
-	padding-top:2rem;
-	/* border-top: 1px solid black; */
- }
+	padding:2rem;
+	border-top: 1.7px solid black;
+}
 
 
 .workshops-sub-section {
@@ -30,13 +30,14 @@
 	flex-wrap: wrap;
 	padding-bottom:3rem;
     padding-top:3rem;
-    border-top: 1px solid rgba(43, 43, 43, 1);
+    border-top: 0.9px solid rgba(43, 43, 43, 1);
 }
 
 
 .workshop-card {
 	width: 100%;
 }
+
 
 
 .workshop-card+.workshop-card {

@@ -3,7 +3,7 @@
 	padding-right:2rem;
 	padding-bottom:0rem;
 	padding-top:2rem;
-	border-top: 1px solid black;
+	border-top: 1.7px solid black;
 }
 
 #pills-faq {
@@ -39,12 +39,14 @@ questionnaire .h2 {
 	
 }
 
+/* border bottom: 1px - if lines longer than the div till the end of the page */
 .pills-faq-li+.pills-faq-li::before {
 	content: "";
-	border-bottom: 1px solid black;
+	border-bottom: 0.9px solid black;
 	position: absolute;
-	width: 100%;
-	left: 0;
+	/* width: 100%; */
+	left: 2rem;
+	right: 2rem;
 	
 }
 
@@ -81,6 +83,22 @@ questionnaire .h2 {
 	padding-top: 1rem; 
 }
 
+
+
+
+.protocol-last {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+	border-bottom: 0.9px solid rgba(43, 43, 43, 1);
+}
+
+
+
 .protocols-block {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -98,7 +116,7 @@ questionnaire .h2 {
 	flex-wrap: wrap;
 	padding-bottom: 1rem;
 	padding-top: 1rem; 
-    border-top: 1px solid rgba(43, 43, 43, 1);
+    border-top: 0.9px solid rgba(43, 43, 43, 1);
 }
 
 .workshop-block-bottom {
@@ -109,7 +127,7 @@ questionnaire .h2 {
 	flex-wrap: wrap;
 	padding-bottom: 1rem;
 	padding-top: 1rem; 
-    border-bottom: 1px solid rgba(43, 43, 43, 1);
+
 }
 
 .workshop-block-noborder {
@@ -415,6 +433,10 @@ questionnaire .h2 {
 .viz-legend-desktop {
 	width:0%;
 	}
+
+	.popup-desktop {
+		width:0%;
+		}
 
 .viz-title {
 	font-size: 1.1rem;
@@ -748,6 +770,10 @@ questionnaire .h2 {
 .viz-legend-desktop {
 	width:80%;
 	}
+
+	.popup-desktop {
+		width:100%;
+		}
 	
 	
 	
