@@ -7,6 +7,13 @@ network-main {
 	padding:2rem;
 }
 
+.intro-info {
+	padding-left:2rem;
+	padding-right:2rem;
+	padding-top:1rem;
+	padding-bottom:1rem;
+}
+
 .network-section {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -35,6 +42,17 @@ network-main {
 	color: #2A2A2A;
 	line-height: 1.9rem;
 	margin:0;
+	padding-top:0.7rem;
+	width:100%;
+	padding-right: 2rem;
+}
+
+.info {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 1rem;
+	color: #2A2A2A;
+	margin:0;
+	line-height: 1.1rem;
 	padding-top:0.7rem;
 	width:100%;
 	padding-right: 2rem;
@@ -90,7 +108,23 @@ network-main {
 		margin-top:0rem;
 		
 	}
+	
+	.intro-info {
+		padding:0rem;
+		margin:0rem;
+	}
+	
 
+	.info {
+		font-family: 'SuisseIntl-Light', sans-serif;
+		font-size: 0rem;
+		color: #2A2A2A;
+		margin:0;
+		padding: 0rem;
+		line-height: 0;
+		width:100%;
+	}
+	
 	.button-power {
   border: 0.09rem solid #FF3A17;
   border-radius: 2rem;
@@ -120,7 +154,7 @@ network-main {
 	.network-h3 {
 		width: 40%;
 		padding-top:0rem;
-		font-size: 1.3rem;
+		font-size: 1.1rem;
 	padding:0;
 }
 
