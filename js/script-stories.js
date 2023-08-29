@@ -60,6 +60,8 @@ let changeStoryContainer = function (container) {
 
 function storyFormValidation(action) {
 
+  //action.preventDefault();
+
   const spans = document.querySelector('#story-form').children; // all spans
 
   let isFilled = true;
@@ -101,10 +103,15 @@ function storyFormValidation(action) {
 
     const isValid = !storyRegExp.test(formText);
 
-    console.log('isValid: ' + isValid);
+    //console.log('isValid: ' + isValid);
 
 
     if(isValid) {
+
+      // send form
+
+      sendData(formText);
+
 
       // reset form
       spans.forEach(el => {
@@ -122,6 +129,35 @@ function storyFormValidation(action) {
     }
 
   }
+
+}
+
+// send data for email sending
+function sendData(data) {
+
+  console.log(data);
+
+  const XHR = new XMLHttpRequest();
+  const FD = new FormData();
+
+  FD.append('data', data);
+  FD.append('key', 'JHZFUZIfugkju587hoo998=)86frhvhjk)uzihfuz');
+  
+  // Define what happens on successful data submission
+  XHR.addEventListener('load', (event) => {
+    alert("Data sent adn response loaded!");
+  });
+
+  // Define what happens in case of an error
+  XHR.addEventListener("error", (event) => {
+    alert("Oops! Something went wrong.");
+  });
+
+  // Set up our request
+  XHR.open("POST", "https://marcolurati.ch/extra/api_ml.php");
+
+  // Send our FormData object; HTTP headers are set automatically
+  XHR.send(FD);
 
 }
 
