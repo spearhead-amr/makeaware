@@ -82,24 +82,29 @@ function storyFormValidation(action) {
     // collect story
 
     let formHTML = "";
+    let formHTML_b = "";
 
     spans.forEach(el => {
 
       if(el.classList.contains('fixed')) {
         formHTML += el.innerText;
+        formHTML_b += '<b>' + el.innerText + '</b><br>';
       }
       else if(el.classList.contains('editable')) {
         formHTML += ' <' + el.dataset.formColor + '>' + el.innerText + '</' + el.dataset.formColor + '> ';
+        formHTML_b += el.innerText + '<br>';
       }
 
     })
+
+    //console.log(formHTML);
 
     let formText = document.querySelector('#story-form').innerText;
 
 
     //console.log(formText);
 
-    const storyRegExp = /([^a-zA-Z0-9. ()?,’'])/g;
+    const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%])/g;
 
     const isValid = !storyRegExp.test(formText);
 
@@ -110,7 +115,7 @@ function storyFormValidation(action) {
 
       // send form
 
-      sendData(formText);
+      sendData(formHTML, formHTML_b);
 
 
       // reset form
@@ -128,29 +133,34 @@ function storyFormValidation(action) {
       changeStoryContainer(action);
     }
 
+    else {
+      console.log('Data not valid!');
+    }
+
   }
 
 }
 
 // send data for email sending
-function sendData(data) {
+function sendData(formHTML, formHTML_b) {
 
-  console.log(data);
+  //console.log(data);
 
   const XHR = new XMLHttpRequest();
   const FD = new FormData();
 
-  FD.append('data', data);
+  FD.append('formHTML', formHTML);
+  FD.append('formText', formHTML_b);
   FD.append('key', 'JHZFUZIfugkju587hoo998=)86frhvhjk)uzihfuz');
   
   // Define what happens on successful data submission
   XHR.addEventListener('load', (event) => {
-    alert("Data sent adn response loaded!");
+    console.log("Data sent and response loaded!");
   });
 
   // Define what happens in case of an error
   XHR.addEventListener("error", (event) => {
-    alert("Oops! Something went wrong.");
+    console.log("Oops! Something went wrong.");
   });
 
   // Set up our request
@@ -186,14 +196,23 @@ document.querySelectorAll('.editable').forEach( el => {
   el.dataset.placeholder = el.innerHTML // save the placeholder of every element
 
   el.addEventListener('keydown', e => {
-    const el = e.target   // target is the current edited element @event 'keydown'
-    if (el.dataset.edited == '0') { // not edited
-        el.dataset.edited = '1' // now edited
-        el.classList.add('edited')
-        el.classList.add(el.dataset.formColor)
-        el.classList.remove('not-filled')
-        el.innerHTML = '' // clear current placeholder
+
+    if (e.which === 13) {   // don't allow the 'enter' key
+        e.preventDefault();
+    } else {
+
+      const el = e.target   // target is the current edited element @event 'keydown'
+
+    
+      if (el.dataset.edited == '0') { // not edited
+          el.dataset.edited = '1' // now edited
+          el.classList.add('edited')
+          el.classList.add(el.dataset.formColor)
+          el.classList.remove('not-filled')
+          el.innerHTML = '' // clear current placeholder
+      }
     }
+
   })
 
   el.addEventListener('keyup', e => { // e => is quivalent to function(e) {}
