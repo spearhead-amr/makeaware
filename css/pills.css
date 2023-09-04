@@ -94,7 +94,7 @@ questionnaire .h2 {
 	flex-wrap: wrap;
 	padding-bottom: 1rem;
 	padding-top: 1rem; 
-	border-bottom: 0.9px solid rgba(43, 43, 43, 1);
+	/* border-bottom: 0.9px solid rgba(43, 43, 43, 1); */
 }
 
 

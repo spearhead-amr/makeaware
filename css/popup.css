@@ -134,7 +134,7 @@
 
   .poppy-text-thin {
     color:black;
-    font-family: "SuisseIntl-Thin"; 
+    font-family: "SuisseIntl-Light"; 
     font-size: 0.75rem;
     margin-top:1rem;
     text-align: left;
@@ -144,7 +144,7 @@
 
   .poppy-text-thin-last {
     color:black;
-    font-family: "SuisseIntl-Thin"; 
+    font-family: "SuisseIntl-Light"; 
     font-size: 0.75rem;
     margin-top:1rem;
     text-align: left;
@@ -187,14 +187,14 @@
 
 
   .viz-landing-legend {
-    width:80%;
+    width:100%;
     padding-left: 2rem;
     padding-bottom:0.7rem;
     padding-top:0.5rem;
     }
 
     .viz-landing-legend-2 {
-      width:80%;
+      width:100%;
       padding-left: 1rem;
       padding-bottom:0rem;
       padding-top:0.5rem;
@@ -226,7 +226,7 @@
 
   @media (max-width: 970px) {
     .popup .popuptext {
-      width: 80vw;
+      width: 70vw;
     }
   }
 
