@@ -19,7 +19,6 @@ let button_thanks_back_to_carousell = document.getElementById('button-thanks-bac
 let current_container = "carousell";  // carousell, story, form, thanks
 
 
-
 // visibility function
 let changeStoryContainer = function (container) {
 
@@ -27,7 +26,13 @@ let changeStoryContainer = function (container) {
 
   current_container = container;
 
+  // go to anchor # story container
+
+  let story_section = document.getElementById('stories');
+  story_section.scrollIntoView();
+
   switch (container) {
+
   case 'carousell':
     story_carousell.style.display = "block";
     story_share.style.display = "none";
@@ -55,6 +60,7 @@ let changeStoryContainer = function (container) {
   }
 
 }
+
 
 // form validation in JS
 
@@ -134,9 +140,13 @@ function storyFormValidation(action) {
     }
 
     else {
-      console.log('Data not valid!');
+      // console.log('Data not valid!');
+      alert('Some of the text is not valid. Please use only letters, numbers and round brackets');
     }
 
+  }
+  else {
+    alert('Some fileds are empty. Please fill them in order to submit the form.');
   }
 
 }
@@ -155,12 +165,12 @@ function sendData(formHTML, formHTML_b) {
   
   // Define what happens on successful data submission
   XHR.addEventListener('load', (event) => {
-    console.log("Data sent and response loaded!");
+    // console.log("Data sent and response loaded!");
   });
 
   // Define what happens in case of an error
   XHR.addEventListener("error", (event) => {
-    console.log("Oops! Something went wrong.");
+    // console.log("Oops! Something went wrong.");
   });
 
   // Set up our request
@@ -236,8 +246,8 @@ document.querySelectorAll('.editable').forEach( el => {
 
 let stories;  // all the loaded stories as an array
 
-let scroll_character_delay = 10;  // milliseconds, speed of the story text appearing
-let story_carousell_interval = 20000; // milliseconds, interval between every story one fully displayed before changing to the next one 
+let scroll_character_delay = 8;  // milliseconds, speed of the story text appearing
+let story_carousell_interval = 30000; // milliseconds, interval between every story one fully displayed before changing to the next one 
 
 
 // load the JSON story file when the DOM is loaded
@@ -251,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // load the stories
 function loadStories (data) {
-  console.log("File stories.json loaded!");
+  // console.log("File stories.json loaded!");
   stories = data.stories;
   startStoriesCarousell();  // start the carousell sequence
 }
