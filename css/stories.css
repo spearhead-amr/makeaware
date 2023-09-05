@@ -1,5 +1,5 @@
 #stories-main {
-	display: none;
+	/* display: none; */
 	padding-left:2rem;
 	padding-right:2rem;
 	padding-bottom:0rem;
@@ -168,7 +168,7 @@ color-pink {
 	font-size: 2rem;
 	line-height: 3.8rem;
 	margin-bottom: 3rem;
-	min-height: calc(100vh - var(--header-height) - 15rem);
+	min-height: calc(100vh - var(--header-height) - 19rem);
 }
 
 

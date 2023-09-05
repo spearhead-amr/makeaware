@@ -189,6 +189,17 @@
 	text-decoration: none;
 }
 
+.note {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.7rem;
+	color: #FF3A17;
+	padding: 0px;
+	padding-right: 0rem;
+	margin: 0px;
+	border: 0px;
+	text-decoration: none;
+}
+
 
 
 .bio:hover {

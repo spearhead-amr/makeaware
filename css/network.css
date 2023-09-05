@@ -115,17 +115,18 @@ network-main {
 	}
 	
 
-	.info {
-		font-family: 'SuisseIntl-Light', sans-serif;
-		font-size: 0rem;
-		color: #2A2A2A;
-		margin:0;
-		padding: 0rem;
-		line-height: 0;
-		width:100%;
-	}
-	
-	.button-power {
+.info {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0rem;
+	color: #2A2A2A;
+	margin:0;
+	padding: 0rem;
+	line-height: 0;
+	width:100%;
+}
+
+
+.button-power {
   border: 0.09rem solid #FF3A17;
   border-radius: 2rem;
   padding: 1.1rem;

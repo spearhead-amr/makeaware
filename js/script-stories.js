@@ -19,7 +19,6 @@ let button_thanks_back_to_carousell = document.getElementById('button-thanks-bac
 let current_container = "carousell";  // carousell, story, form, thanks
 
 
-
 // visibility function
 let changeStoryContainer = function (container) {
 
@@ -27,7 +26,13 @@ let changeStoryContainer = function (container) {
 
   current_container = container;
 
+  // go to anchor # story container
+
+  let story_section = document.getElementById('stories');
+  story_section.scrollIntoView();
+
   switch (container) {
+
   case 'carousell':
     story_carousell.style.display = "block";
     story_share.style.display = "none";
@@ -56,9 +61,12 @@ let changeStoryContainer = function (container) {
 
 }
 
+
 // form validation in JS
 
 function storyFormValidation(action) {
+
+  //action.preventDefault();
 
   const spans = document.querySelector('#story-form').children; // all spans
 
@@ -75,36 +83,47 @@ function storyFormValidation(action) {
 
 
 
-  if(isFilled) {
+  //if(isFilled) {
+  if(true) {  // don't check if full filled, allow for not complete
 
     // collect story
 
     let formHTML = "";
+    let formHTML_b = "";
 
     spans.forEach(el => {
 
       if(el.classList.contains('fixed')) {
         formHTML += el.innerText;
+        formHTML_b += '<b>' + el.innerText + '</b><br>';
       }
       else if(el.classList.contains('editable')) {
         formHTML += ' <' + el.dataset.formColor + '>' + el.innerText + '</' + el.dataset.formColor + '> ';
+        formHTML_b += el.innerText + '<br>';
       }
 
     })
 
+    //console.log(formHTML);
+
     let formText = document.querySelector('#story-form').innerText;
 
 
-    //console.log(formText);
+    console.log(formText);
 
-    const storyRegExp = /([^a-zA-Z0-9. ()?,’'])/g;
+    const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%/])/g;
 
     const isValid = !storyRegExp.test(formText);
 
-    console.log('isValid: ' + isValid);
+    //console.log('isValid: ' + isValid);
 
 
     if(isValid) {
+
+      // send form
+
+      sendData(formHTML, formHTML_b);
+
 
       // reset form
       spans.forEach(el => {
@@ -121,7 +140,45 @@ function storyFormValidation(action) {
       changeStoryContainer(action);
     }
 
+    else {
+      // console.log('Data not valid!');
+      alert('Some of the text is not valid. Please use only letters, numbers and round brackets');
+    }
+
   }
+  else {
+    alert('Some fileds are empty. Please fill them in order to submit the form.');
+  }
+
+}
+
+// send data for email sending
+function sendData(formHTML, formHTML_b) {
+
+  //console.log(data);
+
+  const XHR = new XMLHttpRequest();
+  const FD = new FormData();
+
+  FD.append('formHTML', formHTML);
+  FD.append('formText', formHTML_b);
+  FD.append('key', 'JHZFUZIfugkju587hoo998=)86frhvhjk)uzihfuz');
+  
+  // Define what happens on successful data submission
+  XHR.addEventListener('load', (event) => {
+    // console.log("Data sent and response loaded!");
+  });
+
+  // Define what happens in case of an error
+  XHR.addEventListener("error", (event) => {
+    // console.log("Oops! Something went wrong.");
+  });
+
+  // Set up our request
+  XHR.open("POST", "https://marcolurati.ch/extra/api_ml.php");
+
+  // Send our FormData object; HTTP headers are set automatically
+  XHR.send(FD);
 
 }
 
@@ -150,14 +207,23 @@ document.querySelectorAll('.editable').forEach( el => {
   el.dataset.placeholder = el.innerHTML // save the placeholder of every element
 
   el.addEventListener('keydown', e => {
-    const el = e.target   // target is the current edited element @event 'keydown'
-    if (el.dataset.edited == '0') { // not edited
-        el.dataset.edited = '1' // now edited
-        el.classList.add('edited')
-        el.classList.add(el.dataset.formColor)
-        el.classList.remove('not-filled')
-        el.innerHTML = '' // clear current placeholder
+
+    if (e.which === 13) {   // don't allow the 'enter' key
+        e.preventDefault();
+    } else {
+
+      const el = e.target   // target is the current edited element @event 'keydown'
+
+    
+      if (el.dataset.edited == '0') { // not edited
+          el.dataset.edited = '1' // now edited
+          el.classList.add('edited')
+          el.classList.add(el.dataset.formColor)
+          el.classList.remove('not-filled')
+          el.innerHTML = '' // clear current placeholder
+      }
     }
+
   })
 
   el.addEventListener('keyup', e => { // e => is quivalent to function(e) {}
@@ -181,8 +247,8 @@ document.querySelectorAll('.editable').forEach( el => {
 
 let stories;  // all the loaded stories as an array
 
-let scroll_character_delay = 10;  // milliseconds, speed of the story text appearing
-let story_carousell_interval = 20000; // milliseconds, interval between every story one fully displayed before changing to the next one 
+let scroll_character_delay = 8;  // milliseconds, speed of the story text appearing
+let story_carousell_interval = 10000; // milliseconds, interval between every story one fully displayed before changing to the next one 
 
 
 // load the JSON story file when the DOM is loaded
@@ -196,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // load the stories
 function loadStories (data) {
-  console.log("File stories.json loaded!");
+  // console.log("File stories.json loaded!");
   stories = data.stories;
   startStoriesCarousell();  // start the carousell sequence
 }
@@ -215,8 +281,6 @@ function preapreStory(story) {
   let indexes = []; // array of the index of '<' or '>'
   let indexes_2D = [];  // 2D array with [opening tag start, opening tag stop, closing tag start, closing tag stop]
 
-
-  let done = false;
 
   for(let i=0; i<story.length; i++) {
 
@@ -284,7 +348,6 @@ function scrollText(story, indexes_2D) {
 
   let tag_scroll = "";  // string containing the text inside the tag
 
-
   let printNextLetter = function() {
 
     if(index < story.length) { // scroll the whole "story"
@@ -332,44 +395,50 @@ function scrollText(story, indexes_2D) {
 
       }
 
-    }
+      setTimeout(printNextLetter, scroll_character_delay);  // call the function every x milliseconds for the animation
 
-    setTimeout(printNextLetter, scroll_character_delay);  // call the function every x milliseconds for the animation
+    }
+    else {  // text scroll done
+
+      //console.log('end scroll text');
+
+      setTimeout(startStoriesCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
+
+    }
 
   }
 
   printNextLetter();  // start the animation
 
-
 }
+
+let current_story = 0;
 
 function startStoriesCarousell() {
 
-  let current_story = 0;
-
-  let storyCarousell = function() {
-
-    if(current_story == stories.length) {
-      current_story = 0;  // reset the story
-    }
-
-    if(current_story < stories.length) {
-
-      // console.log("current_story: " + current_story);
+  //console.log('startStoriesCarousell');
 
 
-      let _indexes_2D = preapreStory(stories[current_story]);
-
-      scrollText(stories[current_story], _indexes_2D);
-
-      current_story++;
-    }
-
-
-    setTimeout(storyCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
+  if(current_story == stories.length) {
+    current_story = 0;  // reset the story
   }
 
-  storyCarousell();
+  if(current_story < stories.length) {
+
+    //console.log("current_story: " + current_story);
+
+
+    let _indexes_2D = preapreStory(stories[current_story]);
+
+    scrollText(stories[current_story], _indexes_2D);
+
+    current_story++;
+  }
+
+
+  //setTimeout(storyCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
+
+  //storyCarousell();
 
 }
 
