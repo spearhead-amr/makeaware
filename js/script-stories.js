@@ -71,6 +71,7 @@ function storyFormValidation(action) {
   const spans = document.querySelector('#story-form').children; // all spans
 
   let isFilled = true;
+  let filledCount = 0;
 
   // check for edited values
 
@@ -78,13 +79,15 @@ function storyFormValidation(action) {
     if(!el.classList.contains('fixed') && el.dataset.edited != '1') {
       isFilled = false;
       el.classList.add('not-filled');
+    } else {
+      filledCount++;
     }
   })
 
 
 
   //if(isFilled) {
-  if(true) {  // don't check if full filled, allow for not complete
+  if(filledCount > 0) {  // don't check if full filled, allow for not complete
 
     // collect story
 
@@ -109,7 +112,7 @@ function storyFormValidation(action) {
     let formText = document.querySelector('#story-form').innerText;
 
 
-    console.log(formText);
+    // console.log(formText);
 
     const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%/])/g;
 
