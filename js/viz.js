@@ -168,7 +168,7 @@ class Ball {
     this.color = colors[colorNumber];
     this.selected = false;
     this.cluster1 = questCluster1;
-    console.log(alphaValueConstr);
+    //console.log(alphaValueConstr);
     this.alphaValue = alphaValueConstr;
     this.moveable = true; // Add a moveable flag to control movement
   }
@@ -215,7 +215,7 @@ class Ball {
       this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
       
         if (this.hit){
-          console.log("hit");
+          //console.log("hit");
           this.originalVelocity = this.velocity;
           this.selected = true;
           this.moveable = false; // Set moveable to false when collided
@@ -286,7 +286,7 @@ class Ball {
 
     if(!this.hit){
       cursor();
-      console.log("Not hitted anymore");
+      //console.log("Not hitted anymore");
       this.selected = false;
       anyCollision = false;
       this.velocity = this.originalVelocity;
@@ -326,7 +326,7 @@ function onButtonClick(){
     for(let i = 0; i < ballsCluster1.length; i++){
       if (i >= 1){
         var distance = dist(ballsCluster1[i].position.x, ballsCluster1[i].position.y, ballsCluster1[i-1].position.x, ballsCluster1[i-1].position.y);
-        console.log("The distance of the ball nr " + i + " is " + distance);
+        //("The distance of the ball nr " + i + " is " + distance);
         while (distance <= ballsCluster1[i].dimension){
           ballsCluster1[i].position = createVector(random(50, 300),random(50, 300));
         }
@@ -336,7 +336,7 @@ function onButtonClick(){
     for(let i = 0; i < ballsCluster2.length; i++){
       if (i >= 1){
         var distance = dist(ballsCluster2[i].position.x, ballsCluster2[i].position.y, ballsCluster2[i-1].position.x, ballsCluster2[i-1].position.y);
-        console.log("The distance of the ball nr " + i + " is " + distance);
+        //console.log("The distance of the ball nr " + i + " is " + distance);
         while (distance <= ballsCluster2[i].dimension){
           ballsCluster2[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
         }
