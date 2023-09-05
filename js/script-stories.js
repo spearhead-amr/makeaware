@@ -83,7 +83,8 @@ function storyFormValidation(action) {
 
 
 
-  if(isFilled) {
+  //if(isFilled) {
+  if(true) {  // don't check if full filled, allow for not complete
 
     // collect story
 
@@ -108,9 +109,9 @@ function storyFormValidation(action) {
     let formText = document.querySelector('#story-form').innerText;
 
 
-    //console.log(formText);
+    console.log(formText);
 
-    const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%])/g;
+    const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%/])/g;
 
     const isValid = !storyRegExp.test(formText);
 
@@ -247,7 +248,7 @@ document.querySelectorAll('.editable').forEach( el => {
 let stories;  // all the loaded stories as an array
 
 let scroll_character_delay = 8;  // milliseconds, speed of the story text appearing
-let story_carousell_interval = 30000; // milliseconds, interval between every story one fully displayed before changing to the next one 
+let story_carousell_interval = 10000; // milliseconds, interval between every story one fully displayed before changing to the next one 
 
 
 // load the JSON story file when the DOM is loaded
@@ -280,8 +281,6 @@ function preapreStory(story) {
   let indexes = []; // array of the index of '<' or '>'
   let indexes_2D = [];  // 2D array with [opening tag start, opening tag stop, closing tag start, closing tag stop]
 
-
-  let done = false;
 
   for(let i=0; i<story.length; i++) {
 
@@ -349,7 +348,6 @@ function scrollText(story, indexes_2D) {
 
   let tag_scroll = "";  // string containing the text inside the tag
 
-
   let printNextLetter = function() {
 
     if(index < story.length) { // scroll the whole "story"
@@ -397,44 +395,50 @@ function scrollText(story, indexes_2D) {
 
       }
 
-    }
+      setTimeout(printNextLetter, scroll_character_delay);  // call the function every x milliseconds for the animation
 
-    setTimeout(printNextLetter, scroll_character_delay);  // call the function every x milliseconds for the animation
+    }
+    else {  // text scroll done
+
+      //console.log('end scroll text');
+
+      setTimeout(startStoriesCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
+
+    }
 
   }
 
   printNextLetter();  // start the animation
 
-
 }
+
+let current_story = 0;
 
 function startStoriesCarousell() {
 
-  let current_story = 0;
-
-  let storyCarousell = function() {
-
-    if(current_story == stories.length) {
-      current_story = 0;  // reset the story
-    }
-
-    if(current_story < stories.length) {
-
-      // console.log("current_story: " + current_story);
+  //console.log('startStoriesCarousell');
 
 
-      let _indexes_2D = preapreStory(stories[current_story]);
-
-      scrollText(stories[current_story], _indexes_2D);
-
-      current_story++;
-    }
-
-
-    setTimeout(storyCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
+  if(current_story == stories.length) {
+    current_story = 0;  // reset the story
   }
 
-  storyCarousell();
+  if(current_story < stories.length) {
+
+    //console.log("current_story: " + current_story);
+
+
+    let _indexes_2D = preapreStory(stories[current_story]);
+
+    scrollText(stories[current_story], _indexes_2D);
+
+    current_story++;
+  }
+
+
+  //setTimeout(storyCarousell, story_carousell_interval); // change the function to update the story every x milliseconds
+
+  //storyCarousell();
 
 }
 
