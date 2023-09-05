@@ -18,6 +18,7 @@ let button_thanks_back_to_carousell = document.getElementById('button-thanks-bac
 
 let current_container = "carousell";  // carousell, story, form, thanks
 
+let page_first_loading = true;
 
 // visibility function
 let changeStoryContainer = function (container) {
@@ -28,8 +29,11 @@ let changeStoryContainer = function (container) {
 
   // go to anchor # story container
 
-  let story_section = document.getElementById('stories');
-  story_section.scrollIntoView();
+  if(!page_first_loading) {
+    let story_section = document.getElementById('stories');
+    story_section.scrollIntoView();
+  }
+
 
   switch (container) {
 
@@ -59,6 +63,8 @@ let changeStoryContainer = function (container) {
     break;
   }
 
+  page_first_loading = false;
+
 }
 
 
@@ -83,10 +89,12 @@ function storyFormValidation(action) {
     }
   })
 
+  console.log('filledCount: ' + filledCount); 
+
 
 
   //if(isFilled) {
-  if(filledCount > 5) {  // don't check if full filled, allow for not complete
+  if(filledCount < 14) {  // don't check if full filled, allow for not complete
 
     // collect story
 
