@@ -78,16 +78,15 @@ function storyFormValidation(action) {
   spans.forEach(el => {
     if(!el.classList.contains('fixed') && el.dataset.edited != '1') {
       isFilled = false;
-      el.classList.add('not-filled');
-    } else {
       filledCount++;
+      el.classList.add('not-filled');
     }
   })
 
 
 
   //if(isFilled) {
-  if(filledCount > 0) {  // don't check if full filled, allow for not complete
+  if(filledCount > 5) {  // don't check if full filled, allow for not complete
 
     // collect story
 
