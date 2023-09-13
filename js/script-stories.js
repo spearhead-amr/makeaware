@@ -18,6 +18,7 @@ let button_thanks_back_to_carousell = document.getElementById('button-thanks-bac
 
 let current_container = "carousell";  // carousell, story, form, thanks
 
+let page_first_loading = true;
 
 // visibility function
 let changeStoryContainer = function (container) {
@@ -28,8 +29,11 @@ let changeStoryContainer = function (container) {
 
   // go to anchor # story container
 
-  let story_section = document.getElementById('stories');
-  story_section.scrollIntoView();
+  if(!page_first_loading) {
+    let story_section = document.getElementById('stories');
+    story_section.scrollIntoView();
+  }
+
 
   switch (container) {
 
@@ -59,6 +63,8 @@ let changeStoryContainer = function (container) {
     break;
   }
 
+  page_first_loading = false;
+
 }
 
 
@@ -71,20 +77,24 @@ function storyFormValidation(action) {
   const spans = document.querySelector('#story-form').children; // all spans
 
   let isFilled = true;
+  let filledCount = 0;
 
   // check for edited values
 
   spans.forEach(el => {
     if(!el.classList.contains('fixed') && el.dataset.edited != '1') {
       isFilled = false;
+      filledCount++;
       el.classList.add('not-filled');
     }
   })
 
+  console.log('filledCount: ' + filledCount); 
+
 
 
   //if(isFilled) {
-  if(true) {  // don't check if full filled, allow for not complete
+  if(filledCount < 14) {  // don't check if full filled, allow for not complete
 
     // collect story
 
@@ -109,7 +119,7 @@ function storyFormValidation(action) {
     let formText = document.querySelector('#story-form').innerText;
 
 
-    console.log(formText);
+    // console.log(formText);
 
     const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%/])/g;
 

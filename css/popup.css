@@ -137,6 +137,7 @@
     font-family: "SuisseIntl-Light"; 
     font-size: 0.75rem;
     margin-top:1rem;
+    line-height: 1rem; 
     text-align: left;
     padding-left: 2rem;
     width: 50%;
@@ -144,7 +145,8 @@
 
   .poppy-text-thin-last {
     color:black;
-    font-family: "SuisseIntl-Light"; 
+    font-family: "SuisseIntl-Light";
+    line-height: 1rem; 
     font-size: 0.75rem;
     margin-top:1rem;
     text-align: left;
