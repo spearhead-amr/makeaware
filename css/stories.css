@@ -104,6 +104,7 @@ color-pink {
 
 .stories-buttons-container .story-button {
 	color: #FF46ED;
+	background: color(srgb 0.9372 0.9373 0.9374);
 	font-size: 1.5rem;
 	padding: 0.5rem;
 	border-radius: 2.5rem;
@@ -127,6 +128,7 @@ color-pink {
 	cursor: pointer;
 	border: none;
 	color: #FF3A17;
+	background: color(srgb 0.9372 0.9373 0.9374);
 	font-size: 1rem;
 	bottom: 0;
 	padding-top: 1rem;
@@ -232,4 +234,15 @@ color-pink {
 		max-width: 75vw;
 	}
 
+}
+
+@media (max-width: 600px){
+	.stories-button-container-2 {
+		text-align: right;
+	}
+	
+	/*Togliere blue outline da mobile iOS -> non sembra funzionare*/
+	input {
+		outline:none;
+	   }
 }
