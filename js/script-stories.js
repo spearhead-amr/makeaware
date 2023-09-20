@@ -104,7 +104,7 @@ function storyFormValidation(action) {
     spans.forEach(el => {
 
       if(el.classList.contains('fixed')) {
-        formHTML += el.innerText;
+        formHTML += '<b>' + el.innerText + '</b>';
         formHTML_b += '<b>' + el.innerText + '</b><br>';
       }
       else if(el.classList.contains('editable')) {
