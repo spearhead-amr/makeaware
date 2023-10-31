@@ -22,6 +22,16 @@
 	width:80%;
 }
 
+
+.r-container-text-credits {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 0.7rem;
+	color: #ABABAB;
+	text-align:end;
+	padding-bottom: 1.5rem;
+
+}
+
 .workshops-sub-section-second-line {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -280,23 +290,24 @@ padding-bottom: 0.4rem;
 @media (min-width: 900px) {
 
 	.workshops-card-1 {
-		width: 28.3%;
+		width: 33%;
 		padding-right:3.5%;
-		border-right: 1px solid rgba(43, 43, 43, 1);
+		padding-left:12.5%;
+		border-right: 0.75px solid rgba(43, 43, 43, 1);
 		border-bottom: 0px solid rgba(43, 43, 43, 1);
 	}
 	
 	.workshops-card-2 {
-		width: 28.3%;
-		padding-right:3.5%;
+		width: 33%;
+		padding-right:12.5%;
 		padding-left:3.5%;
 		padding-top:0;
-		border-right: 1px solid rgba(43, 43, 43, 1);
+		/* border-right: 1px solid rgba(43, 43, 43, 1); */
 
 	}
 
 	.workshops-card-3 {
-		width: 28.3%;
+		width: 33%;
 		/* padding-right:10%; */
 		padding-left:3.5%;
 		padding-top:0;
@@ -313,7 +324,7 @@ padding-bottom: 0.4rem;
 
 	
 	.workshop-card {
-	width: 35%%;
+	width: 30%;
 }
 
 	.workshop-card+.workshop-card {
@@ -324,6 +335,12 @@ padding-bottom: 0.4rem;
 		width: 50%;
 
 	}
+
+	.workshops-tag-special {
+		width: 90%;
+
+	}
+
 
 	.workshops-tag-title {
 		width: 100%;
