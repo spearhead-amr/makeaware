@@ -58,6 +58,14 @@
 	padding-bottom:2rem;
 }
 
+.q-section-last-credits {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
 
 #form_container {
 	background-color:red;
