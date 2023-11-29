@@ -303,7 +303,22 @@ padding-bottom: 0.4rem;
 		padding-left:3.5%;
 		padding-top:0;
 		/* border-right: 1px solid rgba(43, 43, 43, 1); */
+	}
 
+	.workshops-card-1-thin {
+		width: 10%;
+		padding-right:2.5%;
+		padding-left:2.5%;
+		border-right: 0.75px solid rgba(43, 43, 43, 1);
+		border-bottom: 0px solid rgba(43, 43, 43, 1);
+	}
+
+	.workshops-card-2-thin {
+		width: 10%;
+		padding-right:5%;
+		padding-left:3.5%;
+		padding-top:0;
+		/* border-right: 1px solid rgba(43, 43, 43, 1); */
 	}
 
 	.workshops-card-3 {
@@ -326,6 +341,11 @@ padding-bottom: 0.4rem;
 	.workshop-card {
 	width: 30%;
 }
+
+.workshop-card-thin {
+	width: 27%;
+}
+
 
 	.workshop-card+.workshop-card {
 	margin-top: 0;
