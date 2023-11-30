@@ -119,6 +119,17 @@ questionnaire .h2 {
     border-top: 0.9px solid rgba(43, 43, 43, 1);
 }
 
+.workshop-block-title {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding-bottom: 1rem;
+	padding-top: 1rem; 
+    border-top: 0px solid rgba(43, 43, 43, 1);
+}
+
 .workshop-block-bottom {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -254,6 +265,17 @@ questionnaire .h2 {
     line-height: 1.7rem;
 	margin:0;
 	padding:0;
+	color: black;
+
+}
+
+.workshop-past-pre-title {
+	font-family: 'SuisseIntl-Book', sans-serif;
+	font-size: 2rem;
+    line-height: 1.7rem;
+	margin:0;
+	padding-bottom:1rem;
+	padding-top:1rem;
 	color: black;
 
 }

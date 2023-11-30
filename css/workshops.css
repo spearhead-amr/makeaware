@@ -15,7 +15,7 @@
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding-bottom:3rem;
+	padding-bottom:0rem;
 }
 
 .diagram-protocol {
@@ -38,8 +38,8 @@
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding-bottom:3rem;
-    padding-top:3rem;
+	padding-bottom:0rem;
+    padding-top:1rem;
     border-top: 0.9px solid rgba(43, 43, 43, 1);
 }
 
@@ -125,6 +125,7 @@
 	font-size: 1.1rem;
 	color: #2A2A2A;
 	margin:0;
+	padding-top:1rem;
 
 }
 
@@ -195,6 +196,31 @@
 	margin:0;
 	padding-top:1rem;
 	padding-bottom:2rem;
+	white-space: break-spaces;
+
+}
+
+.workshops-tag-description-before-soon {
+	font-family: 'SuisseIntl-Light', sans-serif;
+	font-size: 0.9rem;
+	color: #2A2A2A;
+	line-height: 1.3rem;
+	margin:0;
+	padding-top:1rem;
+	padding-bottom:0rem;
+	white-space: break-spaces;
+
+}
+
+
+.workshops-tag-description-soon {
+	font-family: 'SuisseIntl-Bold', sans-serif;
+	font-size: 0.9rem;
+	color: #2A2A2A;
+	line-height: 1.3rem;
+	margin:0;
+	padding-top:0;
+	padding-bottom:0rem;
 	white-space: break-spaces;
 
 }
@@ -283,7 +309,19 @@ padding-bottom: 0.4rem;
 
 
 
+.workshops-card-1-thin {
+	border-bottom: 0.9px solid rgba(43, 43, 43, 1);
+}
 
+
+.workshops-card-2-thin {
+	border-bottom: 0.9px solid rgba(43, 43, 43, 1);
+}
+
+
+.workshops-card-3-thin {
+	border-bottom: 0px solid rgba(43, 43, 43, 1);
+}
 
 
 
@@ -305,22 +343,6 @@ padding-bottom: 0.4rem;
 		/* border-right: 1px solid rgba(43, 43, 43, 1); */
 	}
 
-	.workshops-card-1-thin {
-		width: 10%;
-		padding-right:2.5%;
-		padding-left:2.5%;
-		border-right: 0.75px solid rgba(43, 43, 43, 1);
-		border-bottom: 0px solid rgba(43, 43, 43, 1);
-	}
-
-	.workshops-card-2-thin {
-		width: 10%;
-		padding-right:5%;
-		padding-left:3.5%;
-		padding-top:0;
-		/* border-right: 1px solid rgba(43, 43, 43, 1); */
-	}
-
 	.workshops-card-3 {
 		width: 33%;
 		/* padding-right:10%; */
@@ -328,6 +350,34 @@ padding-bottom: 0.4rem;
 		padding-top:0;
 
 	}
+
+	.workshops-card-1-thin {
+		width: 30%;
+		padding-right:2.5%;
+		padding-left:0%;
+		border-right: 0.75px solid rgba(43, 43, 43, 1);
+		border-bottom: 0px solid rgba(43, 43, 43, 1);
+	}
+
+
+	.workshops-card-2-thin {
+		width: 30%;
+		padding-right:2.4%;
+		padding-left:2.4%;
+		border-right: 0.75px solid rgba(43, 43, 43, 1);
+		border-bottom: 0px solid rgba(43, 43, 43, 1);
+	}
+
+
+	.workshops-card-3-thin {
+		width: 30%;
+		padding-right:0%;
+		padding-left:2.5%;
+		padding-top:0;
+		border-bottom: 0px solid rgba(43, 43, 43, 1);
+	}
+
+
 	
 	.workshop-card::after {
 	border-bottom: 0;
@@ -343,7 +393,7 @@ padding-bottom: 0.4rem;
 }
 
 .workshop-card-thin {
-	width: 27%;
+	width: 30%;
 }
 
 
@@ -393,6 +443,14 @@ padding-bottom: 0.4rem;
 
 }
 	
-	
+.workshops-sub-section-second-line {
+	padding-top:3rem;
+	padding-bottom:3rem;
+	border-bottom: 1px solid rgba(43, 43, 43, 1);
+}
+
+.workshops-sub-section {
+	padding-bottom:2rem;
+}
 	
 }
