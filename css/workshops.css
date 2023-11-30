@@ -100,10 +100,19 @@
 
 }
 
+.workshops-tag-future {
+	width: 0%;
+	display: none;
+	padding: 0rem;
+	margin:0;
+
+}
+
 .workshops-tag-title {
 	width: 100%;
 	padding: 0rem;
 	margin:0;
+	padding-top:1rem;
 
 }
 
@@ -116,7 +125,7 @@
 .workshops-right {
 	text-align: right;
 	padding: 0rem;
-
+	padding-top: 1rem;
 }
 
 
@@ -378,6 +387,7 @@ padding-bottom: 0.4rem;
 	}
 
 
+
 	
 	.workshop-card::after {
 	border-bottom: 0;
@@ -403,6 +413,12 @@ padding-bottom: 0.4rem;
 	
 	.workshops-tag {
 		width: 50%;
+
+	}
+
+	.workshops-tag-future {
+		width: 100%;
+		display: contents;
 
 	}
 
