@@ -153,7 +153,6 @@
 	font-size: 1rem;
 	margin:0;
 	padding:0;
-	line-height: 1.9rem;
 
 }
 
@@ -305,18 +304,5 @@ span .description {
         padding-top:1%;
 		
 	}
-
-	.q-container-title-big {
-		font-family: 'SuisseIntl-Regular', sans-serif;
-		font-size: 3.2rem;
-		margin:0;
-		padding:0;
-		vertical-align: super;
-		line-height: 3.6rem;
-		padding-bottom:1rem;
-	
-	}
 	
 }
-
-
