@@ -356,6 +356,11 @@ footer {
 	padding-top:1rem;
 }
 
+.footer-logo-2 {
+	width:38%;
+	padding-top:0rem;
+}
+
 .social-logo {
 	width:2.4rem;
 	padding-top:1rem;
@@ -428,7 +433,12 @@ footer {
 	
 	.footer-logo {
 	width:60%;
-    padding-top:1rem;
+    padding-top:0rem;
+	}
+
+	.footer-logo-2 {
+		width:50%;
+		padding-top:0rem;
 	}
 
 	.social-logo {
