@@ -1,0 +1,347 @@
+/* _________________________font_________________________________ */
+
+.bagel-fat one-regular {
+	font-family: "Bagel Fat One", system-ui;
+	font-weight: 400;
+	font-style: normal;
+  }
+
+  .heebo {
+	font-family: "Heebo", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 300;
+	font-style: normal;
+  }
+  
+  .bagel-fat one-regular {
+	font-family: "Bagel Fat One", system-ui;
+	font-weight: 400;
+	font-style: normal;
+  }
+  
+ 
+ /* _________________________font_________________________________ */
+
+ body {
+	margin: 0;
+	padding: 0;
+}
+
+
+.main {
+	background-color: #FFFAF0;
+	margin: 0;
+	margin-top:10.7rem;
+	padding: 0;
+}
+
+.navbar {
+	overflow: hidden;
+	background-color: #FF0000;
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	width: 100%; /* Full width */
+	padding:2rem;
+  }
+
+/* #header-fixed-top {
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+} */
+
+.header-first {
+	padding:2rem;
+	background-color: #FF0000;
+}
+
+.header-second {
+	padding:2rem;
+	background-color: #150F21;
+	border-radius: 4rem;
+	margin:0;
+}
+
+.block-dark {
+	padding:1rem;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	background-color: #150F21;
+	border-radius: 4rem;
+	margin-bottom:0rem;
+	margin-top:0rem;
+}
+
+
+.block-dark-last {
+	padding:1rem;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	background-color: #150F21;
+	border-radius: 4rem;
+	margin-bottom:0rem;
+}
+
+
+.shape-top {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 300;
+  	font-style: normal;
+	font-size: 2rem;
+	color: #FFFAF0;
+	text-decoration: none;
+	padding-left:2rem;
+
+  }
+
+  .shape-top a {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 300;
+  	font-style: normal;
+	font-size: 2rem;
+	color: #FFFAF0;
+	text-decoration: none;
+	
+  }
+
+  .shape-top :hover {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 600;
+  	font-style: normal;
+	font-size: 2rem;
+	color: #FFFAF0;
+	text-decoration: none;
+	
+  }
+
+  .language-top {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 300;
+  	font-style: normal;
+	font-size: 2rem;
+	text-align: right;
+	color: #FFFAF0;
+  }
+
+.text-question {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 400;
+  	font-style: normal;
+	font-size: 3rem;
+	line-height: 4rem;
+	color: #150F21;
+	text-align: center;
+  }
+
+  .text-white {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 300;
+  	font-style: normal;
+	font-size: 2rem;
+	line-height: 3rem;
+	color: #FFFAF0;
+	text-align: left;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+  .text-white a {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 300;
+  	font-style: normal;
+	font-size: 2rem;
+	line-height: 3rem;
+	color: #FFFAF0;
+	text-align: left;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: none;
+  }
+
+  .text-white :hover {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 600;
+  	font-style: normal;
+	font-size: 2rem;
+	line-height: 3rem;
+	color: #FFFAF0;
+	text-align: left;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+  .text-dark {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 400;
+  	font-style: normal;
+	font-size: 2rem;
+	line-height: 3rem;
+	color: #150F21;
+	text-align: left;
+	margin:0;
+	padding:0;
+  }
+
+  .text-little {
+	font-family: "Heebo", sans-serif;
+  	font-optical-sizing: auto;
+  	font-weight: 200;
+  	font-style: normal;
+	font-size: 1.7rem;
+	color: #150F21;
+	text-align: center;
+	margin-top: 5rem;
+	margin-bottom: 0;
+	padding-bottom: 0;
+  }
+
+  .text-title {
+	font-family: "Bagel Fat One", system-ui;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 10rem;
+	line-height: 9rem;
+	color: #150F21;
+	text-align: center;
+	padding-top: 0;
+	margin-top: 0;
+  }
+
+  .text-special {
+	font-family: "Bagel Fat One", system-ui;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 4rem;
+	line-height: 5rem;
+	color: #150F21;
+	text-align: center;
+	padding-top: 0;
+	margin-top: 5rem;
+	padding-bottom: 0;
+	/* margin-bottom: 5rem; */
+  }
+
+.block {
+	padding:0rem;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.block-pic {
+	padding:0rem;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:0;
+	padding-bottom:0;
+}
+
+.hand {
+	padding:0rem;
+	margin-left: 40%;
+	margin-right: 0;
+}
+
+.w-pic1 {
+	align-content: right;
+	width:100%;
+}
+
+.w-pic2 {
+	align-content: centred;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom:0rem;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+	padding-top:2rem;
+	margin-bottom:0rem;
+}
+
+.box {
+    width: 100%; /* Adjusts the width of each box to fit side by side in the container */
+    padding-top: 0;
+    text-align: left;
+}
+
+.box1 {
+	padding-right: 1rem;
+	padding-top: 0;
+	width: 50%;
+}
+
+.box2 {
+	width: 50%;
+	padding-top: 0;
+}
+
+.container-language {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+	margin-left: auto; 
+	margin-right: 0;
+	padding-right: 3rem;
+}
+
+.container-language-fake {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+	margin:0;
+	padding:0;
+	background-color: #FFFAF0;
+}
+
+.box-language {
+    width: 100%; /* Adjusts the width of each box to fit side by side in the container */
+    padding: 0;
+    text-align: right;
+	margin:0;
+}
+
+.box1-language {
+	padding-right: 0rem;
+	width: 20%;
+}
+
+
+.space {
+	margin-bottom:5rem;
+}
+
+.space2 {
+	margin-bottom:2rem;
+}
+
+
+
+
+
+
+
+
+/* _________________________break point_________________________________ */
+
+@media (min-width: 900px) {
+
+}
