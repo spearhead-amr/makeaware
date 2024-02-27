@@ -119,11 +119,13 @@ function storyFormValidation(action) {
     let formText = document.querySelector('#story-form').innerText;
 
 
-    // console.log(formText);
+    //console.log(formText);
+    
+    //Tolte per far entrare le storie al lancio instagram
+    //const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%/])/g;
+    //const isValid = !storyRegExp.test(formText);
 
-    const storyRegExp = /([^a-zA-ZÀ-ÖØ-öø-ÿ0-9.\s()?,’'&%/])/g;
-
-    const isValid = !storyRegExp.test(formText);
+    const isValid = true;
 
     //console.log('isValid: ' + isValid);
 
