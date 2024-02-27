@@ -360,10 +360,3 @@ function onButtonClick(){
     button.removeClass("pressed");
   }
 }
-
-function keyPressed(){
-  if (key == "r"){
-    ballMoving = true;
-    button.removeClass("pressed");
-  }
-}
