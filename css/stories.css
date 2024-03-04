@@ -147,6 +147,7 @@ color-pink {
 	font-family: 'SuisseIntl-Light', sans-serif;
 	font-size: 1.5rem;
 	color: #FF46ED;
+	line-height: 1.9rem;
 }
 
 .story-bolder-text-black {
@@ -158,6 +159,11 @@ color-pink {
 .story-data-policy-paragraph-open {
 	color: black;
 	margin-bottom: 1rem;
+}
+
+.story-data-policy-paragraph {
+	padding-top: 1rem;
+	line-height: 1.5rem;
 }
 
 .story-data-policy-paragraph-close {
