@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Primary Meta Tags -->
+	<title>MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead</title>
+	<meta name="title" content="MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead">
+	<meta name="description" content="Data pills and workshops to raise awareness on antibiotic consumption and AMR with data.">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://spearhead-amr.github.io/makeaware/">
+	<meta property="og:title" content="MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead">
+	<meta property="og:description" content="Data pills and workshops to raise awareness on antibiotic consumption and AMR with data.">
+	<meta property="og:image" content="img/viz1.svg">
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://spearhead-amr.github.io/makeaware/">
+	<meta property="twitter:title" content="MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead">
+	<meta property="twitter:description" content="Data pills and workshops to raise awareness on antibiotic consumption and AMR with data.">
+	<meta property="twitter:image" content="img/viz1.svg">
+	
+	<!-- Google site verification -->
+    <meta name="google-site-verification" content="JM07wkR90m_nMhFSktfkHRYcktRWWgyQJo_gT3VlqoM" />
+
+	<!-- fav icon link -->
+	<link rel="icon" href="img/fav_pink.ico"/>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/pills.css">
+	<link rel="stylesheet" type="text/css" href="css/network.css">
+	<link rel="stylesheet" type="text/css" href="css/workshops.css">
+	<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
+	<link rel="stylesheet" type="text/css" href="css/vizLanding.css">
+	<link rel="stylesheet" type="text/css" href="css/popup.css">
+	<link rel="stylesheet" type="text/css" href="css/stories.css">
+
+
+	<!-- SCRIPT AB VIZ LANDING -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://unpkg.com/gsap"></script>
+
+
+</head>
+
+
+<body>
+
+
+
+
+
+
+	
+
+
+<!-- stories --->
+
+<div id="stories" class="anchors"></div>
+<section id="stories-main">
+
+	<section class="stories-section">
+		<div id="stories-h2">
+	        <h2>STORIES</h2>
+	    </div>
+        <section class="stories-sub-section">
+
+
+        	<!-- stories carousell -->
+        	<div class="stories-container" id="story-carousell-container">
+
+        		<div class="stories-content" id="stories-carousell"></div>
+
+	       		<div class="stories-buttons-container">
+	       			<div class="stories-button-container-2">
+	        			<button type="button" class="story-button" id="button-story-share">Share your story</button>
+	        		</div>
+        		</div>
+
+        	</div>
+
+
+        	<!-- story share -->
+        	<div class="stories-container" id="story-share-container">
+
+	        	<div  class="stories-content" id="story-share">
+	        		<h3>Share your story to help others and inspire the research.</h3>
+
+	        		<p class="story-bolder-text-black">What was the reason to take antibiotics last time? Who prescribed them and what were you explained? Did the treatment work? Did any side effects occur? Is there any alternative treatment that works for you?</p>
+					
+	        		<p class="story-data-policy-paragraph">You can use the language you are more comfortable with. Data is anonymously collected and released on the project repository for others to use.</p>
+	        		
+	        	</div>
+
+	    	    <div class="stories-buttons-container">
+	    	    	<div class="stories-button-container-2">
+		    			<button type="button" id="button-back-to-carousell" class="story-button-back">back to stories</button>
+		    			<button type="button" class="story-button" id="button-story-write">Write your story</button>
+		    		</div>
+	    		</div>
+
+	    	</div>
+
+
+	    	<!-- story form -->
+	    	<div class="stories-container" id="story-form-container">
+
+	        	<div  class="stories-content">
+					<p class="story-data-policy-paragraph-open">Share your story to help others and inspire the research.
+						You can use the language you are more comfortable with. Data is anonymously collected and released on the project repository for others to use.</p>
+
+	        		<div class="story-bolder-text-black" id="story-form">
+
+	        			<span class="fixed">I decided to</span>
+						<span class="editable" data-form-color="color-grey">(go, see, call, text or speak?)</span>
+						<span class="fixed"> - </span>
+						<span class="editable" data-form-color="color-red">(who have you consulted regarding your sickness?)</span>
+						<span class="fixed">because</span>
+						<span class="editable" data-form-color="color-red">(what symptoms did you have?)</span>.
+						<span class="fixed">I was feeling</span>
+						<span class="editable" data-form-color="color-red">(how were you feeling?)</span>
+						<span class="fixed">every time</span>
+						<span class="editable" data-form-color="color-red">(when were the symptoms happening?)</span>.
+						<span class="fixed">I've been told by</span>
+						<span class="editable" data-form-color="color-grey">(who did provide you with the diagnosis?)</span>
+						<span class="fixed">that I was suffering from</span>
+						<span class="editable" data-form-color="color-red">(what were you suffering from?)</span>.
+						<span class="fixed">It happened</span>
+						<span class="editable" data-form-color="color-grey">(again or never again?)</span>
+						<span class="fixed">for</span>
+						<span class="editable" data-form-color="color-grey">(for how long have you suffered?)</span>.
+						<span class="fixed">The doctor</span>
+						<span class="editable" data-form-color="color-grey">(explained or not explained?)</span>
+						<span class="fixed">to me that</span>
+						<span class="editable" data-form-color="color-pink">(what did the doctor say?)</span>.
+						<span class="fixed">I started</span>
+						<span class="editable" data-form-color="color-pink">(what treatment did you have?)</span>.
+						<span class="fixed">Ultimately, the cure</span>
+						<span class="editable" data-form-color="color-pink">(did the cure work or not?)</span>.
+						<span class="fixed">I started feeling</span>
+						<span class="editable" data-form-color="color-grey">(what effect did the treatment have on you?)</span>.
+						<span class="fixed">I noticed</span>
+						<span class="editable" data-form-color="color-pink">(have you noticed any side effects?)</span>.
+						<span class="fixed">So, I tried</span>
+						<span class="editable" data-form-color="color-pink">(have you looked for any alternatives?)</span>.
+						<span class="fixed">Now</span>
+						<span class="editable" data-form-color="color-pink">(how do you feel?)</span>.
+						<br><span class="fixed">I am</span>
+						<span class="editable" data-form-color="color-grey">(is there a gender that best describes you?)</span>, 
+						<span class="editable" data-form-color="color-grey">(how old are you?)</span>
+						<span class="fixed">years old</span>,
+						<span class="fixed">based in</span>
+						<span class="editable" data-form-color="color-grey">(where do you live?).</span>
+	        		</div>
+					
+	        		<div class="stories-buttons-container">
+	        			<div class="stories-button-container-2">
+		        			<button type="button" id="button-back-to-share" class="story-button-back">back to stories</button>
+		        			<button type="button" class="story-button" id="button-story-submit">Submit</button>
+	        			</div>
+	        		</div>
+	        		
+	        	</div>
+
+	        </div>
+
+	        <!-- story thanks -->
+	    	<div class="stories-container" id="story-thanks-container">
+
+	        	<div  class="stories-content" id="story-thanks">
+
+	        		<h3>Thank you for sharing your story.</h3>
+
+	        		<p class="story-bolder-text-black">Your story has been received and it will be added to our database in the next days, for you and others to explore.</p>
+	        		<p class="story-data-policy-paragraph">Data is collected anonymised and organised openly on the project repository for others to explore.</p>
+
+	        		<div class="stories-buttons-container">
+	        			<div class="stories-button-container-2">
+		        			<button type="button" id="button-thanks-back-to-carousell" class="story-button-back">back to stories</button>
+	        			</div>
+	        		</div>
+	        		
+	        	</div>
+
+	        </div>
+
+
+
+        </section>
+
+    </section>
+
+
+</section>
+
+<script src="js/script-stories.js"></script>
+
+
+
+
+	
+</body>
+		
+		
+<!-- script -->
+<script src="js/script-main.js"></script>
+
+
+</html>
