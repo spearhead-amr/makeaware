@@ -123,6 +123,7 @@ color-pink {
 }
 
 .story-button-back {
+	display: none; /* mod for stories form submission */
 	position: absolute;
 	left: 0;
 	cursor: pointer;
@@ -171,10 +172,18 @@ color-pink {
 	margin-top: 1rem;
 }
 
+#button-back-to-carousell, #button-back-to-share {
+	display: none;
+}
+
+#button-thanks-back-to-carousell {
+	display: block;
+}
+
 /* --- stories carousell --- */
 
 #story-carousell-container {
-
+	display: none;
 }
 
 #stories-carousell {
@@ -184,8 +193,6 @@ color-pink {
 	margin-bottom: 3rem;
 	min-height: calc(100vh - var(--header-height) - 19rem);
 }
-
-
 
 /* --- story share --- */
 
@@ -198,7 +205,6 @@ color-pink {
 #story-share {
 
 }
-
 
 
 /* --- story form --- */
@@ -225,6 +231,11 @@ color-pink {
     user-select: none;
     color: #AAA9AA;
     outline-width: 0;
+	text-transform: lowercase;
+}
+
+#story-form .editable:focus-visible {
+	outline: none;
 }
 
 #story-form .edited {
@@ -233,6 +244,7 @@ color-pink {
 
 #story-form .fixed {
 	color: black;
+	margin-left: -0.1rem;
 }
 
 #story-form .not-filled {

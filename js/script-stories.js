@@ -8,15 +8,15 @@ let story_form = document.getElementById('story-form-container');
 let story_thanks = document.getElementById('story-thanks-container');
 
 // buttons
-let button_share = document.getElementById('button-story-share');
-let button_write = document.getElementById('button-story-write');
+// let button_share = document.getElementById('button-story-share');
+// let button_write = document.getElementById('button-story-write');
 let button_submit = document.getElementById('button-story-submit');
-let button_back_to_carousell = document.getElementById('button-back-to-carousell');
-let button_back_to_share = document.getElementById('button-back-to-share');
+// let button_back_to_carousell = document.getElementById('button-back-to-carousell');
+// let button_back_to_share = document.getElementById('button-back-to-share');
 let button_thanks_back_to_carousell = document.getElementById('button-thanks-back-to-carousell');
 
 
-let current_container = "carousell";  // carousell, story, form, thanks
+let current_container = "form";  // carousell, story, form, thanks
 
 let page_first_loading = true;
 
@@ -109,7 +109,7 @@ function storyFormValidation(action) {
       }
       else if(el.classList.contains('editable')) {
         formHTML += ' <' + el.dataset.formColor + '>' + el.innerText + '</' + el.dataset.formColor + '> ';
-        formHTML_b += el.innerText + '<br>';
+        formHTML_b += el.innerText.normalize("NFC") + '<br>';   // in theory normalize will fix the UTF8 problem
       }
 
     })
@@ -201,12 +201,12 @@ changeStoryContainer(current_container);
 
 // add buttons event listener
 
-button_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
-button_write.addEventListener('click', changeStoryContainer.bind(this, 'form'));
+// button_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
+//button_write.addEventListener('click', changeStoryContainer.bind(this, 'form'));
 button_submit.addEventListener('click', storyFormValidation.bind(this, 'thanks'));
-button_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
-button_back_to_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
-button_thanks_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
+//button_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'carousell'));
+//button_back_to_share.addEventListener('click', changeStoryContainer.bind(this, 'share'));
+button_thanks_back_to_carousell.addEventListener('click', changeStoryContainer.bind(this, 'form'));
 
 
 
