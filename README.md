@@ -1,45 +1,44 @@
+# Makeaware officail website
+
 Using stories and data sharing to empower people in the fight against antimicrobial resistance.
 
-## main branch
+## Development
 
-Official release of the online website that it's hosted at https://spearhead-amr.github.io/makeaware/
+### branches
 
-^: merge dev into main
+#### main
 
-+: commit
+It is the official branch that is the online website:
+https://github.com/spearhead-amr/makeaware
 
-main branch:   +-------+-----+
+#### dev
 
-dev branch:  +-+-+-+-^-+-+-^
+Old repo built during the project
 
-## dev branch
+#### dev-final
 
-Used to develop the website. This branch has to be merged with the main branch to update the online website.
+Final and updated version of the repo
+
+### Merging process
+
+The `dev` or the `dev-final` branches once are merged into the `main` branch will update the website visible at https://github.com/spearhead-amr/makeaware
+
+### Dev-final structure and organization
+
+#### assets folder
+
+It contains the **css**, **fonts**, **js** and **stylus** files.
+
+#### components folder
+
+It contains the partial html files like **header.hml**, **footer.html** etc. that are included in the other pages
+
+#### .html pages
+
+The website pages are stored in the root path of the repo, and are named after the page title itself. Example: `stories.html` corresponds to the url `https://github.com/spearhead-amr/makeaware/stories`
+
+#### style
 
 
-### dev environment
 
-Mac OSx/Linux: run a simple local server via Terminal to see the website, and navigate to the folder of the project on your Mac:
-```
-$ cd /path/to/makeaware-folder
-````
-
-Windows: open the Command Prompt, and navigate to the folder of the project on your PC:
-
-```
-// if you need to change to a different drive
-> D:
-> cd path\to\makeaware-folder
-```
-
-In both cases, start a local HTTP server by running one of those commands:
-
-```
-// if running python 2.x
-$ python -m SimpleHTTPServer
-// if running python 3.x
-$ python3 -m http.server
-// or
-$ python -m http.server
-```
-In your browser open the url http://localhost:8000/ to see the website.
+### Run the website locally
