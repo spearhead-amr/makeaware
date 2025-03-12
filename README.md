@@ -37,7 +37,11 @@ It contains the partial html files like **header.hml**, **footer.html** etc. tha
 
 The website pages are stored in the root path of the repo, and are named after the page title itself. Example: `stories.html` corresponds to the url `https://github.com/spearhead-amr/makeaware/stories.html`
 
-#### style
+#### stylus
+
+Stylus is used to manage the CSS style of the website. The files are in the folder `assets/stylus`. The CSS rules are spread around multiple files for simpler management and maintainability.
+
+Have a look to the Sytlus documentation here: https://stylus-lang.com/
 
 ## Development environment setup
 
