@@ -35,10 +35,17 @@ It contains the partial html files like **header.hml**, **footer.html** etc. tha
 
 #### .html pages
 
-The website pages are stored in the root path of the repo, and are named after the page title itself. Example: `stories.html` corresponds to the url `https://github.com/spearhead-amr/makeaware/stories`
+The website pages are stored in the root path of the repo, and are named after the page title itself. Example: `stories.html` corresponds to the url `https://github.com/spearhead-amr/makeaware/stories.html`
 
 #### style
 
+## Development environment setup
 
+1. Install [Node.js](https://nodejs.org)
+2. Install all the packages listed in `package.json` by running `$ npm install` in the terminal
 
-### Run the website locally
+## Build and serve (gulp)
+
+Start the local server by running `gulp` in the terminal. It will build the `assets/css/main.css` file from the stylus files, and serve the website locally, usually at `localhost:3000`.
+
+Every time the stylus files are changed, the `main.css` is updated and the page refreshed.
