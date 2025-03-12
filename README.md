@@ -1,55 +1,55 @@
-# Makeaware officail website
+# Makeaware Official Website  
 
-Using stories and data sharing to empower people in the fight against antimicrobial resistance.
+Using stories and data sharing to empower people in the fight against antimicrobial resistance.  
 
-## Development
+## Development  
 
-### branches
+### Branches  
 
-#### main
+#### main  
 
-It is the official branch that is the online website:
-https://github.com/spearhead-amr/makeaware
+It is the official branch that hosts the online website:  
+https://github.com/spearhead-amr/makeaware  
 
-#### dev
+#### dev  
 
-Old repo built during the project
+Old repo built during the project.  
 
-#### dev-final
+#### dev-final  
 
-Final and updated version of the repo
+Final and updated version of the repo.  
 
-### Merging process
+### Merging Process  
 
-The `dev` or the `dev-final` branches once are merged into the `main` branch will update the website visible at https://github.com/spearhead-amr/makeaware
+The `dev` or `dev-final` branches, once merged into the `main` branch, will update the website visible at https://github.com/spearhead-amr/makeaware.  
 
-### Dev-final structure and organization
+### Dev-final Structure and Organization  
 
-#### assets folder
+#### assets Folder  
 
-It contains the **css**, **fonts**, **js** and **stylus** files.
+It contains the **CSS**, **fonts**, **JS**, and **Stylus** files.  
 
-#### components folder
+#### components Folder  
 
-It contains the partial html files like **header.hml**, **footer.html** etc. that are included in the other pages
+It contains the partial HTML files like **header.html**, **footer.html**, etc., that are included in other pages.  
 
-#### .html pages
+#### .html Pages  
 
-The website pages are stored in the root path of the repo, and are named after the page title itself. Example: `stories.html` corresponds to the url `https://github.com/spearhead-amr/makeaware/stories.html`
+The website pages are stored in the root path of the repo and are named after the page title itself. Example: `stories.html` corresponds to the URL `https://github.com/spearhead-amr/makeaware/stories.html`.  
 
-#### stylus
+#### Stylus  
 
-Stylus is used to manage the CSS style of the website. The files are in the folder `assets/stylus`. The CSS rules are spread around multiple files for simpler management and maintainability.
+Stylus is used to manage the CSS style of the website. The files are in the folder `assets/stylus`. The CSS rules are spread across multiple files for simpler management and maintainability.  
 
-Have a look to the Sytlus documentation here: https://stylus-lang.com/
+Have a look at the Stylus documentation here: https://stylus-lang.com/  
 
-## Development environment setup
+## Development Environment Setup  
 
-1. Install [Node.js](https://nodejs.org)
-2. Install all the packages listed in `package.json` by running `$ npm install` in the terminal
+1. Install [Node.js](https://nodejs.org)  
+2. Install all the packages listed in `package.json` by running `$ npm install` in the terminal.  
 
-## Build and serve (gulp)
+## Build and Serve (Gulp)  
 
-Start the local server by running `gulp` in the terminal. It will build the `assets/css/main.css` file from the stylus files, and serve the website locally, usually at `localhost:3000`.
+Start the local server by running `gulp` in the terminal. It will build the `assets/css/main.css` file from the Stylus files and serve the website locally, usually at `localhost:3000`.  
 
-Every time the stylus files are changed, the `main.css` is updated and the page refreshed.
+Every time the Stylus files are changed, the `main.css` is updated, and the page is refreshed. 
