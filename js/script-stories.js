@@ -60,6 +60,9 @@ let changeStoryContainer = function (container) {
     story_share.style.display = "none";
     story_form.style.display = "none";
     story_thanks.style.display = "block";
+    let url = new URL(window.location.href);
+    url.searchParams.append("storySent", true);
+    window.history.pushState({}, '', url);
     break;
   }
 
