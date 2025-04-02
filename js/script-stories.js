@@ -63,6 +63,8 @@ let changeStoryContainer = function (container) {
     let url = new URL(window.location.href);
     url.searchParams.append("storySent", true);
     window.history.pushState({}, '', url);
+    window._paq = window._paq || [];
+    window._paq.push(['trackGoal', 1]);
     break;
   }
 
