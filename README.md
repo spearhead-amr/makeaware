@@ -46,7 +46,8 @@ Have a look at the Stylus documentation here: https://stylus-lang.com/
 ## Development Environment Setup  
 
 1. Install [Node.js](https://nodejs.org)  
-2. Install all the packages listed in `package.json` by running `$ npm install` in the terminal.  
+2. Install all the packages listed in `package.json` by running `$ npm install` in the terminal.
+3. Install gulp js by running this in the terminal `$ npm install -g gulp-cli`
 
 ## Build and Serve (Gulp)  
 
