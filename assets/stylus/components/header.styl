@@ -1,0 +1,65 @@
+.header-bar
+  background-color: brand-white
+   //per responsive
+  //align-items: center
+  display: flex //layout posizionare elementi in riga o colonna
+  justify-content: space-around
+  position: fixed //barra fissa in alto
+  top: 0
+  z-index: 1
+  width: 100%
+  margin: 0
+  padding: 0
+
+.menuvoci
+    float:left
+
+.nav-links
+    position: absolute
+    right: 0px
+    height: 92vh
+    top: margin
+    display: flex
+    flex-direction: column
+    width: 100%
+    transform: translateX(100%)
+    padding: 0
+        
+    +media(tablet-h)
+        position: relative
+        height: 10vh
+        display: flex
+        flex-direction: row
+        justify-content: space-around
+        transform: translateX(0%)
+        width: 70%
+    
+    a
+        color: brand-black
+        text-decoration: none
+        text-transform: uppercase
+        align-items: center
+        @extend .sans-menu
+
+    li
+        list-style: none //pallino elementi lista tolto
+
+.nav-active //trasformazione su js menucell
+  transform: translateX(0%)
+
+
+.mobile-menu
+    display: block //appare
+    cursor: pointer
+
+    div
+        width: 2rem
+        height: 0.2rem
+        background-color: brand-black
+        margin: 5px
+
+    +media(tablet-h)
+        display: none
+
+    
+

@@ -1,15 +1,15 @@
 #main-home
-    background-color: green
+    background-color: brand-white
 
     h1
-        font-family: sans-serif
+        @extend .sans-logo
 
-    +media(tablet-h)
-        background-color: yellow
+    h2
+        @extend .serif-home
 
-        h1
-            font-family: serif
+    h3
+        @extend .serif-title
 
-    +media(desktop)
-        background-color: blue
+    h4
+        @extend .serif-subtitle
         
