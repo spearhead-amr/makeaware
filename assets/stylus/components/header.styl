@@ -22,20 +22,22 @@
     position: absolute
     right: 0
     height: 100vh
-    top: margin
+    top: 7vh
     display: flex
     flex-direction: column
     width: 100%
-    transform: translateX(0%)
+    transform: translateX(100%)
     padding: 0
     vertical-align: center
+    
         
     +media(tablet-h)
         position: relative
         height: 0
+        top: margin
         display: flex
         flex-direction: row
-        //justify-content: space-around
+        justify-content: none
         transform: translateX(0%)
         width: 70%
     
@@ -54,7 +56,7 @@
         list-style: none //pallino elementi lista tolto
 
 .nav-active //trasformazione su js menucell
-  transform: translateX(100%)
+  transform: translateX(0%)
 
 
 #hamburger-menu
@@ -67,7 +69,7 @@
 
     div
         width: 2rem
-        height: 0.2rem
+        height: 0.15rem
         background-color: brand-black
         margin-bottom: 5px
 
@@ -78,3 +80,6 @@
 #spearhead
     text-transform: none
     text-align: right
+
+.active-link
+    text-decoration: underline
