@@ -2,7 +2,7 @@
   background-color: brand-white
    //per responsive
   //align-items: center
-  display: flex //layout posizionare elementi in riga o colonna
+  display: block //layout posizionare elementi in riga o colonna
   justify-content: space-around
   position: fixed //barra fissa in alto
   top: 0
@@ -10,56 +10,71 @@
   width: 100%
   margin: 0
   padding: 0
+  height: 7vh
 
-.menuvoci
-    float:left
+  +media(tablet-h)
+    display: block
+
+
 
 .nav-links
+    background-color: brand-purple
     position: absolute
-    right: 0px
-    height: 92vh
+    right: 0
+    height: 100vh
     top: margin
     display: flex
     flex-direction: column
     width: 100%
-    transform: translateX(100%)
+    transform: translateX(0%)
     padding: 0
+    vertical-align: center
         
     +media(tablet-h)
         position: relative
-        height: 10vh
+        height: 0
         display: flex
         flex-direction: row
-        justify-content: space-around
+        //justify-content: space-around
         transform: translateX(0%)
         width: 70%
     
     a
         color: brand-black
+        //margin-left: margin
         text-decoration: none
         text-transform: uppercase
-        align-items: center
+        text-align: left
+        width: 100%
+        margin-left: margin
+        margin-right: margin
         @extend .sans-menu
 
     li
         list-style: none //pallino elementi lista tolto
 
 .nav-active //trasformazione su js menucell
-  transform: translateX(0%)
+  transform: translateX(100%)
 
 
-.mobile-menu
+#hamburger-menu
     display: block //appare
     cursor: pointer
+    right: margin
+    top: margin
+    padding: 0
+    position: absolute
 
     div
         width: 2rem
         height: 0.2rem
         background-color: brand-black
-        margin: 5px
+        margin-bottom: 5px
 
     +media(tablet-h)
         display: none
 
     
-
+#spearhead
+    text-transform: none
+    text-align: right

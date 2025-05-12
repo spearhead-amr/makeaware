@@ -17,3 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComponent('components/head.html', 'page-head');
   });
   
+
+  
+
