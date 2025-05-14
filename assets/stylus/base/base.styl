@@ -1,6 +1,7 @@
 html
     font-size: 22px     // mobile first, it defines the rem unit
     line-height: 115%
+    background-color: brand-white
 
     +media(tablet-h)
         font-size: 14px
@@ -11,10 +12,18 @@ html
 
 
 
-margin = 1rem
 
 
 .content-margins
-    padding-left: 1rem
-    padding-right: 1rem
+    padding-left: 0.5rem
+    padding-right: 0.5rem
      
+    +media(tablet-h)
+        padding-left: 1rem
+        padding-right: 1rem
+
+.divider
+    height: 2rem
+
+    +media(tablet-h)
+        height: 6rem

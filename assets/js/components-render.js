@@ -16,7 +16,3 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComponent('components/footer.html', 'page-footer');
     loadComponent('components/head.html', 'page-head');
   });
-  
-
-  
-

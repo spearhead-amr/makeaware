@@ -1,17 +1,188 @@
 #main-home
-    background-color: brand-white
     @extend .content-margins
 
+#content-sticky
+    position: relative
+    // Padding-bottom per il margine desiderato (mobile-first)
+    padding-bottom: 3rem        // Mobile: più spazio
+    
+    +media(tablet-v)
+        padding-bottom: 2.5rem  // Tablet verticale: spazio intermedio
+    
+    +media(tablet-h)
+        padding-bottom: 2rem    // Tablet orizzontale e desktop: spazio standard
+
+
+#home-intro
+   
+    height: calc(94vh-1.1rem)
+    
     h1
         @extend .sans-logo
-        margin-top: 10vh
+        margin-top: 6vh
+
+        +media(tablet-h)
+            margin-top: 10vh
 
     h2
         @extend .serif-home
 
-    h3
-        @extend .serif-title
-
-    h4
-        @extend .serif-subtitle
+        #glyph-1:before
+            content: "✤"
         
+        #glyph-2:before
+            content: "✧"
+        
+        #glyph-3:before
+            content: "⑩"
+
+    
+
+    +media(tablet-h)
+        height: calc(90vh-2.4rem)
+
+
+.makeaware-description
+    display: flex
+    flex-direction: column 
+        
+    
+    h1   
+        @extend .sans-caption
+        padding-bottom: 0.5rem
+
+        &:after
+            content: " ↓"
+            position: relative
+            bottom: 0.2rem
+
+        &:before
+            content: "↓ "
+            position: relative
+            bottom: 0.2rem
+
+        +media(tablet-h)
+            padding-bottom: 1rem
+
+    p
+        @extend .serif-subtitle
+
+
+.description-content
+    display: flex
+    flex-direction: column
+
+    +media(tablet-h)
+      flex-direction: row
+      gap: 1rem
+
+    img
+      width: 100%
+
+      +media(tablet-h)
+        width: 40%
+        height: auto
+        object-fit: cover
+
+    p
+      @extend .sans-paragraph
+      margin-top: 2rem
+
+      +media(tablet-h)
+        width: 60vw
+        margin-top: 0
+
+#widget-amr
+    margin-bottom: 20vh
+
+    h1
+        @extend .serif-title
+        margin-bottom: 1rem
+
+    #widget-amr-abstract
+        @extend .serif-subtitle
+
+    #widget-amr-content
+
+        display: flex
+        flex-direction: column
+
+        +media(tablet-h)
+            flex-direction: row
+            gap: 5%
+
+        img
+            width: 100%
+
+            +media(tablet-h)
+                width: 40%
+                height: auto
+
+        p
+            @extend .sans-paragraph
+            margin-top: 2rem
+
+            +media(tablet-h)
+                width: 55%
+                margin-top: 0
+
+
+#invisible-footer
+    display: none
+
+
+
+// Widget petri con miglioramenti responsive (mobile-first)
+#widget-petri
+    position: absolute
+    top: 100vh
+    left: 0
+    right: 0
+    z-index: 10
+    visibility: hidden
+    
+    &.active
+        position: fixed
+        top: 0
+        visibility: visible
+    
+    .petri-frame
+        background: brand-white
+        border-top: 1px solid brand-black
+        height: 100vh
+        @extend .content-margins
+        padding-top: 7vh
+        transform: translateY(100%)
+        will-change: transform
+        
+        
+        h1
+            margin: 0
+            text-align: left
+            @extend .serif-title
+
+// Content sticky con gestione migliorata per responsive (mobile-first)
+#content-sticky.locked
+    // Su mobile, gestisce manualmente left/right per problemi di margini
+    left: 0
+    right: 0
+    width: auto
+    
+    // Usa padding per simulare margini su mobile
+    padding-left: 0.5rem       // Margine sinistro su mobile
+    padding-right: 0.5rem      // Margine destro su mobile
+    
+    +media(tablet-v)
+        left: 0
+        right: 0
+        width: auto
+        padding-left: 0.5rem     // Margini più larghi su tablet verticale
+        padding-right: 0.5rem    
+    
+    +media(tablet-h)
+        // Su tablet orizzontale e desktop, ritorna a usare le margins ereditate
+        left: 0
+        right: 0
+        width: auto
+        padding-left: 1rem
+        padding-right: 1rem
