@@ -133,56 +133,6 @@
 
 
 // Widget petri con miglioramenti responsive (mobile-first)
-#widget-petri
-    position: absolute
-    top: 100vh
-    left: 0
-    right: 0
-    z-index: 10
-    visibility: hidden
-    
-    &.active
-        position: fixed
-        top: 0
-        visibility: visible
-    
-    .petri-frame
-        background: brand-white
-        border-top: 1px solid brand-black
-        height: 100vh
-        @extend .content-margins
-        padding-top: 7vh
-        transform: translateY(100%)
-        will-change: transform
-        
-        
-        h1
-            margin: 0
-            text-align: left
-            @extend .serif-title
+// Aggiorna la sezione #widget-petri e aggiungi stili per il cerchio
+// Widget petri con blocchi di contenuto gestibili
 
-// Content sticky con gestione migliorata per responsive (mobile-first)
-#content-sticky.locked
-    // Su mobile, gestisce manualmente left/right per problemi di margini
-    left: 0
-    right: 0
-    width: auto
-    
-    // Usa padding per simulare margini su mobile
-    padding-left: 0.5rem       // Margine sinistro su mobile
-    padding-right: 0.5rem      // Margine destro su mobile
-    
-    +media(tablet-v)
-        left: 0
-        right: 0
-        width: auto
-        padding-left: 0.5rem     // Margini più larghi su tablet verticale
-        padding-right: 0.5rem    
-    
-    +media(tablet-h)
-        // Su tablet orizzontale e desktop, ritorna a usare le margins ereditate
-        left: 0
-        right: 0
-        width: auto
-        padding-left: 1rem
-        padding-right: 1rem

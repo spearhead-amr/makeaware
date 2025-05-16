@@ -1,0 +1,154 @@
+#widget-petri
+    position: absolute
+    top: 100vh
+    left: 0
+    right: 0
+    z-index: 10
+    visibility: hidden
+    
+    &.active
+        position: fixed
+        top: 0
+        visibility: visible
+
+    &.overlayed
+        .petri-frame
+            // Mantieni il petri frame visibile ma con z-index inferiore
+            z-index: 5
+    
+     .petri-frame
+        // Background trasparente per backdrop-filter
+        background: rgba(255, 255, 255, 0)
+        backdrop-filter: blur(0px)
+        border-top: 1px solid transparent
+        height: 100vh
+        @extend .content-margins
+        display: flex
+        flex-direction: column
+        align-items: center
+        will-change: background, backdrop-filter, opacity
+        transition: border-color 0.3s ease, opacity 0.3s ease
+        position: relative
+        z-index: 10  // Z-index di base
+        
+        // Quando ha background, mostra il border
+        &:has(.petri-circle[style*="opacity: 1"]) 
+            border-top-color: brand-black
+        
+        // Circle styles
+        .petri-circle
+            width: 150px
+            height: 150px
+            background-color: brand-black
+            border-radius: 50%
+            opacity: 0
+            transition: opacity 0.3s ease
+            position: absolute
+            top: 50%
+            
+            +media(tablet-h)
+                width: 200px
+                height: 200px
+                top: 30%
+                left: 65%
+
+        #petri-legenda
+            width: 4rem
+            opacity: 0
+            transition: opacity 0.3s ease
+            position: absolute
+            bottom 1rem
+            left: 0.5rem
+
+            +media(tablet-h)
+                width: 10rem
+                left: 1rem
+
+        
+        // Content blocks container
+        .petri-content-block
+            position: absolute
+            top: 0
+            left: 0
+            @extend .content-margins
+            right: 0
+            height: 100%
+            opacity: 0
+            transition: opacity 0.2s ease
+            padding-top: 7vh
+            
+            // Allineamento come altri elementi della pagina
+            h2
+                @extend .serif-paragraph
+                margin-bottom: 1rem
+                text-align: left
+                margin-top: 0
+                
+                
+                +media(tablet-h)
+                    width:50%
+            
+            p
+                @extend .sans-paragraph
+                text-align: left
+                margin-top: 0
+                
+                +media(tablet-h)
+                    width:50%
+
+// Updated content sticky styles
+#content-sticky.locked
+    left: 0
+    right: 0
+    width: auto
+    padding-left: 0.5rem
+    padding-right: 0.5rem
+    
+    +media(tablet-v)
+        left: 0
+        right: 0
+        width: auto
+        padding-left: 0.5rem
+        padding-right: 0.5rem
+    
+    +media(tablet-h)
+        left: 0
+        right: 0
+        width: auto
+        padding-left: 1rem
+        padding-right: 1rem
+
+#widget-world
+    position: absolute
+    top: 100vh
+    left: 0
+    right: 0
+    z-index: 20  // Z-index superiore al petri
+    visibility: hidden
+    
+    &.active
+        position: fixed
+        top: 0
+        visibility: visible
+    
+    .world-frame
+        background: brand-white
+        border-top: 1px solid brand-black
+        height: 100vh
+        @extend .content-margins
+        padding-top: 7vh
+        transform: translateY(100%)
+        will-change: transform
+        transition: transform 0.1s linear  // Transizione fluida ma veloce
+        
+        h1
+            margin: 0
+            text-align: left
+            @extend .serif-title
+            margin-bottom: 1rem
+
+        p
+            @extend .sans-paragraph
+            text-align: left
+            margin-top: 0
+

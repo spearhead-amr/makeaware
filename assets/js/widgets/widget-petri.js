@@ -1,4 +1,5 @@
-// widgets-perti.js - Improved version with correct breakpoints
+// widget-petri.js - Robust scroll control with fixed sequence
+// Updated to expose instance globally
 
 class StickyScrollHandler {
     constructor() {
@@ -10,11 +11,21 @@ class StickyScrollHandler {
         this.isContentLocked = false;
         this.contentLockPosition = 0;
         this.breakpoints = {
-            mobile: 599,      // max-width: 599px
-            tabletV: 600,     // min-width: 600px  
-            tabletH: 900,     // min-width: 900px
-            desktop: 1200     // min-width: 1200px
+            mobile: 599,
+            tabletV: 600,
+            tabletH: 900,
+            desktop: 1200
         };
+        
+        // Get all content blocks and circle
+        this.contentBlocks = [];
+        this.circle = null;
+        this.legenda = null;
+        this.currentTargetBlock = 0;
+        this.isTransitioning = false;
+        
+        // Scroll milestones for precise control
+        this.scrollMilestones = [];
         
         if (this.contentSticky && this.widgetPetri && this.petriFrame) {
             this.init();
@@ -22,15 +33,42 @@ class StickyScrollHandler {
     }
 
     init() {
+        this.setupElements();
         window.addEventListener('scroll', this.handleScroll.bind(this));
         window.addEventListener('resize', () => {
-            // Debounce resize events
             clearTimeout(this.resizeTimeout);
             this.resizeTimeout = setTimeout(() => {
                 this.calculateLockPosition();
+                this.calculateScrollMilestones();
             }, 100);
         });
         this.calculateLockPosition();
+        this.calculateScrollMilestones();
+    }
+
+    setupElements() {
+        // Get circle element
+        this.circle = this.petriFrame.querySelector('.petri-circle');
+        
+        // Get legenda element
+        this.legenda = this.petriFrame.querySelector('#petri-legenda');
+        
+        // Get all content blocks
+        this.contentBlocks = this.petriFrame.querySelectorAll('.petri-content-block');
+        
+        // Set initial states
+        if (this.circle) {
+            this.circle.style.opacity = '0';
+        }
+        
+        if (this.legenda) {
+            this.legenda.style.opacity = '0';
+        }
+        
+        this.contentBlocks.forEach((block, index) => {
+            block.style.opacity = '0';
+            block.style.display = index === 0 ? 'block' : 'none';
+        });
     }
 
     getViewportType() {
@@ -46,55 +84,101 @@ class StickyScrollHandler {
         const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
         const viewportType = this.getViewportType();
         
-        // Margine bottom desiderato: 2rem
         const bottomMargin = 2 * remInPx;
         
-        // Calcolo basato sull'ultimo elemento (widget-amr) per maggiore precisione
         if (this.widgetAmr) {
-            // Ottieni la posizione e dimensioni del widget AMR
             const amrRect = this.widgetAmr.getBoundingClientRect();
             const pageYOffset = window.pageYOffset || document.documentElement.scrollTop;
             const amrOffsetTop = amrRect.top + pageYOffset;
             const amrHeight = this.widgetAmr.offsetHeight;
             
-            // Calcola quando l'elemento sarà completamente scrollato + margin
             this.contentLockPosition = amrOffsetTop + amrHeight - windowHeight + bottomMargin;
         } else {
-            // Fallback: approccio basato sull'altezza totale del contenuto
             const contentHeight = this.contentSticky.scrollHeight;
             this.contentLockPosition = contentHeight - windowHeight + bottomMargin;
         }
         
-        // Aggiustamenti specifici per viewport (mobile-first)
+        // Viewport adjustments
         switch(viewportType) {
             case 'mobile':
-                // Su mobile, aggiungi più spazio per compensare layout peculiarità
-                this.contentLockPosition += remInPx * 1.5; // +1.5rem extra su mobile
+                this.contentLockPosition += remInPx * 1.5;
                 break;
             case 'tablet-v':
-                // Su tablet verticale, aggiustamento moderato
-                this.contentLockPosition += remInPx * 1; // +1rem extra 
+                this.contentLockPosition += remInPx * 1;
                 break;
             case 'tablet-h':
-                // Su tablet orizzontale, leggero aggiustamento
-                this.contentLockPosition += remInPx * 0.5; // +0.5rem extra
-                break;
-            case 'desktop':
-                // Su desktop mantieni il calcolo preciso
+                this.contentLockPosition += remInPx * 0.5;
                 break;
         }
         
-        // Assicurati che la posizione non sia negativa
         this.contentLockPosition = Math.max(0, this.contentLockPosition);
         
-        // Imposta l'altezza minima del body per permettere lo scroll
-        // Su mobile usa un moltiplicatore più alto per garantire spazio sufficiente
-        const scrollMultiplier = viewportType === 'mobile' ? 2.8 : 2.5;
+        // Set minimum body height for scrolling through multiple blocks
+        // Ridotto da 3.5 a 3.5 per lasciare spazio all'overlay handler
+        const scrollMultiplier = 3.5;
         const totalScrollHeight = this.contentLockPosition + (windowHeight * scrollMultiplier);
         document.body.style.minHeight = `${totalScrollHeight}px`;
         
-        // Debug log per sviluppo (puoi commentare in produzione)
-        console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px, Bottom margin: ${bottomMargin}px`);
+        console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px`);
+    }
+
+    calculateScrollMilestones() {
+        const windowHeight = window.innerHeight;
+        
+        // Fixed milestones based on viewport height
+        this.scrollMilestones = [
+            {
+                // Milestone 0: Initial state (before lock)
+                start: 0,
+                end: this.contentLockPosition,
+                phase: 'unlock'
+            },
+            {
+                // Milestone 1: Blur and circle appear (0-50vh after lock)
+                start: this.contentLockPosition,
+                end: this.contentLockPosition + (windowHeight * 0.5),
+                phase: 'blur-circle'
+            },
+            {
+                // Milestone 2: First block appears (50vh-100vh after lock)
+                start: this.contentLockPosition + (windowHeight * 0.5),
+                end: this.contentLockPosition + windowHeight,
+                phase: 'block',
+                blockIndex: 0
+            },
+            {
+                // Milestone 3: Second block (100vh-200vh after lock)
+                start: this.contentLockPosition + windowHeight,
+                end: this.contentLockPosition + (windowHeight * 2),
+                phase: 'block',
+                blockIndex: 1
+            },
+            {
+                // Milestone 4: Third block (200vh-300vh after lock)
+                start: this.contentLockPosition + (windowHeight * 2),
+                end: this.contentLockPosition + (windowHeight * 3),
+                phase: 'block',
+                blockIndex: 2
+            },
+            {
+                // Milestone 5: Fourth block (300vh-350vh after lock)
+                // Ridotto per lasciare spazio alla transizione overlay
+                start: this.contentLockPosition + (windowHeight * 3),
+                end: this.contentLockPosition + (windowHeight * 3.5),
+                phase: 'block',
+                blockIndex: 3
+            }
+        ];
+    }
+
+    getCurrentMilestone(scrollTop) {
+        for (let i = 0; i < this.scrollMilestones.length; i++) {
+            const milestone = this.scrollMilestones[i];
+            if (scrollTop >= milestone.start && scrollTop < milestone.end) {
+                return { ...milestone, index: i };
+            }
+        }
+        return this.scrollMilestones[this.scrollMilestones.length - 1];
     }
 
     handleScroll() {
@@ -102,26 +186,24 @@ class StickyScrollHandler {
         
         if (scrollTop < 0) return;
         
-        // Tolleranza più alta su mobile per evitare flickering
-        const viewportType = this.getViewportType();
-        const tolerance = viewportType === 'mobile' ? 10 : 5;
+        const currentMilestone = this.getCurrentMilestone(scrollTop);
         
-        if (scrollTop >= (this.contentLockPosition - tolerance) && !this.isContentLocked) {
-            this.lockContent();
-            console.log("contentLockPosition" + this.contentLockPosition);
-        } else if (scrollTop < (this.contentLockPosition - tolerance) && this.isContentLocked) {
+        // Handle lock/unlock based on milestone
+        if (currentMilestone.phase === 'unlock' && this.isContentLocked) {
             this.unlockContent();
+            return;
+        } else if (currentMilestone.phase !== 'unlock' && !this.isContentLocked) {
+            this.lockContent();
         }
-
+        
         if (this.isContentLocked) {
-            this.updatePetriPosition(scrollTop);
+            this.updatePetriEffects(scrollTop, currentMilestone);
         }
     }
 
     lockContent() {
         this.isContentLocked = true;
         
-        // Applica lo stato locked
         this.contentSticky.classList.add('locked');
         this.contentSticky.style.position = 'fixed';
         this.contentSticky.style.top = `${-this.contentLockPosition}px`;
@@ -139,33 +221,147 @@ class StickyScrollHandler {
         this.contentSticky.style.zIndex = '';
         
         this.widgetPetri.classList.remove('active');
-        this.petriFrame.style.transform = 'translateY(100%)';
-    }
-
-    updatePetriPosition(scrollTop) {
-        const scrollBeyondLock = scrollTop - this.contentLockPosition;
-        const windowHeight = window.innerHeight;
-        const viewportType = this.getViewportType();
         
-        // Aggiusta la velocità di scroll in base al viewport (mobile più lento)
-        let scrollFactor = 1;
-        switch(viewportType) {
-            case 'mobile':
-                scrollFactor = 0.7; // Scroll più lento su mobile per maggiore controllo
-                break;
-            case 'tablet-v':
-                scrollFactor = 0.8; // Scroll moderato su tablet verticale
-                break;
-            case 'tablet-h':
-                scrollFactor = 0.9; // Scroll quasi normale su tablet orizzontale
-                break;
+        // Reset all effects to initial state
+        this.petriFrame.style.backdropFilter = 'blur(0px)';
+        this.petriFrame.style.background = 'rgba(255, 255, 255, 0)';
+        
+        if (this.circle) {
+            this.circle.style.opacity = '0';
         }
         
-        const progress = Math.min(1, Math.max(0, scrollBeyondLock / (windowHeight * scrollFactor)));
-        const easeProgress = this.easeOutCubic(progress);
-        const translateY = (1 - easeProgress) * 100;
+        if (this.legenda) {
+            this.legenda.style.opacity = '0';
+        }
         
-        this.petriFrame.style.transform = `translateY(${translateY}%)`;
+        // Reset all blocks to initial state
+        this.contentBlocks.forEach((block, index) => {
+            block.style.opacity = '0';
+            block.style.display = index === 0 ? 'block' : 'none';
+        });
+        
+        this.currentTargetBlock = 0;
+        this.isTransitioning = false;
+        
+        // Clear any pending timeouts
+        clearTimeout(this.blockTimeout);
+    }
+
+    updatePetriEffects(scrollTop, milestone) {
+        const progressInMilestone = (scrollTop - milestone.start) / (milestone.end - milestone.start);
+        const clampedProgress = Math.min(1, Math.max(0, progressInMilestone));
+        
+        switch (milestone.phase) {
+            case 'blur-circle':
+                this.handleBlurCirclePhase(clampedProgress);
+                break;
+            case 'block':
+                this.handleBlockPhase(milestone.blockIndex, clampedProgress);
+                break;
+        }
+    }
+
+    handleBlurCirclePhase(progress) {
+        // Apply easing
+        const easedProgress = this.easeOutCubic(progress);
+        
+        // Update blur and background
+        const blurAmount = easedProgress * 10; // Max 10px blur
+        const backgroundOpacity = easedProgress * 1; // Max 95% opacity
+        this.petriFrame.style.backdropFilter = `blur(${blurAmount}px)`;
+        this.petriFrame.style.background = `rgba(255, 255, 255, ${backgroundOpacity})`;
+        
+        // Update circle opacity (same as blur)
+        if (this.circle) {
+            this.circle.style.opacity = easedProgress;
+        }
+        
+        // Hide legenda during blur phase (before first block appears)
+        if (this.legenda) {
+            this.legenda.style.opacity = '0';
+        }
+        
+        // Ensure first block is ready but not visible yet
+        if (this.contentBlocks[0]) {
+            this.contentBlocks[0].style.display = 'block';
+            this.contentBlocks[0].style.opacity = '0';
+        }
+    }
+
+    handleBlockPhase(targetBlockIndex, progress) {
+        // Ensure blur and circle are at 100%
+        this.petriFrame.style.backdropFilter = 'blur(10px)';
+        this.petriFrame.style.background = 'rgba(255, 255, 255, 1)';
+        if (this.circle) {
+            this.circle.style.opacity = '1';
+        }
+        
+        // Show legenda starting from first block (targetBlockIndex 0) and keep it for all others
+        if (targetBlockIndex >= 0 && this.legenda) {
+            this.legenda.style.opacity = '1';
+        }
+        
+        // Handle block transitions
+        if (targetBlockIndex !== this.currentTargetBlock && !this.isTransitioning) {
+            this.transitionToBlock(targetBlockIndex);
+        } else if (targetBlockIndex === this.currentTargetBlock) {
+            // Ensure the correct block is visible
+            const targetBlock = this.contentBlocks[targetBlockIndex];
+            if (targetBlock && targetBlock.style.opacity === '0') {
+                targetBlock.style.display = 'block';
+                targetBlock.style.opacity = '1';
+            }
+        }
+    }
+
+    transitionToBlock(newIndex) {
+        if (newIndex < 0 || newIndex >= this.contentBlocks.length || this.isTransitioning) {
+            return;
+        }
+        
+        this.isTransitioning = true;
+        
+        const currentBlock = this.contentBlocks[this.currentTargetBlock];
+        const newBlock = this.contentBlocks[newIndex];
+        
+        // Immediately hide all other blocks
+        this.contentBlocks.forEach((block, index) => {
+            if (index !== this.currentTargetBlock && index !== newIndex) {
+                block.style.display = 'none';
+                block.style.opacity = '0';
+            }
+        });
+        
+        // Fade out current block
+        if (currentBlock) {
+            currentBlock.style.opacity = '0';
+        }
+        
+        // Clear any existing timeout
+        clearTimeout(this.blockTimeout);
+        
+        // After a delay, switch blocks and fade in
+        this.blockTimeout = setTimeout(() => {
+            // Hide current block
+            if (currentBlock) {
+                currentBlock.style.display = 'none';
+            }
+            
+            // Show and fade in new block
+            if (newBlock) {
+                newBlock.style.display = 'block';
+                newBlock.style.opacity = '0';
+                
+                // Force reflow
+                newBlock.offsetHeight;
+                
+                // Fade in
+                newBlock.style.opacity = '1';
+            }
+            
+            this.currentTargetBlock = newIndex;
+            this.isTransitioning = false;
+        }, 150);
     }
 
     easeOutCubic(t) {
@@ -173,12 +369,14 @@ class StickyScrollHandler {
     }
 }
 
-// Initialization with better timing
+// Store reference globally so other handlers can access it
+window.stickyScrollHandler = null;
+
+// Initialization
 document.addEventListener('DOMContentLoaded', () => {
-    new StickyScrollHandler();
+    window.stickyScrollHandler = new StickyScrollHandler();
 });
 
-// Fallback for cases where DOM is already loaded
 if (document.readyState !== 'loading') {
-    new StickyScrollHandler();
+    window.stickyScrollHandler = new StickyScrollHandler();
 }

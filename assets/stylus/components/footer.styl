@@ -1,0 +1,100 @@
+.footer-bar
+    background-color: brand-white
+    border-top: 1px solid brand-black
+    display: block //layout posizionare elementi in riga o colonna
+    //justify-content: space-around
+    width: 100%
+    @extend .content-margins
+    padding-top: 1rem
+    top: 0
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    gap: 2rem
+    padding-bottom: 3rem
+
+    +media(tablet-h)
+        height: auto
+        display: flex
+        flex-direction: row
+        gap: 5rem
+        padding-bottom: 4rem
+
+    li
+        list-style: none
+        line-height: 200%
+        @extend .serif-caption
+
+    //li:not(:first-child)
+        //line-height: 200%
+        
+
+    a
+        color: brand-black
+        //text-decoration: none
+        text-align: left
+        @extend .serif-caption
+
+    h2
+        @extend .serif-captiontitle
+        margin-bottom: 1rem
+
+    p
+        @extend .serif-caption
+        line-height: 120%
+
+#footer-team
+    width: 100%
+
+    +media(tablet-h)
+        width: 20%
+
+    ul
+        padding:0
+
+#footer-citation
+    width: 100%
+
+    +media(tablet-h)
+        width: 20%
+
+#footer-license
+    width: 100%
+
+    +media(tablet-h)
+        width: 20%
+        
+    img
+        display: none
+
+        +media(tablet-h)
+            display: block
+            padding-top: 1 rem
+
+#footer-data-policy
+    width: 100%
+
+    +media(tablet-h)
+        width: 40%
+
+    img
+        display: none
+
+        +media(tablet-h)            
+            display: block
+            padding-top: 3 rem
+
+#footer-logos
+    display: flex
+    flex-direction: row
+
+    #footer-spearhead-logo
+        width: 40%
+
+    #footer-supsi-logo
+        width: 30%
+        position:absolute
+        right: 0.5rem
+
+    +media(tablet-h)
+        display: none

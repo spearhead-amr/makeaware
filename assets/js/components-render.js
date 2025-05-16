@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load only on the homepage (widgets)
   if(document.getElementById('main-home') != null) {
     loadComponent('components/widgets/widget-petri.html', 'widget-petri');
+    loadComponent('components/widgets/widget-world.html', 'widget-world');
+  }
+
+  if(document.getElementById('main-workshops') != null) {
+    loadComponent('components/workshops-card.html', 'workshops-card');
   }
 
 });
