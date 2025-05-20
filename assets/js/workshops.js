@@ -149,6 +149,6 @@ class WorkshopsGridAlignment {
 }
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     new WorkshopsGridAlignment();
 });

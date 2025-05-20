@@ -46,8 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComponent('components/widgets/widget-world.html', 'widget-world');
   }
 
+  /*
   if(document.getElementById('main-workshops') != null) {
     loadComponent('components/workshops-card.html', 'workshops-card');
   }
+  */
 
 });

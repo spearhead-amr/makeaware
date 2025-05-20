@@ -1,6 +1,3 @@
-   console.log("ciao")
-
-
 function navSlide() {
     const mobilemenu = document.getElementById("hamburger-menu"); //burger
     const nav = document.querySelector(".nav-links"); //blocco tendina
@@ -68,10 +65,10 @@ function checkActivePage() {
 }
 
 // Multiple ways to ensure the function runs
-document.addEventListener('DOMContentLoaded', checkActivePage);
+// document.addEventListener('DOMContentLoaded', checkActivePage);
 
 // Also try after a small delay in case header is loaded dynamically
-setTimeout(checkActivePage, 100);
+// setTimeout(checkActivePage, 100);
 
 // And also call when window is fully loaded
 window.addEventListener('load', checkActivePage);
