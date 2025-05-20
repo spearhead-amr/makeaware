@@ -84,7 +84,7 @@ class StickyScrollHandler {
         const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
         const viewportType = this.getViewportType();
         
-        const bottomMargin = 2 * remInPx;
+        const bottomMargin = 3 * remInPx;
         
         if (this.widgetAmr) {
             const amrRect = this.widgetAmr.getBoundingClientRect();
@@ -114,7 +114,7 @@ class StickyScrollHandler {
         this.contentLockPosition = Math.max(0, this.contentLockPosition);
         
         // Set minimum body height for scrolling through multiple blocks
-        // Ridotto da 3.5 a 3.5 per lasciare spazio all'overlay handler
+        // Ridotto da 3.5 per lasciare spazio all'overlay handler
         const scrollMultiplier = 3.5;
         const totalScrollHeight = this.contentLockPosition + (windowHeight * scrollMultiplier);
         document.body.style.minHeight = `${totalScrollHeight}px`;
@@ -373,7 +373,7 @@ class StickyScrollHandler {
 window.stickyScrollHandler = null;
 
 // Initialization
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     window.stickyScrollHandler = new StickyScrollHandler();
 });
 

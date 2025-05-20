@@ -54,3 +54,7 @@ Have a look at the Stylus documentation here: https://stylus-lang.com/
 Start the local server by running `gulp` in the terminal. It will build the `assets/css/main.css` file from the Stylus files and serve the website locally, usually at `localhost:3000`.  
 
 Every time the Stylus files are changed, the `main.css` is updated, and the page is refreshed. 
+
+## Absolute Path for Links
+Currently all the assets are absolute for local host for development. When published it has to be changed to the online URL.
+Examples main.css files, footer and header HTML files

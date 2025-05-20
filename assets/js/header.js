@@ -21,6 +21,7 @@ function checkActivePage() {
   const sectionMap = {
     'main-home': 'nav-home',
     'main-workshops': 'nav-workshops', 
+    'main-workshop': 'nav-workshops', 
     'main-stories-collection': 'nav-stories-collection',
     'main-databook': 'nav-databook',
     'main-publications': 'nav-publications'
@@ -68,7 +69,7 @@ function checkActivePage() {
 // document.addEventListener('DOMContentLoaded', checkActivePage);
 
 // Also try after a small delay in case header is loaded dynamically
-// setTimeout(checkActivePage, 100);
+setTimeout(checkActivePage, 100);
 
 // And also call when window is fully loaded
 window.addEventListener('load', checkActivePage);

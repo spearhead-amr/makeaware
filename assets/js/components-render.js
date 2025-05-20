@@ -35,15 +35,26 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => console.error('Failed to load component:', error));
   }
 
-  // Load components html structure
-  loadComponent('components/header.html', 'page-header');
-  loadComponent('components/head.html', 'page-head');
-  loadComponent('components/footer.html', 'page-footer');
+  
 
   // Load only on the homepage (widgets)
   if(document.getElementById('main-home') != null) {
     loadComponent('components/widgets/widget-petri.html', 'widget-petri');
     loadComponent('components/widgets/widget-world.html', 'widget-world');
+  }
+
+  if(document.getElementById('main-workshop') != null) {
+    //loadComponent('../components/header.html', 'page-header');
+    //loadComponent('../components/head.html', 'page-head');
+    //loadComponent('../components/footer.html', 'page-footer');
+    loadComponent('components/header.html', 'page-header');
+    loadComponent('components/head.html', 'page-head');
+    loadComponent('components/footer.html', 'page-footer');
+  } else {
+    // Load components html structure
+    loadComponent('components/header.html', 'page-header');
+    loadComponent('components/head.html', 'page-head');
+    loadComponent('components/footer.html', 'page-footer');
   }
 
   /*

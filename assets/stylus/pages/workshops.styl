@@ -47,7 +47,7 @@
 
     h1
         @extend .serif-paragraph
-        margin-bottom: 0.1rem
+        margin-bottom: 0.5rem
 
     p
         @extend .sans-caption
@@ -70,7 +70,7 @@
     display: inline-flex
     align-items: center
     justify-content: center
-    padding: 8px 28px
+    padding: 10px 28px 9px
     background-image: url("/assets/img/pages/workshops/makeaware-botton1.png")
     background-size: 100% 100%
     background-repeat: no-repeat
@@ -84,12 +84,15 @@
     display: block
     width: fit-content
 
+    +media(tablet-h)
+        padding: 13px 28px 9px
+
 .past-activities
     position: relative
 
-    h1
+    h2
         @extend .sans-caption
-        text-transform: uppercase;
+        text-transform: uppercase
         margin-bottom: 0.5rem
 
 .separator-line
@@ -117,8 +120,10 @@
         border-bottom:none
 
     +media(tablet-h)
-        margin-left: 15%;
+        margin-left: 15%
         flex-direction: row
+        padding-top: 1rem
+        padding-bottom: 1rem
 
 .activity-info
     display: flex
@@ -129,7 +134,7 @@
     min-width: 0 // Allow flex items to shrink
 
     +media(tablet-h)
-        gap: 10vw
+        gap: 8vw
         flex-direction: row
         width: 88%
 
@@ -145,7 +150,7 @@
     flex: 1
     align-items: flex-start 
     text-align: left 
-    max-width: 30rem
+    max-width: 35rem
 
     .activity-top-detail
         color: brand-black

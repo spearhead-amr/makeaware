@@ -165,7 +165,7 @@ class WidgetOverlayHandler {
 window.widgetOverlayHandler = null;
 
 // Initialization
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     window.widgetOverlayHandler = new WidgetOverlayHandler();
 });
 

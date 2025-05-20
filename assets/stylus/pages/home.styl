@@ -20,9 +20,11 @@
     h1
         @extend .sans-logo
         margin-top: 6vh
+        margin-bottom: 1rem
 
         +media(tablet-h)
             margin-top: 10vh
+            margin-bottom: 0
 
     h2
         @extend .serif-home
@@ -54,12 +56,12 @@
         &:after
             content: " ↓"
             position: relative
-            bottom: 0.2rem
+            bottom: 0
 
         &:before
             content: "↓ "
             position: relative
-            bottom: 0.2rem
+            bottom: 0
 
         +media(tablet-h)
             padding-bottom: 1rem
