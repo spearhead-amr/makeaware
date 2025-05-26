@@ -21,8 +21,9 @@
     background-color: brand-white
     position: absolute
     right: 0
-    height: 94vh
-    top: 6vh
+    height: 100vh
+    padding-top: 30vh
+    padding-bottom: 15vh
     display: flex
     flex-direction: column
     justify-content: space-around
@@ -31,7 +32,8 @@
     @extend .content-margins
     margin: 0
     vertical-align: center
-    
+    align-items: center    
+    //gap:2rem
         
     +media(tablet-h)
         position: relative
@@ -57,11 +59,14 @@
         color: brand-black
         text-decoration: none
         text-transform: uppercase
-        text-align: left
+        text-align: center
         @extend .sans-menu
 
+        +media(tablet-h)
+            text-align: left
+
 .nav-active //trasformazione su js menucell
-  transform: translateX(0%)
+    transform: translateX(0%)
 
 
 #hamburger-menu
@@ -85,6 +90,15 @@
 #spearhead
     text-transform: none
     text-align: right
+    display: none
+
+    +media(tablet-h)
+        display: block
+
+#spearhead-mobile
+
+    +media(tablet-h)
+        display:none
 
 .active-link
     text-decoration: underline

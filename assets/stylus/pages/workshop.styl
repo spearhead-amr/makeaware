@@ -13,6 +13,17 @@
     p
         @extend .serif-subtitle
 
+
+#workshop-images
+    display: flex
+    flex-direction: column
+    gap:0.5rem
+
+    +media(tablet-h)
+
+        img
+            width:50%
+
 #workshop-detail
     display: flex
     flex-direction: column
@@ -36,10 +47,27 @@
         @extend .serif-paragraph 
 
     a
-        text-decoration: none  
-        color: brand-pink     
+        text-decoration: underline
+        //border-bottom: 1px solid brand-black
+        color: brand-black
        
 
 
     +media(tablet-h)
         flex-direction: row
+
+#workshop-images
+    display: flex
+    flex-direction: column
+    gap:0.5rem
+
+    +media(tablet-h)
+        flex-direction: row
+        flex-wrap: wrap
+        gap: 1rem
+        
+
+        img
+            width:calc(50%-0.5rem)
+
+
