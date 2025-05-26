@@ -119,7 +119,7 @@ class StickyScrollHandler {
         const totalScrollHeight = this.contentLockPosition + (windowHeight * scrollMultiplier);
         document.body.style.minHeight = `${totalScrollHeight}px`;
         
-        console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px`);
+        //console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px`);
     }
 
     calculateScrollMilestones() {

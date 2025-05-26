@@ -22,7 +22,7 @@
 
     li
         list-style: none
-        line-height: 200%
+        line-height: 160%
         @extend .serif-caption
 
     //li:not(:first-child)
@@ -41,7 +41,7 @@
 
     p
         @extend .serif-caption
-        line-height: 120%
+        line-height: 160%
 
 #footer-team
     width: 100%
@@ -78,23 +78,34 @@
         width: 40%
 
     img
-        display: none
+        //display: none
 
         +media(tablet-h)            
-            display: block
+            display: flex
+            flex-direction: row
             padding-top: 4 rem
 
 #footer-logos
+    padding-top: 1rem
     display: flex
     flex-direction: row
 
-    #footer-spearhead-logo
-        width: 40%
-
     #footer-supsi-logo
-        width: 30%
-        position:absolute
-        right: 0.5rem
+        width: 25%
 
-    +media(tablet-h)
-        display: none
+        +media(tablet-h)
+            width 25%
+            position: relative
+
+    #footer-spearhead-logo
+        width: 30%
+        //position:absolute
+        position: relative
+        left: 0.5rem
+        top:0.4rem
+
+        +media(tablet-h)
+            width 25%
+            left: 1rem
+            position: relative
+            top:0.7rem

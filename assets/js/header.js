@@ -2,7 +2,7 @@ function navSlide() {
     const mobilemenu = document.getElementById("hamburger-menu"); //burger
     const nav = document.querySelector(".nav-links"); //blocco tendina
     //const navLinks = document.querySelectorAll(".nav-links li"); //voci menu
-    console.log(mobilemenu)
+    //console.log(mobilemenu)
     //a questo evento associa la funzione
     mobilemenu.addEventListener("click", ()=> {
       //Toggle nav se c'è la classe toglila se non c'è mettila
@@ -15,7 +15,7 @@ function navSlide() {
 
 
 function checkActivePage() {
-  console.log("checkActivePage function called");
+  //console.log("checkActivePage function called");
   
   // Map of main section IDs and corresponding nav link IDs
   const sectionMap = {
@@ -29,36 +29,36 @@ function checkActivePage() {
 
   // Get the ul with all navigation links
   const navList = document.getElementById('main-nav-links');
-  console.log("navList found:", navList);
+  //console.log("navList found:", navList);
   
   if (!navList) {
-    console.log("navList not found, exiting");
+    //console.log("navList not found, exiting");
     return;
   }
 
   // Remove active-link class from all li elements first
   const allNavItems = navList.querySelectorAll('li');
-  console.log("Found nav items:", allNavItems.length);
+  //console.log("Found nav items:", allNavItems.length);
   allNavItems.forEach(li => {
     li.classList.remove('active-link');
   });
 
   // Check which main section exists in the current page
   for (const [sectionId, navId] of Object.entries(sectionMap)) {
-    console.log(`Checking for section: ${sectionId}`);
+    //console.log(`Checking for section: ${sectionId}`);
     const sectionElement = document.getElementById(sectionId);
-    console.log(`Found ${sectionId}:`, sectionElement);
+    //console.log(`Found ${sectionId}:`, sectionElement);
     
     // If the section with this ID exists, activate the corresponding nav item
     if (sectionElement) {
-      console.log(`Found section ${sectionId}, activating ${navId}`);
+      //console.log(`Found section ${sectionId}, activating ${navId}`);
       const activeNavItem = document.getElementById(navId);
-      console.log(`Found nav item ${navId}:`, activeNavItem);
+      //console.log(`Found nav item ${navId}:`, activeNavItem);
       
       if (activeNavItem) {
         // Add active-link class to the <li> element
         activeNavItem.classList.add('active-link');
-        console.log(`Added active-link class to li ${navId}`);
+        //console.log(`Added active-link class to li ${navId}`);
       }
       break; // Exit loop once we find the active section
     }

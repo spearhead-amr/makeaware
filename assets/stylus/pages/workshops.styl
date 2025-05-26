@@ -1,8 +1,15 @@
 #main-workshops
     @extend .content-margins
+    margin-top: 10vh
+
+    +media(tablet-h)
+        margin-top: 15vh
 
 #hidden
     display: none
+
+p
+    @extend .serif-subtitle
 
 .container
     margin-top: 10vh
@@ -45,7 +52,7 @@
     +media(desktop-w)
         width: calc((100% - 3rem) / 4)
 
-    h1
+    h2
         @extend .serif-paragraph
         margin-bottom: 0.5rem
 
@@ -89,15 +96,12 @@
 
 .past-activities
     position: relative
+    border-bottom: 1px solid brand-black
 
     h2
         @extend .sans-caption
         text-transform: uppercase
         margin-bottom: 0.5rem
-
-.separator-line
-    border-bottom: 1px solid brand-black
-    width: 100%
 
 .activities-list
     overflow: hidden
@@ -110,9 +114,10 @@
     border-bottom: 1px solid brand-black
     display: flex
     align-items: flex-start
-    flex-direction: column
+    flex-direction: row
     justify-content: space-between
     @extend .sans-caption
+    gap: 0.5rem
     padding-top: 0.5rem
     padding-bottom: 0.5rem
 
@@ -120,6 +125,7 @@
         border-bottom:none
 
     +media(tablet-h)
+        gap: 0
         margin-left: 15%
         flex-direction: row
         padding-top: 1rem
@@ -130,13 +136,15 @@
     align-items: flex-start
     gap: 0.5rem
     flex-direction: column
-    width: auto // Reserve space for discover tag space
+    width: 100% // Reserve space for discover tag space
     min-width: 0 // Allow flex items to shrink
 
     +media(tablet-h)
         gap: 8vw
         flex-direction: row
-        width: 88%
+        width: 50%
+
+
 
 .date 
     flex: 1
@@ -146,7 +154,7 @@
 .activity-details 
     display: flex
     flex-direction: column
-    gap: 0
+    gap: 0.2rem
     flex: 1
     align-items: flex-start 
     text-align: left 
@@ -156,7 +164,11 @@
         color: brand-black
 
     .activity-bottom-detail
-        color: brand-grey2
+        color: brand-black
+        @extend .sans-scheme
+
+    +media(tablet-h)
+        gap: 0.5rem
 
 
 // Discover tag styling - fixed positioning

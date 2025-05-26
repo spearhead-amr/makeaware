@@ -94,7 +94,7 @@ class StickyScrollHandler {
         document.body.style.minHeight = `${totalScrollHeight}px`;
         
         // Debug log per sviluppo (puoi commentare in produzione)
-        console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px, Bottom margin: ${bottomMargin}px`);
+        //console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px, Bottom margin: ${bottomMargin}px`);
     }
 
     handleScroll() {
@@ -108,7 +108,7 @@ class StickyScrollHandler {
         
         if (scrollTop >= (this.contentLockPosition - tolerance) && !this.isContentLocked) {
             this.lockContent();
-            console.log("contentLockPosition" + this.contentLockPosition);
+            //console.log("contentLockPosition" + this.contentLockPosition);
         } else if (scrollTop < (this.contentLockPosition - tolerance) && this.isContentLocked) {
             this.unlockContent();
         }

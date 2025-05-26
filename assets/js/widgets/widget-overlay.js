@@ -73,7 +73,7 @@ class WidgetOverlayHandler {
             document.body.style.minHeight = `${totalScrollHeight}px`;
         }
         
-        console.log(`Overlay start: ${this.overlayStartPosition}px, range: ${this.overlayScrollRange}px`);
+        //console.log(`Overlay start: ${this.overlayStartPosition}px, range: ${this.overlayScrollRange}px`);
     }
 
     handleOverlayScroll() {
