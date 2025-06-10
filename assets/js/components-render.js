@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if(document.getElementById('main-home') != null) {
     loadComponent('components/widgets/widget-petri.html', 'widget-petri');
     loadComponent('components/widgets/widget-world.html', 'widget-world');
+    //loadComponent('components/widgets/widget-world-viz.html', 'widget-world-viz');
   }
 
   if(document.getElementById('main-workshop') != null) {

@@ -20,6 +20,7 @@ p
     justify-content: flex-start
     margin-bottom: 5rem
     align-items: flex-start
+    padding-left: 0
 
     +media(tablet-h)
         gap: 1rem
@@ -40,6 +41,11 @@ p
     flex-direction: column
     height: auto
     box-sizing: border-box
+    text-decoration: none
+    color: brand-black
+
+    li
+        list-style: none
     
 
     +media(tablet-v)
@@ -74,6 +80,12 @@ p
         +media(tablet-h)
             margin-bottom: 1rem
 
+button
+    border: none
+    margin: 0
+    text-decoration: none
+    background-color: brand-white
+
 .card-button
     display: inline-flex
     align-items: center
@@ -95,6 +107,8 @@ p
     +media(tablet-h)
         padding: 13px 28px 9px
 
+
+
 .past-activities
     position: relative
     border-bottom: 1px solid brand-black
@@ -107,6 +121,9 @@ p
 .activities-list
     overflow: hidden
     margin-bottom: 5rem
+    padding-left: 0
+    list-style: none
+
 
     +media(tablet-h)
         margin-bottom: 10rem

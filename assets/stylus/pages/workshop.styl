@@ -61,12 +61,17 @@
     flex-direction: column
     gap:0.5rem
 
-    +media(tablet-h)
+    +media(tablet-v)
         flex-direction: row
         flex-wrap: wrap
+        gap: 0.5rem
+
+        img
+            width:calc(50%-0.5rem)
+
+    +media(tablet-h)
         gap: 1rem
         
-
         img
             width:calc(50%-0.5rem)
 

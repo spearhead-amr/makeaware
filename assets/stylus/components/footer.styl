@@ -89,6 +89,10 @@
     padding-top: 1rem
     display: flex
     flex-direction: row
+    justify-content: space-between
+
+    +media(tablet-h)
+        justify-content: flex-start
 
     #footer-supsi-logo
         width: 25%
@@ -99,9 +103,6 @@
 
     #footer-spearhead-logo
         width: 30%
-        //position:absolute
-        position: relative
-        left: 0.5rem
         top:0.4rem
 
         +media(tablet-h)
