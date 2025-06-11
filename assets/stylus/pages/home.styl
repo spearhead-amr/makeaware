@@ -29,14 +29,41 @@
     h2
         @extend .serif-home
 
+        #glyph-1:before, #glyph-2:before, #glyph-3:before
+            content: ""
+            display: inline-block
+            width: 1.5rem
+            height: 1.5rem
+            background-color: brand-black // o il tuo colore
+            mask-size: contain
+            mask-repeat: no-repeat
+            vertical-align: middle
+            -webkit-mask-size: contain
+            -webkit-mask-repeat: no-repeat
+
+            +media(tablet-v)
+                width: 3rem
+                height: 3rem
+
+            +media(tablet-h)
+                width: 4rem
+                height: 4rem
+
+            +media(desktop)
+                width: 9rem
+                height: 9rem
+
         #glyph-1:before
-            content: "✤"
-        
+            mask-image: url("/assets/img/pages/home/icon1.svg")
+            -webkit-mask-image: url("/assets/img/pages/home/icon1.svg")
+
         #glyph-2:before
-            content: "✧"
-        
+            mask-image: url("/assets/img/pages/home/icon2.svg")
+            -webkit-mask-image: url("/assets/img/pages/home/icon2.svg")
+
         #glyph-3:before
-            content: "⑩"
+            mask-image: url("/assets/img/pages/home/icon3.svg")
+            -webkit-mask-image: url("/assets/img/pages/home/icon3.svg")
 
     
 
@@ -83,7 +110,8 @@
 
       +media(tablet-h)
         width: 40%
-        height: auto
+        height: 800px
+        //height: auto //alternative
         object-fit: cover
 
     p

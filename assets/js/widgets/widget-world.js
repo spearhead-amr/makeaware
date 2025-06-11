@@ -11,13 +11,13 @@ class WorldVizHandler {
         // Mobile-first grid configuration with adjusted spacing
         this.config = {
             margin: { top: 0, right: 20, bottom: 40, left: 20 }, // Increased side margins
-            cellHeight: 50, // Reduced from 70
-            maxRadius: 30, // Reduced from 22
+            cellHeight: 50, 
+            maxRadius: 30, 
             minRadius: 3,
             columnsMobile: 3,
             columnsTablet: 6,
-            columnsDesktop: 12,
-            textSpacing: 45 // Reduced from 40
+            columnsDesktop: 10,
+            textSpacing: 50
         };
         
         this.breakpoints = {
@@ -27,6 +27,11 @@ class WorldVizHandler {
         };
         
         this.init();
+    }
+
+    // Swiss-style number formatting with apostrophes as thousands separators
+    formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
     }
 
     async init() {
@@ -49,7 +54,7 @@ class WorldVizHandler {
         try {
             // Try window.fs.readFile first (for artifacts)
             if (window.fs && window.fs.readFile) {
-                const csvText = await window.fs.readFile('assets/csv/MAKEAWARE-Visualisations-Q2.csv', { encoding: 'utf8' });
+                const csvText = await window.fs.readFile('MAKEAWARE-Visualisations-Q2.csv', { encoding: 'utf8' });
                 this.data = d3.csvParse(csvText, d => ({
                     country: d.Country,
                     samplesTaken: +d.SamplesTaken,
@@ -221,27 +226,27 @@ class WorldVizHandler {
         // Country name text - centered with circle
         countryGroups.append('text')
             .attr('class', 'country-label')
-            .attr('y', d => this.config.maxRadius + 12)
+            .attr('y', d => this.config.maxRadius + 15)
             .attr('text-anchor', 'middle')
             .text(d => this.formatCountryName(d.country));
-
-        // Samples data text (initially hidden, shown on hover/click) - centered under country name with 1rem spacing
-        countryGroups.append('text')
-            .attr('class', 'country-samples')
-            .attr('y', d => this.config.maxRadius + 12 + 16) // 1rem (16px) spacing from country name
-            .attr('text-anchor', 'middle') // Changed to center
-            .attr('x', 0) // Centered on the circle
-            .style('opacity', 0)
-            .text(d => `Samples: ${d.samplesTaken.toLocaleString()}`);
 
         // Resistant bacteria data text (initially hidden, shown on hover/click) - centered with 0.5rem spacing from samples
         countryGroups.append('text')
             .attr('class', 'country-resistant')
-            .attr('y', d => this.config.maxRadius + 12 + 16 + 16) // 0.5rem (8px) spacing from samples text
+            .attr('y', d => this.config.maxRadius + 15 + 16) // 0.5rem (8px) spacing from samples text
             .attr('text-anchor', 'middle') // Changed to center
             .attr('x', 0) // Centered on the circle
             .style('opacity', 0)
-            .text(d => `Resistant bacteria: ${d.resistantBacteria.toLocaleString()}`);
+            .text(d => `Resistant bacteria: ${this.formatNumber(d.resistantBacteria)}`);
+
+        // Samples data text (initially hidden, shown on hover/click) - centered under country name with 1rem spacing
+        countryGroups.append('text')
+            .attr('class', 'country-samples')
+            .attr('y', d => this.config.maxRadius + 15 + 16 + 16) // 1rem (16px) spacing from country name
+            .attr('text-anchor', 'middle') // Changed to center
+            .attr('x', 0) // Centered on the circle
+            .style('opacity', 0)
+            .text(d => `Samples: ${this.formatNumber(d.samplesTaken)}`);
 
         // Add interaction handlers
         this.addInteractions(countryGroups);
@@ -284,14 +289,16 @@ class WorldVizHandler {
                 d3.select(this)
                     .classed('active', true);
 
+                d3.select(this)
+                    .select('.country-resistant')
+                    .style('opacity', 1);
+
                 // Show data texts
                 d3.select(this)
                     .select('.country-samples')
                     .style('opacity', 1);
                     
-                d3.select(this)
-                    .select('.country-resistant')
-                    .style('opacity', 1);
+                
             })
             .on('mouseleave', function(event, d) {
                 // Only reset if mouse leaves and we're not in "clicked" state

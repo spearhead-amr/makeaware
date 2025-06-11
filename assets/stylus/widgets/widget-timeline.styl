@@ -1,0 +1,137 @@
+// Specific styles for widget-timeline-viz
+#widget-timeline-viz
+    .timeline-periods
+        margin: 2rem 0
+        display: grid
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+        gap: 2rem
+        
+        +media(mobile)
+            display: none // Hide periods on mobile as requested
+            
+    .period
+        h3
+            margin-bottom: 0.5rem
+            text-transform: uppercase
+            letter-spacing: 0.05em
+            
+        p
+            opacity: 0.8
+            
+
+    .viz-container
+        margin: 0 // Zero margins for edge-to-edge visualization
+        width: 100% // Full width
+        padding: 1rem // No padding
+        min-height: 600px // Minimum height
+        overflow: visible // Allow content to be visible
+
+    svg
+        width: 100%
+        height: auto
+        min-height: 600px // Minimum height for desktop
+        display: block
+        overflow: visible
+
+    // Year labels along the timeline
+    .timeline-year-label
+        @extend .sans-scheme
+    
+
+    // Period separator lines - now applies to all periods including first
+    .period-separator
+        stroke: brand-black
+        stroke-width: 1
+
+
+    // Period titles (era names) - positioned below timeline
+    .timeline-period-title
+        @extend .sans-caption
+        text-transform: uppercase
+        text-anchor: start
+
+    // Period descriptions - positioned below timeline with width constraint and proper wrapping
+    .timeline-period-description
+        @extend .sans-scheme
+        text-anchor: start
+        dominant-baseline: text-before-edge
+        
+        tspan
+            word-spacing: normal
+            letter-spacing: normal
+
+    // Antibiotic circles with responsive sizing
+    .antibiotic-circle
+        color: brand-black
+        stroke: none
+        cursor: default
+        transition: fill 0.2s ease
+        
+        // Ensure circles are perfectly round
+        shape-rendering: geometricPrecision
+
+        // Hover state - activates brand-pink class
+        &.hovered
+            fill: brand-pink
+
+        &:hover
+            fill: brand-pink
+
+    // Antibiotic tooltip on hover
+    .antibiotic-tooltip
+        @extend .sans-scheme
+            
+    // Mobile-specific adjustments
+    +media(mobile)
+        .viz-container
+            padding: 0 // No padding on mobile either
+            
+        svg
+            height: 1800px // Much more height for mobile spacing
+            
+        .timeline-year-label
+            dominant-baseline: middle
+            text-anchor: start // Year labels aligned to left on mobile
+            
+        .antibiotic-circle
+            cursor: default // No cursor change on mobile
+            
+            // Disable hover on mobile
+            &:hover
+                fill: brand-black
+                
+        // Hide period descriptions on mobile to save space
+        .timeline-period-description
+            display: none
+            
+        .timeline-period-title
+            display: none
+            
+        .period-separator
+            display: none
+
+    // Tablet and desktop specific adjustments
+    +media(tablet-v)
+        svg
+            min-height: 600px // Minimum height for larger screens, but can grow
+            
+        // Ensure period descriptions are visible on larger screens
+        .timeline-period-description
+            display: block
+            
+        .timeline-period-title
+            display: block
+            
+        .period-separator
+            display: block
+
+    // Desktop specific refinements
+    +media(desktop)
+        .viz-container
+            min-height: 600px // Ensure minimum height but allow growth
+            
+        .timeline-period-description
+            // Text wrapping is handled in JavaScript
+            tspan
+                word-spacing: normal
+                letter-spacing: normal

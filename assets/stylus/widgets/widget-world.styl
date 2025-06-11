@@ -14,7 +14,7 @@
             
         +media(tablet-h)
             width: 85%
-            padding: 0 2rem 5rem
+            padding: 2rem 2rem 4rem
 
     svg
         width: 100%
@@ -61,10 +61,16 @@
         pointer-events: none
 
     // Data labels - now centered under country name
+
+    .country-resistant
+        fill: brand-pink
+
+    .country-samples
+        fill: brand-black
+
     .country-samples,
     .country-resistant
         @extend .sans-scheme
-        fill: brand-pink
         text-anchor: middle // Changed from start to middle (centered)
         pointer-events: none
         opacity: 0
