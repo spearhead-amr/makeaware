@@ -2,18 +2,25 @@
 <html lang="en">
 
 <head id="page-head">
-	<script src="assets/js/components-render.js" defer></script>
 	<!-- Load D3.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 
+	<script src="assets/js/components-render.js"></script>
+	
+	<script src="assets/js/widgets/widget-overlay.js" defer></script>
+	
+	
+	
+
 	<!-- Load the new script for world visualization -->
-	<script src="../assets/js/widgets/widget-world.js" defer></script>
+	
 	<!-- Swiss visualization script -->
-	<script src="../assets/js/widgets/widget-swiss.js" defer></script>
+	
 	<!-- Death visualization script -->
-	<script src="../assets/js/widgets/widget-death.js" defer></script>
-	<script src="../assets/js/widgets/widget-timeline.js" defer></script>
+	
+	
 	<script src="../assets/js/widgets/legenda-popup.js" defer></script>
+	
 
 
 	<title>MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead</title>
@@ -102,65 +109,41 @@
 
 		<!-- Container for extended scroll space -->
 		<section id="widget-petri">
+			
 		</section>
 
 		<section id="widget-world">
+			<div class="world-frame frame">
+				<h1>How many resistant bacteria have been detected Worldwide?</h1>
+			
+				<p>Antimicrobial resistance (AMR) is a growing global health threat, with scientists around the world identifying
+					hundreds of bacteria that no longer respond to common antibiotics. The World Health Organization (WHO) has
+					listed over 30 high-risk bacteria already resistant to many treatments. In 2019 alone, AMR was linked to
+					approximately 4.95 million deaths worldwide, with 1.27 million directly caused by drug-resistant infections. As
+					resistance continues to spread and evolve, AMR is responsible for longer, more severe illnesses and over 1
+					million deaths annually, highlighting its urgent impact on global health.</p>
+				<div class="descriptive-text">
+					<p>In Switzerland, antimicrobial resistance, or AMR, is recognised as a moderate yet persistent public health
+						issue, with a resistance rate of 8% reported in 2019. This means that 158 out of 1,958 tested bacterial
+						samples were found to be resistant to antibiotics. It is important to understand that resistant bacteria are
+						not linked to specific individuals. Instead, they are strains of bacteria that have adapted to survive
+						antibiotic treatment, regardless of the person or animal they infect. These bacteria can spread between
+						people, animals, and the environment, turning AMR into a shared concern rather than a personal health issue.
+					</p>
+					<p>A person can carry or transmit resistant bacteria without showing any symptoms, and the same resistant strain
+						can move across different populations and settings. For this reason, AMR is viewed as a global and systemic
+						threat. It is not the human body that becomes resistant, but the bacteria themselves that learn to survive
+						medicines that once worked. In Switzerland, about 300 deaths per year are linked to infections caused by
+						these resistant bacteria, highlighting the need for coordinated prevention and control efforts across all
+						sectors of society.</p>
+				</div>
+			
+			
+			</div>
 		</section>
 
 		<section id="widget-world-viz">
-			<div class="frame">
-				<div class="widget-legenda-inline">
-
-
-					<h2>Number of resistant bacteria observed by country in 2020.</h2>
-
-					<div class="popup-overlay" id="legenda-world">
-						<div class="popup-container">
-							<div class="popup-shadow"></div>
-							<div class="popup-main">
-								<button class="close-btn">✕</button>
-
-								<div class="data-column">
-									<div class="column-title">Number of antimicrobial resistant bacteria detected</div>
-									<div class="data-visual">
-										<div class="circle circle-small"></div>
-										<span class="data-number small">34</span>
-										<div class="circle circle-large"></div>
-										<span class="data-number">5'474</span>
-									</div>
-								</div>
-
-								<div class="data-column">
-									<div class="column-title">Number of samples taken</div>
-									<div class="data-visual">
-										<div class="circle circle-outline-small"></div>
-										<span class="data-number small">627</span>
-										<div class="circle circle-outline-large"></div>
-										<span class="data-number">28'000</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-				</div>
-
-				<p id="viz-paragraph">In 2020, Switzerland (&#8203;<span id="glyph-world-viz"></span>&#8203;) has
-					registered 158 antimicrobial resistant bacteria out of 1'958 samples taken.</p>
-				<div class="widget-legenda-inline">
-					<p id="viz-data-sources">Data source: <a href="https://www.anresis.ch/" target="_blank">Arensis</a>
-					</p>
-					<button class="widget-legenda-button" id="legenda-button-world">legenda</button>
-				</div>
-
-
-
-
-				<div class="viz-container">
-					<!-- Here will go your visualization -->
-				</div>
-			</div>
+			
 		</section>
 
 		<section id="widget-swiss">
@@ -191,52 +174,7 @@
 		</section>
 
 		<section id="widget-swiss-viz">
-			<div class="frame">
-				<div class="widget-legenda-inline">
-
-					<h2>Number of resistances detected out of samples taken by geographic region and year</h2>
-
-
-					<div class="popup-overlay" id="legenda-swiss">
-						<div class="popup-container">
-							<div class="popup-shadow"></div>
-							<div class="popup-main">
-								<button class="close-btn">✕</button>
-					
-								<div class="swiss-left-column">
-									<div class="data-visual">
-										<div class="circle circle-outline-small"></div>
-										<span class="data-number">Number of samples gathered</span>
-									</div>
-									<div class="data-visual">
-										<div class="circle circle-small"></div>
-										<span class="data-number">Number of antimicrobial resistant bacteria identified</span>
-									</div>
-								</div>
-								
-								<div class="swiss-right-column">
-									<div class="column-title">Samples and resistant bacteria</div>
-									<div class="data-visual">
-										<div class="circle circle-outline-small"></div>
-										<span class="data-number small">12'637</span>
-										<div class="circle circle-outline-large"></div>
-										<span class="data-number">778'599</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="widget-legenda-inline">
-					<p id="viz-data-sources">Data source: <a href="https://www.anresis.ch/" target="_blank">Arensis</a>
-					</p>
-					<button class="widget-legenda-button" id="legenda-button-swiss">legenda</button>
-				</div>
-				<div class="viz-container">
-					<!-- Here will go the visualization for Switzerland -->
-				</div>
-			</div>
+			
 		</section>
 
 		<section id="widget-death">
@@ -263,15 +201,7 @@
 		</section>
 
 		<section id="widget-death-viz">
-			<div class="frame">
-				<h2>Projected number of deaths in 2050 by cause.</h2>
-				<p id="viz-data-sources">Data source: <a
-						href="https://amr-review.org/sites/default/files/AMR%20Review%20Paper%20-%20Tackling%20a%20crisis%20for%20the%20health%20and%20wealth%20of%20nations_1.pdf"
-						target="_blank">Review on Antimicrobial Resistance</a></p>
-				<div class="viz-container">
-					<!-- Here will go the mortality data visualization -->
-				</div>
-			</div>
+			
 		</section>
 
 		<section id="widget-timeline">
@@ -299,120 +229,7 @@
 		</section>
 
 		<section id="widget-timeline-viz">
-			<div class="frame">
-				<h2>Antibiotics organised based on clinical introduction date.</h2>
-				<p id="viz-data-sources">Data source: <a
-						href="https://www.reactgroup.org/toolbox/understand/how-did-we-end-up-here/few-antibiotics-under-development/"
-						target="_blank">Hutchings, 2019 - Laxminarayan, 2022 - ReAct Group.</a></p>
-
-				<div class="viz-container">
-					<!-- Here will go the timeline visualization -->
-				</div>
-			</div>
-
-			<!-- Mobile popup elements - triggered by scroll position at 30% -->
-			<div class="timeline-popup" id="timeline-popup1">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>PRE-ANTIBIOTIC ERA</h2>
-						<p>1900 One of the main cause of death were attributable to infectious diseases.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup2">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>PRE-ANTIBIOTIC ERA</h2>
-						<p>1909 Paul Ehrlich's team discovered Salvarsan, which was active against syphilis.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup3">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>PRE-ANTIBIOTIC ERA</h2>
-						<p>1914-1918 During the WWI infectious diseases caused more deaths than the battle wounds.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup4">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>GOLDEN AGE</h2>
-						<p>1928 Alexander Fleming discovered Penicillin, which is the first antibiotic discovered.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup5">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>GOLDEN AGE</h2>
-						<p>1940 Penicillin resistance was identified, before it was approved for the clinical trial.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup6">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>GOLDEN AGE</h2>
-						<p>Beginning of Fourties Selman Walksman started classical screening programmes for detection of
-							new antibiotics.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup7">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>"FOLLOW-ON" DRUG PERIOD</h2>
-						<p>This period refers to the introduction of medications that are similar to a pre-existing
-							drugs, differing for some aspects but used for the same therapeutic purposes</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup8">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>"FOLLOW-ON" DRUG PERIOD</h2>
-						<p>1970-1980 Over 60 antibiotics are realised on the market.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup9">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>DISCOVERY VOID/POST ANTIBIOTIC ERA</h2>
-						<p>2001 WHO declears AMR "a global pubblic health concern".</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="timeline-popup" id="timeline-popup10">
-				<div class="timeline-popup-container">
-					<div class="timeline-popup-shadow"></div>
-					<div class="timeline-popup-main">
-						<h2>DISCOVERY VOID/POST ANTIBIOTIC ERA</h2>
-						<p>Since 2017 only 12 antibiotics have been approved, 10 of which belong to existing mechanisms
-							of antimicrobial resistance (AMR).</p>
-					</div>
-				</div>
-			</div>
+			
 		</section>
 
 	</main>

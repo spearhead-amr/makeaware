@@ -40,7 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load only on the homepage (widgets)
   if(document.getElementById('main-home') != null) {
     loadComponent('components/widgets/widget-petri.html', 'widget-petri');
-    loadComponent('components/widgets/widget-world.html', 'widget-world');
+    loadComponent('components/widgets/widget-world-viz.html', 'widget-world-viz');
+    loadComponent('components/widgets/widget-swiss-viz.html', 'widget-swiss-viz');
+    loadComponent('components/widgets/widget-death-viz.html', 'widget-death-viz');
+    loadComponent('components/widgets/widget-timeline-viz.html', 'widget-timeline-viz');
   }
 
   if(document.getElementById('main-workshop') != null) {
@@ -64,3 +67,5 @@ document.addEventListener('DOMContentLoaded', function() {
   */
 
 });
+
+
