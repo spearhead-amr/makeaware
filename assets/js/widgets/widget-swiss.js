@@ -110,6 +110,7 @@ class SwissVizHandler {
             console.log(`Loaded ${this.data.length} data points`);
             console.log(`Years: ${this.years.join(', ')}`);
             console.log(`Zones: ${this.zones.join(', ')}`);
+            CSVLoadedTrigger(); // call the "components-render.js" file after loading the csv and generated d3 graph
             
         } catch (error) {
             console.error('Error loading CSV data:', error);
@@ -385,6 +386,4 @@ document.addEventListener('DOMContentLoaded', () => {
 // Expose globally for control from widget overlay handler
 window.SwissVizHandler = SwissVizHandler;
 
-if (document.readyState !== 'loading') {
-    window.SwissVizHandler = new SwissVizHandler();
-}
+window.SwissVizHandler = new SwissVizHandler();

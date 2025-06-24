@@ -516,10 +516,4 @@ class StickyScrollHandler {
 window.stickyScrollHandler = null;
 
 // Initialization
-window.addEventListener('load', () => {
-    window.stickyScrollHandler = new StickyScrollHandler();
-});
-
-if (document.readyState !== 'loading') {
-    window.stickyScrollHandler = new StickyScrollHandler();
-}
+window.stickyScrollHandler = new StickyScrollHandler();

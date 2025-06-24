@@ -78,6 +78,7 @@ class DeathVizHandler {
 
             // Data is already sorted by deaths (highest to lowest)
             console.log(`Loaded ${this.data.length} death causes`);
+            CSVLoadedTrigger(); // call the "components-render.js" file after loading the csv and generated d3 graph
             
         } catch (error) {
             console.error('Error loading CSV data:', error);
@@ -252,7 +253,7 @@ class DeathVizHandler {
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+function runWidgetDeath() {
     // Load D3.js if not already loaded
     if (typeof d3 === 'undefined') {
         const script = document.createElement('script');
@@ -264,11 +265,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         window.deathVizHandler = new DeathVizHandler();
     }
-});
+}
+
+runWidgetDeath();
 
 // Expose globally for control from widget overlay handler
 window.DeathVizHandler = DeathVizHandler;
 
+/*
 window.addEventListener('load', () => {
     window.DeathVizHandler = new DeathVizHandler();
 });
@@ -276,6 +280,7 @@ window.addEventListener('load', () => {
 if (document.readyState !== 'loading') {
     window.DeathVizHandler = new DeathVizHandler();
 }
+*/
 
 // Gestione animazione su attivazione widget
 window.addEventListener('widgetStateChange', (e) => {

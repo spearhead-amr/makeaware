@@ -503,14 +503,17 @@ class WidgetOverlayHandler {
 // Store reference globally so the petri handler can access it
 window.widgetOverlayHandler = null;
 
-// Initialization
-window.addEventListener('load', () => {
-    window.widgetOverlayHandler = new WidgetOverlayHandler();
-});
+// Initialize
+let widget_count = 0;
 
-if (document.readyState !== 'loading') {
-    window.widgetOverlayHandler = new WidgetOverlayHandler();
+function CSVLoadedTrigger() {
+    widget_count++;
+    console.log("widget_count: " + widget_count);
+    if(widget_count == 4) {
+        window.widgetOverlayHandler = new WidgetOverlayHandler();
+    }
 }
+
 
 function openLegendaPopup(popupId) {
     const popup = document.getElementById(popupId);

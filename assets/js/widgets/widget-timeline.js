@@ -116,6 +116,8 @@ class TimelineVizHandler {
 
             this.groupedData = d3.group(this.data, d => d.releaseDate);
             console.log('Loaded ' + this.data.length + ' antibiotics');
+            CSVLoadedTrigger(); // call the "components-render.js" file after loading the csv and generated d3 graph
+
             
         } catch (error) {
             console.error('Error loading CSV data:', error);

@@ -88,8 +88,8 @@ class WorldVizHandler {
 
             // Sort data by resistant bacteria count (highest to lowest)
             this.data.sort((a, b) => b.resistantBacteria - a.resistantBacteria);
-            
             console.log(`Loaded ${this.data.length} countries`);
+            CSVLoadedTrigger(); // call the "components-render.js" file after loading the csv and generated d3 graph
             
         } catch (error) {
             console.error('Error loading CSV data:', error);
@@ -353,28 +353,7 @@ class WorldVizHandler {
     }
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Load D3.js if not already loaded
-    if (typeof d3 === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
-        script.onload = () => {
-            window.worldVizHandler = new WorldVizHandler();
-        };
-        document.head.appendChild(script);
-    } else {
-        window.worldVizHandler = new WorldVizHandler();
-    }
-});
-
 // Expose globally for control from widget overlay handler
 window.WorldVizHandler = WorldVizHandler;
 
-window.addEventListener('load', () => {
-    window.WorldVizHandler = new WorldVizHandler();
-});
-
-if (document.readyState !== 'loading') {
-    window.WorldVizHandler = new WorldVizHandler();
-}
+window.worldVizHandler = new WorldVizHandler();

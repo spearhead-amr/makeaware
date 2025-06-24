@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Enhanced function to load HTML and execute scripts
-  function loadComponent(url, targetId) {
+// Enhanced function to load HTML and execute scripts
+function loadComponent(url, targetId) {
+  return new Promise((resolve, reject) => {
     fetch(url)
       .then(response => response.text())
       .then(html => {
@@ -32,40 +32,49 @@ document.addEventListener('DOMContentLoaded', function() {
           document.body.appendChild(newScript); // or target.appendChild if you prefer
         });
       })
+      .then(() => {
+        resolve();
+      })
       .catch(error => console.error('Failed to load component:', error));
-  }
+  })
+}
 
+function loadJavaScript(src, onload) {
+  return new Promise((resolve, reject) => {
+    let script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.defer = false;
+    document.head.appendChild(script);
+    resolve();
+  })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+// header, footer loading on all the pages
+loadComponent('components/head.html', 'page-head')
+  .then(() => loadComponent('components/header.html', 'page-header'))
+  .then(() => loadJavaScript('assets/js/header.js'))
+  .then(() => loadComponent('components/footer.html', 'page-footer'))
   
-
-  // Load only on the homepage (widgets)
-  if(document.getElementById('main-home') != null) {
-    loadComponent('components/widgets/widget-petri.html', 'widget-petri');
-    loadComponent('components/widgets/widget-world-viz.html', 'widget-world-viz');
-    loadComponent('components/widgets/widget-swiss-viz.html', 'widget-swiss-viz');
-    loadComponent('components/widgets/widget-death-viz.html', 'widget-death-viz');
-    loadComponent('components/widgets/widget-timeline-viz.html', 'widget-timeline-viz');
-  }
-
-  if(document.getElementById('main-workshop') != null) {
-    //loadComponent('../components/header.html', 'page-header');
-    //loadComponent('../components/head.html', 'page-head');
-    //loadComponent('../components/footer.html', 'page-footer');
-    loadComponent('components/header.html', 'page-header');
-    loadComponent('components/head.html', 'page-head');
-    loadComponent('components/footer.html', 'page-footer');
-  } else {
-    // Load components html structure
-    loadComponent('components/header.html', 'page-header');
-    loadComponent('components/head.html', 'page-head');
-    loadComponent('components/footer.html', 'page-footer');
-  }
-
-  /*
-  if(document.getElementById('main-workshops') != null) {
-    loadComponent('components/workshops-card.html', 'workshops-card');
-  }
-  */
-
+  .then(() => {
+    // load specific content per page
+    if(document.getElementById('main-home') != null) {
+      loadJavaScript('assets/js/widgets/widget-overlay.js')
+        .then(() => loadComponent('components/widgets/widget-petri.html', 'widget-petri'))
+        .then(() => loadComponent('components/widgets/widget-world-viz.html', 'widget-world-viz'))
+        .then(() => loadComponent('components/widgets/widget-swiss-viz.html', 'widget-swiss-viz'))
+        .then(() => loadComponent('components/widgets/widget-death-viz.html', 'widget-death-viz'))
+        .then(() => loadComponent('components/widgets/widget-timeline-viz.html', 'widget-timeline-viz'))
+        //.then(() => loadJavaScript('assets/js/widgets/widget-world.js'))
+        //.then(() => loadJavaScript('assets/js/widgets/widget-death.js'))
+        //.then(() => loadJavaScript('assets/js/widgets/widget-petri.js'))
+        //.then(() => loadJavaScript('assets/js/widgets/widget-swiss.js'))
+        //.then(() => loadJavaScript('assets/js/widgets/widget-timeline.js'))
+        .then(() => loadJavaScript('assets/js/widgets/legenda-popup.js'))
+    }
+    else if (document.getElementById('main-workshop') != null) {
+      loadJavaScript('assets/js/workshops.js');
+    }
+  });
 });
-
-
