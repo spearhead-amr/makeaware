@@ -3,14 +3,14 @@
 
 #content-sticky
     position: relative
-    // Padding-bottom per il margine desiderato (mobile-first)
-    padding-bottom: 3rem        // Mobile: più spazio
+    // Padding-bottom for desired margin (mobile-first)
+    padding-bottom: 3rem        // Mobile: more space
     
     +media(tablet-v)
-        padding-bottom: 2.5rem  // Tablet verticale: spazio intermedio
+        padding-bottom: 2.5rem  // Vertical tablet: intermediate space
     
     +media(tablet-h)
-        padding-bottom: 2rem    // Tablet orizzontale e desktop: spazio standard
+        padding-bottom: 2rem    // Horizontal tablet and desktop: standard space
 
 
 #home-intro
@@ -28,13 +28,14 @@
 
     h2
         @extend .serif-home
+        text-wrap: balance
 
         #glyph-1:before, #glyph-2:before, #glyph-3:before
             content: ""
             display: inline-block
             width: 1.5rem
             height: 1.5rem
-            background-color: brand-black // o il tuo colore
+            background-color: brand-black // or your color
             mask-size: contain
             mask-repeat: no-repeat
             vertical-align: middle
@@ -111,12 +112,15 @@
       +media(tablet-h)
         width: 40%
         height: 800px
-        //height: auto //alternative
+        //height: auto // alternative
         object-fit: cover
 
     p
       @extend .sans-paragraph
       margin-top: 2rem
+
+      a
+        color: brand-black
 
       +media(tablet-h)
         width: 60vw
@@ -162,7 +166,7 @@
 
 
 
-// Widget petri con miglioramenti responsive (mobile-first)
-// Aggiorna la sezione #widget-petri e aggiungi stili per il cerchio
-// Widget petri con blocchi di contenuto gestibili
+// Widget petri with responsive improvements (mobile-first)
+// Update the #widget-petri section and add styles for the circle
+// Widget petri with manageable content blocks
 

@@ -1,10 +1,10 @@
 .header-bar
   background-color: brand-white
-   //per responsive
+   // for responsive
   //align-items: center
-  display: block //layout posizionare elementi in riga o colonna
+  display: block // layout to position elements in row or column
   justify-content: space-around
-  position: fixed //barra fissa in alto
+  position: fixed // fixed bar at top
   top: 0
   z-index: 300
   width: 100%
@@ -42,10 +42,10 @@
         padding: 0
         display: flex
         flex-direction: row
-        justify-content: flex-start // allinea a sinistra
+        justify-content: flex-start // align to left
         transform: translateX(0%)
-        width: 100% // o 100vw se vuoi tutta larghezza
-        gap: 5rem // spaziatura uniforme tra link, più controllabile di margin su <a>
+        width: 100% // or 100vw if you want full width
+        gap: 5rem // uniform spacing between links, more controllable than margin on <a>
     
     li
             list-style: none
@@ -53,7 +53,7 @@
             align-items: center
 
         li:last-child
-            margin-left: auto // questo spinge SPEARHEAD a destra
+            margin-left: auto // this pushes SPEARHEAD to the right
 
     a
         color: brand-black
@@ -65,7 +65,7 @@
         +media(tablet-h)
             text-align: left
 
-.nav-active //trasformazione su js menucell
+.nav-active // transformation on js menucell
     transform: translateX(0%)
 
 

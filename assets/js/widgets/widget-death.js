@@ -276,3 +276,17 @@ window.addEventListener('load', () => {
 if (document.readyState !== 'loading') {
     window.DeathVizHandler = new DeathVizHandler();
 }
+
+// Gestione animazione su attivazione widget
+window.addEventListener('widgetStateChange', (e) => {
+    if (e.detail.widgetId === 'widget-death-viz') {
+        const widget = document.getElementById('widget-death-viz');
+        if (widget) {
+            if (e.detail.isActive) {
+                widget.classList.add('expand-bars');
+            } else {
+                widget.classList.remove('expand-bars');
+            }
+        }
+    }
+});

@@ -1,0 +1,371 @@
+#widget-petri
+    position: absolute
+    top: 100vh
+    left: 0
+    right: 0
+    z-index: 10
+    visibility: hidden
+    overflow: hidden  // Prevent overflow from rotation animation
+    
+    &.active
+        position: fixed
+        top: 0
+        visibility: visible
+
+    &.overlayed
+        .petri-frame
+            // Keep petri frame visible but with lower z-index
+            z-index: 5
+    
+    .petri-frame
+        // Transparent background for backdrop-filter
+        background: rgba(255, 255, 255, 0)
+        backdrop-filter: blur(0px)
+        border-top: 1px solid transparent
+        height: 100vh
+        @extend .content-margins
+        display: flex
+        flex-direction: column
+        will-change: background, backdrop-filter, opacity
+        transition: border-color 0.3s ease, opacity 0.3s ease
+        position: relative
+        z-index: 10  // Base z-index
+        overflow: hidden  // Prevent overflow from rotation animation
+        
+        // When it has background, show the border
+        &:has(.petri-circle[style*="opacity: 1"]) 
+            border-top-color: brand-black
+
+        +media(tablet-h)
+            flex-direction: row
+        
+        // Circle styles
+        .petri-circle
+            width: 150px
+            height: 150px
+            background-color: brand-black
+            border-radius: 50%
+            opacity: 0
+            transition: opacity 0.3s ease
+            position: absolute
+            top: 50%
+            
+            +media(tablet-h)
+                width: 200px
+                height: 200px
+                top: 30%
+                left: 65%
+
+        #petri-legenda
+            width: 4rem
+            opacity: 0
+            transition: opacity 0.3s ease
+            position: absolute
+            bottom: 1rem
+            left: 0.5rem
+
+            +media(tablet-h)
+                width: 10rem
+                left: 1rem
+        
+        // Content blocks container
+        .petri-content-block
+            position: relative
+            top: 0
+            display: flex
+            flex-direction: column
+            left: 0
+            right: 0
+            height: 100%
+            opacity: 0
+            transition: opacity 0.2s ease
+            padding-top: 7vh
+            width: 100%
+
+            +media(tablet-h)
+                width: 100%
+            
+            // Alignment like other page elements
+            h2
+                @extend .serif-subtitle
+                margin-bottom: 1rem
+                text-align: left
+                margin-top: 0
+                
+                +media(tablet-h)
+                    width: 100%
+            
+            p
+                @extend .sans-paragraph
+                text-align: left
+                margin-top: 0
+                
+                +media(tablet-h)
+                    width: 100%
+
+    // Circle container animation - active state
+    &.active
+        .circle-container-wrapper
+            opacity: 1
+            
+        .circle-container
+            opacity: 1
+            transform: rotate(0deg)
+            
+    // Add animation states for circle containers
+    &.circles-visible
+        .circle-container-wrapper
+            opacity: 1
+            
+        .circle-container
+            opacity: 1
+            transform: rotate(0deg)
+            
+    // Reset state when not active
+    &:not(.active)
+        .circle-container-wrapper
+            opacity: 0
+            
+        .circle-container
+            opacity: 0
+            transform: rotate(-20deg)
+
+    // Main container - centers the SVG on the page
+    .petri-viz-container
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        width: 100%
+
+        +media(tablet-h)
+            min-height: 100vh
+            flex-direction: row
+
+    .circle-container-wrapper
+        padding: 0
+        position: absolute
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 100%
+        bottom: 1rem
+        max-height: 55vh
+        gap: 0
+        
+        // Initial state - just opacity for wrapper
+        opacity: 0
+        transition: opacity 0.8s ease-out
+        overflow: hidden  // Prevent overflow from rotation animation
+
+        +media(tablet-h)
+            max-height: 100%
+            top: 0
+            position: relative
+            flex-direction: row
+
+    .circle-container
+        display: flex
+        justify-content: center
+        align-items: flex-end
+        width: 100%
+        height: auto
+        margin: 0
+        padding: 0
+        
+        // Individual rotation animation for each petri dish
+        opacity: 0
+        transform: rotate(-20deg)
+        transform-origin: center
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out
+
+    // SVG container with fixed dimensions
+    .circle-svg
+        width: 45%
+        height: 45%
+        margin: 0
+        padding: 0
+
+        +media(tablet-v)
+            width: 30%
+            height: 30%
+
+        +media(tablet-h)
+            width: 100%
+            height: 100%
+
+    // Base styles for circle outlines - transparent fill with stroke only
+    .circle-outline
+        fill: none
+        stroke: brand-black
+        stroke-width: 2
+        
+        // Outer circle modifier - slightly thicker stroke
+        &.outer
+            stroke-width: 1
+        
+        // Inner circle modifier - thinner stroke for visual hierarchy
+        &.inner
+            stroke-width: 1
+
+    // Base styles for text that follows circular paths
+    .circle-text
+        //font-size: 1.3rem
+        fill: brand-black
+        letter-spacing: 2px
+
+        +media(mobile)
+            @extend .serif-title
+            font-size: 1.3rem
+
+        +media(tablet-h)
+            @extend .serif-captiontitle
+
+    // Growth circles animation styles - single step fill with ease
+    .growth-circle
+        fill: brand-black
+        r: 0
+        opacity: 0
+        transform-origin: center
+        // Single smooth transition for radius expansion
+        transition: r 7s ease, opacity 0.3s ease-out
+        
+        // No delay - all circles start together
+        &.growth-circle-1,
+        &.growth-circle-2,
+        &.growth-circle-3
+            transition-delay: 0s
+
+    // Antibiotic circle styles - pink circle that appears at center
+    .antibiotic-circle
+        fill: brand-pink
+        r: 0
+        opacity: 0
+        transform-origin: center
+        // Faster animation for antibiotic appearance
+        transition: r 2s ease, opacity 0.3s ease-out
+
+    // Inhibition zone circle styles - grey circle representing bacteria death zone
+    .inhibition-circle
+        fill: brand-grey1
+        stroke: none
+        r: 0
+        opacity: 0
+        transform-origin: center
+        // Smooth expansion animation for inhibition zone
+        transition: r 6s ease, opacity 0.5s ease-out
+        
+        // Resistant bacteria variant - with outline and different behavior
+        &.resistant
+            fill: brand-grey1
+            stroke: brand-grey1
+            stroke-width: 1
+            fill-opacity: 0.5
+            stroke-opacity: 1
+
+// SHARED ANIMATIONS for steps 1 and 2 (consistent behavior)
+.petri-step-1-common
+    .growth-circle
+        opacity: 1
+        
+        // All circles expand to maximum size to completely fill the petri dish
+        // The mask will clip at r=140, so using r=160 ensures complete coverage
+        &.growth-circle-1
+            r: 90
+            
+        &.growth-circle-2
+            r: 200
+            
+        &.growth-circle-3
+            r: 160
+
+.petri-step-2-common
+    .growth-circle
+        opacity: 1
+        
+        // Keep bacteria growth from step 1
+        &.growth-circle-1
+            r: 90
+            
+        &.growth-circle-2
+            r: 200
+            
+        &.growth-circle-3
+            r: 160
+    
+    // Show antibiotic circle at center
+    .antibiotic-circle
+        opacity: 1
+        r: 25  // Small circle representing antibiotic disk
+
+// NORMAL BACTERIUM - identical to before
+#bacterium-petri
+    // Step 1 animation - complete bacteria fill on trigger
+    &.step-1-active
+        @extend .petri-step-1-common
+
+    // Step 2 animation - antibiotic circle appears
+    &.step-2-active
+        @extend .petri-step-2-common
+
+    // Step 3 animation - inhibition zone appears (bacteria death zone)
+    &.step-3-active
+        @extend .petri-step-2-common
+        
+        // Show large inhibition zone (complete bacteria death)
+        .inhibition-circle
+            opacity: 1
+            r: 100  // Fill entire petri dish
+        
+    // When not active (reverse scroll), circles disappear with opacity
+    &:not(.step-1-active):not(.step-2-active):not(.step-3-active)
+        .growth-circle, .antibiotic-circle, .inhibition-circle
+            r: 0
+            opacity: 0
+            transition: opacity 0.4s ease-out, r 0.1s ease-out 0.3s
+
+// RESISTANT BACTERIUM - identical steps 1-2, original step 3
+#resistant-bacterium-petri
+    // Step 1 animation - IDENTICAL to normal bacterium
+    &.step-1-active
+        @extend .petri-step-1-common
+
+    // Step 2 animation - IDENTICAL to normal bacterium
+    &.step-2-active
+        @extend .petri-step-2-common
+
+    // Step 3 animation - ORIGINAL KEYFRAME ANIMATION (unchanged)
+    &.step-3-active
+        @extend .petri-step-2-common
+        
+        // Small inhibition zone that appears and then dissolves (resistant bacteria)
+        .inhibition-circle.resistant
+            opacity: 1
+            r: 42  // 30% of petri dish (140 * 0.3 = 42)
+            // After expansion, dissolve with delayed opacity transition
+            animation: resistantInhibition 4s ease-out forwards 
+        
+    // When not active (reverse scroll), circles disappear with opacity
+    &:not(.step-1-active):not(.step-2-active):not(.step-3-active)
+        .growth-circle, .antibiotic-circle, .inhibition-circle
+            r: 0
+            opacity: 0
+            transition: opacity 0.4s ease-out, r 0.1s ease-out 0.3s
+            
+
+// Keyframe animation for resistant bacteria inhibition zone (UNCHANGED)
+@keyframes resistantInhibition
+    0%
+        opacity: 0
+        r: 0
+    20%
+        opacity: 1
+        r: 20
+    50%
+        opacity: 1
+        r: 35
+    80%
+        opacity: 0.3
+        r: 42
+    100%
+        opacity: 0
+        r: 42

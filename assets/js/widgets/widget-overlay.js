@@ -331,6 +331,8 @@ class WidgetOverlayHandler {
         
         // Process each widget based on its relationship to the target
         this.widgets.forEach((widget, index) => {
+            const wasActive = widget.element.classList.contains('active');
+            
             if (index < targetWidgetIndex) {
                 // Widgets before target: show as completely visible
                 this.showWidgetComplete(widget);
@@ -343,7 +345,32 @@ class WidgetOverlayHandler {
                 // Widgets after target: hide
                 this.hideWidget(widget);
             }
+            
+            // Notify widget of state change if needed
+            const isActive = widget.element.classList.contains('active');
+            if (wasActive !== isActive) {
+                this.notifyWidgetStateChange(widget, isActive);
+            }
         });
+    }
+
+    notifyWidgetStateChange(widget, isActive) {
+        // Dispatch custom event for widget state change
+        const event = new CustomEvent('widgetStateChange', {
+            detail: {
+                widgetId: widget.id,
+                isActive: isActive
+            }
+        });
+        window.dispatchEvent(event);
+        
+        // Also notify the widget directly if it has a handler
+        if (widget.element) {
+            const handler = window[`${widget.id}Handler`];
+            if (handler && typeof handler.onStateChange === 'function') {
+                handler.onStateChange(isActive);
+            }
+        }
     }
 
     showWidgetComplete(widget) {
@@ -483,4 +510,21 @@ window.addEventListener('load', () => {
 
 if (document.readyState !== 'loading') {
     window.widgetOverlayHandler = new WidgetOverlayHandler();
+}
+
+function openLegendaPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (!popup) return;
+    popup.classList.add('active');
+
+    // On mobile, move popup-overlay to end of body to ensure it's above overlays
+    if (window.innerWidth < 600) {
+        document.body.appendChild(popup);
+    }
+}
+
+function closeLegendaPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (!popup) return;
+    popup.classList.remove('active');
 }

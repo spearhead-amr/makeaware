@@ -5,11 +5,33 @@
     +media(tablet-h)
         margin-top: 15vh
 
+#abstract-text
+    @extend .serif-subtitle
+        
+
+.descriptive-text
+    display: flex
+    flex-direction: column
+    width:100%
+    margin-top: 1.5rem
+
+    +media(tablet-h)
+        flex-direction: row
+        gap:2rem
+        margin-top:3rem
+
+
+    p
+        @extend .sans-paragraph
+        width: 100%
+
+        +media(tablet-h)
+            width: 50%
+
+
 #hidden
     display: none
 
-p
-    @extend .serif-subtitle
 
 .container
     margin-top: 10vh
@@ -95,7 +117,7 @@ button
     background-image: url("/assets/img/pages/workshops/makeaware-botton1.png")
     background-size: 100% 100%
     background-repeat: no-repeat
-    background-position: center // Raggio molto alto per creare forma ovale
+    background-position: center // Very high radius to create oval shape
     color: brand-black
     text-decoration: none
     @extend .serif-captiontitle
@@ -140,6 +162,8 @@ button
     +media(tablet-h)
         margin-bottom: 10rem
 
+    
+
 .activity-item
     border-bottom: 1px solid brand-black
     display: flex
@@ -179,7 +203,7 @@ button
 .date 
     flex: 1
     align-self: flex-start;
-    max-width: 8rem
+    max-width: 5rem
 
 .activity-details 
     display: flex

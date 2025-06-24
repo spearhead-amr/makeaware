@@ -3,6 +3,7 @@
 class TimelineVizHandler {
     constructor() {
         this.container = document.querySelector('#widget-timeline-viz .viz-container');
+        this.widgetElement = document.getElementById('widget-timeline-viz');
         this.data = null;
         this.svg = null;
         this.initialized = false;
@@ -48,6 +49,23 @@ class TimelineVizHandler {
             }
         ];
         
+        // Track active popup and widget state
+        this.activePopupId = null;
+        this.isWidgetActive = false;
+        this.scrollHandler = null;
+        this.lastPopupChangeTime = 0;
+        this.popupChangeDelay = 500; // 500ms delay between popup changes
+        
+        this.mobileCircles = [];
+        this.mobileLabels = [];
+        this.activeMobileIndex = 0;
+        this.lastMobileScroll = 0;
+         // pixel di scroll per avanzare di uno (modificabile)
+        
+        // Variabili per scroll step dinamico
+        this.mobileScrollStepPxMax = 10; // px se solo 1 cerchio in riga
+        this.mobileScrollStepPxMin = 1;  // px se riga più affollata
+        
         this.init();
     }
 
@@ -61,6 +79,7 @@ class TimelineVizHandler {
             await this.loadData();
             this.setupVisualization();
             this.setupResizeHandler();
+            this.setupWidgetStateWatcher();
             this.initialized = true;
         } catch (error) {
             console.error('Error initializing timeline visualization:', error);
@@ -145,8 +164,7 @@ class TimelineVizHandler {
             return { width, height, isMobile };
         } else {
             const width = containerWidth;
-            // Calculate dynamic height based on content - will be updated after rendering
-            const height = 600; // Initial height, will be adjusted
+            const height = 600;
             return { width, height, isMobile };
         }
     }
@@ -220,7 +238,7 @@ class TimelineVizHandler {
                 .attr('y2', timelineY + this.config.ageLabelOffset + 250);
         });
 
-        // First pass: create all titles and calculate their heights
+        // Create period titles and descriptions
         const titleInfos = [];
         let maxTitleHeight = 0;
         
@@ -249,7 +267,6 @@ class TimelineVizHandler {
             }
         });
         
-        // Second pass: create all descriptions aligned to the same baseline and calculate total content height
         const descriptionStartY = timelineY + this.config.ageLabelOffset + maxTitleHeight + 10;
         let maxContentBottom = descriptionStartY;
         
@@ -267,11 +284,9 @@ class TimelineVizHandler {
             }
         });
 
-        // Calculate required height including margins
-        const requiredHeight = maxContentBottom + this.config.margin.bottom + 40; // Extra padding
+        const requiredHeight = maxContentBottom + this.config.margin.bottom + 40;
         const currentHeight = height + this.config.margin.top + this.config.margin.bottom;
         
-        // Update SVG height if content requires more space
         if (requiredHeight > currentHeight) {
             const newTotalHeight = requiredHeight;
             this.svg.attr('height', newTotalHeight)
@@ -310,7 +325,6 @@ class TimelineVizHandler {
         let currentLine = '';
         let lineCount = 0;
         
-        // Create a temporary text element to measure text width
         const tempText = g.append('text')
             .attr('class', 'timeline-period-title')
             .style('opacity', 0);
@@ -321,7 +335,6 @@ class TimelineVizHandler {
             const textWidth = tempText.node().getBBox().width;
             
             if (textWidth > maxWidth && currentLine !== '') {
-                // Add current line
                 textElement.append('tspan')
                     .attr('x', x)
                     .attr('dy', lineCount === 0 ? 0 : '1.4em')
@@ -334,7 +347,6 @@ class TimelineVizHandler {
             }
         });
         
-        // Add the last line
         if (currentLine) {
             textElement.append('tspan')
                 .attr('x', x)
@@ -345,8 +357,7 @@ class TimelineVizHandler {
         
         tempText.remove();
         
-        // Calculate total height (number of lines * line height)
-        const lineHeight = 20; // Approximate line height in pixels
+        const lineHeight = 20;
         const totalHeight = lineCount * lineHeight;
         
         return { element: textElement, height: totalHeight };
@@ -368,7 +379,6 @@ class TimelineVizHandler {
             let currentLine = '';
             let lineCount = 0;
             
-            // Create a temporary text element to measure text width
             const tempText = g.append('text')
                 .attr('class', 'timeline-period-description')
                 .style('opacity', 0);
@@ -379,7 +389,6 @@ class TimelineVizHandler {
                 const textWidth = tempText.node().getBBox().width;
                 
                 if (textWidth > maxWidth && currentLine !== '') {
-                    // Add current line
                     textElement.append('tspan')
                         .attr('x', x)
                         .attr('dy', lineCount === 0 ? 0 : '1.4em')
@@ -392,7 +401,6 @@ class TimelineVizHandler {
                 }
             });
             
-            // Add the last line
             if (currentLine) {
                 textElement.append('tspan')
                     .attr('x', x)
@@ -403,10 +411,9 @@ class TimelineVizHandler {
             
             tempText.remove();
             
-            // Update currentY for next paragraph with spacing
-            const lineHeight = 18; // Approximate line height for descriptions
+            const lineHeight = 18;
             const paragraphHeight = lineCount * lineHeight;
-            const paragraphSpacing = 24; // Space between paragraphs
+            const paragraphSpacing = 24;
             
             currentY += paragraphHeight + paragraphSpacing;
         });
@@ -432,26 +439,20 @@ class TimelineVizHandler {
                 '1914-1918 During the WWI infectious diseases caused more deaths than the battle wounds.'
             ],
             'golden-age': [
-                '1928 Alexander Fleming discovered Penicillin, which is the first antibiotic discovered.'
+                '1928 Alexander Fleming discovered Penicillin, which is the first antibiotic discovered.',
+                '1940 Penicillin resistance was identified, before it was approved for the clinical trial.',
+                'Beginning of Fourties Selman Walksman started classical screening programmes for detection of new antibiotics.'
             ],
             'follow-on': [
-                'This period refers to the introduction of medications that are similar to pre-existing drugs.'
+                'This period refers to the introduction of medications that are similar to a pre-existing drugs, differing for some aspects but used for the same therapeutic purposes',
+                '1970-1980 Over 60 antibiotics are realised on the market.'
             ],
             'discovery-void': [
-                '2000 WHO declares AMR "a global public health concern".'
+                '2001 WHO declears AMR "a global pubblic health concern".',
+                'Since 2017 only 12 antibiotics have been approved, 10 of which belong to existing mechanisms of antimicrobial resistance (AMR).'
             ]
         };
         return descriptions[periodId] || [];
-    }
-
-    getPeriodDescription(periodId) {
-        const descriptions = {
-            'pre-antibiotic': '1900 One of the main cause of death were attributable to infectious diseases.</br></br>1909 Paul Ehrlich team discovered Salvarsan, which was active against syphilis.</br>1914-1918 During the WWI infectious diseases caused more deaths than the battle wounds.',
-            'golden-age': '1928 Alexander Fleming discovered Penicillin, which is the first antibiotic discovered.',
-            'follow-on': 'This period refers to the introduction of medications that are similar to pre-existing drugs.',
-            'discovery-void': '2000 WHO declares AMR "a global public health concern".'
-        };
-        return descriptions[periodId] || '';
     }
 
     addHoverEffects(circle, g, x, highestY, antibioticName) {
@@ -465,7 +466,7 @@ class TimelineVizHandler {
                     .attr('class', 'antibiotic-tooltip')
                     .attr('x', x)
                     .attr('y', highestY - 16)
-                    .attr('text-anchor', 'start')
+                    .attr('text-anchor', 'middle')
                     .text(antibioticName);
             })
             .on('mouseleave', function(event, d) {
@@ -482,11 +483,10 @@ class TimelineVizHandler {
         const yearLabelX = 0;
         const circlesStartX = 60;
         const circleSettings = this.getResponsiveCircleSettings(width);
-        
         const yearScale = d3.scaleLinear()
             .domain([1900, 2030])
             .range([0, height - 300]);
-
+        // Add regular year markers (every 10 years)
         const years = d3.range(1900, 2031, 10);
         g.selectAll('.year-label')
             .data(years)
@@ -494,24 +494,246 @@ class TimelineVizHandler {
             .append('text')
             .attr('class', 'timeline-year-label')
             .attr('x', yearLabelX)
-            .attr('y', d => yearScale(d))
+            .attr('y', d => {
+                const y = yearScale(d);
+                return y;
+            })
             .attr('text-anchor', 'start')
             .attr('dominant-baseline', 'middle')
             .text(d => d);
+        // --- Nuova logica: highlight e testo solo per il cerchio attivo, ordine per data crescente ---
+        this.mobileCircles = [];
+        this.mobileLabels = [];
+        // Ordina i dati per releaseDate crescente (data min -> max)
+        let sortedData = this.data.slice().sort((a, b) => a.releaseDate - b.releaseDate || a.antibiotic.localeCompare(b.antibiotic));
+        // List of popup triggers (real and virtual years)
+        // Add a virtual trigger before 1900 to hide all popups when highlight is before the timeline
+        const popupTriggers = [
+            { year: 1890, popupId: null }, // virtual: before timeline, no popup
+            { year: 1900, popupId: 'timeline-popup1' },
+            { year: 1909, popupId: 'timeline-popup2' },
+            { year: 1914, popupId: 'timeline-popup3' },
+            { year: 1928, popupId: 'timeline-popup4' },
+            { year: 1940, popupId: 'timeline-popup5' },
+            { year: 1943, popupId: 'timeline-popup6' },
+            { year: 1960, popupId: 'timeline-popup7' },
+            { year: 1970, popupId: 'timeline-popup8' },
+            { year: 2001, popupId: 'timeline-popup9' },
+            { year: 2017, popupId: 'timeline-popup10' }
+        ];
+        // Find all real years already present in the data
+        const realYears = new Set(sortedData.map(d => d.releaseDate));
+        // Add virtual dots for triggers that do not already have a real dot
+        popupTriggers.forEach(trigger => {
+            if (!realYears.has(trigger.year)) {
+                sortedData.push({ antibiotic: null, releaseDate: trigger.year, isVirtual: true });
+            }
+        });
+        // Re-sort the sequence including virtual dots
+        sortedData = sortedData.sort((a, b) => a.releaseDate - b.releaseDate || (a.antibiotic || '').localeCompare(b.antibiotic || ''));
+        // Group by Y (releaseDate)
+        const yMap = new Map();
+        sortedData.forEach((antibiotic, i) => {
+            const y = yearScale(antibiotic.releaseDate);
+            if (!yMap.has(y)) yMap.set(y, []);
+            yMap.get(y).push({ ...antibiotic, i });
+        });
+        // Compute the max X for each row (for label alignment)
+        const rowMaxX = new Map();
+        yMap.forEach((row, y) => {
+            rowMaxX.set(y, circlesStartX + ((row.length - 1) * (circleSettings.radius * 2 + this.config.circleMinDistance)));
+        });
+        // Create circles and labels for each antibiotic or virtual dot
+        sortedData.forEach((antibiotic, i) => {
+            const y = yearScale(antibiotic.releaseDate);
+            // Find the index in the row for this dot
+            const row = yMap.get(y);
+            const idx = row.findIndex(d => d.antibiotic === antibiotic.antibiotic && d.isVirtual === antibiotic.isVirtual);
+            const x = circlesStartX + (idx * (circleSettings.radius * 2 + this.config.circleMinDistance));
+            // Create the circle
+            // If it's a virtual dot, add the 'virtual' class so it can be hidden via CSS
+            const circle = g.append('circle')
+                .attr('class', 'antibiotic-circle' + (antibiotic.isVirtual ? ' virtual' : ''))
+                .attr('cx', x)
+                .attr('cy', y)
+                .attr('r', circleSettings.radius)
+                .classed('active', i === 0);
+            this.mobileCircles.push(circle);
+            // Label: only if not virtual
+            if (!antibiotic.isVirtual) {
+                const label = g.append('text')
+                    .attr('class', 'mobile-antibiotic-name')
+                    .attr('x', rowMaxX.get(y) + circleSettings.radius + 10)
+                    .attr('y', y + 4)
+                    .attr('text-anchor', 'start')
+                    .style('opacity', i === 0 ? 1 : 0)
+                    .text(antibiotic.antibiotic);
+                this.mobileLabels.push(label);
+            } else {
+                // Virtual dot: no label, but keep a placeholder for highlight logic
+                this.mobileLabels.push({ style: () => {} });
+            }
+        });
+        this.activeMobileIndex = 0;
+        this.lastMobileScroll = window.pageYOffset || document.documentElement.scrollTop;
+        // Highlight order: increasing date (including virtual dots)
+        this._mobileOrder = sortedData.map((d, i) => ({ ...d, i }));
+    }
 
-        this.groupedData.forEach((antibiotics, year) => {
-            const y = yearScale(year);
-            
-            antibiotics.forEach((antibiotic, index) => {
-                const x = circlesStartX + (index * (circleSettings.radius * 2 + this.config.circleMinDistance));
-                
-                g.append('circle')
-                    .attr('class', 'antibiotic-circle')
-                    .attr('cx', x)
-                    .attr('cy', y)
-                    .attr('r', circleSettings.radius);
+    setupWidgetStateWatcher() {
+        // Watch for widget state changes to enable/disable mobile scroll handler
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const wasActive = this.isWidgetActive;
+                    this.isWidgetActive = this.widgetElement && this.widgetElement.classList.contains('active');
+                    
+                    // Only setup/teardown scroll handler when state actually changes
+                    if (wasActive !== this.isWidgetActive) {
+                        if (this.isWidgetActive && this.isMobile()) {
+                            this.setupMobileScrollHandler();
+                        } else {
+                            this.teardownMobileScrollHandler();
+                        }
+                    }
+                }
             });
         });
+
+        if (this.widgetElement) {
+            observer.observe(this.widgetElement, { attributes: true });
+        }
+        
+        // Initial state check
+        this.isWidgetActive = this.widgetElement && this.widgetElement.classList.contains('active');
+    }
+
+    setupMobileScrollHandler() {
+        this.teardownMobileScrollHandler();
+        // Use the same popupTriggers array as in setupMobileVisualization
+        const popupTriggers = [
+            { year: 1890, popupId: null }, // virtual: before timeline, no popup
+            { year: 1900, popupId: 'timeline-popup1' },
+            { year: 1909, popupId: 'timeline-popup2' },
+            { year: 1914, popupId: 'timeline-popup3' },
+            { year: 1928, popupId: 'timeline-popup4' },
+            { year: 1940, popupId: 'timeline-popup5' },
+            { year: 1943, popupId: 'timeline-popup6' },
+            { year: 1960, popupId: 'timeline-popup7' },
+            { year: 1970, popupId: 'timeline-popup8' },
+            { year: 2001, popupId: 'timeline-popup9' },
+            { year: 2017, popupId: 'timeline-popup10' }
+        ];
+        // Function to find the active popup given the current year
+        function getActivePopup(year) {
+            let lastPopup = null;
+            for (let i = 0; i < popupTriggers.length; i++) {
+                if (year < popupTriggers[i].year) break;
+                lastPopup = popupTriggers[i].popupId;
+            }
+            return lastPopup;
+        }
+        this.scrollHandler = () => {
+            // If the widget is not active (overlay closed or user is exiting), always hide any popup
+            if (!this.isWidgetActive) {
+                this.hideCurrentPopup();
+                return;
+            }
+            if (!this.isMobile() || !this.mobileCircles || this.mobileCircles.length === 0) return;
+            const scrollContainer = this.widgetElement.querySelector('.frame') || window;
+            const scrollTop = scrollContainer.scrollTop !== undefined ? scrollContainer.scrollTop : window.pageYOffset || document.documentElement.scrollTop;
+            const delta = scrollTop - this.lastMobileScroll;
+            // Local density for dynamic step (as before)
+            const allCy = this.mobileCircles.map(c => parseFloat(c.attr('cy')));
+            const currentCy = allCy[this.activeMobileIndex];
+            let localCount = 1;
+            for (let i = 0; i < allCy.length; i++) {
+                if (i !== this.activeMobileIndex && Math.abs(allCy[i] - currentCy) < 20) {
+                    localCount++;
+                }
+            }
+            let maxLocalCount = 1;
+            for (let i = 0; i < allCy.length; i++) {
+                let count = 1;
+                for (let j = 0; j < allCy.length; j++) {
+                    if (i !== j && Math.abs(allCy[j] - allCy[i]) < 20) {
+                        count++;
+                    }
+                }
+                if (count > maxLocalCount) maxLocalCount = count;
+            }
+            let stepPx = this.mobileScrollStepPxMax;
+            if (maxLocalCount > 1) {
+                stepPx = this.mobileScrollStepPxMax - (this.mobileScrollStepPxMax - this.mobileScrollStepPxMin) * ((localCount - 1) / (maxLocalCount - 1));
+            }
+            let step = Math.floor(Math.abs(delta) / stepPx);
+            if (step < 1) return;
+            const dir = delta > 0 ? 1 : -1;
+            let newIndex = this.activeMobileIndex + dir * step;
+            newIndex = Math.max(0, Math.min(this.mobileCircles.length - 1, newIndex));
+            if (newIndex !== this.activeMobileIndex) {
+                this.mobileCircles[this.activeMobileIndex].classed('active', false);
+                this.mobileLabels[this.activeMobileIndex].style('opacity', 0);
+                this.mobileCircles[newIndex].classed('active', true);
+                this.mobileLabels[newIndex].style('opacity', 1);
+                this.activeMobileIndex = newIndex;
+            }
+            this.lastMobileScroll = scrollTop;
+            // --- Popup logic: stays active until the next trigger ---
+            const currentData = this._mobileOrder[this.activeMobileIndex];
+            const currentYear = currentData.releaseDate;
+            // If scrolling up before the first trigger, hide the first popup (so intro title is visible)
+            if (currentYear < popupTriggers[0].year) {
+                this.hideCurrentPopup();
+                return;
+            }
+            const popupToShow = getActivePopup(currentYear);
+            if (popupToShow !== this.activePopupId) {
+                if (popupToShow) {
+                    this.showPopup(popupToShow);
+                } else {
+                    this.hideCurrentPopup();
+                }
+            }
+        };
+        const scrollContainer = this.widgetElement.querySelector('.frame') || window;
+        scrollContainer.addEventListener('scroll', this.scrollHandler, { passive: true });
+    }
+
+    teardownMobileScrollHandler() {
+        if (this.scrollHandler) {
+            const scrollContainer = this.widgetElement.querySelector('.frame') || window;
+            scrollContainer.removeEventListener('scroll', this.scrollHandler);
+            this.scrollHandler = null;
+        }
+        
+        // Reset popup change timing when tearing down
+        this.lastPopupChangeTime = 0;
+        
+        // Hide any active popup when tearing down
+        this.hideCurrentPopup();
+    }
+
+    showPopup(popupId) {
+        // Hide current popup first
+        this.hideCurrentPopup();
+        
+        // Show new popup
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.classList.add('visible');
+            this.activePopupId = popupId;
+        }
+    }
+    
+    hideCurrentPopup() {
+        if (this.activePopupId) {
+            const currentPopup = document.getElementById(this.activePopupId);
+            if (currentPopup) {
+                currentPopup.classList.remove('visible');
+            }
+            this.activePopupId = null;
+        }
     }
 
     setupResizeHandler() {
@@ -528,6 +750,17 @@ class TimelineVizHandler {
             resizeTimeout = setTimeout(() => {
                 if (this.initialized) {
                     lastWidth = currentWidth;
+                    
+                    // Teardown mobile handler if switching from mobile to desktop
+                    const wasMobile = lastWidth <= this.breakpoints.mobile;
+                    const isMobile = currentWidth <= this.breakpoints.mobile;
+                    
+                    if (wasMobile && !isMobile) {
+                        this.teardownMobileScrollHandler();
+                    } else if (!wasMobile && isMobile && this.isWidgetActive) {
+                        this.setupMobileScrollHandler();
+                    }
+                    
                     this.setupVisualization();
                 }
             }, 250);
@@ -541,6 +774,7 @@ class TimelineVizHandler {
     }
 }
 
+// Global initialization
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof d3 === 'undefined') {
         const script = document.createElement('script');
@@ -557,9 +791,11 @@ document.addEventListener('DOMContentLoaded', () => {
 window.TimelineVizHandler = TimelineVizHandler;
 
 window.addEventListener('load', () => {
-    window.timelineVizHandler = new TimelineVizHandler();
+    if (!window.timelineVizHandler) {
+        window.timelineVizHandler = new TimelineVizHandler();
+    }
 });
 
-if (document.readyState !== 'loading') {
+if (document.readyState !== 'loading' && !window.timelineVizHandler) {
     window.timelineVizHandler = new TimelineVizHandler();
 }

@@ -3,10 +3,10 @@
 
 <head id="page-head">
 	<script src="assets/js/components-render.js" defer></script>
-	<!-- Carica D3.js -->
+	<!-- Load D3.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 
-	<!-- Carica il nuovo script per la visualizzazione mondiale -->
+	<!-- Load the new script for world visualization -->
 	<script src="../assets/js/widgets/widget-world.js" defer></script>
 	<!-- Swiss visualization script -->
 	<script src="../assets/js/widgets/widget-swiss.js" defer></script>
@@ -35,35 +35,37 @@
 
 			<section class="makeaware-description">
 				<h1>PROJECT DESCRIPTION</h1>
-				<p>Antimicrobial resistance (AMR) happens when germs—like bacteria, viruses, fungi, or parasites—change
-					in ways
-					that make the medicines used to treat them stop working. These medicines, called antimicrobials,
-					include
-					antibiotics (used for bacteria), antivirals (for viruses), antifungals (for fungi), and
-					antiparasitics (for
-					parasites). When the microbes no longer respond to treatment, the infection becomes harder or even
-					impossible to cure.</p>
+				<p>MAKEAWARE! is an initiative running from 2022 to 2025, developed at the Institute of Design (IDe) at
+					the University of Applied Sciences and Arts of Southern Switzerland (SUPSI). Its mission is to raise
+					public awareness and actively engage citizens in the fight against Antimicrobial Resistance (AMR)
+					through interactive, data-driven activities that promote participation and understanding.</p>
 				<div class="divider"></div>
 				<div class="description-content">
 					<img src="assets/img/pages/home/makeaware-project-description.jpg">
-					<p>Due to biological factors, UTIs predominantly affect women, yet the condition remains
-						significantly under-researched, especially in its chronic or recurrent forms (Huttner, 2023).
+					<p>The project is framed with a special focus on women and aims to uncover and address gender-based
+						disparities in the healthcare system, particularly in how data about women is collected,
+						considered, and analysed from a perspective that reflects their specific experiences and needs.
+						It focuses on urinary tract infections (UTIs), which are among the most common infections
+						contributing to AMR globally <a href="#" target="blank">(Autor, Year)</a> . Due to biological
+						factors, UTIs predominantly affect women,
+						yet the condition remains significantly under-researched, especially in its chronic or recurrent
+						forms <a href="#" target="blank">(Autor, Year)</a>.
 						This imbalance highlights how gender can shape both health outcomes and research priorities,
 						reinforcing the need for more inclusive and equitable approaches in medical research and public
-						health policy. Building on this foundation, MAKEAWARE! has developed and tested a dedicated
-						design research framework that explores how citizen participation can enhance both awareness and
-						data generation around AMR. By involving participants in creative, hands-on workshops, developed
-						in collaboration with experts from science, technology, and communication, the project promotes
-						a bottom-up approach to data co-creation.</br></br>These activities invite individuals to
-						reflect on personal experiences, treatment habits, and attitudes toward antibiotic use,
-						generating valuable insights while fostering a deeper public understanding of AMR. The resulting
-						methods, materials, and findings are shared openly in this repository to support further
-						experimentation, and discussion. The MAKEAWARE! initiative is part of SPEARHEAD, an
-						Innosuisse-funded project that brings together a consortium of eight public and four private
+						health policy.</br></br>Building on this foundation, MAKEAWARE! has developed and tested a
+						dedicated design research framework that explores how citizen participation can enhance both
+						awareness and data generation around AMR. By involving participants in creative, hands-on
+						workshops developed in collaboration with experts from science, technology, and communication,
+						the project promotes a bottom-up approach to data co-creation. These activities invite
+						individuals to reflect on personal experiences, treatment habits, and attitudes toward
+						antibiotic use, generating valuable insights while fostering a deeper public understanding of
+						AMR. The resulting methods, materials, and findings are shared openly in this repository to
+						support further experimentation and discussion. The MAKEAWARE! initiative is part of SPEARHEAD,
+						an Innosuisse-funded project that brings together a consortium of eight public and four private
 						Swiss institutions to tackle AMR from multiple perspectives. SPEARHEAD—Swiss Pandemic & AMR
 						Health Economy Awareness Detect—is based on a multidisciplinary, research-driven approach that
-						integrates digital tools with a patient-centered focus, emphasizing antimicrobial stewardship
-						and prevention.
+						integrates digital tools with a patient-centred focus, emphasising antimicrobial stewardship and
+						prevention.
 					</p>
 				</div>
 			</section>
@@ -72,20 +74,20 @@
 
 			<section id="widget-amr">
 				<h1>What is antimicrobial resistance?</h1>
-				<p id="widget-amr-abstract">Antimicrobial resistance (AMR) happens when germs—like bacteria, viruses,
-					fungi, or parasites—change in ways that make the medicines used to treat them stop working. These
-					medicines, called antimicrobials, include antibiotics (used for bacteria), antivirals (for viruses),
-					antifungals (for fungi), and antiparasitics (for parasites). When the microbes no longer respond to
-					treatment, the infection becomes harder or even impossible to cure.</p>
+				<p id="widget-amr-abstract">Antimicrobial resistance refers to the ability of microorganisms such as
+					bacteria, viruses, fungi, and parasites to withstand the effects of medications that are intended to
+					eliminate or inhibit them. As a result, treatments including antibiotics, antivirals, antifungals,
+					and antiparasitic agents become less effective or ineffective, making the management and control of
+					infections more difficult.</p>
 				<div class="divider"></div>
 
 				<div id="widget-amr-content">
 					<img src="assets/img/pages/home/antibiotics-scheme.svg">
 					<p>This resistance can develop naturally over time, but the process has sped up because of how we
-						use antimicrobials, such as taking medicines when we don’t need them; not finishing the full
+						use antimicrobials, such as taking medicines when we don't need them; not finishing the full
 						course of treatment; using antibiotics in animals to promote faster growth; and poor hygiene and
 						infection control in hospitals and communities.
-						These resistant germs don’t stay in one place. They can spread between people, animals, and the
+						These resistant germs don't stay in one place. They can spread between people, animals, and the
 						environment, crossing borders and causing infections that are more difficult to treat, more
 						expensive to manage, and more likely to lead to serious illness or death.
 						AMR affects more than just hospitals—it also threatens food safety, global trade, and the
@@ -93,6 +95,7 @@
 						wide impacts, the World Health Organization (WHO) has declared AMR as one of the top 10 public
 						health threats facing humanity.
 					</p>
+
 				</div>
 			</section>
 		</div>
@@ -144,7 +147,7 @@
 				</div>
 
 				<p id="viz-paragraph">In 2020, Switzerland (&#8203;<span id="glyph-world-viz"></span>&#8203;) has
-					registered 158 antimicrobial resistant bacteria out of 1’958 samples taken.</p>
+					registered 158 antimicrobial resistant bacteria out of 1'958 samples taken.</p>
 				<div class="widget-legenda-inline">
 					<p id="viz-data-sources">Data source: <a href="https://www.anresis.ch/" target="_blank">Arensis</a>
 					</p>
@@ -155,7 +158,7 @@
 
 
 				<div class="viz-container">
-					<!-- Qui andrà la tua visualizzazione -->
+					<!-- Here will go your visualization -->
 				</div>
 			</div>
 		</section>
@@ -163,25 +166,27 @@
 		<section id="widget-swiss">
 			<div class="frame">
 				<h1>Which geographic region has the highest number of resistant bacteria in Switzerland?</h1>
-				<p>In Switzerland, the distribution of antibiotic-resistant bacteria varies across its different
-					linguistic and cultural regions. The country’s geographic and socio-cultural diversity plays a
-					significant role in how antibiotics are prescribed and consumed, influencing the prevalence of
-					resistant bacteria. In 2019, Switzerland had a positivity rate of 8% for antibiotic-resistant
-					bacteria, with 158 resistant strains identified from 1,958 tests. This rate places Switzerland in an
-					intermediate position compared to other European countries, with lower resistance rates than its
-					border nations (e.g., Germany, France, and Italy) but higher rates than the Nordic countries.
-					</br></br>French- and Italian-speaking cantons tend to have higher antibiotic consumption compared
-					to German-speaking cantons. This regional variation in antibiotic use is largely due to cultural
-					differences in healthcare practices, with different attitudes toward prescribing and using
-					antibiotics in outpatient settings. As a result, French- and Italian-speaking regions are more
-					likely to see higher rates of antibiotic resistance due to increased antibiotic usage, which can
-					lead to a greater opportunity for bacteria to develop resistance. The higher consumption in French-
-					and Italian-speaking regions, such as Geneva, Ticino, and parts of Vaud, is linked to relatively
-					higher resistance rates compared to the German-speaking cantons like Zurich and Bern, where
-					antibiotic use tends to be more cautious and controlled. However, precise regional data within
-					Switzerland remains somewhat generalised, with national surveillance efforts rather than very
-					localised reporting.
+				<p>Antibiotic resistance in Switzerland reflects both its geographic position and socio-cultural
+					diversity. Nationally, Switzerland occupies an intermediate position within Europe, with lower
+					resistance rates than surrounding countries such as Germany, France, and Italy, but higher than
+					those observed in Nordic nations. This moderate resistance level is shaped by varying prescribing
+					habits and healthcare practices, influenced by both medical culture and public attitudes toward
+					antibiotics. These patterns underscore the importance of ongoing national surveillance and the need
+					for targeted public health strategies to ensure antibiotics are used appropriately.
 				</p>
+				<div class="descriptive-text">
+					<p>
+						Within Switzerland, regional differences in language and culture significantly affect antibiotic
+						use and resistance. French- and Italian-speaking cantons, including Geneva, Ticino, and Vaud,
+						typically report higher antibiotic consumption compared to German-speaking regions like Zurich
+						and Bern. This is largely due to differing healthcare practices and attitudes toward antibiotic
+						prescribing in outpatient care.
+					</p>
+					<p>As a result, higher antibiotic use in these areas can create more opportunities for bacteria to
+						develop resistance, contributing to relatively elevated resistance rates. While national
+						surveillance provides general trends, more localised data would support the development of
+						region-specific measures to promote responsible antibiotic use and curb resistance.</p>
+				</div>
 			</div>
 		</section>
 
@@ -191,29 +196,31 @@
 
 					<h2>Number of resistances detected out of samples taken by geographic region and year</h2>
 
+
 					<div class="popup-overlay" id="legenda-swiss">
 						<div class="popup-container">
 							<div class="popup-shadow"></div>
 							<div class="popup-main">
 								<button class="close-btn">✕</button>
-
-								<div class="data-column">
-									<div class="column-title">Prova prova prova</div>
-									<div class="data-visual">
-										<div class="circle circle-small"></div>
-										<span class="data-number small">34</span>
-										<div class="circle circle-large"></div>
-										<span class="data-number">5'474</span>
-									</div>
-								</div>
-
-								<div class="data-column">
-									<div class="column-title">Number of samples taken</div>
+					
+								<div class="swiss-left-column">
 									<div class="data-visual">
 										<div class="circle circle-outline-small"></div>
-										<span class="data-number small">627</span>
+										<span class="data-number">Number of samples gathered</span>
+									</div>
+									<div class="data-visual">
+										<div class="circle circle-small"></div>
+										<span class="data-number">Number of antimicrobial resistant bacteria identified</span>
+									</div>
+								</div>
+								
+								<div class="swiss-right-column">
+									<div class="column-title">Samples and resistant bacteria</div>
+									<div class="data-visual">
+										<div class="circle circle-outline-small"></div>
+										<span class="data-number small">12'637</span>
 										<div class="circle circle-outline-large"></div>
-										<span class="data-number">28'000</span>
+										<span class="data-number">778'599</span>
 									</div>
 								</div>
 							</div>
@@ -227,7 +234,7 @@
 					<button class="widget-legenda-button" id="legenda-button-swiss">legenda</button>
 				</div>
 				<div class="viz-container">
-					<!-- Qui andrà la visualizzazione per la Svizzera -->
+					<!-- Here will go the visualization for Switzerland -->
 				</div>
 			</div>
 		</section>
@@ -235,19 +242,23 @@
 		<section id="widget-death">
 			<div class="frame">
 				<h1>What is the impact of antimicrobial resistance in the future?</h1>
-				<p>Antimicrobial resistance (AMR) will have severe and far-reaching consequences for both individuals
-					and healthcare systems. As antibiotic resistance increases, infections will become more difficult to
-					treat, leading to longer illnesses and hospitalizations. This will result in higher treatment costs
-					for both patients and healthcare systems. The need for alternative medications and more intensive
-					care will put a significant financial strain on resources. Moreover, patients will face disruptions
-					to their lives as they undergo prolonged treatments and make lifestyle changes, affecting both them
-					and their families. In the worst-case scenario, AMR could lead to disability or even death.
-					</br></br>Looking to the future, projections suggest that by 2050, 10 million people could die each
-					year from AMR, potentially making it the leading cause of death, surpassing even cancer. While
-					estimates vary due to the complex factors involved, the numbers highlight the urgency of addressing
-					AMR as a global health threat that requires immediate, coordinated action to prevent a public health
-					crisis.
+				<p>Antimicrobial resistance (AMR) poses a serious and growing threat with profound consequences for
+					individuals, healthcare systems, and society at large. As antibiotic resistance increases,
+					infections become harder to treat, leading to longer illness durations, extended hospital stays, and
+					more complex care. This not only places a greater emotional and physical burden on patients and
+					their families but also significantly increases healthcare costs due to the need for alternative
+					treatments and intensive medical support.
 				</p>
+				<div class="descriptive-text">
+					<p>The wider impact includes disruptions to everyday life, reduced productivity, and long-term
+						health complications. In severe cases, antimicrobial resistance can result in permanent
+						disability or even death. Looking ahead, projections estimate that by the year 2050,
+						antimicrobial resistance could cause up to 10 million deaths each year, possibly making it the
+						most common cause of death in the world, even ahead of cancer.</p>
+					<p>Although estimates differ due to the complex nature of the issue, the overall trend highlights
+						the urgent need for a coordinated and global response to prevent antimicrobial resistance from
+						developing into a major public health crisis.</p>
+				</div>
 			</div>
 		</section>
 
@@ -258,7 +269,7 @@
 						href="https://amr-review.org/sites/default/files/AMR%20Review%20Paper%20-%20Tackling%20a%20crisis%20for%20the%20health%20and%20wealth%20of%20nations_1.pdf"
 						target="_blank">Review on Antimicrobial Resistance</a></p>
 				<div class="viz-container">
-					<!-- Qui andrà la visualizzazione dei dati di mortalità -->
+					<!-- Here will go the mortality data visualization -->
 				</div>
 			</div>
 		</section>
@@ -266,30 +277,24 @@
 		<section id="widget-timeline">
 			<div class="frame">
 				<h1>When did the lack of antibiotics start?</h1>
-				<p>The issue of antibiotic shortages can be traced back to a slow-down in the development of new
-					antibiotics. Nearly all the antibiotics in use today are based on discoveries made over 30 years
-					ago. Since 2017, only 12 new antibiotics have been approved, with 10 of them belonging to existing
-					antibiotic classes, which are groups of antibiotics that share similar chemical structures and
-					mechanisms of action. These classes are defined by their core molecular structure or the way they
-					interact with bacteria to stop their growth or kill them. When bacteria develop resistance to one
-					antibiotic within a class, it often leads to resistance against other antibiotics in the same class,
-					making it harder to treat infections. As a result, there is an urgent need for novel classes of
-					antibiotics. These would be antibiotics that have fundamentally different structures or mechanisms
-					of action compared to existing drugs, allowing them to bypass the resistance mechanisms that
-					bacteria have developed against older drugs.
-					</br></br>However, discovering new antibiotic classes has proven difficult due to significant
-					scientific barriers. Additionally, research into novel antibiotics is often deprioritised in favour
-					of projects that offer quicker commercial returns and don't require the long development time needed
-					for new antibiotics. While some studies are exploring non-antibiotic alternatives, especially for
-					the prevention of urinary tract infections (UTIs), these have not yet been shown to be effective
-					enough to be officially prescribed. As a result, the shortage of new antibiotics remains a critical
-					challenge, limiting our ability to keep up with the growing threat of resistance. Recently,
-					scientists, with the help of artificial intelligence (AI), discovered a new antibiotic called
-					zosurabalpin, effective against Carbapenem-resistant Acinetobacter baumannii (CRAB), a highly
-					resistant bacterium commonly found in hospitals. This breakthrough revitalises the fight against
-					tough-to-treat infections caused by resistant bacteria, offering new possibilities for antibiotic
-					development and highlighting innovative approaches in drug discovery.
+				<p>Antibiotic shortages are largely due to a slowdown in the development of new drugs. Most antibiotics
+					used today are based on discoveries made more than 30 years ago, and since 2017, only 12 new ones
+					have been approved. Most of these belong to existing classes, which are groups of antibiotics that
+					share similar structures and mechanisms. When bacteria become resistant to one antibiotic in a
+					class, they are often resistant to others in the same group, making treatment more difficult and
+					highlighting the urgent need for completely new types of antibiotics.
 				</p>
+				<div class="descriptive-text">
+					<p> However, developing new antibiotic classes is challenging due to complex scientific obstacles
+						and limited financial incentives. Research often focuses on projects with faster commercial
+						returns rather than long-term antibiotic development. Although some studies are investigating
+						non-antibiotic alternatives, especially for preventing urinary tract infections, these are not
+						yet effective enough for medical use.</p>
+					<p>Scientists recently discovered a new antibiotic called zosurabalpin using advanced computer
+						technology and artificial intelligence (AI). This antibiotic has proven effective against
+						hard-to-treat bacteria commonly found in hospitals, offering new possibilities for antibiotic
+						development and highlighting innovative approaches in drug discovery.</p>
+				</div>
 			</div>
 		</section>
 
@@ -299,14 +304,116 @@
 				<p id="viz-data-sources">Data source: <a
 						href="https://www.reactgroup.org/toolbox/understand/how-did-we-end-up-here/few-antibiotics-under-development/"
 						target="_blank">Hutchings, 2019 - Laxminarayan, 2022 - ReAct Group.</a></p>
-				
 
 				<div class="viz-container">
-					<!-- Qui andrà la visualizzazione della timeline -->
+					<!-- Here will go the timeline visualization -->
+				</div>
+			</div>
+
+			<!-- Mobile popup elements - triggered by scroll position at 30% -->
+			<div class="timeline-popup" id="timeline-popup1">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>PRE-ANTIBIOTIC ERA</h2>
+						<p>1900 One of the main cause of death were attributable to infectious diseases.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup2">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>PRE-ANTIBIOTIC ERA</h2>
+						<p>1909 Paul Ehrlich's team discovered Salvarsan, which was active against syphilis.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup3">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>PRE-ANTIBIOTIC ERA</h2>
+						<p>1914-1918 During the WWI infectious diseases caused more deaths than the battle wounds.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup4">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>GOLDEN AGE</h2>
+						<p>1928 Alexander Fleming discovered Penicillin, which is the first antibiotic discovered.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup5">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>GOLDEN AGE</h2>
+						<p>1940 Penicillin resistance was identified, before it was approved for the clinical trial.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup6">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>GOLDEN AGE</h2>
+						<p>Beginning of Fourties Selman Walksman started classical screening programmes for detection of
+							new antibiotics.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup7">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>"FOLLOW-ON" DRUG PERIOD</h2>
+						<p>This period refers to the introduction of medications that are similar to a pre-existing
+							drugs, differing for some aspects but used for the same therapeutic purposes</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup8">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>"FOLLOW-ON" DRUG PERIOD</h2>
+						<p>1970-1980 Over 60 antibiotics are realised on the market.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup9">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>DISCOVERY VOID/POST ANTIBIOTIC ERA</h2>
+						<p>2001 WHO declears AMR "a global pubblic health concern".</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="timeline-popup" id="timeline-popup10">
+				<div class="timeline-popup-container">
+					<div class="timeline-popup-shadow"></div>
+					<div class="timeline-popup-main">
+						<h2>DISCOVERY VOID/POST ANTIBIOTIC ERA</h2>
+						<p>Since 2017 only 12 antibiotics have been approved, 10 of which belong to existing mechanisms
+							of antimicrobial resistance (AMR).</p>
+					</div>
 				</div>
 			</div>
 		</section>
-
 
 	</main>
 

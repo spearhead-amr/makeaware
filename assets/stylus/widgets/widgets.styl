@@ -1,104 +1,3 @@
-// Existing widget-petri styles...
-#widget-petri
-    position: absolute
-    top: 100vh
-    left: 0
-    right: 0
-    z-index: 10
-    visibility: hidden
-    
-    &.active
-        position: fixed
-        top: 0
-        visibility: visible
-
-    &.overlayed
-        .petri-frame
-            // Mantieni il petri frame visibile ma con z-index inferiore
-            z-index: 5
-    
-     .petri-frame
-        // Background trasparente per backdrop-filter
-        background: rgba(255, 255, 255, 0)
-        backdrop-filter: blur(0px)
-        border-top: 1px solid transparent
-        height: 100vh
-        @extend .content-margins
-        display: flex
-        flex-direction: column
-        align-items: center
-        will-change: background, backdrop-filter, opacity
-        transition: border-color 0.3s ease, opacity 0.3s ease
-        position: relative
-        z-index: 10  // Z-index di base
-        
-        // Quando ha background, mostra il border
-        &:has(.petri-circle[style*="opacity: 1"]) 
-            border-top-color: brand-black
-        
-        // Circle styles
-        .petri-circle
-            width: 150px
-            height: 150px
-            background-color: brand-black
-            border-radius: 50%
-            opacity: 0
-            transition: opacity 0.3s ease
-            position: absolute
-            top: 50%
-            
-            +media(tablet-h)
-                width: 200px
-                height: 200px
-                top: 30%
-                left: 65%
-
-        #petri-legenda
-            width: 4rem
-            opacity: 0
-            transition: opacity 0.3s ease
-            position: absolute
-            bottom 1rem
-            left: 0.5rem
-
-            +media(tablet-h)
-                width: 10rem
-                left: 1rem
-
-        
-        // Content blocks container
-        .petri-content-block
-            position: absolute
-            top: 0
-            left: 0
-            @extend .content-margins
-            right: 0
-            height: 100%
-            opacity: 0
-            transition: opacity 0.2s ease
-            padding-top: 7vh
-
-            
-            
-            // Allineamento come altri elementi della pagina
-            h2
-                @extend .serif-subtitle
-                margin-bottom: 1rem
-                text-align: left
-                margin-top: 0
-                
-                
-                +media(tablet-h)
-                    width:50%
-            
-            p
-                @extend .sans-paragraph
-                text-align: left
-                margin-top: 0
-                
-                +media(tablet-h)
-                    width:50%
-
 // Updated content sticky styles
 #content-sticky.locked
     left: 0
@@ -121,7 +20,7 @@
         padding-left: 1rem
         padding-right: 1rem
 
-// Mixin per tutti i widget overlay
+// Mixin for all widget overlays
 widget-overlay-base()
     position: absolute
     top: 100vh
@@ -134,7 +33,7 @@ widget-overlay-base()
         top: 0
         visibility: visible
 
-// Stili base per il frame comune a tutti i widget
+// Base styles for the frame common to all widgets
 .frame
     background: brand-white
     border-top: 1px solid brand-black
@@ -160,12 +59,14 @@ widget-overlay-base()
         text-align: left
         @extend .serif-title
         margin-bottom: 1rem
+        text-wrap: balance
 
     h2
         margin: 0
         text-align: left
         @extend .serif-subtitle
         margin-bottom: 0.5rem
+        text-wrap: balance
         width: 100%
 
         +media(tablet-h)
@@ -184,7 +85,7 @@ widget-overlay-base()
         display: flex
         flex-direction: row
         justify-content: space-between
-        align-items: center
+        align-items: flex-start
 
     .widget-legenda-button 
         padding: 8px 14px 5px
@@ -225,7 +126,7 @@ widget-overlay-base()
         color: brand-red
         
 
-// Widget specifici con z-index crescenti
+// Specific widgets with increasing z-index
 #widget-world
     widget-overlay-base()
     z-index: 20
@@ -272,7 +173,7 @@ widget-overlay-base()
     overflow: visible
  */
 
-// Stili specifici per widget con visualizzazioni
+// Specific styles for widgets with visualizations
 #widget-world-viz,
 #widget-swiss-viz,
 #widget-death-viz,
@@ -288,6 +189,7 @@ widget-overlay-base()
             
         .viz-container
             flex: 1
+            padding: 0.5rem
             min-height: 0
             // Remove any absolute positioning or centering that might interfere
             width: 100%
@@ -318,7 +220,7 @@ widget-overlay-base()
         width 100%
         position: relative
         height auto
-        top: 10vh
+        top: 1rem
         padding-right: 1rem
         padding-top:0
         justify-content flex-end
@@ -327,7 +229,7 @@ widget-overlay-base()
         backdrop-filter: blur(0)
 
     +media(desktop)
-        top: 12vh
+        top: 2rem
 
         
 
@@ -375,7 +277,7 @@ widget-overlay-base()
 
     +media(tablet-h)
         align-items: flex-end
-        position: absolute
+        position: relative
         flex-direction: row
         background none
         padding: 0
@@ -429,6 +331,7 @@ widget-overlay-base()
     width 2rem
     height 2rem
     background brand-black
+    flex-shrink: 0 !important
 
     +media(tablet-h)
         width 1rem
@@ -452,6 +355,7 @@ widget-overlay-base()
     height 2rem
     border 1px solid brand-black
     background transparent
+    flex-shrink: 0 !important
 
     +media(tablet-h)
         width 1rem
@@ -474,4 +378,40 @@ widget-overlay-base()
 .data-number
     @extend .sans-scheme
     color brand-black
+
+
+// Swiss-specific legend styles - add these to widgets.styl
+
+// Specific overrides for Swiss legend
+#legenda-swiss
+    .popup-main
+        +media(tablet-h)
+            flex-direction: row
+            gap: 2rem
+            align-items: flex-start
+
+    // Left column with two rows
+    .swiss-left-column
+        display: flex !important
+        flex-direction: column !important
+        align-items: flex-start !important
+        gap: 1.5rem
+        max-width: 100%
+        width: 100%
+
+        +media(tablet-h)
+            max-width: 50%
+
+
+    // Right column
+    .swiss-right-column
+        display: flex !important
+        flex-direction: column !important
+        align-items: center !important
+        text-align: center
+        max-width: 100%
+
+        +media(tablet-h)
+            max-width: 50%
+
 

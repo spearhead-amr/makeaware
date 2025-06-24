@@ -10,7 +10,7 @@ class WorldVizHandler {
         
         // Mobile-first grid configuration with adjusted spacing
         this.config = {
-            margin: { top: 0, right: 20, bottom: 40, left: 20 }, // Increased side margins
+            margin: { top: 0, right: 0, bottom: 40, left: 0 }, // Increased side margins
             cellHeight: 50, 
             maxRadius: 30, 
             minRadius: 3,

@@ -152,3 +152,7 @@ class WorkshopsGridAlignment {
 window.addEventListener('load', () => {
     new WorkshopsGridAlignment();
 });
+
+if (document.readyState !== 'loading') {
+    new WorkshopsGridAlignment();
+}

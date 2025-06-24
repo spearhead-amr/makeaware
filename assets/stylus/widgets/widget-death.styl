@@ -6,7 +6,7 @@
         margin: 0
         margin-top: 0
         width: 100% // Full width to expand to container edges
-        padding: 0 // No padding to maximize space usage
+        padding: 0 !important // No padding to maximize space usage
         height: 80vh // Fixed 85vh mask height (increased from 80vh)
         
         +media(tablet-v)
@@ -65,3 +65,7 @@
     .bar-text
         // Opacity controlled by JavaScript based on bar height (minimum 45px)
         transition: opacity 0.3s ease
+
+#widget-death-viz.expand-bars
+    .bar-rect
+        transition: height 1s cubic-bezier(0.23, 1, 0.32, 1)

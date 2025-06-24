@@ -4,7 +4,7 @@ class LegendPopupHandler {
     constructor() {
         this.activePopup = null;
         
-        // Mapping dei bottoni ai relativi popup
+        // Mapping of buttons to their respective popups
         this.legendMappings = [
             {
                 buttonId: 'legenda-button-world',
@@ -32,10 +32,10 @@ class LegendPopupHandler {
             const popup = document.getElementById(mapping.popupId);
             if (popup) {
                 if (isDesktop) {
-                    // Sopra 900px: usa popup-overlay-desktop
+                    // Above 900px: use popup-overlay-desktop
                     popup.classList.remove('active');
                 } else {
-                    // Sotto 900px: usa popup-overlay
+                    // Below 900px: use popup-overlay
                     popup.classList.add('popup-overlay');
                 }
             }
@@ -58,7 +58,7 @@ class LegendPopupHandler {
             const popup = document.getElementById(mapping.popupId);
             
             if (button && popup) {
-                // Click sul bottone
+                // Click on button
                 button.addEventListener('click', (e) => {
                     if (window.innerWidth < 900) {
                         e.stopPropagation();
@@ -66,7 +66,7 @@ class LegendPopupHandler {
                     }
                 });
                 
-                // Click sul bottone di chiusura
+                // Click on close button
                 const closeBtn = popup.querySelector('.close-btn');
                 if (closeBtn) {
                     closeBtn.addEventListener('click', (e) => {
@@ -77,7 +77,7 @@ class LegendPopupHandler {
                     });
                 }
                 
-                // Click dentro il popup (impedisce chiusura)
+                // Click inside popup (prevents closing)
                 const popupMain = popup.querySelector('.popup-main');
                 if (popupMain) {
                     popupMain.addEventListener('click', (e) => {
@@ -87,7 +87,7 @@ class LegendPopupHandler {
                     });
                 }
                 
-                // Click sull'overlay
+                // Click on overlay
                 popup.addEventListener('click', (e) => {
                     if (window.innerWidth < 900 && e.target === popup) {
                         this.hidePopup(mapping.popupId);
@@ -96,7 +96,7 @@ class LegendPopupHandler {
             }
         });
         
-        // Click globale per chiudere
+        // Global click to close
         document.addEventListener('click', (e) => {
             if (window.innerWidth < 900 && this.activePopup) {
                 const clickedElement = e.target;
@@ -133,6 +133,10 @@ class LegendPopupHandler {
         if (popup) {
             popup.classList.add('active');
             this.activePopup = popupId;
+            // On mobile, move popup to <body> to ensure it stays fixed and above overlays
+            if (window.innerWidth < 900) {
+                document.body.appendChild(popup);
+            }
         }
     }
 
@@ -147,7 +151,7 @@ class LegendPopupHandler {
     }
 }
 
-// Inizializza
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     window.legendPopupHandler = new LegendPopupHandler();
 });

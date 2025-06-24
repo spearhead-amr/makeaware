@@ -10,16 +10,16 @@ class SwissVizHandler {
         // Configuration for responsive grid layout
         this.config = {
             margin: { 
-                top: 60, 
-                right: 20, 
+                top: 100, 
+                right:0, 
                 bottom: 40, 
-                left: 120,
+                left: 60,
                 // Mobile-specific margins
                 mobile: {
                     top: 40,
                     right: 0,
                     bottom: 30,
-                    left: 40
+                    left: 20
                 }
             },
             cellPadding: 10,

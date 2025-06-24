@@ -62,10 +62,10 @@
 
     // Antibiotic circles with responsive sizing
     .antibiotic-circle
-        color: brand-black
+        fill: brand-black
         stroke: none
         cursor: default
-        transition: fill 0.2s ease
+        transition: fill 0s
         
         // Ensure circles are perfectly round
         shape-rendering: geometricPrecision
@@ -77,10 +77,25 @@
         &:hover
             fill: brand-pink
 
+        // Active state for mobile scroll
+        &.active
+            fill: brand-pink
+
+    // Mobile antibiotic names
+    .mobile-antibiotic-name
+        @extend .sans-scheme
+        transition: opacity 0s
+        margin-right: 0.5rem
+        max-width: 40vw
+        white-space: normal
+        word-break: break-word
+        
     // Antibiotic tooltip on hover
     .antibiotic-tooltip
         @extend .sans-scheme
-            
+
+    // Timeline popup styles - moved outside widget container to avoid overflow hidden
+    
     // Mobile-specific adjustments
     +media(mobile)
         .viz-container
@@ -99,6 +114,10 @@
             // Disable hover on mobile
             &:hover
                 fill: brand-black
+                
+            // Keep active state working on mobile
+            &.active
+                fill: brand-pink
                 
         // Hide period descriptions on mobile to save space
         .timeline-period-description
@@ -125,6 +144,10 @@
         .period-separator
             display: block
 
+        // Hide popups on larger screens
+        .timeline-popup
+            display: none !important
+
     // Desktop specific refinements
     +media(desktop)
         .viz-container
@@ -135,3 +158,87 @@
             tspan
                 word-spacing: normal
                 letter-spacing: normal
+
+        // Hide popups on desktop
+        .timeline-popup
+            display: none !important
+
+// Timeline popup styles - outside widget to avoid overflow conflicts
+.timeline-popup
+    position: fixed !important
+    top: 7vh !important // Below the header bar (6vh + 1vh margin)
+    left: 50% !important
+    transform: translateX(-50%) !important
+    max-width: 90vw
+    width: 300px
+    opacity: 0
+    visibility: hidden
+    transition: opacity 0s, visibility 0s
+    pointer-events: none
+    z-index: 2 !important // Higher than menu and widgets
+    
+    // Visible state
+    &.visible
+        opacity: 1 !important
+        visibility: visible !important
+        pointer-events: auto
+
+    // Mobile specific popup positioning
+    +media(mobile)
+        top: 7vh !important
+        left: 20px !important
+        right: 20px !important
+        transform: none !important
+        width: auto !important
+        max-width: none !important
+
+    // Hide on larger screens
+    +media(tablet-v)
+        display: none !important
+    
+    +media(tablet-h)
+        display: none !important
+    
+    +media(desktop)
+        display: none !important
+
+.timeline-popup-container
+    position: relative
+    width: 100%
+    height: auto
+
+.timeline-popup-shadow
+    position: absolute
+    top: 8px
+    right: 8px
+    width: 100%
+    height: 100%
+    background: brand-white
+    border: 1px solid brand-black
+    border-radius: 20px
+    z-index: 1
+
+.timeline-popup-main
+    position: relative
+    width: 100%
+    background: brand-white
+    border: 1px solid brand-black
+    border-radius: 20px
+    z-index: 2
+    padding: 1rem
+    
+    h2 
+        @extend .sans-scheme
+        margin-bottom: 0.5rem
+        margin-top: 0
+
+    p 
+        @extend .sans-scheme
+        margin: 0
+
+    +media(mobile)
+        padding: 1rem
+
+// Hide virtual (fake) dots used only for popup triggers
+.antibiotic-circle.virtual
+    display: none

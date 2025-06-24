@@ -1,11 +1,11 @@
 function navSlide() {
-    const mobilemenu = document.getElementById("hamburger-menu"); //burger
-    const nav = document.querySelector(".nav-links"); //blocco tendina
-    //const navLinks = document.querySelectorAll(".nav-links li"); //voci menu
+    const mobilemenu = document.getElementById("hamburger-menu"); // burger menu
+    const nav = document.querySelector(".nav-links"); // dropdown block
+    //const navLinks = document.querySelectorAll(".nav-links li"); // menu items
     //console.log(mobilemenu)
-    //a questo evento associa la funzione
+    // associate the function to this event
     mobilemenu.addEventListener("click", ()=> {
-      //Toggle nav se c'è la classe toglila se non c'è mettila
+      // Toggle nav: if the class exists remove it, if it doesn't exist add it
       nav.classList.toggle("nav-active");
     });
   
