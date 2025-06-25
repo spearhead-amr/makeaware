@@ -148,11 +148,15 @@ class WorkshopsGridAlignment {
     }
 }
 
-// Initialize when DOM is loaded
+/* // Initialize when DOM is loaded
 window.addEventListener('load', () => {
     new WorkshopsGridAlignment();
 });
 
 if (document.readyState !== 'loading') {
     new WorkshopsGridAlignment();
-}
+} */
+
+window.WorkshopsGridAlignment = WorkshopsGridAlignment;
+
+window.workshopsGridAlignment = new WorkshopsGridAlignment();

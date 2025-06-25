@@ -63,7 +63,7 @@ class TimelineVizHandler {
          // pixel di scroll per avanzare di uno (modificabile)
         
         // Variabili per scroll step dinamico
-        this.mobileScrollStepPxMax = 10; // px se solo 1 cerchio in riga
+        this.mobileScrollStepPxMax = 8; // px se solo 1 cerchio in riga
         this.mobileScrollStepPxMin = 1;  // px se riga più affollata
         
         this.init();
@@ -146,7 +146,7 @@ class TimelineVizHandler {
 
     getResponsiveCircleSettings(width) {
         const minRadius = 4;
-        const maxRadius = 7;
+        const maxRadius = 6;
         const minSpacing = 8;
         const maxSpacing = 16;
         

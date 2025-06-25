@@ -1,48 +1,59 @@
-// widget-swiss.styl - Styles for Swiss visualization in Stylus
+// widget-swiss-svg.styl - Styles for Swiss SVG visualization in Stylus
 
-// Specific styles for widget-swiss-viz
+// Specific styles for widget-swiss-viz with SVG files
 #widget-swiss-viz
     .viz-container
         margin: 0
         margin-top: 1rem
-       
         width: 100% // Full width to expand to container edges
         padding: 0 // No padding to maximize space usage
         min-height: 100vh // Ensure minimum height for visibility
-            
-        +media(tablet-v)
-            width: 100%
-            padding: 0
-            
-        +media(tablet-h)
-            width: 100%
-            padding: 0
-   
 
+   
+    // Main SVG container styles
     svg
         width: 100%
         height: auto
-        display: flex
-        overflow: visible
+        display: block
+        
+       
 
-    // Grid headers styling
-    .col-header,
-    .row-header
+    // Zone headers styling (top labels)
+    .zone-header
         @extend .sans-scheme
         fill: brand-black
         pointer-events: none
+        text-anchor: middle
+        
 
 
-    // Cell group styles - no hover effects
-    .cell-group
-        pointer-events: none // Remove all interactions
-
-    // Outer circle (samples taken) - stroke only, larger
-    .samples-circle
-        fill: none
-        stroke: brand-black
-        stroke-width: 1
-
-    // Inner circle (resistant bacteria) - larger and filled
-    .resistant-circle
+    // Year labels styling (left labels)  
+    .year-label
+        @extend .sans-scheme
         fill: brand-black
+        pointer-events: none
+        text-anchor: end
+
+
+    // Ensure imported SVG elements maintain their styling
+    g[transform*="scale"]
+        
+        
+        // Preserve SVG mask and path styles
+        mask
+            // Ensure masks work correctly when scaled
+            maskUnits: userSpaceOnUse
+            
+        path
+            // Maintain original path styling
+            fill: inherit
+            stroke: inherit
+            
+        circle
+            // Maintain original circle styling  
+            fill: inherit
+            stroke: inherit
+
+    // Mobile-specific adjustments
+   
+
