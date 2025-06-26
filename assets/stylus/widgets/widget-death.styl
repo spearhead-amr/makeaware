@@ -1,4 +1,4 @@
-// widget-death.styl - Styles for Death causes visualization
+// widget-death.styl - Enhanced styles for Death causes visualization with dynamic container height
 
 // Specific styles for widget-death-viz
 #widget-death-viz
@@ -7,43 +7,41 @@
         margin-top: 0
         width: 100% // Full width to expand to container edges
         padding: 0 !important // No padding to maximize space usage
-        height: 80vh // Fixed 85vh mask height (increased from 80vh)
+        // Remove fixed height - will be set dynamically by JavaScript
+         // IMPORTANT: Hide overflow to create mask effect for scaling rectangles
+        position: relative // For proper clipping context
+        min-height: 100vh
         
         +media(tablet-v)
             width: 100%
             padding: 0
-            height: 80vh
             
         +media(tablet-h)
             width: 100%
             padding: 0
-            height: 80vh
         
         +media(desktop)
-            height: 80vh
+            // No height restrictions on desktop either
 
     svg
         width: 100%
-        height: auto
+        // Height will be set dynamically by JavaScript
         display: block
-        overflow: visible
+        overflow: visible // SVG can overflow, but container will clip it
 
     // Bar container styles
     .death-bar
         cursor: default // No interaction for now
 
-    // Rectangle styles
+    // Rectangle styles with smooth transitions
     .bar-rect
-        transition: opacity 0.3s ease
-        
         // Ensure rectangles maintain rounded corners
         shape-rendering: geometricPrecision
 
     // Text styling inside bars - positioned top left
     .bar-text
         pointer-events: none // Text should not interfere with interactions
-        display: flex
-        align-items: flex-end
+        
         
         // Death cause name label
         .death-name-label
@@ -60,12 +58,19 @@
             fill: brand-white // Use brand-white color
             text-anchor: start // Left aligned
 
-// Override for bars where text should be hidden (controlled by JavaScript)
-.death-bar
-    .bar-text
-        // Opacity controlled by JavaScript based on bar height (minimum 45px)
-        transition: opacity 0.3s ease
-
+// Enhanced animation state for better performance
 #widget-death-viz.expand-bars
-    .bar-rect
-        transition: height 1s cubic-bezier(0.23, 1, 0.32, 1)
+/*     .bar-rect
+        transition: y 0.1s , height 0.1s */
+    
+    .bar-text
+        transition: opacity 0.1s ease 0.1s, transform 0.1s cubic-bezier(0.23, 1, 0.32, 1) // Delayed text fade for better UX
+
+// Ensure the frame doesn't have conflicting scroll behavior for this widget
+#widget-death-viz
+    .frame
+        overflow: hidden // Ensure no frame-level scrolling
+        
+        // Override any frame-scrollable behavior for this interactive widget
+        &.frame-scrollable
+            overflow: hidden // Force hidden even if frame-scrollable is applied

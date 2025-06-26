@@ -1,4 +1,4 @@
-// widget-death.js - Death causes visualization by projected deaths in 2050
+// widget-death.js - Death causes visualization with interactive scaling
 
 class DeathVizHandler {
     constructor() {
@@ -6,6 +6,8 @@ class DeathVizHandler {
         this.data = null;
         this.svg = null;
         this.initialized = false;
+        this.bars = null;
+        this.g = null;
         
         // Configuration for the visualization
         this.config = {
@@ -18,9 +20,15 @@ class DeathVizHandler {
                 desktop: 1 // Gap between bars on desktop
             },
             borderRadius: 8, // Rounded corners for rectangles
-            minBarHeight: 20, // Minimum height to show text (45px)
+            minBarHeight: 28, // Minimum height to show text (increased to ensure text visibility)
             textPadding: 8 // Internal padding for text (0.5rem = 8px)
         };
+        
+        // Scaling state
+        this.baseHeights = []; // Store original calculated heights
+        this.currentScale = 1.0;
+        this.maxScale = 1.0; // Will be calculated based on smallest bar
+        this.expansionHeight = 0; // Additional height needed for full expansion
         
         this.init();
     }
@@ -108,14 +116,43 @@ class DeathVizHandler {
         const currentMargin = isMobile ? this.config.margin.mobile : this.config.margin.desktop;
         const currentGap = isMobile ? this.config.gap.mobile : this.config.gap.desktop;
         
-        // Use container dimensions - create 85vh mask
+        // Use container dimensions - create mask height
         const containerWidth = this.container.offsetWidth || window.innerWidth - 32;
-        const maskHeight = window.innerHeight * 0.85; // 85vh mask (increased from 80vh)
+        const maskHeight = window.innerHeight * 0.80; // 80vh mask height
         
         const width = containerWidth;
         const height = maskHeight;
         
         return { width, height, margin: currentMargin, gap: currentGap };
+    }
+
+    calculateScalingParameters() {
+        if (!this.baseHeights || this.baseHeights.length === 0) return;
+        
+        // Find the smallest base height
+        const smallestHeight = Math.min(...this.baseHeights);
+        
+        // Calculate the scale factor needed for the smallest bar to reach minimum height
+        // Increase scale factor significantly for more dramatic expansion with less scroll
+        const baseScale = Math.max(1.0, this.config.minBarHeight / smallestHeight);
+        this.maxScale = baseScale * 1.2; // Keep original baseScale multiplier
+        
+        // Calculate additional height needed for full expansion
+        // Since we reach full scaling at 25% of progress (progress * 4.0), 
+        // we only need 25% of the original expansion height
+        const scaledTotalHeight = this.baseHeights.reduce((sum, height) => sum + (height * this.maxScale), 0);
+        const gapTotal = (this.data.length - 1) * this.calculateDimensions().gap;
+        const baseVisibleHeight = this.calculateDimensions().height - this.calculateDimensions().margin.top - this.calculateDimensions().margin.bottom;
+        
+        const fullExpansionHeight = Math.max(0, scaledTotalHeight + gapTotal - baseVisibleHeight);
+        this.expansionHeight = fullExpansionHeight * 0.1; // Only 25% since we scale 4x faster
+        
+        console.log(`Scaling: min height=${smallestHeight}px, base scale=${baseScale.toFixed(2)}, max scale=${this.maxScale.toFixed(2)}, expansion height=${this.expansionHeight}px (reduced from ${fullExpansionHeight}px)`);
+    }
+
+    getExpansionHeight() {
+        // Return the additional height needed for this widget's scroll range
+        return this.expansionHeight;
     }
 
     setupVisualization() {
@@ -134,16 +171,17 @@ class DeathVizHandler {
         const chartWidth = width - margin.left - margin.right;
         const chartHeight = height - margin.top - margin.bottom;
         
-        // Create SVG with 85vh mask
+        // Create SVG with mask height
         this.svg = d3.select(this.container)
             .append('svg')
             .attr('width', '100%')
-            .attr('height', '85vh')
+            .attr('height', '80vh')
             .attr('viewBox', `0 0 ${width} ${height}`)
-            .style('display', 'block');
+            .style('display', 'block')
+            .style('overflow', 'hidden'); // Ensure clipping
 
         // Create main group
-        const g = this.svg.append('g')
+        this.g = this.svg.append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
         // Calculate proportional heights based on death counts
@@ -151,59 +189,60 @@ class DeathVizHandler {
         const totalGapSpace = gap * (this.data.length - 1);
         const availableHeight = chartHeight - totalGapSpace;
         
-        // Function to get proportional bar height
-        const getBarHeight = (deaths) => {
-            return (deaths / totalDeaths) * availableHeight;
-        };
+        // Calculate base heights that ensure all bars fit in the initial view
+        // Scale down if necessary to fit all bars in the mask
+        let baseHeights = this.data.map(d => (d.deaths / totalDeaths) * availableHeight);
+        const totalBaseHeight = baseHeights.reduce((sum, h) => sum + h, 0) + totalGapSpace;
+        
+        // If total height exceeds available space, scale down proportionally
+        if (totalBaseHeight > chartHeight) {
+            const scaleDown = chartHeight / totalBaseHeight;
+            baseHeights = baseHeights.map(h => h * scaleDown);
+        }
+        
+        // Store the calculated base heights
+        this.baseHeights = baseHeights;
+        
+        // Calculate scaling parameters
+        this.calculateScalingParameters();
         
         // Create color scale from black to light gray
         const colorScale = d3.scaleLinear()
             .domain([0, this.data.length - 1])
             .range(['#000000', '#C0C0C0']); // From black to gray
         
-        // Calculate cumulative positions for stacking
-        let cumulativeY = 0;
-        
         // Create bars (horizontal layout with proportional heights)
-        const bars = g.selectAll('.death-bar')
+        this.bars = this.g.selectAll('.death-bar')
             .data(this.data)
             .enter()
             .append('g')
-            .attr('class', 'death-bar')
-            .attr('transform', (d, i) => {
-                const y = cumulativeY;
-                cumulativeY += getBarHeight(d.deaths) + gap;
-                return `translate(0, ${y})`;
-            });
+            .attr('class', 'death-bar');
 
         // Add rectangles with rounded corners (horizontal bars with proportional heights)
-        bars.append('rect')
+        this.bars.append('rect')
             .attr('class', 'bar-rect')
             .attr('x', 0)
-            .attr('y', 0)
             .attr('width', chartWidth) // Full width of container
-            .attr('height', d => getBarHeight(d.deaths))
             .attr('rx', this.config.borderRadius)
             .attr('ry', this.config.borderRadius)
             .attr('fill', (d, i) => colorScale(i));
 
-        // Add text labels (name and death count) - top left with padding
-        const textGroups = bars.append('g')
+        // Add text groups
+        const textGroups = this.bars.append('g')
             .attr('class', 'bar-text')
             .attr('transform', `translate(${this.config.textPadding}, ${this.config.textPadding})`);
 
         // Add death cause name
-        const nameTexts = textGroups.append('text')
+        textGroups.append('text')
             .attr('class', 'death-name-label')
             .attr('text-anchor', 'start')
             .attr('x', 0)
             .attr('y', 0)
-            .attr('dy', '0.8em') // Better vertical alignment
-            .style('opacity', d => getBarHeight(d.deaths) > this.config.minBarHeight ? 1 : 0)
+            .attr('dy', '0.8em')
             .text(d => d.name);
 
-        // Add death count positioned after each individual name with 1rem spacing
-        const self = this; // Store reference to class instance
+        // Add death count positioned after each individual name with spacing
+        const self = this;
         textGroups.each(function(d, i) {
             const group = d3.select(this);
             const nameText = group.select('.death-name-label').node();
@@ -214,13 +253,72 @@ class DeathVizHandler {
             group.append('text')
                 .attr('class', 'death-count-label')
                 .attr('text-anchor', 'start')
-                .attr('x', nameWidth + 20) // Position after name with 1rem spacing
+                .attr('x', nameWidth + 20) // Position after name with spacing
                 .attr('y', 0)
-                .attr('dy', '1em') // Same baseline alignment as name
-                .attr('dominant-baseline', 'alphabetic') // Align to text baseline
-                .style('opacity', getBarHeight(d.deaths) > self.config.minBarHeight ? 1 : 0)
+                .attr('dy', '1em')
+                .attr('dominant-baseline', 'alphabetic')
                 .text(`${self.formatNumber(d.deaths)} Deaths`);
         });
+
+        // Initial render with scale 1.0
+        this.updateScale(1.0);
+    }
+
+    updateScale(scale) {
+        if (!this.bars || !this.baseHeights) return;
+        
+        this.currentScale = Math.min(Math.max(scale, 1.0), this.maxScale);
+        
+        const dimensions = this.calculateDimensions();
+        const gap = dimensions.gap;
+        const chartHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
+        
+        // Calculate scaled heights
+        const scaledHeights = this.baseHeights.map(h => h * this.currentScale);
+        const totalScaledHeight = scaledHeights.reduce((sum, h) => sum + h, 0) + gap * (this.data.length - 1);
+        
+        // Position bars so the bottom bar is always aligned to the bottom of the mask
+        // This ensures all bars are visible initially and grow upward
+        let currentY = chartHeight - scaledHeights[scaledHeights.length - 1]; // Start with bottom bar at bottom
+        
+        // Calculate positions from bottom to top
+        const positions = [];
+        for (let i = this.data.length - 1; i >= 0; i--) {
+            positions[i] = {
+                y: currentY,
+                height: scaledHeights[i]
+            };
+            if (i > 0) {
+                currentY -= (scaledHeights[i - 1] + gap); // Move up by next bar height + gap
+            }
+        }
+        
+        // Update rectangles
+        this.bars.select('.bar-rect')
+            .attr('y', (d, i) => positions[i].y)
+            .attr('height', (d, i) => positions[i].height);
+        
+        // Update text positions and visibility
+        this.bars.select('.bar-text')
+            .attr('transform', (d, i) => `translate(${this.config.textPadding}, ${positions[i].y + this.config.textPadding})`)
+            .style('opacity', (d, i) => positions[i].height >= this.config.minBarHeight ? 1 : 0);
+    }
+
+    // Method called by widget-overlay when scroll progress changes
+    setScrollProgress(progress) {
+        // Make scaling more aggressive - multiply progress by 4x to reach full scale faster
+        let aggressiveProgress = Math.min(1.0, progress * 4.0);
+        
+        // Apply ease-in at the beginning for smoother start
+        // Use quadratic ease-in for the first 30% of the progress
+        if (aggressiveProgress <= 0.7) {
+            const normalizedProgress = aggressiveProgress / 0.7; // 0-1 range for first 30%
+            const easedProgress = normalizedProgress * normalizedProgress; // quadratic ease-in
+            aggressiveProgress = easedProgress * 0.7; // scale back to 0-0.3 range
+        }
+        
+        const targetScale = 1.0 + (this.maxScale - 1.0) * aggressiveProgress;
+        this.updateScale(targetScale);
     }
 
     setupResizeHandler() {
@@ -271,27 +369,3 @@ runWidgetDeath();
 
 // Expose globally for control from widget overlay handler
 window.DeathVizHandler = DeathVizHandler;
-
-/*
-window.addEventListener('load', () => {
-    window.DeathVizHandler = new DeathVizHandler();
-});
-
-if (document.readyState !== 'loading') {
-    window.DeathVizHandler = new DeathVizHandler();
-}
-*/
-
-// Gestione animazione su attivazione widget
-window.addEventListener('widgetStateChange', (e) => {
-    if (e.detail.widgetId === 'widget-death-viz') {
-        const widget = document.getElementById('widget-death-viz');
-        if (widget) {
-            if (e.detail.isActive) {
-                widget.classList.add('expand-bars');
-            } else {
-                widget.classList.remove('expand-bars');
-            }
-        }
-    }
-});

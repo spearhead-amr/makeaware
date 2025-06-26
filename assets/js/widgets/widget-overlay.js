@@ -1,4 +1,4 @@
-// widget-overlay.js - Manages transition between widget-petri and all subsequent widgets
+// widget-overlay.js - Enhanced with interactive scaling for death widget
 
 class WidgetOverlayHandler {
     constructor() {
@@ -12,7 +12,7 @@ class WidgetOverlayHandler {
             { id: 'widget-swiss', element: null, frame: null },
             { id: 'widget-swiss-viz', element: null, frame: null },
             { id: 'widget-death', element: null, frame: null },
-            { id: 'widget-death-viz', element: null, frame: null },
+            { id: 'widget-death-viz', element: null, frame: null, isInteractive: true },
             { id: 'widget-timeline', element: null, frame: null },
             { id: 'widget-timeline-viz', element: null, frame: null }
         ];
@@ -92,9 +92,9 @@ class WidgetOverlayHandler {
         // Main scroll handler
         window.addEventListener('scroll', this.handleOverlayScroll.bind(this));
         
-        // Setup internal scroll detection for each frame
+        // Setup internal scroll detection for each frame (skip interactive widgets)
         this.widgets.forEach(widget => {
-            if (widget.frame) {
+            if (widget.frame && !widget.isInteractive) {
                 // Remove any existing event listeners
                 widget.frame.removeEventListener('wheel', widget.wheelHandler);
                 widget.frame.removeEventListener('scroll', widget.scrollHandler);
@@ -193,7 +193,24 @@ class WidgetOverlayHandler {
                 return;
             }
             
-            // Temporarily make widget visible to measure content
+            // Special handling for interactive widgets
+            if (widget.isInteractive && widget.id === 'widget-death-viz') {
+                // Wait for the death viz handler to be initialized and get expansion height
+                const deathHandler = window.deathVizHandler;
+                if (deathHandler && typeof deathHandler.getExpansionHeight === 'function') {
+                    widget.contentOverflow = deathHandler.getExpansionHeight();
+                    widget.scrollRange = this.baseWidgetScrollRange + widget.contentOverflow;
+                    widget.isScrollingContent = false; // No internal scrolling for interactive widgets
+                    console.log(`Interactive widget ${widget.id}: expansion=${widget.contentOverflow}px, total range=${widget.scrollRange}px`);
+                } else {
+                    // Fallback if handler not ready
+                    widget.scrollRange = this.baseWidgetScrollRange;
+                    widget.contentOverflow = 0;
+                }
+                return;
+            }
+            
+            // Standard content overflow calculation for non-interactive widgets
             const originalDisplay = widget.element.style.display;
             const originalVisibility = widget.element.style.visibility;
             const originalTransform = widget.frame.style.transform;
@@ -296,11 +313,21 @@ class WidgetOverlayHandler {
             if (widget.frame) {
                 widget.frame.style.transform = 'translateY(100%)';
                 widget.frame.style.opacity = '1';
-                // Disable internal scrolling and reset scroll state
-                widget.frame.classList.remove('frame-scrollable');
-                widget.frame.scrollTop = 0;
+                // Disable internal scrolling and reset scroll state (except interactive widgets)
+                if (!widget.isInteractive) {
+                    widget.frame.classList.remove('frame-scrollable');
+                    widget.frame.scrollTop = 0;
+                }
                 widget.isScrollingContent = false;
                 widget.lastScrollTop = 0;
+            }
+            
+            // Reset interactive widgets
+            if (widget.isInteractive && widget.id === 'widget-death-viz') {
+                const deathHandler = window.deathVizHandler;
+                if (deathHandler && typeof deathHandler.setScrollProgress === 'function') {
+                    deathHandler.setScrollProgress(0);
+                }
             }
         });
     }
@@ -319,6 +346,14 @@ class WidgetOverlayHandler {
             if (widget.frame) {
                 widget.frame.style.transform = 'translateY(0%)';
                 widget.frame.style.opacity = '1';
+            }
+            
+            // Set interactive widgets to full progress
+            if (widget.isInteractive && widget.id === 'widget-death-viz') {
+                const deathHandler = window.deathVizHandler;
+                if (deathHandler && typeof deathHandler.setScrollProgress === 'function') {
+                    deathHandler.setScrollProgress(1.0);
+                }
             }
         });
     }
@@ -380,12 +415,21 @@ class WidgetOverlayHandler {
         if (widget.frame) {
             widget.frame.style.transform = 'translateY(0%)';
             widget.frame.style.opacity = '1';
-            // Enable internal scrolling and scroll to bottom if content overflows
-            widget.frame.classList.add('frame-scrollable');
-            widget.isScrollingContent = true;
-            if (widget.contentOverflow > 0) {
-                widget.frame.scrollTop = widget.contentOverflow;
-                widget.lastScrollTop = widget.contentOverflow;
+            
+            // Handle interactive widgets
+            if (widget.isInteractive && widget.id === 'widget-death-viz') {
+                const deathHandler = window.deathVizHandler;
+                if (deathHandler && typeof deathHandler.setScrollProgress === 'function') {
+                    deathHandler.setScrollProgress(1.0); // Full expansion
+                }
+            } else {
+                // Standard widgets: enable internal scrolling and scroll to bottom if content overflows
+                widget.frame.classList.add('frame-scrollable');
+                widget.isScrollingContent = true;
+                if (widget.contentOverflow > 0) {
+                    widget.frame.scrollTop = widget.contentOverflow;
+                    widget.lastScrollTop = widget.contentOverflow;
+                }
             }
         }
     }
@@ -395,41 +439,74 @@ class WidgetOverlayHandler {
             widget.element.classList.add('active');
         }
         if (widget.frame) {
-            // Calculate sliding phase and content scroll phase
-            const slidingPhase = this.baseWidgetScrollRange / widget.scrollRange;
-            
-            if (progress <= slidingPhase) {
-                // Sliding phase: widget is sliding up
-                const slidingProgress = progress / slidingPhase;
-                const easedProgress = this.easeOutCubic(slidingProgress);
+            // Handle interactive widgets
+            if (widget.isInteractive && widget.id === 'widget-death-viz') {
+                // Calculate sliding phase and interactive phase
+                const slidingPhase = this.baseWidgetScrollRange / widget.scrollRange;
                 
-                // Calculate Y position (from 100% to 0%)
-                const translateY = 100 - (easedProgress * 100);
-                
-                widget.frame.style.transform = `translateY(${translateY}%)`;
-                widget.frame.classList.remove('frame-scrollable');
-                
-                // Reset internal scroll state
-                widget.frame.scrollTop = 0;
-                widget.isScrollingContent = false;
-                widget.lastScrollTop = 0;
-                
-            } else {
-                // Content scroll phase: widget is at top, scroll internal content
-                widget.frame.style.transform = 'translateY(0%)';
-                widget.frame.classList.add('frame-scrollable');
-                widget.isScrollingContent = true;
-                
-                if (widget.contentOverflow > 0) {
-                    // Calculate target scroll position
-                    const contentScrollProgress = (progress - slidingPhase) / (1 - slidingPhase);
-                    const targetScrollTop = contentScrollProgress * widget.contentOverflow;
+                if (progress <= slidingPhase) {
+                    // Sliding phase: widget is sliding up
+                    const slidingProgress = progress / slidingPhase;
+                    const easedProgress = this.easeOutCubic(slidingProgress);
                     
-                    // Only update scroll if significantly different to avoid glitches
-                    const scrollDifference = Math.abs(targetScrollTop - widget.frame.scrollTop);
-                    if (scrollDifference > 2) { // 2px threshold to prevent micro-adjustments
-                        widget.frame.scrollTop = targetScrollTop;
-                        widget.lastScrollTop = targetScrollTop;
+                    // Calculate Y position (from 100% to 0%)
+                    const translateY = 100 - (easedProgress * 100);
+                    widget.frame.style.transform = `translateY(${translateY}%)`;
+                    
+                    // Reset interactive state
+                    const deathHandler = window.deathVizHandler;
+                    if (deathHandler && typeof deathHandler.setScrollProgress === 'function') {
+                        deathHandler.setScrollProgress(0);
+                    }
+                } else {
+                    // Interactive phase: widget is at top, run interactive scaling
+                    widget.frame.style.transform = 'translateY(0%)';
+                    
+                    // Calculate progress in interactive phase (0-1)
+                    const interactiveProgress = (progress - slidingPhase) / (1 - slidingPhase);
+                    
+                    const deathHandler = window.deathVizHandler;
+                    if (deathHandler && typeof deathHandler.setScrollProgress === 'function') {
+                        deathHandler.setScrollProgress(interactiveProgress);
+                    }
+                }
+            } else {
+                // Standard widget handling
+                const slidingPhase = this.baseWidgetScrollRange / widget.scrollRange;
+                
+                if (progress <= slidingPhase) {
+                    // Sliding phase: widget is sliding up
+                    const slidingProgress = progress / slidingPhase;
+                    const easedProgress = this.easeOutCubic(slidingProgress);
+                    
+                    // Calculate Y position (from 100% to 0%)
+                    const translateY = 100 - (easedProgress * 100);
+                    
+                    widget.frame.style.transform = `translateY(${translateY}%)`;
+                    widget.frame.classList.remove('frame-scrollable');
+                    
+                    // Reset internal scroll state
+                    widget.frame.scrollTop = 0;
+                    widget.isScrollingContent = false;
+                    widget.lastScrollTop = 0;
+                    
+                } else {
+                    // Content scroll phase: widget is at top, scroll internal content
+                    widget.frame.style.transform = 'translateY(0%)';
+                    widget.frame.classList.add('frame-scrollable');
+                    widget.isScrollingContent = true;
+                    
+                    if (widget.contentOverflow > 0) {
+                        // Calculate target scroll position
+                        const contentScrollProgress = (progress - slidingPhase) / (1 - slidingPhase);
+                        const targetScrollTop = contentScrollProgress * widget.contentOverflow;
+                        
+                        // Only update scroll if significantly different to avoid glitches
+                        const scrollDifference = Math.abs(targetScrollTop - widget.frame.scrollTop);
+                        if (scrollDifference > 2) { // 2px threshold to prevent micro-adjustments
+                            widget.frame.scrollTop = targetScrollTop;
+                            widget.lastScrollTop = targetScrollTop;
+                        }
                     }
                 }
             }
@@ -445,9 +522,19 @@ class WidgetOverlayHandler {
         if (widget.frame) {
             widget.frame.style.transform = 'translateY(100%)';
             widget.frame.style.opacity = '1';
-            // Disable internal scrolling and reset scroll state
-            widget.frame.classList.remove('frame-scrollable');
-            widget.frame.scrollTop = 0;
+            
+            // Handle interactive widgets
+            if (widget.isInteractive && widget.id === 'widget-death-viz') {
+                const deathHandler = window.deathVizHandler;
+                if (deathHandler && typeof deathHandler.setScrollProgress === 'function') {
+                    deathHandler.setScrollProgress(0);
+                }
+            } else {
+                // Standard widgets: disable internal scrolling and reset scroll state
+                widget.frame.classList.remove('frame-scrollable');
+                widget.frame.scrollTop = 0;
+            }
+            
             widget.isScrollingContent = false;
             widget.lastScrollTop = 0;
         }
@@ -510,10 +597,12 @@ function CSVLoadedTrigger() {
     widget_count++;
     console.log("widget_count: " + widget_count);
     if(widget_count == 4) {
-        window.widgetOverlayHandler = new WidgetOverlayHandler();
+        // Small delay to ensure death handler is ready
+        setTimeout(() => {
+            window.widgetOverlayHandler = new WidgetOverlayHandler();
+        }, 100);
     }
 }
-
 
 function openLegendaPopup(popupId) {
     const popup = document.getElementById(popupId);
