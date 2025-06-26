@@ -145,7 +145,7 @@ class DeathVizHandler {
         const baseVisibleHeight = this.calculateDimensions().height - this.calculateDimensions().margin.top - this.calculateDimensions().margin.bottom;
         
         const fullExpansionHeight = Math.max(0, scaledTotalHeight + gapTotal - baseVisibleHeight);
-        this.expansionHeight = fullExpansionHeight * 0.1; // Only 25% since we scale 4x faster
+        this.expansionHeight = fullExpansionHeight * 0.05; //how much to scroll before passing to the next widget
         
         console.log(`Scaling: min height=${smallestHeight}px, base scale=${baseScale.toFixed(2)}, max scale=${this.maxScale.toFixed(2)}, expansion height=${this.expansionHeight}px (reduced from ${fullExpansionHeight}px)`);
     }

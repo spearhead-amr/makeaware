@@ -1,0 +1,51 @@
+#main-data-policy
+    @extend .content-margins
+        
+#data-policy-introduction
+    h1
+        @extend .serif-title
+        margin-top: 7vh
+        margin-bottom: 1rem
+        width: 100%
+        text-wrap: balance
+
+        +media(tablet-h)
+            margin-top: 10vh
+
+    p
+        @extend .serif-subtitle
+
+#data-policy-detail
+    display: flex
+    flex-direction: column
+
+    h2
+        @extend .sans-caption
+        text-transform: uppercase
+        margin-bottom: 0.5rem
+        
+
+        +media(tablet-h)
+            margin-bottom: 0
+            min-width:15%
+            position: relative
+            top: calc(0.65rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
+
+        +media(desktop)
+            top: calc(1.9rem - (1.4rem))
+
+    p
+        @extend .sans-paragraph
+        margin-bottom: 0.5rem
+        
+        
+
+    a
+        text-decoration: underline
+        //border-bottom: 1px solid brand-black
+        color: brand-black
+       
+
+
+    +media(tablet-h)
+        flex-direction: row

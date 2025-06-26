@@ -39,10 +39,10 @@
             margin-bottom: 0
             min-width:15%
             position: relative
-            top: calc(1rem - (0.6rem*1.15))
+            top: calc(1rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
 
         +media(desktop)
-            top: calc(2rem - (1.2rem*1.15))
+            top: calc(2.5rem - (1.4rem*1.15))
 
     p
         @extend .serif-paragraph 
@@ -51,8 +51,11 @@
         text-decoration: underline
         //border-bottom: 1px solid brand-black
         color: brand-black
-       
 
+    img
+        width: 100%
+        height: auto
+        object-fit: cover
 
     +media(tablet-h)
         flex-direction: row

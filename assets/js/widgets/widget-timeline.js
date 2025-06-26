@@ -11,6 +11,7 @@ class TimelineVizHandler {
         // Configuration for responsive design
         this.config = {
             margin: { top: 80, right: 0, bottom: 100, left: 0 },
+            desktopHorizontalMargin: 16, // 1rem = 16px typically
             circleSpacing: 14,
             circleMinDistance: 4,
             yearLabelOffset: 20,
@@ -144,6 +145,10 @@ class TimelineVizHandler {
         return window.innerWidth <= this.breakpoints.mobile;
     }
 
+    isDesktop() {
+        return window.innerWidth >= this.breakpoints.desktop;
+    }
+
     getResponsiveCircleSettings(width) {
         const minRadius = 4;
         const maxRadius = 6;
@@ -159,15 +164,20 @@ class TimelineVizHandler {
     calculateDimensions() {
         const containerWidth = this.container.offsetWidth || window.innerWidth - 40;
         const isMobile = this.isMobile();
+        const isDesktop = this.isDesktop();
         
         if (isMobile) {
             const width = containerWidth;
             const height = 1800;
-            return { width, height, isMobile };
+            return { width, height, isMobile, isDesktop };
         } else {
-            const width = containerWidth;
+            // For desktop, reduce width to account for horizontal margins
+            let width = containerWidth;
+            if (isDesktop) {
+                width = containerWidth - (this.config.desktopHorizontalMargin * 2);
+            }
             const height = 600;
-            return { width, height, isMobile };
+            return { width, height, isMobile, isDesktop };
         }
     }
 
@@ -185,11 +195,13 @@ class TimelineVizHandler {
             .append('svg')
             .attr('width', '100%')
             .attr('height', dimensions.height)
-            .attr('viewBox', '0 0 ' + dimensions.width + ' ' + dimensions.height)
+            .attr('viewBox', '0 0 ' + (dimensions.width + (dimensions.isDesktop ? this.config.desktopHorizontalMargin * 2 : 0)) + ' ' + dimensions.height)
             .style('display', 'block');
 
+        // For desktop, translate the main group to center with margins
+        const translateX = dimensions.isDesktop ? this.config.desktopHorizontalMargin : 0;
         const g = this.svg.append('g')
-            .attr('transform', 'translate(' + this.config.margin.left + ',' + this.config.margin.top + ')');
+            .attr('transform', 'translate(' + (this.config.margin.left + translateX) + ',' + this.config.margin.top + ')');
 
         const availableWidth = dimensions.width - this.config.margin.left - this.config.margin.right;
         const availableHeight = dimensions.height - this.config.margin.top - this.config.margin.bottom;
@@ -292,7 +304,7 @@ class TimelineVizHandler {
         if (requiredHeight > currentHeight) {
             const newTotalHeight = requiredHeight;
             this.svg.attr('height', newTotalHeight)
-                   .attr('viewBox', '0 0 ' + width + ' ' + newTotalHeight);
+                   .attr('viewBox', '0 0 ' + (width + (this.isDesktop() ? this.config.desktopHorizontalMargin * 2 : 0)) + ' ' + newTotalHeight);
         }
 
         // Add antibiotic circles with hover effects
@@ -310,7 +322,7 @@ class TimelineVizHandler {
                     .datum(antibiotic);
 
                 if (!this.isMobile()) {
-                    this.addHoverEffects(circle, g, x, globalHighestY, antibiotic.antibiotic);
+                    this.addHoverEffects(circle, g, x, globalHighestY, antibiotic.releaseDate, antibiotic.antibiotic);
                 }
             });
         });
@@ -457,19 +469,22 @@ class TimelineVizHandler {
         return descriptions[periodId] || [];
     }
 
-    addHoverEffects(circle, g, x, highestY, antibioticName) {
+    addHoverEffects(circle, g, x, highestY, releaseDate, antibioticName) {
         let tooltip = null;
 
         circle
             .on('mouseenter', function(event, d) {
                 d3.select(this).classed('hovered', true);
 
+                // Create tooltip with "Year — Name" format
+                const tooltipText = releaseDate + ' — ' + antibioticName;
+                
                 tooltip = g.append('text')
                     .attr('class', 'antibiotic-tooltip')
                     .attr('x', x)
                     .attr('y', highestY - 16)
                     .attr('text-anchor', 'middle')
-                    .text(antibioticName);
+                    .text(tooltipText);
             })
             .on('mouseleave', function(event, d) {
                 d3.select(this).classed('hovered', false);
@@ -563,13 +578,16 @@ class TimelineVizHandler {
             this.mobileCircles.push(circle);
             // Label: only if not virtual
             if (!antibiotic.isVirtual) {
+                // Create label with "Year — Name" format for mobile too
+                const labelText = antibiotic.releaseDate + ' — ' + antibiotic.antibiotic;
+                
                 const label = g.append('text')
                     .attr('class', 'mobile-antibiotic-name')
                     .attr('x', rowMaxX.get(y) + circleSettings.radius + 10)
                     .attr('y', y + 4)
                     .attr('text-anchor', 'start')
                     .style('opacity', i === 0 ? 1 : 0)
-                    .text(antibiotic.antibiotic);
+                    .text(labelText);
                 this.mobileLabels.push(label);
             } else {
                 // Virtual dot: no label, but keep a placeholder for highlight logic

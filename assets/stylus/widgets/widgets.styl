@@ -159,18 +159,19 @@ widget-overlay-base()
     widget-overlay-base()
     z-index: 27
 
-// Footer overlay styles - ONLY for home page overlay footer
-/* #page-footer-home
-    position: fixed
+/* // Home page footer integration - pushes last widget up when appearing
+#page-footer.home-footer
+    position: absolute
     top: 100vh  // Start below viewport
     left: 0
     right: 0
-    z-index: 35  // Above all widgets
+    z-index: 30  // Above all widgets
     background: brand-white
     width: 100%
-    will-change: top
-    transition: none
-    overflow: visible
+    visibility: hidden
+    opacity: 0
+    transition: none  // No CSS transitions, controlled by JavaScript
+
  */
 
 // Specific styles for widgets with visualizations
@@ -413,5 +414,3 @@ widget-overlay-base()
 
         +media(tablet-h)
             max-width: 50%
-
-
