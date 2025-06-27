@@ -1,5 +1,6 @@
 #main-home
     @extend .content-margins
+    background-color: brand-white
 
 #content-sticky
     position: relative
@@ -21,6 +22,8 @@
         @extend .sans-logo
         margin-top: 6vh
         margin-bottom: 1rem
+        color: brand-white
+        mix-blend-mode: difference
 
         +media(tablet-h)
             margin-top: 10vh
@@ -29,13 +32,16 @@
     h2
         @extend .serif-home
         text-wrap: balance
+        color: brand-white
+        mix-blend-mode: difference
 
         #glyph-1:before, #glyph-2:before, #glyph-3:before
             content: ""
             display: inline-block
             width: 1.5rem
             height: 1.5rem
-            background-color: brand-black // or your color
+            mix-blend-mode: difference
+            background-color: brand-white // or your color
             mask-size: contain
             mask-repeat: no-repeat
             vertical-align: middle
@@ -80,6 +86,8 @@
     h1   
         @extend .sans-caption
         padding-bottom: 0.5rem
+        color: brand-white
+        mix-blend-mode: difference
 
         &:after
             content: " ↓"
@@ -172,3 +180,64 @@
 // Update the #widget-petri section and add styles for the circle
 // Widget petri with manageable content blocks
 
+.hero-background
+    display: flex
+    align-items: center
+    align-content: center
+    align-self: center
+    justify-content: center
+
+
+    
+
+
+.animated-background 
+    width: 40vh
+    height: 40vh
+    background-size cover
+    
+    /* scale: 0.2 */
+    /* Definisce l'animazione */
+    animation: changeBackground 4s step-start infinite;
+            
+    /* Background image iniziale */
+    background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png')
+    background-position: center
+    background-repeat: no-repeat
+    z-index: 0
+    top:50vh
+    position: absolute
+
+    +media(tablet-h)
+        width: 70vh
+        height: 70vh
+        top:18vh
+
+    +media(desktop)
+        width: 80vh
+        height: 80vh
+        top:12vh
+        
+        
+        
+        
+    @keyframes changeBackground 
+        0% 
+            background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png')
+        
+        20% 
+            background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png')
+    
+        40% 
+            background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png')
+        
+        60% 
+            background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png')
+        
+        80% 
+            background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png')
+
+        100% 
+            background-image: url('/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png')
+        
+        

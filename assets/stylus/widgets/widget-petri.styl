@@ -57,16 +57,66 @@
                 left: 65%
 
         #petri-legenda
-            width: 4rem
+            width: auto
+            display: flex
             opacity: 0
             transition: opacity 0.3s ease
-            position: absolute
-            bottom: 1rem
-            left: 0.5rem
+            position: relative
+            /* padding-top: 7vh */
+            
 
             +media(tablet-h)
-                width: 10rem
-                left: 1rem
+                width: auto
+                position: absolute
+                right: 1rem
+
+            // Left column with two rows
+            .petri-legenda-column
+                display: flex !important
+                flex-direction: column !important
+                align-items: flex-start !important
+                gap: 0.5rem
+                max-width: 100%
+                width: 100%
+
+                +media(tablet-h)
+                    max-width: 100%
+                    gap: 1rem
+
+            .petri-legenda-data-visual
+                display flex
+                align-items center
+                gap 0.5rem
+
+            .petri-legenda-circle
+                border-radius 50%
+                position relative
+
+            .petri-legenda-circle-inhibition
+                width 1rem
+                height 1rem
+                background brand-grey1
+                flex-shrink: 0 !important
+
+                +media(tablet-h)
+                    width 2rem
+                    height 2rem
+
+            .petri-legenda-circle-antibiotics
+                width 1rem
+                height 1rem
+                background brand-pink
+                flex-shrink: 0 !important
+
+                +media(tablet-h)
+                    width 2rem
+                    height 2rem
+
+            .petri-legenda-data-number
+                @extend .sans-scheme
+                color brand-black
+
+
         
         // Content blocks container
         .petri-content-block
@@ -83,7 +133,11 @@
             width: 100%
 
             +media(tablet-h)
-                width: 100%
+                padding-top: 7vh
+                width: 70%
+
+            
+                
             
             // Alignment like other page elements
             h2
@@ -137,17 +191,18 @@
         flex-direction: column
         justify-content: space-between
         width: 100%
+        
 
         +media(tablet-h)
             min-height: 100vh
             flex-direction: row
+            gap:2rem
 
     .circle-container-wrapper
         padding: 0
         position: absolute
         display: flex
-        flex-direction: column
-        align-items: center
+        flex-direction: column   
         width: 100%
         bottom: 1rem
         max-height: 55vh
@@ -160,7 +215,7 @@
 
         +media(tablet-h)
             max-height: 100%
-            top: 0
+            top: 7vh
             position: relative
             flex-direction: row
 

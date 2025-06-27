@@ -18,7 +18,25 @@
             <p>After about 24 hours, scientists check the dish. If an antibiotic stops the bacteria from growing, clear circles called "zones of inhibition" appear around the disks. The size of these clear zones shows how effective the antibiotic is: the bigger the circle, the better it works. If there's no clear zone, it means the bacteria are resistant to that antibiotic and it won't be a good choice for treatment.</p>
         </div>
 
+        
+
+        
+
         <div class="circle-container-wrapper">
+
+            <div id="petri-legenda">
+            <div class="petri-legenda-column">
+            <div class="petri-legenda-data-visual">
+                <div class="petri-legenda-circle petri-legenda-circle-antibiotics"></div>
+                <span class="petri-legenda-data-number">Antibiotic</span>
+            </div>
+            <div class="petri-legenda-data-visual">
+                <div class="petri-legenda-circle petri-legenda-circle-inhibition"></div>
+                <span class="petri-legenda-data-number">Antibiotic inhibition area</span>
+            </div>
+            </div>
+        </div>
+            
             <div class="circle-container" id="bacterium-petri">
                 <svg class="circle-svg" viewBox="0 0 400 400">
                     <!-- Define invisible paths for text to follow and mask -->
@@ -107,7 +125,7 @@
         </div>
     </div>
 
-    <img id="petri-legenda" src="assets/img/pages/home/makeaware-petri-legenda.svg">
+    <!-- <img id="petri-legenda" src="assets/img/pages/home/makeaware-petri-legenda.svg"> -->
 </div>
 
 <script src="assets/js/widgets/widget-petri.js"></script>

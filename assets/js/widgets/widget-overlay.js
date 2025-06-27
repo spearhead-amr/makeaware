@@ -1,10 +1,9 @@
-// widget-overlay.js - Enhanced with footer integration
+// widget-overlay.js - Enhanced with interactive scaling for death widget
 
 class WidgetOverlayHandler {
     constructor() {
         this.widgetPetri = document.getElementById('widget-petri');
         this.contentSticky = document.getElementById('content-sticky');
-        this.pageFooter = document.getElementById('page-footer');
         
         // Array of all widgets to manage in sequence
         this.widgets = [
@@ -21,7 +20,6 @@ class WidgetOverlayHandler {
         this.overlayStartPosition = 0;
         this.widgetScrollRange = 0; // Range of scroll for each widget
         this.totalScrollRange = 0;
-        this.footerHeight = 0;
         
         this.breakpoints = {
             mobile: 599,
@@ -70,23 +68,6 @@ class WidgetOverlayHandler {
         
         // Filter only widgets that actually exist in the DOM
         this.widgets = this.widgets.filter(widget => widget.element !== null);
-        
-        // Initialize footer for home page
-        this.initFooter();
-    }
-
-    initFooter() {
-        if (this.pageFooter) {
-            // Add home-specific class to footer
-            this.pageFooter.classList.add('home-footer');
-            
-            // Position footer after widgets initially
-            this.pageFooter.style.position = 'absolute';
-            this.pageFooter.style.top = '100%';
-            this.pageFooter.style.left = '0';
-            this.pageFooter.style.right = '0';
-            this.pageFooter.style.zIndex = '30';
-        }
     }
 
     hasValidWidgets() {
@@ -160,35 +141,8 @@ class WidgetOverlayHandler {
         event.stopPropagation();
     }
 
-    calculateFooterHeight() {
-        if (!this.pageFooter) return 0;
-        
-        // Temporarily make footer visible to measure its height
-        const originalPosition = this.pageFooter.style.position;
-        const originalVisibility = this.pageFooter.style.visibility;
-        const originalTop = this.pageFooter.style.top;
-        
-        this.pageFooter.style.position = 'static';
-        this.pageFooter.style.visibility = 'hidden';
-        this.pageFooter.style.top = 'auto';
-        
-        // Force layout and measure
-        this.pageFooter.offsetHeight;
-        const footerHeight = this.pageFooter.offsetHeight;
-        
-        // Restore original styles
-        this.pageFooter.style.position = originalPosition;
-        this.pageFooter.style.visibility = originalVisibility;
-        this.pageFooter.style.top = originalTop;
-        
-        return footerHeight;
-    }
-
     calculateOverlayPositions() {
         const windowHeight = window.innerHeight;
-        
-        // Calculate footer height first
-        this.footerHeight = this.calculateFooterHeight();
         
         // Calculate overlay start position
         const stickyHandler = window.stickyScrollHandler;
@@ -218,22 +172,14 @@ class WidgetOverlayHandler {
         // Calculate total scroll range
         this.totalScrollRange = this.widgets.reduce((total, widget) => total + widget.scrollRange, 0);
         
-        // Calculate footer position (after all widgets are complete)
-        const footerStartPosition = this.overlayStartPosition + this.totalScrollRange;
-        
-        // Position footer
-        if (this.pageFooter) {
-            this.pageFooter.style.top = `${footerStartPosition}px`;
-        }
-        
-        // Extend body height to include footer
-        const totalScrollHeight = footerStartPosition + this.footerHeight + windowHeight;
+        // Extend body height to allow scrolling through all widgets
+        const totalScrollHeight = this.overlayStartPosition + this.totalScrollRange + windowHeight;
         const currentBodyHeight = parseInt(document.body.style.minHeight) || 0;
         if (totalScrollHeight > currentBodyHeight) {
             document.body.style.minHeight = `${totalScrollHeight}px`;
         }
         
-        console.log(`Overlay start: ${this.overlayStartPosition}px, total range: ${this.totalScrollRange}px, footer height: ${this.footerHeight}px`);
+        console.log(`Overlay start: ${this.overlayStartPosition}px, total range: ${this.totalScrollRange}px`);
         console.log('Widget ranges:', this.widgets.map(w => ({ id: w.id, range: w.scrollRange })));
     }
 
@@ -315,16 +261,12 @@ class WidgetOverlayHandler {
         // Calculate scroll progress within the overlay system
         const scrollProgress = scrollTop - this.overlayStartPosition;
         
-        // Check if we're past all widgets (entering footer area)
+        // Check if we're past all widgets
         if (scrollProgress >= this.totalScrollRange) {
-            // Past all widgets - show all widgets as completely visible and show footer
+            // Past all widgets - show all widgets as completely visible
             this.showAllWidgetsComplete();
-            this.showFooter();
             return;
         }
-        
-        // Hide footer when in widget area
-        this.hideFooter();
         
         // Find which widget should be active based on cumulative scroll ranges
         let cumulativeRange = 0;
@@ -357,28 +299,11 @@ class WidgetOverlayHandler {
         this.updateWidgetSystem(currentWidgetIndex, clampedProgress);
     }
 
-    showFooter() {
-        if (this.pageFooter) {
-            this.pageFooter.style.visibility = 'visible';
-            this.pageFooter.style.opacity = '1';
-        }
-    }
-
-    hideFooter() {
-        if (this.pageFooter) {
-            this.pageFooter.style.visibility = 'hidden';
-            this.pageFooter.style.opacity = '0';
-        }
-    }
-
     resetToInitialState() {
         // Remove overlay class from petri
         if (this.widgetPetri) {
             this.widgetPetri.classList.remove('overlayed');
         }
-        
-        // Hide footer
-        this.hideFooter();
         
         // Hide all widgets and reset their positions
         this.widgets.forEach(widget => {
