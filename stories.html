@@ -2,14 +2,47 @@
 <html lang="en">
 <head id="page-head">
 	<script src="assets/js/components-render.js" defer></script>
+	<script src="assets/js/stories-collection/stories-collection.js" defer></script>
 	<title>MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead</title>
 </head>
 <body>
 	<header id="page-header"></header>
 
 	<main id="main-stories-collection">
+		<!-- introductin and instructions -->
+			<section id="stories-introduction">
+			<h1>Story collection tool</h1>
+			<p>Every story is from people who shared their experience of antibiotic consumption and related diseases. Read and explore them according to your interest:</p>
+			<div id="stories-instructions">
+				<h2>Instructions</h2>
+				<p>Descrizione del databook ecc aghajsh esplorare by clickuing on original language input, same term repeated across different stories, glossary</p>
+			</div>
+		</section>
 
-		<!-- the content of the page goes here -->
+		<!-- filters -->
+		<section id="stories-filters">
+			<h2>Filters</h2>
+			<ul id="stories-filters-container"">
+				<li data-filters="diagnosis">diagnosis</li>
+				<li data-filters="symptoms">symptoms</li>
+				<li data-filters="treatment">treatment</li>
+				<li data-filters="follow-up">follow-up</li>
+				<li data-filters="demographics">demographics</li>
+			</ul>
+		</section>
+
+		<!-- sotries collection -->
+		<section id="stories-collection-container">
+			<ul id="stories-list">
+
+			</ul>
+		</section>
+
+		<!-- stories terms across different stories -->
+		<aside id="terms-container">
+			<div id="terms-close"></div>
+			<p di="terms-container-description">Same term repeated across different stories</p>
+		</aside>
 
         <h1>Stories</h1>
 
