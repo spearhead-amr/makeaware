@@ -23,6 +23,7 @@ function loadData() {
         })
         .then(data => addKeyCount(data))
         .then(filterButtonsAddEventListener())
+        .then(addWorldButtons())
         .catch(error => console.error('Error: ' + error));
 }
 
@@ -131,6 +132,23 @@ function addKeyCount(data) {
         const currentKey = element.getAttribute('data-key');
         element.innerHTML = ` <span class="glyph">(<div class=\"key-counter\">${keysList[currentKey]}</div>)</span>`;
     }
+}
+
+// add glyps button fucntionality
+/*
+const toggleWordButtons = function(button) {
+    console.log(button.getAttribute('data-word'));
+}
+*/
+
+function addWorldButtons() {
+
+    /*
+
+    for(let i=0; i<dataWordElements.length; i++) {
+        dataWordElements[i].addEventListener("click", toggleWordButtons.bind(this, dataWordElements[i]));
+    }
+    */
 }
 
 // start here
