@@ -1,22 +1,38 @@
 // datas
 
 // const storyFields = ["I decided to", "who", "because", "I was feeling", "every time", "I've been told by", "that I was suffering from", "It happened", "for", "The doctor", "to me that", "I started", "Ultimately, the cure", "I started feeling", "I noticed", "So, I tried", "Now", "I am", "Now	I am", "Based in"];
+const keysList = {
+    "doctor": 0,
+    "infection": 0,
+    "cystis": 0
+}
+
+const wordsList = {
+    "uti": "A urinary tract infection (UTI) is an infection in any part of the urinary system. The urinary system includes the kidneys, ureters, bladder and urethra. Most infections involve the lower urinary tract — the bladder and the urethra.",
+    "antibiotic": "An antibiotic is a type of antimicrobial substance active against bacteria. It is the most important type of antibacterial agent for fighting bacterial infections, and antibiotic medications are widely used in the treatment and prevention of such infections"
+}
 
 function loadData() {
     fetch('assets/json/stories-collection.json')
         .then(Response => Response.json())
-        .then(data => appendData(data))
+        .then(data => {
+            return checkWords(data);
+        })
+        .then(data => {
+            return appendData(data);
+        })
+        .then(data => addKeyCount(data))
         .then(filterButtonsAddEventListener())
         .catch(error => console.error('Error: ' + error));
 }
 
 function appendData(data) {
-    console.log(data)
+    //console.log(data)
     let output = "";
     const STORIESLIST = document.getElementById("stories-list");
 
     let story;
-    console.log(data.length);
+    //console.log(data.length);
     for(let i=data.length-1; i>=0; i--) {
         story = data[i];
         output += `
@@ -39,8 +55,11 @@ function appendData(data) {
     }
 
     STORIESLIST.innerHTML = output;
+
+    return data;
 }
 
+// Filter buttons
 const toggleFilterButton = (button) => {
     const currentFilterElement = document.getElementById("stories-list");
     const buttonsList = document.getElementById("stories-filters-container").children;
@@ -67,4 +86,52 @@ function filterButtonsAddEventListener() {
     }
 }
 
+// Check the presence of wordList and keysList words in the stories and and the <span data-word=""></span> or data-key respectively around the word itself
+function checkWords(data) {
+
+    // knowledge note: reference to objects points to the original object, so any changes made to the reference will affect the orginal object
+
+    for(const story of data) {
+
+        for(let storyKey of Object.keys(story)) {
+
+            // search for words
+            for(const word of Object.entries(wordsList)) {   
+
+                if(String(story[storyKey]).toLowerCase().includes(word[0])) {
+                    const regex = new RegExp(`\\b(${word[0]})\\b`, 'gi');
+                    story[storyKey] = String(story[storyKey]).replace(regex, `$1<span class="glyph" data-word="${String(word[0]).toLowerCase()}"> (✧)</span>`);
+                }
+            }
+
+            // search for keys
+            for(const keyKey of Object.keys(keysList)) {
+                
+                if(String(story[storyKey]).toLowerCase().includes(keyKey)) {
+                    const regex = new RegExp(`\\b(${keyKey})\\b`, 'gi');
+                    keysList[keyKey]++;
+                    story[storyKey] = String(story[storyKey]).replace(regex, `$1<span data-key="${String(keyKey).toLowerCase()}"></span>`);
+                }
+            }   
+        }
+    }
+
+    // console.log(data);
+    // console.log(keysList);
+
+    return data;
+}
+
+// add the count to the keys
+function addKeyCount(data) {
+    // keys
+    const dataKeysElements = document.querySelectorAll('[data-key]');
+
+    for(const element of dataKeysElements) {
+        const currentKey = element.getAttribute('data-key');
+        element.innerHTML = ` <span class="glyph">(<div class=\"key-counter\">${keysList[currentKey]}</div>)</span>`;
+    }
+}
+
+// start here
 loadData();
