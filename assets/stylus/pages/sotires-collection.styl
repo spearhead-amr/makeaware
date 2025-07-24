@@ -1,0 +1,153 @@
+#main-stories-collection
+    @extend .content-margins
+    margin-top: 4rem
+
+    // text color classes
+    .filter-diagnosis
+        color: diagnosis-color
+    .filter-symptoms
+        color: symptoms-color
+    .filter-treatment
+        color: treatment-color
+    .filter-follow-up
+        color: follow-up-color
+    .filter-demographics
+        color: demographics-color
+
+    // shared classes
+    .section-title
+        @extend .sans-paragraph
+        text-transform: uppercase
+        font-size: 0.7rem
+        margin-bottom 1rem
+
+        +media(desktop)
+            font-size: 1.9rem
+
+    // introduction and instructions
+    #stories-introduction
+        margin-bottom:
+            3rem
+
+        h1
+            visibility: hidden
+
+        #introduction-title
+            @extend .serif-title
+
+        #stories-instructions
+            @extend .sans-paragraph
+            margin-top 2rem
+
+            +media(desktop)
+                margin-top calc(2rem * 2.5)
+
+            h2
+                @extend .section-title            
+    
+    // filters
+    #stories-filters
+
+        h2
+            @extend .section-title
+        
+        #stories-filters-container
+            @extend .serif-paragraph
+            list-style: none
+            padding-inline-start: 0
+
+            li
+                display: inline-block
+                padding: 0.2rem 0.7rem
+                border: solid
+                border-width: 1px
+                border-radius: 2rem
+                box-sizing: border-box
+                text-transform: uppercase
+                margin-right: 0.5rem
+                margin-bottom: 0.5rem
+                user-select: none;
+
+                &:last-child
+                    margin-right: 0
+                
+                &:hover
+                    cursor: pointer
+
+                &[data-filters="diagnosis"]
+                    border-color: diagnosis-color
+                    @extend .filter-diagnosis
+                    &.active
+                        background-color: diagnosis-color
+
+                &[data-filters="symptoms"]
+                    border-color: symptoms-color
+                    @extends .filter-symptoms
+                    &.active
+                        background-color: symptoms-color
+
+                &[data-filters="treatment"]
+                    border-color: treatment-color
+                    @extends .filter-treatment
+                    &.active
+                        background-color: treatment-color
+
+                &[data-filters="follow-up"]
+                    border-color: follow-up-color
+                    @extends .filter-follow-up
+                    &.active
+                        background-color: follow-up-color
+
+                &[data-filters="demographics"]
+                    border-color: demographics-color
+                    @extends .filter-demographics
+                    &.active
+                        background-color: demographics-color
+
+                &.active
+                    color: white
+
+                +media(desktop)
+                    border-radius: 2rem
+                    padding: 0.5rem 1.75rem
+                    border-width: 2px
+
+
+    // sotries collection
+    #stories-collection-container
+        @extend .serif-paragraph
+        border-top: 1px solid black
+        margin-top 2rem
+        padding-top 1rem
+
+        #stories-list
+            list-style: none
+            padding-inline-start: 0
+
+            h3
+                @extend .serif-paragraph
+                margin-bottom 0.5rem
+
+            li+li
+                margin-top: 1rem
+
+        
+            &[data-current-filter="diagnosis"]
+                span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="symptoms"]
+                span[data-filter="diagnosis"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="treatment"]
+                span[data-filter="symptoms"], span[data-filter="diagnosis"], span[data-filter="follow-up"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="follow-up"]
+                span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="diagnosis"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="demographics"]
+                span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="diagnosis"]
+                    display: none
