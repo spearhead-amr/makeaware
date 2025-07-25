@@ -22,8 +22,8 @@ function loadData() {
             return appendData(data);
         })
         .then(data => addKeyCount(data))
-        .then(filterButtonsAddEventListener())
-        .then(addWorldButtons())
+        .then(() => filterButtonsAddEventListener())
+        .then(() => addWorldButtons())
         .catch(error => console.error('Error: ' + error));
 }
 
@@ -123,7 +123,13 @@ function checkWords(data) {
     return data;
 }
 
-// add the count to the keys
+
+
+// add the count to the keys and the button functionality
+const toggleKeyButtons = function(button) {
+    console.log(button.getAttribute('data-key'));
+}
+
 function addKeyCount(data) {
     // keys
     const dataKeysElements = document.querySelectorAll('[data-key]');
@@ -132,23 +138,42 @@ function addKeyCount(data) {
         const currentKey = element.getAttribute('data-key');
         element.innerHTML = ` <span class="glyph">(<div class=\"key-counter\">${keysList[currentKey]}</div>)</span>`;
     }
+
+    const keyButtons = document.querySelectorAll('[data-key]');
+
+    for(let i=0; i<keyButtons.length; i++) {
+        keyButtons[i].addEventListener("click", toggleKeyButtons.bind(this, keyButtons[i]));
+    }
 }
 
-// add glyps button fucntionality
-/*
+// add glyps button functionality
 const toggleWordButtons = function(button) {
-    console.log(button.getAttribute('data-word'));
+    if(!button.classList.contains("active")) {
+        // close all the descriptions
+        const worldButtons = document.querySelectorAll('[data-word]');
+        console.log(worldButtons);
+        for(const b of worldButtons) {
+            b.classList.remove("active");
+            b.innerHTML = ` (✧) `;
+        }
+        // activate the current description
+        const key = button.getAttribute('data-word');
+        const description = wordsList[key];
+        button.innerHTML = ` (✧ ${description}) `;
+        button.classList.add("active");
+    } else {
+        button.innerHTML = ` (✧) `;
+        button.classList.remove("active");
+    }
 }
-*/
 
 function addWorldButtons() {
+    
+    const worldButtons = document.querySelectorAll('[data-word]');
 
-    /*
-
-    for(let i=0; i<dataWordElements.length; i++) {
-        dataWordElements[i].addEventListener("click", toggleWordButtons.bind(this, dataWordElements[i]));
+    for(let i=0; i<worldButtons.length; i++) {
+        worldButtons[i].addEventListener("click", toggleWordButtons.bind(this, worldButtons[i]));
     }
-    */
 }
 
 // start here
