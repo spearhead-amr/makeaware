@@ -35,9 +35,16 @@ class StickyScrollHandler {
         // Scroll milestones for precise control
         this.scrollMilestones = [];
         
+        console.log("isSticky: " + this.contentSticky);
+        console.log("isWidgetPetri: " + this.widgetPetri);
+        console.log("isPetriFrame: " + this.petriFrame);
+        
+
         if (this.contentSticky && this.widgetPetri && this.petriFrame) {
             this.init();
+            console.log("Attivo");
         }
+
     }
 
     init() {
