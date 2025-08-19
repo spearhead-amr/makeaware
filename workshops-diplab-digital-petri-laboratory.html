@@ -13,49 +13,37 @@
     <main id="main-workshop">
         <!-- the content of the page goes here -->
         <section id="workshop-introduction">
-            <h1>Visualizing the Resistance</h1>
-            <p>What are antibiotics? How do they work? What does Antimicrobial Resistance mean? Through the
-                introduction to the scientific protocols and tools in a microbiology laboratory, this workshop proposes
-                an hands-on experience to learn and discover the science around antimicrobial resistance. Starting from
-                scientific contents, the activities will engage the participants in the creation of a collaborative
-                repository of images, resources and stories that will help contributing to the fight against antibiotics
-                misuses and its consequences. In particular, the workshop is addressed to women who are usually affected
-                by specific cases of AMR.</p>
+            <h1>DiPLab - Digital Petri Laboratory</h1>
+            <p>To engage high-school students in understanding antimicrobial resistance, DipLab translates the antibiogram test into a digital format. Through a handheld device, elements of laboratory practice are simulated, turning the steps of testing antibiotic susceptibility into an accessible learning activity.</p>
         </section>
 
-            <section id="workshop-description">
+          <section id="workshop-description">
+                <div class="descriptive-text">
+<p>The digitization of antibiogram testing has enabled the exploration of antibiotic susceptibility assays outside traditional microbiology settings. The DiPLab workshop provides an interactive, hands-on session designed to deepen participants' understanding of antimicrobial resistance (AMR) and appropriate antibiotic use. The session begins with an introduction by a microbiologist or tutor to explain AMR and the use of the DiPLab platform. Participants, divided into groups, simulate real-world scenarios using devices preloaded with specific bacterial strains and patient medical records</p>
+    <p>They follow scientific protocols to test antibiotics on digital Petri dishes, analyze inhibition zones, and determine the most effective treatment. The workshop includes visualization tools to track bacterial growth and antibiotic effectiveness over time, encouraging collaborative learning and problem-solving. By engaging in this process, participants gain practical insights into the significance of responsible antibiotic use and its impact on healthcare.
+    </p>
 
-
-            </section>
+</div>
+</section>
 
             <div class="divider"></div>
 
             <section id="workshop-detail">
                 <h2></h2>
                 <div id="workshop-images">
-                <img src="assets/img/pages/workshops/visualizing-the-resistance/visualizing-the-resistance1.jpg">
-                <img src="assets/img/pages/workshops/visualizing-the-resistance/visualizing-the-resistance2.jpg">
-                <img src="assets/img/pages/workshops/visualizing-the-resistance/visualizing-the-resistance3.jpg">
-                <img src="assets/img/pages/workshops/visualizing-the-resistance/visualizing-the-resistance4.jpg">
+                <img src="assets/img/pages/workshops/diplab-digital-petri-laboratory/diplab-digital-petri-laboratory-1.jpg">
+                <img src="assets/img/pages/workshops/diplab-digital-petri-laboratory/diplab-digital-petri-laboratory-2.jpg">
+                <img src="assets/img/pages/workshops/diplab-digital-petri-laboratory/diplab-digital-petri-laboratory-3.jpg">
+                <img src="assets/img/pages/workshops/diplab-digital-petri-laboratory/diplab-digital-petri-laboratory-4.jpg">
                 </div>
-
-
-
             </section>
 
             <div class="divider"></div>
 
             <article id="workshop-detail">
                 <h2>with</h2>
-                <p>The workshop is led by the MAKEAWARE! Team, together with Cristina Fragoso Corti. The activity will be hosted by the Applied Microbiology Laboratory at SUPSI. Cristina graduated in Microbiology, from the Faculty of Biotechnology, Catholic University of Porto in 2000. She got a master degree in 2002 from the Institute for Research in Biomedicine in Bellinzona, Switzerland. Since 2012 she is a researcher at the Laboratory of Applied Microbiology at SUPSI where she is involved in teaching and applied research. Her main activities are based on the detection and characterization of microorganisms in samples of different origins to describe their taxonomy, their genetic, metabolic and functional characteristics.</p>
-                
-            </article>
-
-            <div class="divider"></div>
-
-            <article id="workshop-detail">
-                <h2>data policy</h2>
-                <p>During the MAKEAWARE! workshops, participants will be asked to collaborate and share personal experiences and stories about antimicrobial and antibiotic resistance, antibiotic consumption, and urinary tract infection diseases and remedies. Different media such as photos, graphics, and texts will be used to document the outputs of the collaboration process. The outputs will be edited or coded and shared via the repository as anonymized open datasets for anyone to use. Learn more about the use of data in the <a href="http://localhost:3000/data-policy.html">Data Privacy and Management Policy Page</a>.</p>
+                <p>DipLab was developed by Matteo Subet as part of his Master’s thesis in Interaction Design at SUPSI, under the supervision of Dr. Serena Cangiano and Marco Lurati. To integrate the tool into the MAKEAWARE! initiative, a dedicated workshop format was designed and refined across multiple iterations. Matteo is now a PhD student at the SUPSI Institute of Design, where he focuses on protocols and documentation for fabrication laboratories.
+                    </p>
                 
             </article>
 
@@ -63,13 +51,75 @@
 
             <article id="workshop-detail">
                 <h2>protocol</h2>
-                <img src="assets/img/pages/workshops/protocol-test.svg">
-                
+                <P>
+                    To ensure the format is easily replicable by others, particularly educators, the functionalities and structure of the device have been documented in the following video tutorial. The focus on educators aims to support their learning environments by providing a tool that enables the replication of antibiogram tests outside laboratory settings, without safety risks and without the need to wait for visible microscopic reactions to antibiotics.
+                </P>
+             </article>
+
+              <section id="workshop-description">
+                <div class="descriptive-text">
+    
+                <h2> </h2>
+                <!-- <video width="50%" height="auto"> 
+                <source src="assets/img/pages/workshops/diplab-digital-petri-laboratory/diplab-video-tutorial.mp4" type="video/mp4">
+            </video> -->
+        </div>
+        </section>
+
+        <article id="workshop-detail">
+                <h2></h2>
+                <P>
+                    <br>
+                    To address the limitation of working in microbiology laboratories, technology has been reconsidered for this format to allow the antibiogram procedure to be tested outside specific environments and to involve a wider public. In this direction, “DipLab - Digital Petri Laboratory” provides a safe environment to work with bacteria and antibiotics, engaging (especially young) people in interactive movements that aim to recreate laboratory experimental practices through a multimodal digital tool. Additionally, technology can shorten the antibiogram test progression, allowing results to instantly emerge instead of requiring 48 hours of cultivation. 
+The system consists of two parts: a web application running on smartphones and a console-sized device designed like a handheld game. Inside the device, a microprocessor (such as an Arduino Board, Raspberry Pi, or ESP32) connects different components: a circular touchscreen that simulates a Petri dish, an accelerometer to mimic the spreading of bacteria by tilting, and a Wi-Fi module to enable communication with the smartphone. Through the app, students select bacteria, test antibiotics, and explore how outcomes change over time.
+DipLab is used in a workshop format where students receive fictional patient records describing illnesses and allergies, then test possible treatments with the digital device. By combining simulation, role play, and collective discussion, the activity helps high-school students understand antimicrobial resistance, the use of antibiotics, and the process of prescribing treatments.
+
+                </P>
+             </article>
+
+            <div class="divider"></div>
+
+             <article id="workshop-detail">
+                <h2>resources</h2>
+              <p>
+<a href="assets/img/pages/workshops/visualizing-the-resistance/resources/ste-by-step-guide.pdf" tyle= "in-text-citation" target="blank" download="step-by-step-guide.pdf">
+  ↗ to replace 1
+</a>
+<br><a href="assets/img/pages/workshops/visualizing-the-resistance/resources/list-of-materials.xlsx" tyle= "in-text-citation" target="blank" download="list-of-materials.xlsx">
+  ↗ to replace 2
+</a>
+<br><a href="assets/img/pages/workshops/visualizing-the-resistance/resources/antibiotic-resistance-manifesto.pdf" tyle= "in-text-citation" target="blank" download="antibiotic-resistance-manifesto.pdf">
+  ↗ to replace 3
+</a>
+<br><a href="assets/img/pages/workshops/visualizing-the-resistance/resources/evaluation-kit.pdf" tyle= "in-text-citation" target="blank" download="evaluation-kit.pdf">
+  ↗ to replace 4
+</a>
+              </p>
+    
+            </article>
+
+            <div class="divider"></div>
+         
+             <article id="workshop-detail">
+                <h2>sessions</h2>
+                <p>The DiPLab format have been part of the <a class="activity-bottom-detail" href="https://mint.satw.ch/it/tecdays" target="_blank">TechDay initiative</a>, which considers full-day events held at Swiss secondary schools organized by the Swiss Academy of Engineering Sciences (SATW) since 2007  These events allow students to participate in hands-on, interactive modules of their choice, where they engage with experts and explore various technical and scientific topics and applications. Within this context, the DiPLab has been presented at the Social and Health Professional Centre (SSMT), and the cantonal high school in Locarno, at the Kantonsschule Zürcher Unterland, in Bülach. 
+                 <br> <br> 
+                An additional workshop was held during the <a class="activity-bottom-detail" href="https://mint.satw.ch/it/tecdays" target="_blank">exhibition “INVISIBLES. La vie cachée des microbes. Une exposition à la découverte de l'univers fascinant des micro-organismes,”</a> organized by the Musée de la main UNIL-CHUV in Lausanne, in collaboration with the Swiss National Research Programme on Microbiomes (Pôle de recherche national Microbiomes). The workshop was supported by Dr. Gilbert Greub, Director of the Microbiology Lab, and PhD student Alexandre Delfino, both members of the SPEARHEAD project.  </p>
+             </p>
             </article>
 
             <div class="divider"></div>
 
+            <article id="workshop-detail">
+                <h2>results</h2>
+                <p>ti va di scrivere tipo 5 righe anche predendo da results del paper ?
+                    </p>
+                
+            </article>
 
+
+            <div class="divider"></div>
+            
             <div class="past-activities">
                 <h2>Publications</h2>
                 <div class="separator-line"></div>
@@ -81,39 +131,22 @@
                     <div class="activity-info">
                         <div class="date">2024</div>
                         <div class="activity-details">
-                            <div class="activity-top-detail">Fostering a Patient-led Culture of Care Through Data Physicalization: A Design Approach to Create Awareness and Promote Data Collection on Antimicrobial Resistance</div>
-                            <a class="activity-bottom-detail" href="https://doi.org/10.21606/drs.2024.419" target="_blank">→ Link</a>
+                            <div class="activity-top-detail">Digital Petri Laboratory: How Fab Labs and Interaction Design Can Support Microbiology in Raising Awareness About Antimicrobial Resistance</div>
+                            <a class="activity-bottom-detail" href="https://zenodo.org/records/13221347" target="_blank">→ Link</a>
                         </div>
                     </div>
     
                     <div class="activity-info">
                         <div class="activity-details">
-                            <div class="activity-top-detail">Terenghi, G., Cangiano, S., Autuori, A., and Margarida Corti, C.</div>
+                            <div class="activity-top-detail">Subet, M., Terenghi, G., Corti, C. M., & Cangiano, S.</div>
                         </div>
                         <div class="activity-details">
-                            <div class="activity-top-detail">Design Research Society International Conference</div>
+                            <div class="activity-top-detail">Fab24 Mexico - Fabricating Equity Conference</div>
                         </div>
                     </div>
                 </li>
 
-                <li class="activity-item">
-                    <div class="activity-info">
-                        <div class="date">2024</div>
-                        <div class="activity-details">
-                            <div class="activity-top-detail">Fostering a Patient-led Culture of Care Through Data Physicalization: A Design Approach to Create Awareness and Promote Data Collection on Antimicrobial Resistance</div>
-                            <a class="activity-bottom-detail" href="https://doi.org/10.21606/drs.2024.419" target="_blank">→ Link</a>
-                        </div>
-                    </div>
-    
-                    <div class="activity-info">
-                        <div class="activity-details">
-                            <div class="activity-top-detail">Terenghi, G., Cangiano, S., Autuori, A., and Margarida Corti, C.</div>
-                        </div>
-                        <div class="activity-details">
-                            <div class="activity-top-detail">Design Research Society International Conference</div>
-                        </div>
-                    </div>
-                </li>
+              
 
 
 
