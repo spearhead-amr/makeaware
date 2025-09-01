@@ -131,6 +131,45 @@
             li+li
                 margin-top: 1rem
 
+            span[data-filter="diagnosis"],
+            span[data-filter="symptoms"],
+            span[data-filter="treatment"],
+            span[data-filter="follow-up"],
+            span[data-filter="demographics"]
+                display: inline
+
+            
+            &.diagnosis, &.symptoms, &.treatment, &.follow-up, &.demographics
+                span[data-filter="diagnosis"],
+                span[data-filter="symptoms"],
+                span[data-filter="treatment"],
+                span[data-filter="follow-up"],
+                span[data-filter="demographics"]
+                    display: none
+            
+
+            &.diagnosis
+                span[data-filter="diagnosis"]
+                    display: inline
+            
+            &.symptoms
+                span[data-filter="symptoms"]
+                    display: inline
+
+            &.treatment
+                span[data-filter="treatment"]
+                    display: inline
+
+            &.follow-up
+                span[data-filter="follow-up"]
+                    display: inline
+
+            &.demographics
+                span[data-filter="demographics"]
+                    display: inline
+            
+
+            /* old, one filter at the time only
         
             &[data-current-filter="diagnosis"]
                 span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="demographics"]
@@ -151,6 +190,8 @@
             &[data-current-filter="demographics"]
                 span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="diagnosis"]
                     display: none
+
+            */
 
             li
                 .glyph

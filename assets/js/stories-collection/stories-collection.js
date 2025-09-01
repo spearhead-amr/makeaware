@@ -72,7 +72,7 @@ const headerStories = {
     "told_by": "I've been told by",
     "suffering": "that I was suffering from",
     "happened": "It happened",
-    "when": "-",
+    "when": "for",
     "doctor": "The doctor",
     "to_me_that": "to me that",
     "started": "I started",
@@ -83,7 +83,7 @@ const headerStories = {
     "now": "Now",
     "gender": "I am",
     "age": "years old",
-    "location": "Based in"
+    "location": "based in"
 }
 
 function loadData() {
@@ -166,6 +166,14 @@ function appendData(data) {
 // Filter buttons
 const toggleFilterButton = (button) => {
     const currentFilterElement = document.getElementById("stories-list");
+    const buttonFilterName = button.getAttribute('data-filters');
+
+    button.classList.toggle('active');
+    currentFilterElement.classList.toggle(buttonFilterName);
+    
+
+    /* old
+
     const buttonsList = document.getElementById("stories-filters-container").children;
 
     for(const b of buttonsList) {
@@ -180,6 +188,7 @@ const toggleFilterButton = (button) => {
         currentFilterElement.setAttribute('data-current-filter', "");
         button.classList.remove('active');
     }
+    */
 }
 
 function filterButtonsAddEventListener() {
@@ -246,7 +255,6 @@ const toggleKeyButtons = function(button) {
 
 function addKeyCount(data) {
 
-    console.log(keysList);
     // keys
     const dataKeysElements = document.querySelectorAll('[data-key]');
 
