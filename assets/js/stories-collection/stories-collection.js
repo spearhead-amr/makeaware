@@ -12,7 +12,7 @@ const keysList = {
     "side effects" : 0,
     "cure" : 0,
     "symptom" : 0,
-    "UTI" : 0,
+    "uti" : 0,
     "fever" : 0,
     "skin " : 0,
     "stomach": 0
@@ -25,7 +25,7 @@ const wordsList = {
     "Treatment": "The actions taken to manage or cure illness, from medicines to self-care. In this study, it refers to both prescribed and self-initiated responses to infections.",
     "Biographies": "Personal life stories or backgrounds that shape how people experience and understand illness.",
     "Symptoms": "The physical or emotional signs felt by a person that show something may be wrong with their health.",
-    "UTI (urinary tract infection)": "An infection in the bladder, urethra, or kidneys that makes peeing painful or frequent.",
+    "UTI": "An infection in the bladder, urethra, or kidneys that makes peeing painful or frequent.",
     "Cystitis": "A common UTI that affects the bladder and causes burning when urinating.",
     "Bronchitis": "An infection that irritates the airways in the lungs and causes cough and mucus.",
     "Bronchopneumonia": "A more serious lung infection affecting small areas of the lungs.",
@@ -36,13 +36,13 @@ const wordsList = {
     "Streptococcus infection": "Infection of the tonsils in the throat, often causing fever and sore throat.",
     "Mononucleosis": "A viral illness (often called “mono”) that makes you very tired and gives sore throat and fever.",
     "Ulcerative colitis": "A long-lasting disease that causes inflammation and sores in the large intestine.",
-    "Borreliosis (Lyme disease)": "An infection from tick bites that can cause fever, rash, and joint pain.",
+    "Borreliosis": "An infection from tick bites that can cause fever, rash, and joint pain.",
     "Appendicitis": "A painful infection of the appendix, a small organ in the belly, usually treated with surgery.",
     "Alluce valgo (Hallux valgus / bunion)": "A bony bump at the base of the big toe that can be painful.",
     "Asthma": "A condition where the airways tighten, making it hard to breathe.",
     "Parainfectious asthma": "Asthma attacks triggered by infections, such as colds.",
-    "Polipetti (nasal polyps)": "Small growths inside the nose that can make breathing harder.",
-    "Micropolycystic ovary (PCOS)": "A condition where the ovaries have many small cysts, sometimes causing irregular periods.",
+    "Polipetti": "Small growths inside the nose that can make breathing harder.",
+    "Micropolycystic ovary": "A condition where the ovaries have many small cysts, sometimes causing irregular periods.",
     "Antibiotics": "Medicines that kill bacteria and treat bacterial infections (not viruses).",
     "Amoxicillin": "Types of antibiotics prescribed for specific infections.",
     "Augmentin": "Types of antibiotics prescribed for specific infections.",
@@ -53,8 +53,9 @@ const wordsList = {
     "Cortisone": "A medicine that reduces swelling and inflammation.",
     "Antifungals": "Medicines that treat infections caused by fungi (like yeast).",
     "Probiotics": "“Good bacteria” taken as food or supplements to help digestion or reduce side effects of antibiotics.",
-    "Integrators (supplements)": "Vitamins or minerals taken to support general health.",
-    "Anti-baby pill (contraceptive pill)": "A daily pill taken by women to prevent pregnancy.",
+    "Integrators": "Vitamins or minerals taken to support general health.",
+    "Anti baby": "A daily pill taken by women to prevent pregnancy.",
+    "Conception pill" : "A daily pill taken by women to prevent pregnancy.",
     "Chemotherapy": "Strong medicines used to treat cancer.",
     "Immune system": "The body's defense system that fights infections.",
     "Antimicrobial resistance": "When germs stop responding to antibiotics or other medicines.",
@@ -113,26 +114,16 @@ function cleanData(data) {
             // console.log("Before (typeof: " + typeof story[storyKey] + "), key:  " + storyKey);
             // console.log(story[storyKey]);
 
-            if(storyKey != "Based in" && storyKey != "years old") {
-                // check for "I " or "I'" to keep I uppercase
-                if(!(/^I(\s|')/.test(story[storyKey]))) {
+
+            if(storyKey != "Based in" && storyKey != "years old") { // escape age (because being a number) and location (first letter Uppercase)
+                // check for "I ", "I'" adn "UTI" to leave them uppercase
+                if(!(/^(I(\s|')|UTI)/.test(story[storyKey]))) {
                     if(typeof story[storyKey] == 'string') {
                         //console.log("Is String!");
                         story[storyKey] = story[storyKey].charAt(0).toLowerCase() + story[storyKey].slice(1);
                     }
                 }
             }
-
-            // console.log("After: " + story[storyKey]);
-            // console.log(" ");
-
-            /*
-            //if(story[storyKey]) {  // if not null or empty
-                
-                story[storyKey].charAt(0).toLowerCase() + story[storyKey].slice(1);
-                console.log(story[storyKey]);
-            //}
-            */
         }
 
     }
@@ -254,12 +245,15 @@ const toggleKeyButtons = function(button) {
 }
 
 function addKeyCount(data) {
+
+    console.log(keysList);
     // keys
     const dataKeysElements = document.querySelectorAll('[data-key]');
 
     for(const element of dataKeysElements) {
         const currentKey = element.getAttribute('data-key');
-        element.innerHTML = ` <span class="glyph">(<div class=\"key-counter\">${keysList[currentKey]}</div>)</span>`;
+        element.innerHTML = ` <span class="glyph">[<div class=\"key-counter\">${keysList[currentKey]}</div>]</span>`;
+
     }
 
     const keyButtons = document.querySelectorAll('[data-key]');
