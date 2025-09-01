@@ -2,19 +2,95 @@
 
 // const storyFields = ["I decided to", "who", "because", "I was feeling", "every time", "I've been told by", "that I was suffering from", "It happened", "for", "The doctor", "to me that", "I started", "Ultimately, the cure", "I started feeling", "I noticed", "So, I tried", "Now", "I am", "Now	I am", "Based in"];
 const keysList = {
-    "doctor": 0,
-    "infection": 0,
-    "cystis": 0
+    "antibiotic" : 0,
+    "doctor" : 0,
+    "feel" : 0,
+    "pain" : 0,
+    "infection" : 0,
+    "time" : 0,
+    "treatment" : 0,
+    "side effects" : 0,
+    "cure" : 0,
+    "symptom" : 0,
+    "UTI" : 0,
+    "fever" : 0,
+    "skin " : 0,
+    "stomach": 0
 }
 
 const wordsList = {
-    "uti": "A urinary tract infection (UTI) is an infection in any part of the urinary system. The urinary system includes the kidneys, ureters, bladder and urethra. Most infections involve the lower urinary tract — the bladder and the urethra.",
-    "antibiotic": "An antibiotic is a type of antimicrobial substance active against bacteria. It is the most important type of antibacterial agent for fighting bacterial infections, and antibiotic medications are widely used in the treatment and prevention of such infections"
+    "Consultation": "A meeting with a doctor or advisor to discuss symptoms and care options. In this study, it includes both formal visits and informal advice-seeking.",
+    "Diagnosis": "The process of identifying a disease based on symptoms, exams, or tests. Here it also includes patients’ own interpretations and self-diagnosis.",
+    "Prevention": "Actions to avoid getting sick, such as daily habits, routines, or medical steps. This study focuses on personal strategies to prevent urinary or intimate infections.",
+    "Treatment": "The actions taken to manage or cure illness, from medicines to self-care. In this study, it refers to both prescribed and self-initiated responses to infections.",
+    "Biographies": "Personal life stories or backgrounds that shape how people experience and understand illness.",
+    "Symptoms": "The physical or emotional signs felt by a person that show something may be wrong with their health.",
+    "UTI (urinary tract infection)": "An infection in the bladder, urethra, or kidneys that makes peeing painful or frequent.",
+    "Cystitis": "A common UTI that affects the bladder and causes burning when urinating.",
+    "Bronchitis": "An infection that irritates the airways in the lungs and causes cough and mucus.",
+    "Bronchopneumonia": "A more serious lung infection affecting small areas of the lungs.",
+    "Dermatitis": "Skin conditions that cause redness, itching, or rashes.",
+    "Eczema": "Skin conditions that cause redness, itching, or rashes.",
+    "Sinusitis": "Infection or swelling of the sinuses, often after a cold, causing blocked nose and pain.",
+    "Tonsillitis": "Infection of the tonsils in the throat, often causing fever and sore throat.",
+    "Streptococcus infection": "Infection of the tonsils in the throat, often causing fever and sore throat.",
+    "Mononucleosis": "A viral illness (often called “mono”) that makes you very tired and gives sore throat and fever.",
+    "Ulcerative colitis": "A long-lasting disease that causes inflammation and sores in the large intestine.",
+    "Borreliosis (Lyme disease)": "An infection from tick bites that can cause fever, rash, and joint pain.",
+    "Appendicitis": "A painful infection of the appendix, a small organ in the belly, usually treated with surgery.",
+    "Alluce valgo (Hallux valgus / bunion)": "A bony bump at the base of the big toe that can be painful.",
+    "Asthma": "A condition where the airways tighten, making it hard to breathe.",
+    "Parainfectious asthma": "Asthma attacks triggered by infections, such as colds.",
+    "Polipetti (nasal polyps)": "Small growths inside the nose that can make breathing harder.",
+    "Micropolycystic ovary (PCOS)": "A condition where the ovaries have many small cysts, sometimes causing irregular periods.",
+    "Antibiotics": "Medicines that kill bacteria and treat bacterial infections (not viruses).",
+    "Amoxicillin": "Types of antibiotics prescribed for specific infections.",
+    "Augmentin": "Types of antibiotics prescribed for specific infections.",
+    "Lymecycline": "Types of antibiotics prescribed for specific infections.",
+    "Chloramphenicol": "Types of antibiotics prescribed for specific infections.",
+    "Nitroxoline": "Types of antibiotics prescribed for specific infections.",
+    "Fuzolidone": "Types of antibiotics prescribed for specific infections.",
+    "Cortisone": "A medicine that reduces swelling and inflammation.",
+    "Antifungals": "Medicines that treat infections caused by fungi (like yeast).",
+    "Probiotics": "“Good bacteria” taken as food or supplements to help digestion or reduce side effects of antibiotics.",
+    "Integrators (supplements)": "Vitamins or minerals taken to support general health.",
+    "Anti-baby pill (contraceptive pill)": "A daily pill taken by women to prevent pregnancy.",
+    "Chemotherapy": "Strong medicines used to treat cancer.",
+    "Immune system": "The body's defense system that fights infections.",
+    "Antimicrobial resistance": "When germs stop responding to antibiotics or other medicines.",
+    "Side effects": "Unwanted problems caused by medicines, like nausea or tiredness."
+}
+
+// for code consistency both HTML, CSS and JS (indipedently from the data content), the stories header keys can be adjusted here
+const headerStories = {
+    "decided": "I decided to",
+    "with": "with",
+    "because": "because",
+    "feeling": "I was feeling",
+    "every_time": "every time",
+    "told_by": "I've been told by",
+    "suffering": "that I was suffering from",
+    "happened": "It happened",
+    "when": "-",
+    "doctor": "The doctor",
+    "to_me_that": "to me that",
+    "started": "I started",
+    "cure": "Ultimately, the cure",
+    "started_feeling": "I started feeling",
+    "noticed": "I noticed",
+    "tried": "So, I tried",
+    "now": "Now",
+    "gender": "I am",
+    "age": "years old",
+    "location": "Based in"
 }
 
 function loadData() {
     fetch('assets/json/stories-collection.json')
         .then(Response => Response.json())
+        .then(data => {
+            return cleanData(data);
+        })
         .then(data => {
             return checkWords(data);
         })
@@ -25,6 +101,42 @@ function loadData() {
         .then(() => filterButtonsAddEventListener())
         .then(() => addWorldButtons())
         .catch(error => console.error('Error: ' + error));
+}
+
+function cleanData(data) {
+
+    for(const story of data) {
+
+
+        for(let storyKey of Object.keys(story)) {
+
+            // console.log("Before (typeof: " + typeof story[storyKey] + "), key:  " + storyKey);
+            // console.log(story[storyKey]);
+
+            if(storyKey != "Based in" && storyKey != "years old") {
+                // check for "I " or "I'" to keep I uppercase
+                if(!(/^I(\s|')/.test(story[storyKey]))) {
+                    if(typeof story[storyKey] == 'string') {
+                        //console.log("Is String!");
+                        story[storyKey] = story[storyKey].charAt(0).toLowerCase() + story[storyKey].slice(1);
+                    }
+                }
+            }
+
+            // console.log("After: " + story[storyKey]);
+            // console.log(" ");
+
+            /*
+            //if(story[storyKey]) {  // if not null or empty
+                
+                story[storyKey].charAt(0).toLowerCase() + story[storyKey].slice(1);
+                console.log(story[storyKey]);
+            //}
+            */
+        }
+
+    }
+    return data;
 }
 
 function appendData(data) {
@@ -39,18 +151,18 @@ function appendData(data) {
         output += `
             <li>
                 <h3>#${i}</h3>
-                <span data-filter="diagnosis">I decided to <span class="filter-diagnosis">${story["I decided to"]} ${story["who"]}</span></span> <span data-filter="symptoms">because <span class="filter-symptoms">${story["because"]}</span>.</span>
-                <span data-filter="symptoms">I was feeling <span class="filter-symptoms">${story["I was feeling"]}</span> every time <span class="filter-symptoms">${story["every time"]}</span>.</span>
-                <span data-filter="diagnosis">I've been told by <span class="filter-diagnosis">${story["I've been told by"]}</span> that I was suffering from <span class="filter-diagnosis">${story["that I was suffering from"]}</span>.</span>
-                <span data-filter="diagnosis">It happened <span class="filter-diagnosis">${story["It happened"]} for ${story["for"]}</span>.</span>
-                <span data-filter="treatment">The doctor <span class="filter-treatment">${story["The doctor"]}</span> to me that <span class="filter-treatment">${story["to me that"]}</span>.</span>
-                <span data-filter="treatment">I started <span class="filter-treatment">${story["I started"]}</span>.</span>
-                <span data-filter="treatment">Ultimately, the cure <span class="filter-treatment">${story["Ultimately, the cure"]}</span>.</span>
-                <span data-filter="follow-up">I started feeling <span class="filter-follow-up">${story["I started feeling"]}</span>.</span>
-                <span data-filter="follow-up">I noticed <span class="filter-follow-up">${story["I noticed"]}</span>.</span>
-                <span data-filter="follow-up">So, I tried <span class="filter-follow-up">${story["So, I tried"]}</span>.</span>
-                <span data-filter="follow-up">Now <span class="filter-follow-up">${story["Now"]}</span>.</span>
-                <span data-filter="demographics">I am <span class="filter-demographics">${story["I am"]}, ${story["Years old"]} years old, based in ${story["Based in"]}</span>.</span>
+                <span data-filter="diagnosis">I decided to <span class="filter-diagnosis">${story[headerStories["decided"]]} ${story[headerStories["with"]]}</span></span> <span data-filter="symptoms">because <span class="filter-symptoms">${story[headerStories["because"]]}</span>.</span>
+                <span data-filter="symptoms">I was feeling <span class="filter-symptoms">${story[headerStories["feeling"]]}</span> every time <span class="filter-symptoms">${story[headerStories["every_time"]]}</span>.</span>
+                <span data-filter="diagnosis">I've been told by <span class="filter-diagnosis">${story[headerStories["told_by"]]}</span> that I was suffering from <span class="filter-diagnosis">${story[headerStories["suffering"]]}</span>.</span>
+                <span data-filter="diagnosis">It happened <span class="filter-diagnosis">${story[headerStories["happened"]]} for ${story[headerStories["when"]]}</span>.</span>
+                <span data-filter="treatment">The doctor <span class="filter-treatment">${story[headerStories["doctor"]]}</span> to me that <span class="filter-treatment">${story[headerStories["to_me_that"]]}</span>.</span> 
+                <span data-filter="treatment">I started <span class="filter-treatment">${story[headerStories["started"]]}</span>.</span>
+                <span data-filter="treatment">Ultimately, the cure <span class="filter-treatment">${story[headerStories["cure"]]}</span>.</span>
+                <span data-filter="follow-up">I started feeling <span class="filter-follow-up">${story[headerStories["started_feeling"]]}</span>.</span>
+                <span data-filter="follow-up">I noticed <span class="filter-follow-up">${story[headerStories["noticed"]]}</span>.</span>
+                <span data-filter="follow-up">So, I tried <span class="filter-follow-up">${story[headerStories["tried"]]}</span>.</span>
+                <span data-filter="follow-up">Now <span class="filter-follow-up">${story[headerStories["now"]]}</span>.</span>
+                <span data-filter="demographics">I am <span class="filter-demographics">${story[headerStories["gender"]]}, ${story[headerStories["age"]]} years old, based in ${story[headerStories["location"]]}</span>.</span>
             </li>
         `;
     }
@@ -99,9 +211,9 @@ function checkWords(data) {
             // search for words
             for(const word of Object.entries(wordsList)) {   
 
-                if(String(story[storyKey]).toLowerCase().includes(word[0])) {
-                    const regex = new RegExp(`\\b(${word[0]})\\b`, 'gi');
-                    story[storyKey] = String(story[storyKey]).replace(regex, `$1<span class="glyph" data-word="${String(word[0]).toLowerCase()}"> (✧)</span>`);
+                if(String(story[storyKey]).toLowerCase().includes(word[0].toLowerCase())) {
+                    const regex = new RegExp(`\\b(${word[0].toLowerCase()})\\b`, 'gi');
+                    story[storyKey] = String(story[storyKey]).replace(regex, `$1<span class="glyph" data-word="${String(word[0])}"> (✧)</span>`);
                 }
             }
 
@@ -122,8 +234,6 @@ function checkWords(data) {
 
     return data;
 }
-
-
 
 // add the count to the keys and the button functionality
 const toggleKeyButtons = function(button) {
@@ -151,7 +261,7 @@ const toggleWordButtons = function(button) {
     if(!button.classList.contains("active")) {
         // close all the descriptions
         const worldButtons = document.querySelectorAll('[data-word]');
-        console.log(worldButtons);
+        // console.log(worldButtons);
         for(const b of worldButtons) {
             b.classList.remove("active");
             b.innerHTML = ` (✧) `;
