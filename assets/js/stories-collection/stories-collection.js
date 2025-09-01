@@ -217,15 +217,28 @@ function checkWords(data) {
                 }
             }
 
-            // search for keys
+            // search for keys. Search only in the text! NOT in the <sapn>...</span> elements!
             for(const keyKey of Object.keys(keysList)) {
                 
-                if(String(story[storyKey]).toLowerCase().includes(keyKey)) {
+
+                if (String(story[storyKey]).toLowerCase().includes(keyKey.toLowerCase())) {
                     const regex = new RegExp(`\\b(${keyKey})\\b`, 'gi');
-                    keysList[keyKey]++;
-                    story[storyKey] = String(story[storyKey]).replace(regex, `$1<span data-key="${String(keyKey).toLowerCase()}"></span>`);
+                    keysList[keyKey] = (keysList[keyKey] || 0) + 1;
+                
+                    story[storyKey] = String(story[storyKey])
+                        .split(/(<span\b[^>]*>[\s\S]*?<\/span>)/gi) // split by spans
+                        .map(part => {
+                            if (part.startsWith('<span')) {
+                                return part; // leave spans as they are
+                            } else {
+                                return part.replace(regex, (match) => {
+                                    return `${match}<span data-key='${keyKey.toLowerCase()}'></span>`;
+                                });
+                            }
+                        })
+                        .join('');
                 }
-            }   
+            }            
         }
     }
 
