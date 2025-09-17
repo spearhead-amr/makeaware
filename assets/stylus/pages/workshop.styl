@@ -57,6 +57,10 @@
         height: auto
         object-fit: cover
 
+    video
+        box-sizing: border-box
+        min-width: calc(100% - 15%)
+
     +media(tablet-h)
         flex-direction: row
 
@@ -71,7 +75,7 @@
         gap: 0.5rem
 
         img
-            width:calc(50%-0.5rem)
+            width: calc(50% - 0.5rem)
 
         #workshop-single-image
             width: 100%
@@ -80,6 +84,6 @@
         gap: 1rem
         
         img
-            width:calc(50%-0.5rem)
+            width: calc(50% - 0.5rem)
 
 
