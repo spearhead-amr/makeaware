@@ -5,6 +5,10 @@
     <script src="assets/js/components-render.js" defer></script>
 
     <title>MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead</title>
+    <style>
+        /* Ensure embedded video container flexes properly next to the heading on larger screens */
+        #main-workshop #workshop-detail .video-embed { flex: 1 1 auto; width: 100%; }
+    </style>
 </head>
 
 <body>
@@ -59,9 +63,7 @@
             <article id="workshop-detail">
     
                     <h2></h2>
-                    <video width="80%" height="auto" controls preload="metadata" playsinline>
-                        <source src="assets/img/pages/workshops/diplab-digital-petri-laboratory/DigitalPetriLaboratory_FullProtocolVideo.mp4" type="video/mp4">
-                    </video>
+                    <div class="video-embed" style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1119334191?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="MAKEAWARE! Spearhead: Digital Petri Laboratory Full Protocol Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             </article>
 
         <article id="workshop-detail">
