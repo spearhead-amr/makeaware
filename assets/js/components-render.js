@@ -73,6 +73,9 @@ loadComponent('components/head.html', 'page-head')
         //.then(() => loadJavaScript('assets/js/widgets/widget-timeline.js'))
         .then(() => loadJavaScript('assets/js/widgets/legenda-popup.js'))
     }
+    else if (document.getElementById('main-chatbot') != null) {
+      loadJavaScript('assets/js/chatbot.js');
+    }
     else if (document.getElementById('main-workshops') != null) {
       /* loadJavaScript('assets/js/workshops.js'); */
       loadComponent('components/workshops/workshops-cards.html', 'workshops-cards')

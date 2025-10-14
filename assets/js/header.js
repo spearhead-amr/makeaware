@@ -24,6 +24,7 @@ function checkActivePage() {
     'main-workshop': 'nav-workshops', 
     'main-stories-collection': 'nav-stories-collection',
     'main-databook': 'nav-databook',
+    'main-chatbot': 'nav-chatbot',
     'main-publications': 'nav-publications'
   };
 
