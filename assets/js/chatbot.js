@@ -3,12 +3,14 @@ var animationBigLogo = true;
 //Chatbot description animation
 (function() {
   const container = document.querySelector('#description-rect-content');
-  if (!container) return;
+  const chatbotDescription = document.querySelector('#chatbot-description');
+  if (!container || !chatbotDescription) return;
   const paragraphs = Array.from(container.querySelectorAll('p'));
   if (paragraphs.length === 0) return;
 
   let index = paragraphs.findIndex(p => p.classList.contains('active'));
   if (index < 0) index = 0;
+  let animationInterval = null;
 
   function show(i) {
     const current = paragraphs[index];
@@ -46,12 +48,54 @@ var animationBigLogo = true;
     show(nextIndex);
   }
 
-  const initialHeight = paragraphs[index].offsetHeight + parseFloat(getComputedStyle(container).paddingTop) + parseFloat(getComputedStyle(container).paddingBottom);
-  container.style.height = initialHeight + 'px';
-  requestAnimationFrame(() => { container.style.height = ''; });
+  function refreshHeight() {
+    if (paragraphs[index]) {
+      const initialHeight = paragraphs[index].offsetHeight + parseFloat(getComputedStyle(container).paddingTop) + parseFloat(getComputedStyle(container).paddingBottom);
+      container.style.height = initialHeight + 'px';
+      requestAnimationFrame(() => { container.style.height = ''; });
+    }
+  }
 
-  const intervalMs = 7500;
-  setInterval(next, intervalMs);
+  function startAnimation() {
+    if (animationInterval) return; // Already running
+    refreshHeight();
+    const intervalMs = 7500;
+    animationInterval = setInterval(next, intervalMs);
+  }
+
+  function stopAnimation() {
+    if (animationInterval) {
+      clearInterval(animationInterval);
+      animationInterval = null;
+    }
+  }
+
+  function checkVisibility() {
+    const isVisible = chatbotDescription.style.display !== 'none';
+    if (isVisible && !animationInterval) {
+      startAnimation();
+    } else if (!isVisible && animationInterval) {
+      stopAnimation();
+    }
+  }
+
+  // Initial setup
+  refreshHeight();
+  checkVisibility();
+
+  // Monitor visibility changes using MutationObserver
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+        checkVisibility();
+      }
+    });
+  });
+
+  observer.observe(chatbotDescription, {
+    attributes: true,
+    attributeFilter: ['style']
+  });
 })();
 
 // Big chatbot logo animation
@@ -144,7 +188,6 @@ var animationBigLogo = true;
     const newChatBtn = document.getElementById('new-chat');
     const chatbotLogo = document.getElementById('chatbot-logo-outer');
     const chatHistory = document.getElementById('chat-history');
-    const clearBtn = document.getElementById('clearStorageBtn');
 
     // Load cached history
     let history = JSON.parse(localStorage.getItem('chatHistory') || '[]');
@@ -262,23 +305,23 @@ var animationBigLogo = true;
     }
 
     function scrollToNewestMessage() {
-      if (!chatHistory) return;
       // Use requestAnimationFrame to ensure DOM is updated
       requestAnimationFrame(() => {
-        chatHistory.scrollTo({
-          top: chatHistory.scrollHeight,
+        // Get the maximum scroll height from both document and body
+        const maxScrollHeight = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        
+        // Scroll to the absolute bottom of the page
+        window.scrollTo({
+          top: maxScrollHeight,
           behavior: 'smooth'
         });
       });
-    }
-
-    function clearHistory() {
-      const confirmed = confirm('Erase saved chat history? This cannot be undone.');
-      if (!confirmed) return;
-      localStorage.removeItem('chatHistory');
-      history = [];
-      if (chatHistory) chatHistory.innerHTML = '';
-      messageCounter = 0;
     }
 
     function newChat() {
@@ -405,16 +448,28 @@ var animationBigLogo = true;
       // Start timing
       const requestStartMs = performance.now();
 
-      // Prepare payload: include previous messages (last 10)
+      // Prepare payload: include previous messages (last 10) in proper order
       const maxHistory = 10;
-      const payload = {
-        input_prompt: text,
-        messages: history.slice(-maxHistory).map(h => ({
+      const messages = [];
+      const recentHistory = history.slice(-maxHistory);
+      
+      // Build messages array with proper user/assistant alternation
+      recentHistory.forEach(h => {
+        messages.push({
           role: 'user',
           content: h.user
-        })).concat(
-          history.flatMap(h => h.content ? [{ role: 'assistant', content: h.content }] : [])
-        )
+        });
+        if (h.content) {
+          messages.push({
+            role: 'assistant',
+            content: h.content
+          });
+        }
+      });
+      
+      const payload = {
+        input_prompt: text,
+        messages: messages
       };
 
       fetch('https://api-gooey.vercel.app/proxy', {
@@ -422,7 +477,13 @@ var animationBigLogo = true;
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
-      .then(r => r.json())
+      .then(r => {
+        if (r.status === 400) {
+          assistantResponseP.textContent = 'Error: There was a limit on the Gooey.ai API usage, please retry again in a minute or start a new chat';
+          throw new Error('There was a limit on the Gooey.ai API usage, please retry again in a minute or start a new chat');
+        }
+        return r.json();
+      })
       .then(result => {
         // Stop mini logo animation
         if (window.stopMiniLogoAnimation) {
@@ -461,7 +522,7 @@ var animationBigLogo = true;
         if (timeSpan) {
           const seconds = (elapsedMs / 1000);
           const rounded = seconds < 10 ? seconds.toFixed(1) : Math.round(seconds).toString();
-          timeSpan.textContent = 'ragionato per: ' + rounded + 's; modello: Gemini';
+          timeSpan.textContent = 'thought for: ' + rounded + 's; LLM model: Gemini 2.5 Pro';
         }
 
         // Save to history
@@ -511,6 +572,5 @@ var animationBigLogo = true;
         if (e.key === 'Enter') sendMessage();
       });
     }
-    if (clearBtn) clearBtn.addEventListener('click', clearHistory);
     if (newChatBtn) newChatBtn.addEventListener('click', newChat);
 })();
