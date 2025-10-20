@@ -438,18 +438,30 @@
     .chatbot-info-box-content
         @extend .sans-caption
         display: flex
-        flex-direction: row
+        flex-direction: column
+
+        +media(tablet-h)
+            flex-direction: row
 
         h3
             @extend .sans-caption
             text-transform: uppercase
-            font-size: 1.2rem
             min-width: 15%
             position: relative
             top: calc(1.3rem - (0.6rem * 1.15))
+            margin-bottom: 1.2rem
+            font-size: 1rem
+
+            +media(tablet-h)
+                margin-bottom: 0
+                font-size: 1.5rem
         
         p
             @extend .serif-paragraph
+            font-size: 1.3rem
+
+            +media(tablet-h)
+                font-size: 2rem
         
         a
             color: brand-black
