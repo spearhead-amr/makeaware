@@ -44,6 +44,15 @@ var animationBigLogo = true;
   }
 
   function next() {
+    const mainContent = document.querySelector('main');
+    if (!mainContent) return;
+    const mainStyle = getComputedStyle(mainContent);
+    if (
+      mainContent.classList.contains('hidden') ||
+      mainStyle.display === 'none' ||
+      mainStyle.visibility === 'hidden' ||
+      mainContent.hasAttribute('hidden')
+    ) return;
     const nextIndex = (index + 1) % paragraphs.length;
     show(nextIndex);
   }
@@ -157,21 +166,25 @@ var animationBigLogo = true;
     };
   })();
 
-//Footer interaction
+//Project info interaction
 (function() {
   const trigger = document.getElementById('project-info');
-  const footer = document.getElementById('page-footer');
+  const infoBox = document.getElementById('project-info-box');
   const closeFooter = document.getElementById('close-footer');
-  if (!trigger || !footer || !closeFooter) return;
+  const mainContent = document.querySelector('main');
+
+  if (!trigger || !infoBox || !closeFooter) return;
 
   trigger.addEventListener('click', function() {
-    footer.classList.add('active');
+    infoBox.classList.add('active');
+    mainContent.classList.add('hidden');
     closeFooter.classList.remove('hidden');
     closeFooter.classList.add('active');
   });
 
   closeFooter.addEventListener('click', function() {
-    footer.classList.remove('active');
+    infoBox.classList.remove('active');
+    mainContent.classList.remove('hidden');
     closeFooter.classList.remove('active');
     closeFooter.classList.add('hidden');
   });

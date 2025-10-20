@@ -410,12 +410,52 @@
     cursor: pointer
     color: brand-pink
 
-.footer-chatbot
-    position: fixed
-    bottom: 0
-    left: 0
+.chatbot-info-box
+    @extend .content-margins
+    padding-top: 7vh
+    width: 100%
+    height: auto
+    background: brand-white
     display: none
     z-index: 11
+
+    .chatbot-info-box-title
+        @extend .serif-paragraph
+        margin-bottom: 2rem
+        text-wrap: balance
+        text-align: left
+        font-size: 1.2rem
+
+        +media(tablet-h)
+            font-size: 2.5rem
+
+        +media(tablet-v)
+            font-size: 1.5rem
+
+        +media(desktop)
+            font-size: 3rem
+    
+    .chatbot-info-box-content
+        @extend .sans-caption
+        display: flex
+        flex-direction: row
+
+        h3
+            @extend .sans-caption
+            text-transform: uppercase
+            font-size: 1.2rem
+            min-width: 15%
+            position: relative
+            top: calc(1.3rem - (0.6rem * 1.15))
+        
+        p
+            @extend .serif-paragraph
+        
+        a
+            color: brand-black
+
+        a:hover
+            color: brand-pink
 
 #close-footer
     @extend .sans-caption
@@ -428,6 +468,7 @@
     width: 100%
     text-align: center
     z-index: 12
+    background-color: brand-white
 
     +media(desktop)
         font-size: 1rem
