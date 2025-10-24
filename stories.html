@@ -2,6 +2,7 @@
 <html lang="en">
 <head id="page-head">
 	<script src="assets/js/components-render.js" defer></script>
+	<script src="assets/js/stories.js" defer></script>
 	<title>MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 		<!-- introduction and instructions -->
         <section id="story-collection-introduction">
 			<h1>Story-collection tool</h1>
-			  <h2 id="abstract-text">The story-collection tool is a digital interface for collecting personal stories about antibiotic consumption. Questions structure the narration to guide people in sharing their experiences, serving as prompts that help new relevant aspects emerge and enable a systematic collection of data. </h2>
+			<h2 id="abstract-text">The story-collection tool is a digital interface for collecting personal stories about antibiotic consumption. Questions structure the narration to guide people in sharing their experiences, serving as prompts that help new relevant aspects emerge and enable a systematic collection of data. </h2>
 			<!-- <p id="introduction-title">Every story is from people who shared their experience of antibiotic consumption and related diseases. Read and explore them according to your interest:</p> -->
 			<div id="story-collection-instructions">
 				<h2>Instructions</h2>
@@ -20,8 +21,66 @@
 		</section>
 
         <!-- stories collection tool form -->
-        <section id="story-collection-form">
+        <section id="story-collection-form-container">
 			<h2>Share your story</h2>
+
+			<!-- story form -->
+	    	<div class="stories-container" id="story-form-container">
+
+	        	<div  class="stories-content">
+
+	        		<div class="story-bolder-text-black" id="story-form">
+	        			<span class="fixed">I decided to</span>
+						<span class="editable" data-form-color="color-grey">(go, see, call, text or speak?)</span>
+						<span class="fixed"> - </span>
+						<span class="editable" data-form-color="color-red">(who have you consulted regarding your sickness?)</span>
+						<span class="fixed">because</span>
+						<span class="editable" data-form-color="color-red">(what symptoms did you have?)</span>.
+						<span class="fixed">I was feeling</span>
+						<span class="editable" data-form-color="color-red">(how were you feeling?)</span>
+						<span class="fixed">every time</span>
+						<span class="editable" data-form-color="color-red">(when were the symptoms happening?)</span>.
+						<span class="fixed">I've been told by</span>
+						<span class="editable" data-form-color="color-grey">(who did provide you with the diagnosis?)</span>
+						<span class="fixed">that I was suffering from</span>
+						<span class="editable" data-form-color="color-red">(what were you suffering from?)</span>.
+						<span class="fixed">It happened</span>
+						<span class="editable" data-form-color="color-grey">(again or never again?)</span>
+						<span class="fixed">for</span>
+						<span class="editable" data-form-color="color-grey">(for how long have you suffered?)</span>.
+						<span class="fixed">The doctor</span>
+						<span class="editable" data-form-color="color-grey">(explained or not explained?)</span>
+						<span class="fixed">to me that</span>
+						<span class="editable" data-form-color="color-pink">(what did the doctor say?)</span>.
+						<span class="fixed">I started</span>
+						<span class="editable" data-form-color="color-pink">(what treatment did you have?)</span>.
+						<span class="fixed">Ultimately, the cure</span>
+						<span class="editable" data-form-color="color-pink">(did the cure work or not?)</span>.
+						<span class="fixed">I started feeling</span>
+						<span class="editable" data-form-color="color-grey">(what effect did the treatment have on you?)</span>.
+						<span class="fixed">I noticed</span>
+						<span class="editable" data-form-color="color-pink">(have you noticed any side effects?)</span>.
+						<span class="fixed">So, I tried</span>
+						<span class="editable" data-form-color="color-pink">(have you looked for any alternatives?)</span>.
+						<span class="fixed">Now</span>
+						<span class="editable" data-form-color="color-pink">(how do you feel?)</span>.
+						<br><span class="fixed">I am</span>
+						<span class="editable" data-form-color="color-grey">(is there a gender that best describes you?)</span>, 
+						<span class="editable" data-form-color="color-grey">(how old are you?)</span>
+						<span class="fixed">years old</span>,
+						<span class="fixed">based in</span>
+						<span class="editable" data-form-color="color-grey">(where do you live?).</span>
+	        		</div>
+					
+	        		<div class="stories-buttons-container">
+	        			<div class="stories-button-container-2">
+		        			<button type="button" class="story-button, card-button" id="button-story-submit">Submit your story</button>
+	        			</div>
+	        		</div>
+	        		
+	        	</div>
+
+	        </div>
 
         </section>
 
@@ -32,7 +91,7 @@
         </section>
 
         <!-- explore the data book -->
-         <section id="story-collection-eplore-databook-container">
+         <section id="story-collection-explore-databook-container">
             <a href="databook.html" class="card-button" id="button-explore-databook">Explore the databook</a>
          </section>
 	</main>

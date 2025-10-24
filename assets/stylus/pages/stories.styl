@@ -24,10 +24,10 @@
                 margin-top calc(2rem * 2.5)
 
             h2
-                @extends .section-title
+                @extend .section-title
 
     
-    #story-collection-form
+    #story-collection-form-container
         @extend .sans-paragraph
         margin-top 2rem
 
@@ -35,7 +35,97 @@
             margin-top calc(2rem * 2.5)
 
         h2
-            @extends .section-title
+            @extend .section-title
+
+        #story-form
+            @extend .serif-paragraph
+            display: float;
+            flex-wrap: warp;
+            justify-content: flex-start;
+            align-content: flex-start;
+            color: #AAA9AA;
+            border: none;
+            outline-width: 0;
+            line-height: 148%;
+
+/*             color-red 
+                background-color: #FF3A17;
+                border-radius: 1.9rem;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+            color-grey
+                background-color: #AAA9AA;
+                border-radius: 1.9rem;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+            color-pink
+                background-color: #FF46ED;
+                border-radius: 1.9rem;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem; */
+
+            .color-red
+                background-color: #FF3A17;
+                border-radius: 1.9rem;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+            .color-grey
+                background-color: #AAA9AA;
+                border-radius: 1.9rem;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+            .color-pink
+                background-color: #FF46ED;
+                border-radius: 1.9rem;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+            .editable
+                -webkit-user-select: none; /* Safari */
+                user-select: none;
+                color: #AAA9AA;
+                outline-width: 0;
+                text-transform: lowercase;
+
+            .editable:focus-visible
+                outline: none;
+
+            .edited
+                color: black !important;
+
+            .fixed
+                color: black;
+                margin-left: -0.1rem;
+
+            .not-filled
+                text-decoration: red dotted underline;
+
+        #button-story-submit
+            margin-right: auto
+            margin-left: auto
+            margin-top: 3rem
 
 
     #story-collection-about-container
@@ -48,10 +138,10 @@
         h2
             @extends .section-title
 
-    #story-collection-eplore-databook-container
+    #story-collection-explore-databook-container
         margin-bottom: 3rem
         margin-top: 3rem
 
         #button-explore-databook
-            margin-right: auto;
-            margin-left: auto;
+            margin-right: auto
+            margin-left: auto
