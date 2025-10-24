@@ -250,6 +250,7 @@ function checkWords(data) {
 // add the count to the keys and the button functionality
 const toggleKeyButtons = function(button) {
     console.log(button.getAttribute('data-key'));
+    toggleTermsButton();
 }
 
 function addKeyCount(data) {
@@ -300,14 +301,15 @@ function addWorldButtons() {
     }
 }
 
+// terms container toggle
+const toggleTermsButton = function() {
+    document.getElementById('terms-container').classList.toggle("terms-container-active");
+}
+
 function termsButtonCloseAddEventListener() {
     const termButtonClose = document.getElementById('terms-close')
 
-    termButtonClose.addEventListener("click", (this, termButtonClose) => {
-        termButtonClose.classList().toggle("terms-close-active") {
-            
-        }
-    })
+    termButtonClose.addEventListener("click", toggleTermsButton.bind(this, null));
 }
 
 // start here

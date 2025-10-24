@@ -1,2 +1,39 @@
-#main-stories
-    background-color: blue
+#main-stories-collection
+    @extend .content-margins
+    margin-top: 15vh
+
+    // shared classes
+    .section-title
+        @extend .sans-paragraph
+        text-transform: uppercase
+        //font-size: 0.7rem
+        margin-bottom 1rem
+
+        +media(desktop)
+            font-size: 1.9rem
+
+    #story-collection-introduction
+        h1
+            display: none
+
+        #story-collection-instructions
+            @extend .sans-paragraph
+            margin-top 2rem
+
+            +media(desktop)
+                margin-top calc(2rem * 2.5)
+
+            h2
+                @extends .section-title
+
+    
+    #story-collection-form
+        h2
+            @extends .section-title
+
+
+    #story-collection-about-container
+        @extend .sans-paragraph
+
+        h2
+            @extends .section-title

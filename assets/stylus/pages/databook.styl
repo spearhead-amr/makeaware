@@ -1,6 +1,6 @@
-#main-stories-collection
+#main-databook
     @extend .content-margins
-    margin-top: 4rem
+    margin-top: 15vh
 
     // text color classes
     .filter-diagnosis
@@ -30,12 +30,12 @@
             3rem
 
         h1
-            visibility: hidden
+            display: none
 
         #introduction-title
             @extend .serif-title
 
-        #stories-instructions
+        #stories-instructions, #storeis-about-databook
             @extend .sans-paragraph
             margin-top 2rem
 
@@ -212,6 +212,9 @@
         padding: 2rem 1rem 0 1rem
         border-top: 1px solid black
         @extend .sans-paragraph
+
+        &.terms-container-active
+            display: none
 
         #terms-close
             height: 3rem
