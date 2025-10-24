@@ -13,8 +13,11 @@ let button_submit = document.getElementById('button-story-submit');
 let button_thanks_back_to_carousell = document.getElementById('button-thanks-back-to-carousell');
 
 
-// form validation in JS
+// button submit action
+button_submit.addEventListener('click', storyFormValidation.bind(this, 'thanks'));
 
+
+// form validation in JS
 function storyFormValidation(action) {
 
   //action.preventDefault();
@@ -26,7 +29,7 @@ function storyFormValidation(action) {
 
   // check for edited values
 
-  spans.forEach(el => {
+  Array.from(spans).forEach(el => {
     if(!el.classList.contains('fixed') && el.dataset.edited != '1') {
       isFilled = false;
       filledCount++;
@@ -34,7 +37,7 @@ function storyFormValidation(action) {
     }
   })
 
-  console.log('filledCount: ' + filledCount); 
+  // console.log('filledCount: ' + filledCount); 
 
 
 
@@ -46,7 +49,7 @@ function storyFormValidation(action) {
     let formHTML = "";
     let formHTML_b = "";
 
-    spans.forEach(el => {
+    Array.from(spans).forEach(el => {
 
       if(el.classList.contains('fixed')) {
         formHTML += '<b>' + el.innerText + '</b>';
@@ -83,7 +86,7 @@ function storyFormValidation(action) {
 
 
       // reset form
-      spans.forEach(el => {
+      Array.from(spans).forEach(el => {
         if(!el.classList.contains('fixed')) {
           el.innerText = el.dataset.placeholder;
           el.dataset.edited = '0';
@@ -94,7 +97,8 @@ function storyFormValidation(action) {
         }
       })
 
-      changeStoryContainer(action);
+      alert('Thank you! The form has been successfully collected.');
+
     }
 
     else {
@@ -111,8 +115,6 @@ function storyFormValidation(action) {
 
 // send data for email sending
 function sendData(formHTML, formHTML_b) {
-
-  //console.log(data);
 
   const XHR = new XMLHttpRequest();
   const FD = new FormData();
