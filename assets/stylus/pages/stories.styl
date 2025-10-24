@@ -28,12 +28,30 @@
 
     
     #story-collection-form
+        @extend .sans-paragraph
+        margin-top 2rem
+
+        +media(desktop)
+            margin-top calc(2rem * 2.5)
+
         h2
             @extends .section-title
 
 
     #story-collection-about-container
         @extend .sans-paragraph
+        margin-top 2rem
+
+        +media(desktop)
+            margin-top calc(2rem * 2.5)
 
         h2
             @extends .section-title
+
+    #story-collection-eplore-databook-container
+        margin-bottom: 3rem
+        margin-top: 3rem
+
+        #button-explore-databook
+            margin-right: auto;
+            margin-left: auto;
