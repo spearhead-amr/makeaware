@@ -77,34 +77,34 @@
                 &[data-filters="diagnosis"]
                     border-color: diagnosis-color
                     @extend .filter-diagnosis
-                    &.active
+                    &.story-active
                         background-color: diagnosis-color
 
                 &[data-filters="symptoms"]
                     border-color: symptoms-color
                     @extends .filter-symptoms
-                    &.active
+                    &.story-active
                         background-color: symptoms-color
 
                 &[data-filters="treatment"]
                     border-color: treatment-color
                     @extends .filter-treatment
-                    &.active
+                    &.story-active
                         background-color: treatment-color
 
                 &[data-filters="follow-up"]
                     border-color: follow-up-color
                     @extends .filter-follow-up
-                    &.active
+                    &.story-active
                         background-color: follow-up-color
 
                 &[data-filters="demographics"]
                     border-color: demographics-color
                     @extends .filter-demographics
-                    &.active
+                    &.story-active
                         background-color: demographics-color
 
-                &.active
+                &.story-active
                     color: white
 
                 +media(desktop)
@@ -200,5 +200,51 @@
                 
                 .key-counter
                     display: inline-block
+
+    #terms-container
+        position: fixed
+        bottom: 0
+        left: 0
+        height: 50%
+        background-color: white
+        width: 100%
+        font-size: 1.5rem
+        padding: 2rem 1rem 0 1rem
+        border-top: 1px solid black
+        @extend .sans-paragraph
+
+        #terms-close
+            height: 3rem
+            width 3rem
+            position: absolute
+            right: 1rem
+            top: 1rem
+            
+            &:hover
+                cursor: pointer
+
+            &:before
+                content: ""
+                width: 100%
+                position: relative
+                display: block
+                height: 1px
+                border-bottom: 1px solid black
+                transform: rotate(-45deg)
+                top: 50%
+
+            &:after
+                content: ""
+                width: 100%
+                position: relative
+                display: block
+                height: 1px
+                border-bottom: 1px solid black
+                transform: rotate(45deg)
+                top: 50%
+                
+        
+
+
 
 

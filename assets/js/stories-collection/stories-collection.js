@@ -101,6 +101,7 @@ function loadData() {
         .then(data => addKeyCount(data))
         .then(() => filterButtonsAddEventListener())
         .then(() => addWorldButtons())
+        .then(() => termsButtonCloseAddEventListener())
         .catch(error => console.error('Error: ' + error));
 }
 
@@ -108,12 +109,10 @@ function cleanData(data) {
 
     for(const story of data) {
 
-
         for(let storyKey of Object.keys(story)) {
 
             // console.log("Before (typeof: " + typeof story[storyKey] + "), key:  " + storyKey);
             // console.log(story[storyKey]);
-
 
             if(storyKey != "Based in" && storyKey != "years old") { // escape age (because being a number) and location (first letter Uppercase)
                 // check for "I ", "I'" adn "UTI" to leave them uppercase
@@ -168,7 +167,7 @@ const toggleFilterButton = (button) => {
     const currentFilterElement = document.getElementById("stories-list");
     const buttonFilterName = button.getAttribute('data-filters');
 
-    button.classList.toggle('active');
+    button.classList.toggle('story-active');
     currentFilterElement.classList.toggle(buttonFilterName);
     
 
@@ -177,16 +176,16 @@ const toggleFilterButton = (button) => {
     const buttonsList = document.getElementById("stories-filters-container").children;
 
     for(const b of buttonsList) {
-        b.classList.remove('active');
+        b.classList.remove('story-active');
     }
     
     if(currentFilterElement.getAttribute('data-current-filter') != button.dataset.filters) {
         currentFilterElement.setAttribute('data-current-filter', button.dataset.filters);
-        button.classList.add('active');
+        button.classList.add('story-active');
     }
     else {
         currentFilterElement.setAttribute('data-current-filter', "");
-        button.classList.remove('active');
+        button.classList.remove('story-active');
     }
     */
 }
@@ -273,22 +272,22 @@ function addKeyCount(data) {
 
 // add glyps button functionality
 const toggleWordButtons = function(button) {
-    if(!button.classList.contains("active")) {
+    if(!button.classList.contains("story-active")) {
         // close all the descriptions
         const worldButtons = document.querySelectorAll('[data-word]');
         // console.log(worldButtons);
         for(const b of worldButtons) {
-            b.classList.remove("active");
+            b.classList.remove("story-active");
             b.innerHTML = ` (✧) `;
         }
         // activate the current description
         const key = button.getAttribute('data-word');
         const description = wordsList[key];
         button.innerHTML = ` (✧ ${description}) `;
-        button.classList.add("active");
+        button.classList.add("story-active");
     } else {
         button.innerHTML = ` (✧) `;
-        button.classList.remove("active");
+        button.classList.remove("story-active");
     }
 }
 
@@ -299,6 +298,16 @@ function addWorldButtons() {
     for(let i=0; i<worldButtons.length; i++) {
         worldButtons[i].addEventListener("click", toggleWordButtons.bind(this, worldButtons[i]));
     }
+}
+
+function termsButtonCloseAddEventListener() {
+    const termButtonClose = document.getElementById('terms-close')
+
+    termButtonClose.addEventListener("click", (this, termButtonClose) => {
+        termButtonClose.classList().toggle("terms-close-active") {
+            
+        }
+    })
 }
 
 // start here
