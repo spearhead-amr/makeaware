@@ -1,5 +1,50 @@
 var animationBigLogo = true;
 
+// Utility function for flexible citation detection
+function detectCitationType(line) {
+  const lowerLine = line.toLowerCase().trim();
+  
+  // Primary citation patterns
+  const primaryPatterns = [
+    /Primary\s+Knowledge\s+Base/i,
+    /Primary\s+Sources?/i,
+    /\*\*\s*p/i,
+    /^#{4}\s*p/i,
+    /^#+\s*primary/i
+  ];
+  
+  // Secondary citation patterns  
+  const secondaryPatterns = [
+    /Secondary\s+Knowledge\s+Base/i,
+    /Secondary\s+Sources?/i,
+    /\*\*\s*s/i,
+    /^#{4}\s*s/i,
+    /^#+\s*secondary/i
+  ];
+  
+  // Bibliography citation patterns
+  const bibliographyPatterns = [
+    /Bibliography/i,
+    /\*\*\s*b/i,
+    /^#+\s*bibliography/i,
+    /^#+\s*b$/i
+  ];
+  
+  if (primaryPatterns.some(pattern => pattern.test(lowerLine))) {
+    return 'primary';
+  }
+  
+  if (secondaryPatterns.some(pattern => pattern.test(lowerLine))) {
+    return 'secondary';
+  }
+  
+  if (bibliographyPatterns.some(pattern => pattern.test(lowerLine))) {
+    return 'bibliography';
+  }
+  
+  return null;
+}
+
 //Chatbot description animation
 (function() {
   const container = document.querySelector('#description-rect-content');
@@ -258,16 +303,7 @@ var animationBigLogo = true;
       nameP.textContent = 'Chattyware';
       const metaP = document.createElement('p');
       metaP.className = 'msg-light';
-      
-      // Set response time if available
-      if (typeof msg.responseTimeMs === 'number') {
-        const seconds = (msg.responseTimeMs / 1000);
-        const rounded = seconds < 10 ? seconds.toFixed(1) : Math.round(seconds).toString();
-        const label = msg.content && msg.content.startsWith('Error:') ? 'ragionato per' : 'ragionato per';
-        metaP.innerHTML = '<span class="assistant-time">' + label + ': ' + rounded + 's; modello: Gemini</span>';
-      } else {
-        metaP.innerHTML = '<span class="assistant-time">...</span>';
-      }
+      metaP.innerHTML = '<span class="assistant-time">thought for: ' + msg.responseTimeMs + 's; LLM model: Gemini 2.5 Pro; Ref: ' + msg.run_id + '</span>';
       
       writtenInfo.appendChild(nameP);
       writtenInfo.appendChild(metaP);
@@ -375,7 +411,7 @@ var animationBigLogo = true;
       }
     }
 
-    function sendMessage() {
+    async function sendMessage() {
       const text = (userInput && userInput.value ? userInput.value : '').trim();
       if (!text) return;
       if (userInput) userInput.value = '';
@@ -424,7 +460,7 @@ var animationBigLogo = true;
       nameP.textContent = 'Chattyware';
       const metaP = document.createElement('p');
       metaP.className = 'msg-light';
-      metaP.innerHTML = '<span class="assistant-time">...</span>';
+      metaP.innerHTML = '<span class="assistant-time">thinking with the LLM model Gemini 2.5 Pro...</span>';
       writtenInfo.appendChild(nameP);
       writtenInfo.appendChild(metaP);
       assistantInfo.appendChild(miniLogo);
@@ -458,9 +494,6 @@ var animationBigLogo = true;
         window.startMiniLogoAnimation();
       }
 
-      // Start timing
-      const requestStartMs = performance.now();
-
       // Prepare payload: include previous messages (last 10) in proper order
       const maxHistory = 10;
       const messages = [];
@@ -479,104 +512,263 @@ var animationBigLogo = true;
           });
         }
       });
-      
-      const payload = {
-        input_prompt: text,
-        messages: messages
-      };
 
-      fetch('https://api-gooey.vercel.app/proxy', {
+      console.log("input prompt:", text);
+      console.log("history messages:", messages);
+
+      const response = await fetch('https://api.gooey.ai/v3/integrations/stream/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(r => {
-        if (r.status === 400) {
-          assistantResponseP.textContent = 'Error: There was a limit on the Gooey.ai API usage, please retry again in a minute or start a new chat';
-          throw new Error('There was a limit on the Gooey.ai API usage, please retry again in a minute or start a new chat');
-        }
-        return r.json();
-      })
-      .then(result => {
-        // Stop mini logo animation
-        if (window.stopMiniLogoAnimation) {
-          window.stopMiniLogoAnimation();
+        headers: {
+          'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "integration_id": "DXz",
+          input_prompt: text,
+          messages: messages
+        })
+      });
+
+      const evtSource = new EventSource(response.headers.get("Location"));
+
+      evtSource.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        console.log(data);
+
+        if (data.status === 'running') {
+          if (data.detail !== 'Running...') {
+            const timeSpan = msg.querySelector('.assistant-time');
+            if (timeSpan) {
+              timeSpan.textContent = data.detail;
+            }
+            scrollToNewestMessage();
+          }
         }
 
-        // Fill assistant response
-        assistantResponseP.textContent = result.content || '';
+        if (data.type === 'final_response') {
 
-        // Build citations
-        assistantCitations.innerHTML = '';
-        if (result.citations) {
-          if (result.citations.primary_citation && result.citations.primary_citation.length) {
+          if (data.status === 'running'){
+            // It means we got an error
+
+            // Stop mini logo animation
+            if (window.stopMiniLogoAnimation) {
+              window.stopMiniLogoAnimation();
+            }
+            assistantResponseP.textContent = 'We are sorry, but an error occurred while processing your request. Please try again later by starting a new chat.';
+            const timeSpan = msg.querySelector('.assistant-time');
+            if (timeSpan) {
+              timeSpan.textContent = 'thought for: ' + 'N/A' + 's; LLM model: Gemini 2.5 Pro';
+            }
+            evtSource.close();
+            return;
+          };
+
+          // Stop mini logo animation
+          if (window.stopMiniLogoAnimation) {
+            window.stopMiniLogoAnimation();
+          }
+
+          assistantResponseP.innerHTML = '';
+
+          // Fill assistant response
+          const responseText = data.output.output_text[0];
+          const lines = responseText.split('\n');
+          console.log("response lines:", lines);
+          const bibliographyPresent = lines.some(line => detectCitationType(line) === 'bibliography');
+          const bibliographyIndex = lines.findIndex(line => detectCitationType(line) === 'bibliography');
+          const responseContent = bibliographyPresent ? lines.slice(0, bibliographyIndex) : '';
+          let responseContentString = "";
+
+          if (bibliographyPresent) {
+            responseContentString = "";
+            responseContent.forEach(line => {
+              if (line !== '') {
+                responseContentString += line;
+                console.log("Actuale response content:", responseContentString);
+              }
+            });
+          } else {
+            assistantResponseP.innerHTML += 'There was an error processing your answer, please report it to the project owners by including this reference number' + data.run_id + ' and try again.';
+          }
+
+          assistantResponseP.innerHTML = responseContentString;
+          
+          // Use utility function for robust citation detection
+          const secondaryCitationPresent = lines.some(line => detectCitationType(line) === 'secondary');
+          const primaryCitationPresent = lines.some(line => detectCitationType(line) === 'primary');
+          const primaryCitationIndex = lines.findIndex(line => detectCitationType(line) === 'primary');
+          const secondaryCitationIndex = lines.findIndex(line => detectCitationType(line) === 'secondary');
+          const primaryCitations = [];
+          const secondaryCitations = [];
+
+          // Build citations
+          if (primaryCitationPresent && secondaryCitationPresent) {
+            
+            if (lines[primaryCitationIndex + 1] === '' ) {
+              if (lines[secondaryCitationIndex - 1] === '' ) {
+                primaryCitations.push(...lines.slice(primaryCitationIndex + 2, secondaryCitationIndex - 1));
+              } else {
+                primaryCitations.push(...lines.slice(primaryCitationIndex + 2, secondaryCitationIndex));
+              }
+            } else {
+              if (lines[secondaryCitationIndex - 1] === '' ) {
+                primaryCitations.push(...lines.slice(primaryCitationIndex + 1, secondaryCitationIndex - 1));
+              } else {
+                primaryCitations.push(...lines.slice(primaryCitationIndex + 1, secondaryCitationIndex));
+              }
+            }
+
+            primaryCitations.forEach(citation => {
+              if (citation == '') {
+                primaryCitations.splice(primaryCitations.indexOf(citation), 1);
+              }
+            });
+            
+            console.log("primary citations:", primaryCitations);
+
             const titleP = document.createElement('p');
             titleP.textContent = 'Primary sources:';
             assistantCitations.appendChild(titleP);
             const primaryP = document.createElement('p');
             primaryP.className = 'primary-sources';
-            primaryP.innerHTML = result.citations.primary_citation.map(c => c).join('<br>');
-            assistantCitations.appendChild(primaryP);
-          }
-          if (result.citations.secondary_citation && result.citations.secondary_citation.length) {
+
+            primaryCitations.forEach(citation => {
+              if (citation.startsWith('*')) {
+                if (citation.startsWith('**')) {
+                  citation = citation.substring(2).trim();
+                } else {
+                  citation = citation.substring(1).trim();
+                }
+              }
+              primaryP.innerHTML += citation + '<br>';
+              assistantCitations.appendChild(primaryP);
+            });
+
+            if (lines[secondaryCitationIndex + 1] === '' ) {
+              secondaryCitations.push(...lines.slice(secondaryCitationIndex + 2));
+            } else {
+              secondaryCitations.push(...lines.slice(secondaryCitationIndex + 1));
+            }
+
+            secondaryCitations.forEach(citation => {
+              if (citation == '') {
+                secondaryCitations.splice(secondaryCitations.indexOf(citation), 1);
+              }
+            });
+
+            console.log("secondary citations:", secondaryCitations);
+
             const titleP2 = document.createElement('p');
             titleP2.textContent = 'Secondary sources:';
             assistantCitations.appendChild(titleP2);
             const secondaryP = document.createElement('p');
             secondaryP.className = 'secondary-sources';
-            secondaryP.innerHTML = result.citations.secondary_citation.map(c => c).join('<br>');
-            assistantCitations.appendChild(secondaryP);
+
+            secondaryCitations.forEach(citation => {
+              if (citation.startsWith('*')) {
+                if (citation.startsWith('**')) {
+                  citation = citation.substring(2).trim();
+                } else {
+                  citation = citation.substring(1).trim();
+                }
+              }
+              secondaryP.innerHTML += citation + '<br>';
+              assistantCitations.appendChild(secondaryP);
+            });
+          } else if (primaryCitationPresent && !secondaryCitationPresent) {
+            if (lines[primaryCitationIndex + 1] === '' ) {
+              primaryCitations.push(...lines.slice(primaryCitationIndex + 2));
+            } else {
+              primaryCitations.push(...lines.slice(primaryCitationIndex + 1));
+            }
+
+            primaryCitations.forEach(citation => {
+              if (citation == '') {
+                primaryCitations.splice(primaryCitations.indexOf(citation), 1);
+              }
+            });
+            
+            console.log("primary citations:", primaryCitations);
+
+            const titleP = document.createElement('p');
+            titleP.textContent = 'Primary sources:';
+            assistantCitations.appendChild(titleP);
+            const primaryP = document.createElement('p');
+            primaryP.className = 'primary-sources';
+
+            primaryCitations.forEach(citation => {
+              if (citation.startsWith('*')) {
+                if (citation.startsWith('**')) {
+                  citation = citation.substring(2).trim();
+                } else {
+                  citation = citation.substring(1).trim();
+                }
+              }
+              primaryP.innerHTML += citation + '<br>';
+              assistantCitations.appendChild(primaryP);
+            });
+          } else if (secondaryCitationPresent && !primaryCitationPresent) {
+
+            if (lines[secondaryCitationIndex + 1] === '' ) {
+              secondaryCitations.push(...lines.slice(secondaryCitationIndex + 2));
+            } else {
+              secondaryCitations.push(...lines.slice(secondaryCitationIndex + 1));
+            }
+
+            secondaryCitations.forEach(citation => {
+              if (citation == '') {
+                secondaryCitations.splice(secondaryCitations.indexOf(citation), 1);
+              }
+            });
+
+            console.log("secondary citations:", secondaryCitations);
+
+            const titleP2 = document.createElement('p');
+            titleP2.textContent = 'Secondary sources:';
+            assistantCitations.appendChild(titleP2);
+            const secondaryP = document.createElement('p');
+            secondaryP.className = 'secondary-sources';
+
+            secondaryCitations.forEach(citation => {
+              if (citation.startsWith('*')) {
+                if (citation.startsWith('**')) {
+                  citation = citation.substring(2).trim();
+                } else {
+                  citation = citation.substring(1).trim();
+                }
+              }
+              secondaryP.innerHTML += citation + '<br>';
+              assistantCitations.appendChild(secondaryP);
+            });
+          } else {
+            console.log("no citations found");
           }
-        }
 
-        // Update time
-        const elapsedMs = Math.round(performance.now() - requestStartMs);
-        const timeSpan = msg.querySelector('.assistant-time');
-        if (timeSpan) {
-          const seconds = (elapsedMs / 1000);
+          const seconds = data.run_time_sec;
           const rounded = seconds < 10 ? seconds.toFixed(1) : Math.round(seconds).toString();
-          timeSpan.textContent = 'thought for: ' + rounded + 's; LLM model: Gemini 2.5 Pro';
+
+          history.push({
+            user: text,
+            content: responseContentString,
+            citations: {
+              primary_citation: primaryCitationPresent ? primaryCitations : undefined,
+              secondary_citation: secondaryCitationPresent ? secondaryCitations : undefined
+            },
+            responseTimeMs: rounded,
+            run_id: data.run_id
+          });
+          localStorage.setItem('chatHistory', JSON.stringify(history));
+
+          // Update time
+          const timeSpan = msg.querySelector('.assistant-time');
+          if (timeSpan) {
+            timeSpan.textContent = 'thought for: ' + rounded + 's; LLM model: Gemini 2.5 Pro; Ref: ' + data.run_id;
+          }
+
+          // Scroll to show the complete response
+          scrollToNewestMessage();
+
+          evtSource.close();
         }
-
-        // Save to history
-        history.push({
-          user: text,
-          content: assistantResponseP.textContent,
-          citations: result.citations,
-          responseTimeMs: elapsedMs
-        });
-        localStorage.setItem('chatHistory', JSON.stringify(history));
-
-        // Scroll to show the complete response
-        scrollToNewestMessage();
-      })
-      .catch(err => {
-        // Stop mini logo animation
-        if (window.stopMiniLogoAnimation) {
-          window.stopMiniLogoAnimation();
-        }
-
-        assistantResponseP.textContent = 'Error: ' + err.message;
-        const elapsedMs = Math.round(performance.now() - requestStartMs);
-        const timeSpan = msg.querySelector('.assistant-time');
-        if (timeSpan) {
-          const seconds = (elapsedMs / 1000);
-          const rounded = seconds < 10 ? seconds.toFixed(1) : Math.round(seconds).toString();
-          timeSpan.textContent = 'ragionato per: ' + rounded + 's; modello: Gemini';
-        }
-
-        // Save to history including response time
-        history.push({
-          user: text,
-          content: assistantResponseP.textContent,
-          citations: undefined,
-          responseTimeMs: elapsedMs
-        });
-        localStorage.setItem('chatHistory', JSON.stringify(history));
-
-        // Scroll to show the error message
-        scrollToNewestMessage();
-      });
+      };
     }
 
     if (sendBtn) sendBtn.addEventListener('click', sendMessage);
