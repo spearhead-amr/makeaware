@@ -74,6 +74,9 @@
     padding-top: 1rem
     padding-bottom: 1rem
 
+    +media(mobile)
+        padding-top: .5rem
+
 #chatbot-logo-outer
         display: flex
         justify-content: center
@@ -149,6 +152,10 @@
             padding-top: 2px
             width: 1.5rem
             height: 1.5rem
+        
+        +media(mobile)
+            color: brand-black
+            padding: 0
     
     .chatbot-logo-big
         width: 20vw
@@ -260,6 +267,9 @@
     +media(tablet-h)
         font-size: 1rem
 
+    +media(mobile)
+        font-size: .6rem
+
 .msg-bold
     @extend .sans-caption
     font-size: .8rem
@@ -267,6 +277,9 @@
 
     +media(tablet-h)
         font-size: 1rem
+
+    +media(mobile)
+        font-weight: 400
 
 .assistant-content
     @extend .content-margins
@@ -300,12 +313,18 @@
         padding-left: 20%
         margin-bottom: 0
 
+    +media(mobile)
+        margin-bottom: .5rem
+
 .written-info
     padding-left: .5rem
 
     p:first-of-type
         font-size: .7rem
         text-transform: uppercase
+
+        +media(mobile)
+            font-size: .5rem
     
     +media(tablet-h)
         padding-left: 1rem
@@ -455,6 +474,9 @@
             +media(tablet-h)
                 margin-bottom: 0
                 font-size: 1.5rem
+
+            +media(mobile)
+                font-size: .6rem
         
         p
             @extend .serif-paragraph
@@ -462,6 +484,9 @@
 
             +media(tablet-h)
                 font-size: 2rem
+
+            +media(mobile)
+                font-size: 1rem
         
         a
             color: brand-black
