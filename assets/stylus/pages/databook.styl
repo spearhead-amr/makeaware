@@ -1,3 +1,13 @@
+// shared classes
+.section-title-databook
+    @extend .sans-paragraph
+    text-transform: uppercase
+    //font-size: 0.7rem
+    margin-bottom 1rem
+
+    +media(desktop)
+        font-size: 1.9rem
+
 #main-databook
     @extend .content-margins
     margin-top: 15vh
@@ -13,16 +23,6 @@
         color: follow-up-color
     .filter-demographics
         color: demographics-color
-
-    // shared classes
-    .section-title
-        @extend .sans-paragraph
-        text-transform: uppercase
-        //font-size: 0.7rem
-        margin-bottom 1rem
-
-        +media(desktop)
-            font-size: 1.9rem
 
     // introduction and instructions
     #stories-introduction
@@ -43,13 +43,13 @@
                 margin-top calc(2rem * 2.5)
 
             h2
-                @extend .section-title            
+                @extend .section-title-databook            
     
     // filters
     #stories-filters
 
         h2
-            @extend .section-title
+            @extend .section-title-databook
         
         #stories-filters-container
             @extend .serif-paragraph
@@ -245,6 +245,9 @@
                 border-bottom: 1px solid black
                 transform: rotate(45deg)
                 top: 50%
+
+        #terms-list-main
+            display: none
                 
         
 

@@ -93,6 +93,9 @@ function loadData() {
             return cleanData(data);
         })
         .then(data => {
+            return generateTermsLists(data);
+        })
+        .then(data => {
             return checkWords(data);
         })
         .then(data => {
@@ -249,7 +252,6 @@ function checkWords(data) {
 
 // add the count to the keys and the button functionality
 const toggleKeyButtons = function(button) {
-    console.log(button.getAttribute('data-key'));
     toggleTermsButton();
 }
 
@@ -261,7 +263,6 @@ function addKeyCount(data) {
     for(const element of dataKeysElements) {
         const currentKey = element.getAttribute('data-key');
         element.innerHTML = ` <span class="glyph">[<div class=\"key-counter\">${keysList[currentKey]}</div>]</span>`;
-
     }
 
     const keyButtons = document.querySelectorAll('[data-key]');
@@ -307,10 +308,54 @@ const toggleTermsButton = function() {
 }
 
 function termsButtonCloseAddEventListener() {
-    const termButtonClose = document.getElementById('terms-close')
+    const termButtonClose = document.getElementById('terms-close');
 
     termButtonClose.addEventListener("click", toggleTermsButton.bind(this, null));
 }
+
+
+function generateTermsLists(data) {
+
+    const termsListMain = document.getElementById('terms-list-main');
+
+    console.log(termsListMain);
+
+    let termsObject = {};  // object containing all the stories organised by terms and story keys
+
+    for (const key of Object.keys(keysList)) {
+
+        termsObject[key] = {};
+
+        const keyItem = document.createElement('li');
+        keyItem.innerHTML = `<h2>${key}</h2>`;
+        const keyItemId = `li-${key}`;
+        keyItem.id = keyItemId;
+        termsListMain.appendChild(keyItem);
+        
+        data.forEach((story) => {
+
+            for (const header of Object.keys(headerStories)) {
+
+                const storyPart = story[headerStories[header]];
+                
+                if(String(storyPart).toLowerCase().includes(key.toLowerCase())) {
+                    if(!termsObject[key][header]) { 
+                        const headerListHtml = document.createElement('ul');
+                        document.getElementById(keyItemId).appendChild(headerListHtml);
+
+                        termsObject[key][header] = []; // create header key if not existing, empty array
+                    }
+                    termsObject[key][header].push(storyPart); // add to the array the current story part
+                }
+            }
+        });
+    }
+
+    console.log(termsObject);
+
+    return data;
+}
+
 
 // start here
 loadData();
