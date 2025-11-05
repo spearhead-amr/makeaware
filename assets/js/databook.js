@@ -144,18 +144,20 @@ function appendData(data) {
         output += `
             <li id="story-no-${i}">
                 <h3>#${i}</h3>
-                <span data-filter="diagnosis">I decided to <span class="filter-diagnosis">${story[headerStories["decided"]]} ${story[headerStories["with"]]}</span></span> <span data-filter="symptoms">because <span class="filter-symptoms">${story[headerStories["because"]]}</span>.</span>
-                <span data-filter="symptoms">I was feeling <span class="filter-symptoms">${story[headerStories["feeling"]]}</span> every time <span class="filter-symptoms">${story[headerStories["every_time"]]}</span>.</span>
-                <span data-filter="diagnosis">I've been told by <span class="filter-diagnosis">${story[headerStories["told_by"]]}</span> that I was suffering from <span class="filter-diagnosis">${story[headerStories["suffering"]]}</span>.</span>
-                <span data-filter="diagnosis">It happened <span class="filter-diagnosis">${story[headerStories["happened"]]} for ${story[headerStories["when"]]}</span>.</span>
-                <span data-filter="treatment">The doctor <span class="filter-treatment">${story[headerStories["doctor"]]}</span> to me that <span class="filter-treatment">${story[headerStories["to_me_that"]]}</span>.</span> 
-                <span data-filter="treatment">I started <span class="filter-treatment">${story[headerStories["started"]]}</span>.</span>
-                <span data-filter="treatment">Ultimately, the cure <span class="filter-treatment">${story[headerStories["cure"]]}</span>.</span>
-                <span data-filter="follow-up">I started feeling <span class="filter-follow-up">${story[headerStories["started_feeling"]]}</span>.</span>
-                <span data-filter="follow-up">I noticed <span class="filter-follow-up">${story[headerStories["noticed"]]}</span>.</span>
-                <span data-filter="follow-up">So, I tried <span class="filter-follow-up">${story[headerStories["tried"]]}</span>.</span>
-                <span data-filter="follow-up">Now <span class="filter-follow-up">${story[headerStories["now"]]}</span>.</span>
-                <span data-filter="demographics">I am <span class="filter-demographics">${story[headerStories["gender"]]}, ${story[headerStories["age"]]} years old, based in ${story[headerStories["location"]]}</span>.</span>
+                <div class="story-container-div">
+                    <span data-filter="diagnosis">I decided to <span class="filter-diagnosis">${story[headerStories["decided"]]} ${story[headerStories["with"]]}</span></span> <span data-filter="symptoms">because <span class="filter-symptoms">${story[headerStories["because"]]}</span>.</span>
+                    <span data-filter="symptoms">I was feeling <span class="filter-symptoms">${story[headerStories["feeling"]]}</span> every time <span class="filter-symptoms">${story[headerStories["every_time"]]}</span>.</span>
+                    <span data-filter="diagnosis">I've been told by <span class="filter-diagnosis">${story[headerStories["told_by"]]}</span> that I was suffering from <span class="filter-diagnosis">${story[headerStories["suffering"]]}</span>.</span>
+                    <span data-filter="diagnosis">It happened <span class="filter-diagnosis">${story[headerStories["happened"]]} for ${story[headerStories["when"]]}</span>.</span>
+                    <span data-filter="treatment">The doctor <span class="filter-treatment">${story[headerStories["doctor"]]}</span> to me that <span class="filter-treatment">${story[headerStories["to_me_that"]]}</span>.</span> 
+                    <span data-filter="treatment">I started <span class="filter-treatment">${story[headerStories["started"]]}</span>.</span>
+                    <span data-filter="treatment">Ultimately, the cure <span class="filter-treatment">${story[headerStories["cure"]]}</span>.</span>
+                    <span data-filter="follow-up">I started feeling <span class="filter-follow-up">${story[headerStories["started_feeling"]]}</span>.</span>
+                    <span data-filter="follow-up">I noticed <span class="filter-follow-up">${story[headerStories["noticed"]]}</span>.</span>
+                    <span data-filter="follow-up">So, I tried <span class="filter-follow-up">${story[headerStories["tried"]]}</span>.</span>
+                    <span data-filter="follow-up">Now <span class="filter-follow-up">${story[headerStories["now"]]}</span>.</span>
+                    <span data-filter="demographics">I am <span class="filter-demographics">${story[headerStories["gender"]]}, ${story[headerStories["age"]]} years old, based in ${story[headerStories["location"]]}</span>.</span>
+                </div>
             </li>
         `;
     }
@@ -332,7 +334,7 @@ const toggleTermsButton = function(status) {
 }
 
 function termsButtonCloseAddEventListener() {
-    const termButtonClose = document.getElementById('terms-close');
+    const termButtonClose = document.getElementById('terms-close-button');
 
     termButtonClose.addEventListener("click", toggleTermsButton.bind(this, false));
 }
