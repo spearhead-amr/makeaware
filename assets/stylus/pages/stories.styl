@@ -21,6 +21,9 @@
             @extend .sans-paragraph
             margin-top 2rem
 
+            +media(tablet-h)
+                @extend .grid-container
+
             +media(desktop)
                 margin-top calc(2rem * 2.5)
 
@@ -31,6 +34,9 @@
     #story-collection-form-container
         @extend .sans-paragraph
         margin-top 2rem
+
+        +media(tablet-h)
+                @extend .grid-container
 
         +media(desktop)
             margin-top calc(2rem * 2.5)
@@ -133,6 +139,9 @@
         @extend .sans-paragraph
         margin-top 2rem
 
+        +media(tablet-h)
+            @extend .grid-container
+
         +media(desktop)
             margin-top calc(2rem * 2.5)
 
@@ -142,6 +151,8 @@
     #story-collection-explore-databook-container
         margin-bottom: 3rem
         margin-top: 3rem
+        +media(tablet-h)
+            @extend .grid-container
 
         #button-explore-databook
             margin-right: auto
