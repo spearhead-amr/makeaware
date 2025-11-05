@@ -378,12 +378,14 @@ function generateTermsLists(data) {
             //console.log(header);
             const headerDiv = document.createElement("div");
             headerDiv.id = `div-${header}`;
+            headerDiv.classList = "terms-div-header";
             headerDiv.innerHTML = `
                 <h3>${headerStories[header]}</h3>
             `;
 
             const ulStoryList = document.createElement("ul");
             ulStoryList.id=`ul-${header}`;
+            ulStoryList.classList = "terms-ul-key";
 
             Object.values(termsObject[key][header]).forEach((story) => {
                 //console.log(story);
