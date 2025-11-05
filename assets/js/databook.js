@@ -142,7 +142,7 @@ function appendData(data) {
     for(let i=data.length-1; i>=0; i--) {
         story = data[i];
         output += `
-            <li>
+            <li id="story-no-${i}">
                 <h3>#${i}</h3>
                 <span data-filter="diagnosis">I decided to <span class="filter-diagnosis">${story[headerStories["decided"]]} ${story[headerStories["with"]]}</span></span> <span data-filter="symptoms">because <span class="filter-symptoms">${story[headerStories["because"]]}</span>.</span>
                 <span data-filter="symptoms">I was feeling <span class="filter-symptoms">${story[headerStories["feeling"]]}</span> every time <span class="filter-symptoms">${story[headerStories["every_time"]]}</span>.</span>
@@ -316,33 +316,20 @@ function termsButtonCloseAddEventListener() {
 
 function generateTermsLists(data) {
 
-    const termsListMain = document.getElementById('terms-list-main');
-
-    console.log(termsListMain);
+    /* build the object that rapresent all keys with all headers and story parts */
 
     let termsObject = {};  // object containing all the stories organised by terms and story keys
 
     for (const key of Object.keys(keysList)) {
-
         termsObject[key] = {};
-
-        const keyItem = document.createElement('li');
-        keyItem.innerHTML = `<h2>${key}</h2>`;
-        const keyItemId = `li-${key}`;
-        keyItem.id = keyItemId;
-        termsListMain.appendChild(keyItem);
         
         data.forEach((story) => {
 
             for (const header of Object.keys(headerStories)) {
-
                 const storyPart = story[headerStories[header]];
                 
                 if(String(storyPart).toLowerCase().includes(key.toLowerCase())) {
-                    if(!termsObject[key][header]) { 
-                        const headerListHtml = document.createElement('ul');
-                        document.getElementById(keyItemId).appendChild(headerListHtml);
-
+                    if(!termsObject[key][header]) {
                         termsObject[key][header] = []; // create header key if not existing, empty array
                     }
                     termsObject[key][header].push(storyPart); // add to the array the current story part
@@ -352,6 +339,43 @@ function generateTermsLists(data) {
     }
 
     console.log(termsObject);
+
+    /* create the html elements */
+
+    const termsCollectionContainer = document.getElementById("terms-collection-container");
+
+    Object.keys(termsObject).forEach((key) => {
+        //console.log(key);
+        const keyListElementSection = document.createElement("section");
+        keyListElementSection.id=`${key}`;
+        termsCollectionContainer.appendChild(keyListElementSection);
+
+        Object.keys(termsObject[key]).forEach((header) => {
+            //console.log(header);
+            const headerDiv = document.createElement("div");
+            headerDiv.id = `div-${header}`;
+            headerDiv.innerHTML = `
+                <h3>${headerStories[header]}</h3>
+            `;
+
+            const ulStoryList = document.createElement("ul");
+            ulStoryList.id=`ul-${header}`;
+
+            Object.values(termsObject[key][header]).forEach((story) => {
+                //console.log(story);
+                const liStory = document.createElement("li");
+                const regex = new RegExp(`\\b(${key})\\b`, 'gi');
+                storyHighlighted = story.replace(regex, '<span class="current-key">$1</span>');    // add the world hightlight
+                liStory.innerHTML = storyHighlighted;
+                ulStoryList.appendChild(liStory);
+            });
+
+            headerDiv.appendChild(ulStoryList);
+            keyListElementSection.appendChild(headerDiv);
+        })
+    })
+
+
 
     return data;
 }
