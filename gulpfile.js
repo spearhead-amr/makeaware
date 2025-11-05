@@ -17,10 +17,11 @@ function cssUpdate() {
         .src('assets/stylus/main.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus())
-        .pipe(postcss([
-            autoprefixer(),
-            cssnano()
-        ]))
+        //Sembra che il postcss stia bloccando tutto il processo
+        // .pipe(postcss([
+        //     autoprefixer(),
+        //     cssnano()
+        // ]))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('assets/css'))
         .pipe(browserSync.stream());
@@ -38,3 +39,4 @@ function serve() {
 }
 
 gulp.task('default', gulp.parallel(serve));
+gulp.task('cssUpdate', gulp.parallel(cssUpdate));

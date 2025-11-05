@@ -62,12 +62,13 @@ Examples main.css files, footer and header HTML files
 ## Fix before merging
 Within this list are included all the fix to perform before the merge of the repo.
 ### Overall website
-- [ ] Header menu: text smaller following Figma
+- [x] Header menu: text smaller following Figma
 - [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
-- [ ] numbers near words: not in the format ⑨ but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>`
-- [ ] Favicon to be changed with transparent background
+- [x] numbers near words: not in the format ⑨ but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>`
+- [x] Favicon to be changed with transparent background
+- [x] Web manifest and theme colors
 ### Homepage
-- [ ] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
+- [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
 - [ ] #home-intro > h1 & h2: not possible to select text
 - [ ] #home-intro: height to be checked (- number should have a space)
