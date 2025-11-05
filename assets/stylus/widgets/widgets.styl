@@ -88,7 +88,7 @@ widget-overlay-base()
         align-items: flex-start
 
     .widget-legenda-button 
-        padding: 8px 14px 5px
+        padding: 5px 14px 5px
         border-radius: 100px
         border: 1px solid 
         color: brand-black
@@ -96,6 +96,7 @@ widget-overlay-base()
         @extend .serif-captiontitle
         cursor: pointer
         margin-left: auto
+        font-size: .8rem
        
 
         +media(tablet-h)
@@ -110,6 +111,7 @@ widget-overlay-base()
 
 #viz-data-sources
     @extend .sans-caption
+    font-size: .6rem
     position:relative
     line-height: 1
     margin: 0
@@ -117,6 +119,10 @@ widget-overlay-base()
 
     +media(tablet-h)
         margin-bottom: 1rem
+        font-size: 1.2rem
+    
+    +media(desktop)
+        font-size: 1rem
 
     a
         color: brand-black

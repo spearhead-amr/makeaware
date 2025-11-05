@@ -11,13 +11,13 @@ class WorldVizHandler {
         // Mobile-first grid configuration with adjusted spacing
         this.config = {
             margin: { top: 0, right: 0, bottom: 40, left: 0 }, // Increased side margins
-            cellHeight: 50, 
+            cellHeight: 90, 
             maxRadius: 30, 
             minRadius: 3,
             columnsMobile: 3,
             columnsTablet: 6,
             columnsDesktop: 10,
-            textSpacing: 50
+            textSpacing: 20
         };
         
         this.breakpoints = {

@@ -56,17 +56,29 @@
     // Country name labels - centered with circle
     .country-label
         @extend .sans-scheme
+        font-size: .8rem
         fill: brand-black
         text-anchor: middle
         pointer-events: none
+
+        +media(tablet-h)
+            font-size: 1.1rem
 
     // Data labels - now centered under country name
 
     .country-resistant
         fill: brand-pink
+        font-size: .5rem
+
+        +media(tablet-h)
+            font-size: 1rem
 
     .country-samples
         fill: brand-black
+        font-size: .5rem
+
+        +media(tablet-h)
+            font-size: 1rem
 
     .country-samples,
     .country-resistant
