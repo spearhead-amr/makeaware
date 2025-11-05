@@ -16,7 +16,7 @@
 
 #home-intro
    
-    height: calc(94vh-1.1rem)
+    height: calc(92dvh - 1.1rem)
     
     h1
         @extend .sans-logo
@@ -83,7 +83,10 @@
     
 
     +media(tablet-h)
-        height: calc(90vh-2.4rem)
+        height: calc(86vh - 2.4rem)
+    
+    +media(desktop)
+        height: calc(90vh - 2.4rem)
 
 
 .makeaware-description
@@ -100,6 +103,7 @@
         -webkit-user-select: none
         -moz-user-select: none
         -ms-user-select: none
+        font-size: .6em
 
         &:after
             content: " ↓"
@@ -113,6 +117,7 @@
 
         +media(tablet-h)
             padding-bottom: 1rem
+            font-size: 1.1em
 
     p
         @extend .serif-subtitle
@@ -131,7 +136,7 @@
 
       +media(tablet-h)
         width: 40%
-        height: 800px
+        height: 700px
         //height: auto // alternative
         object-fit: cover
 
@@ -193,11 +198,18 @@
 // Widget petri with manageable content blocks
 
 .hero-background
-    display: flex
-    align-items: center
-    align-content: center
-    align-self: center
-    justify-content: center
+    display: block
+    top:35vh
+    left:calc(50vw - 20vh)
+    position: absolute
+
+    +media(tablet-h)
+        top:10vh
+        left:calc(50vw - 35vh)
+
+    +media(desktop)
+        top:5vh
+        left:calc(50vw - 40vh)
 
 
     
@@ -217,18 +229,14 @@
     background-position: center
     background-repeat: no-repeat
     z-index: 0
-    top:50vh
-    position: absolute
 
     +media(tablet-h)
         width: 70vh
         height: 70vh
-        top:18vh
 
     +media(desktop)
         width: 80vh
         height: 80vh
-        top:12vh
         
         
         

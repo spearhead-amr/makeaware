@@ -66,14 +66,15 @@ Within this list are included all the fix to perform before the merge of the rep
 - [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
 - [x] numbers near words: not in the format ⑨ but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>`
 - [x] Favicon to be changed with transparent background
-- [x] Web manifest and theme colors
+- [x] ADDED: Web manifest and theme colors
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
-- [ ] #home-intro > h1 & h2: not possible to select text
-- [ ] #home-intro: height to be checked (- number should have a space)
-- [ ] project-description: text smaller as Figma
-- [ ] .descriptive-content > p: text smaller as Figma
+- [x] #home-intro > h1 & h2: not possible to select text
+- [x] #home-intro: height to be checked (- number should have a space)
+- [x] ADDED: fix petri animation on mobile and tablet
+- [x] project-description: text smaller as Figma
+- [x] .descriptive-content > p: text smaller as Figma
 - [ ] h1 (e.g. #widget-amr): text smaller as Figma
 - [ ] #widget-amr-abstract: text smaller as Figma
 - [ ] #widget-amr-content > img: to be changed as code - carefully for mobile
