@@ -201,7 +201,7 @@ function filterButtonsAddEventListener() {
     }
 }
 
-// Check the presence of wordList and keysList words in the stories and and the <span data-word=""></span> or data-key respectively around the word itself
+// Check the presence of wordList and keysList words in the stories and the <span data-word=""></span> or data-key respectively around the word itself
 function checkWords(data) {
 
     // knowledge note: reference to objects points to the original object, so any changes made to the reference will affect the orginal object
@@ -252,16 +252,32 @@ function checkWords(data) {
 
 // add the count to the keys and the button functionality
 const toggleKeyButtons = function(button) {
-    toggleTermsButton();
+
+    //console.log(button.getAttribute('data-key'));
+
+    const currentKey = button.getAttribute('data-key');
+    
+    // remove any class (active) to all the sections
+    const sectionsCollection = document.getElementById("terms-collection-container").children;
+    for(section of sectionsCollection) {
+        section.classList = "";
+    }
+
+    // add .active class to the <section id="key"></section> in the terms-collection-container
+    document.getElementById(`section-${currentKey}`).classList.add("current-key-active");
+    
+    toggleTermsButton(true);
 }
 
 function addKeyCount(data) {
+
+    let currentKey = "";
 
     // keys
     const dataKeysElements = document.querySelectorAll('[data-key]');
 
     for(const element of dataKeysElements) {
-        const currentKey = element.getAttribute('data-key');
+        currentKey = element.getAttribute('data-key');
         element.innerHTML = ` <span class="glyph">[<div class=\"key-counter\">${keysList[currentKey]}</div>]</span>`;
     }
 
@@ -303,14 +319,22 @@ function addWorldButtons() {
 }
 
 // terms container toggle
-const toggleTermsButton = function() {
-    document.getElementById('terms-container').classList.toggle("terms-container-active");
+const toggleTermsButton = function(status) {
+    const termsContainer = document.getElementById('terms-container');
+    console.log(termsContainer);
+    if(status) {    // true, open
+        console.log(status);
+        termsContainer.classList.add("terms-container-active");
+    }
+    else {  // false, close
+        termsContainer.classList = "";
+    }
 }
 
 function termsButtonCloseAddEventListener() {
     const termButtonClose = document.getElementById('terms-close');
 
-    termButtonClose.addEventListener("click", toggleTermsButton.bind(this, null));
+    termButtonClose.addEventListener("click", toggleTermsButton.bind(this, false));
 }
 
 
@@ -347,7 +371,7 @@ function generateTermsLists(data) {
     Object.keys(termsObject).forEach((key) => {
         //console.log(key);
         const keyListElementSection = document.createElement("section");
-        keyListElementSection.id=`${key}`;
+        keyListElementSection.id=`section-${key}`;
         termsCollectionContainer.appendChild(keyListElementSection);
 
         Object.keys(termsObject[key]).forEach((header) => {

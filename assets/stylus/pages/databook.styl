@@ -204,6 +204,7 @@
     #terms-container
         position: fixed
         overflow: auto;
+        display: none
         bottom: 0
         left: 0
         height: 50%
@@ -215,7 +216,7 @@
         @extend .sans-paragraph
 
         &.terms-container-active
-            display: none
+            display: block
 
         #terms-close
             height: 3rem
@@ -248,8 +249,12 @@
                 top: 50%
 
         
-        #terms-list-main
-            display: block
+        #terms-collection-container
+            
+            &>section
+                display: none
+            &>section.current-key-active
+                display: block
                 
         
 
