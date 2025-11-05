@@ -18,22 +18,28 @@
         font-size: 12rem
 
 .serif-title
-    font-size: calc(1.7rem * 2)   // old 1.7rem
-    line-height: calc(1.7rem*1.15*2)
+    font-size: 1.7rem
+    line-height: 1.11
     font-family: 'PP Editorial New', serif
     font-weight: 200
 
+    +media(tablet-h)
+        font-size: 4rem
+
     +media(desktop)
-        font-size: 7rem
-        line-height: calc(7rem*1.15)
+        font-size: 4.5rem
 
 .serif-subtitle
     font-size: 1.2rem
-    line-height: 1.30
+    line-height: 1.11
     font-family: 'PP Editorial New', serif
     font-weight: 200
     
     +media(tablet-h)
+        font-size: 3rem
+        line-height: 1.11
+    
+    +media(desktop)
         font-size: 3.4rem
         line-height: 1.17
 
@@ -106,7 +112,7 @@
     font-family: 'Suisse Intl', sans-serif
     font-weight: 300
 
-    +media(desktop)
+    +media(tablet-h)
         font-size: 1.6rem
         line-height: 1.30
 

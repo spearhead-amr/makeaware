@@ -20,6 +20,8 @@
     .petri-frame
         // Transparent background for backdrop-filter
         background: rgba(255, 255, 255, 0)
+        // Include the -webkit- prefixed property for Safari/iOS
+        -webkit-backdrop-filter: blur(0px)
         backdrop-filter: blur(0px)
         border-top: 1px solid transparent
         height: 100vh
@@ -140,7 +142,7 @@
             // Alignment like other page elements
             h2
                 @extend .serif-subtitle
-                margin-bottom: 1rem
+                margin-bottom: .5rem
                 text-align: left
                 margin-top: 0
                 text-wrap: balance
@@ -155,6 +157,12 @@
                 
                 +media(tablet-h)
                     width: 100%
+        
+        .petri-content-only-desktop
+            display: none
+
+            +media(tablet-h)
+                display: inline-block
 
     // Circle container animation - active state
     &.active

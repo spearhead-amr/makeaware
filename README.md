@@ -77,6 +77,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] .descriptive-content > p: text smaller as Figma
 - [x] ADDED: fix header widget-amr heading tag to h3
 - [x] h3 (e.g. #widget-amr): text smaller as Figma
+- [x] ADDED: major-fix for animation on the first widget, it was not working on mobile ans Safari 
 - [ ] #widget-amr-abstract: text smaller as Figma
 - [ ] #widget-amr-content > img: to be changed as code - carefully for mobile
 - [ ] #widget-amr-content > p: text smaller as previous (.descriptive-content > p)
