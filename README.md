@@ -66,25 +66,28 @@ Within this list are included all the fix to perform before the merge of the rep
 - [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
 - [x] numbers near words: not in the format ⑨ but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>`
 - [x] Favicon to be changed with transparent background
-- [x] ADDED: Web manifest and theme colors
+- [x] ADDED 5/11: Web manifest and theme colors
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
 - [x] #home-intro > h1 & h2: not possible to select text
 - [x] #home-intro: height to be checked (- number should have a space)
-- [x] ADDED: fix petri animation on mobile and tablet
+- [x] ADDED 5/11: fix petri animation on mobile and tablet
 - [x] project-description: text smaller as Figma
 - [x] .descriptive-content > p: text smaller as Figma
-- [x] ADDED: fix header widget-amr heading tag to h3
+- [x] ADDED 5/11: fix header widget-amr heading tag to h3
 - [x] h3 (e.g. #widget-amr): text smaller as Figma
-- [x] ADDED: major-fix for animation on the first widget, it was not working on mobile ans Safari 
-- [ ] #widget-amr-abstract: text smaller as Figma
+- [x] ADDED 5/11: major-fix for animation on the first widget, it was not working on mobile ans Safari
+- [x] #widget-amr-abstract: text smaller as Figma
 - [ ] #widget-amr-content > img: to be changed as code - carefully for mobile
-- [ ] #widget-amr-content > p: text smaller as previous (.descriptive-content > p)
-- [ ] .petri-content-block > p: text smaller as previous (.descriptive-content > p)
-- [ ] .circle-text > ResistanceBacterium -> Resistance baterium
-- [ ] .viz-containter: align the space in between rows as Figma (careful to mouse hover)
-- [ ] footer is not displayed
+- [x] #widget-amr-content > p: text smaller as previous (.descriptive-content > p)
+- [x] .petri-content-block > p: text smaller as previous (.descriptive-content > p)
+- [x] .circle-text > ResistanceBacterium -> Resistance baterium
+- [x] .viz-containter: align the space in between rows as Figma (careful to mouse hover) 
+- [x] ADDED 5/11: fix on mobile for data and legenda
+- [x] footer is not displayed
+- [ ] ADDED 5/11: widget-petri to check on multiple mobile devices
+- [ ] ADDED 5/11: widget-timeline is a bit fast to see
 ### Workshop
 - [ ] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [ ] card: it should not be anchor the entire card but only the explore button
@@ -117,5 +120,5 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Privacy and DMP page
 - [ ] Check the style to be aligned with other pages
 ### Footer
-- [ ] How to cite and License: titles to be swapped
-- [ ] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)
+- [x] How to cite and License: titles to be swapped
+- [x] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)

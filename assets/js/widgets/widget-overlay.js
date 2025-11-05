@@ -174,6 +174,10 @@ class WidgetOverlayHandler {
         
         // Extend body height to allow scrolling through all widgets
         const totalScrollHeight = this.overlayStartPosition + this.totalScrollRange + windowHeight;
+        
+        // Position footer after all widget content
+        this.positionFooter(totalScrollHeight);
+        
         const currentBodyHeight = parseInt(document.body.style.minHeight) || 0;
         if (totalScrollHeight > currentBodyHeight) {
             document.body.style.minHeight = `${totalScrollHeight}px`;
@@ -542,6 +546,31 @@ class WidgetOverlayHandler {
 
     easeOutCubic(t) {
         return 1 - Math.pow(1 - t, 3);
+    }
+
+    positionFooter(totalScrollHeight) {
+        const footer = document.getElementById('page-footer');
+        if (footer) {
+            // Get actual footer height by temporarily making it visible
+            const originalPosition = footer.style.position;
+            const originalTop = footer.style.top;
+            footer.style.position = 'static';
+            footer.style.top = 'auto';
+            
+            // Force layout to get accurate height
+            footer.offsetHeight;
+            const footerHeight = footer.offsetHeight || 400; // fallback height
+            
+            // Position footer after all widget content with proper spacing
+            footer.style.position = 'absolute';
+            footer.style.top = `${totalScrollHeight}px`;
+            footer.style.left = '0';
+            footer.style.right = '0';
+            footer.style.width = '100%';
+            
+            // Update body height to include footer
+            document.body.style.minHeight = `${totalScrollHeight + footerHeight}px`;
+        }
     }
 
     // Method to dynamically add new widgets (if needed)
