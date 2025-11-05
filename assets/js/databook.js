@@ -376,6 +376,8 @@ function generateTermsLists(data) {
 
         Object.keys(termsObject[key]).forEach((header) => {
             //console.log(header);
+            
+            /*
             const headerDiv = document.createElement("div");
             headerDiv.id = `div-${header}`;
             headerDiv.classList = "terms-div-header";
@@ -398,6 +400,29 @@ function generateTermsLists(data) {
 
             headerDiv.appendChild(ulStoryList);
             keyListElementSection.appendChild(headerDiv);
+            */
+
+            const headingH3 = document.createElement("h3");
+            headingH3.innerHTML = `${headerStories[header].toLowerCase()}`;
+
+            const ulStoryList = document.createElement("ul");
+            ulStoryList.id=`ul-${header}`;
+            ulStoryList.classList = "terms-ul-key";
+
+            Object.values(termsObject[key][header]).forEach((story) => {
+                //console.log(story);
+                const liStory = document.createElement("li");
+                const regex = new RegExp(`\\b(${key})\\b`, 'gi');
+                storyHighlighted = story.replace(regex, '<span class="current-key">$1</span>');    // add the world hightlight
+                liStory.innerHTML = storyHighlighted;
+                ulStoryList.appendChild(liStory);
+            });
+
+            keyListElementSection.appendChild(headingH3);
+            keyListElementSection.appendChild(ulStoryList);
+
+
+
         })
     })
 

@@ -253,17 +253,32 @@
             
             &>section
                 display: none
+                margin-top: 2rem
 
+                /*
                 .terms-div-header
                     display: flex
                     margin-top: 2rem
+                */
 
-                    .terms-ul-key
-                        list-style: none
-                        padding-left: 1rem
+
+                h3
+                    grid-column: 1;
+
+                .terms-ul-key
+                    grid-column: 2;
+                    list-style: none
+                    padding-left: 1rem
+
+                    li + li
+                        margin-top: 1rem
 
             &>section.current-key-active
                 display: block
+                display: grid;
+                //grid-template-columns: auto 1fr;
+                gap: 3rem;
+                
                 
         
 
