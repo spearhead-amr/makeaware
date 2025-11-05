@@ -75,7 +75,8 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED: fix petri animation on mobile and tablet
 - [x] project-description: text smaller as Figma
 - [x] .descriptive-content > p: text smaller as Figma
-- [ ] h1 (e.g. #widget-amr): text smaller as Figma
+- [x] ADDED: fix header widget-amr heading tag to h3
+- [x] h3 (e.g. #widget-amr): text smaller as Figma
 - [ ] #widget-amr-abstract: text smaller as Figma
 - [ ] #widget-amr-content > img: to be changed as code - carefully for mobile
 - [ ] #widget-amr-content > p: text smaller as previous (.descriptive-content > p)
