@@ -126,3 +126,4 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Footer
 - [x] How to cite and License: titles to be swapped
 - [x] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)
+- [ ] ADDED 6/11: styling tablet and mobile
