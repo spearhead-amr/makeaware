@@ -90,10 +90,10 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [ ] ADDED 5/11: widget-timeline is a bit fast to see
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
-- [ ] card: it should not be anchor the entire card but only the explore button
+- [x] card: it should not be anchor the entire card but only the explore button
 - [ ] card > explore button: on hover just change cursor
 - [ ] card > explore button: text smaller as Figma (1.5rem)
-- [ ] last card with chatbot workshop: remove link and align right the text available soon
+- [x] last card with chatbot workshop: remove link and align right the text available soon
 ### Internal workshop page
 - [ ] button back to workshops: to be changed with two buttons one on the left with "previous" and one on the right with "next"
 - [ ] button "previous" "next": text smaller as previous explore button
