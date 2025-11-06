@@ -1,5 +1,6 @@
 #main-data-policy
     @extend .content-margins
+    overflow-x: hidden
         
 #data-policy-introduction
     h1
@@ -23,22 +24,52 @@
         @extend .sans-caption
         text-transform: uppercase
         margin-bottom: 0.5rem
-        
+        overflow-wrap: anywhere
+        word-break: break-word
+        -webkit-hyphens: auto
+        hyphens: auto
+        font-size: .8rem
 
         +media(tablet-h)
             margin-bottom: 0
             min-width:15%
+            max-width: 10ch // tweak this value until you see 3 lines
             position: relative
             top: calc(0.65rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
 
         +media(desktop)
             top: calc(1.9rem - (1.4rem))
+            max-width: 10ch // tweak this value until you see 3 lines
+            font-size: 1rem
 
-    p
+    p, ul
+        margin-bottom: .3rem
+
+        +media(tablet-h)
+            margin-bottom: .5rem
+
+    ul
+        padding-left: 0
+
+    li
+        list-style-type: none
+        position: relative
+        padding-left: 1rem
+
+        &:before
+            content: "-"
+            position: absolute
+            left: 0
+
+    p, ul, li
         @extend .sans-paragraph
-        margin-bottom: 0.5rem
+        font-size: .7rem
+
+        +media(tablet-h)
+            font-size: 1.3rem
         
-        
+        +media(desktop)
+            font-size: 1.3rem
 
     a
         text-decoration: underline

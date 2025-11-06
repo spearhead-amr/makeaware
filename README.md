@@ -122,7 +122,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Publications
 - [x] External links (follow the same logic as internal workshop page): publications "Read the article", "Read the chapter", presentation "See more", posts "Read the post", exhibition "See more", others "See more"
 ### Privacy and DMP page
-- [ ] Check the style to be aligned with other pages
+- [x] Check the style to be aligned with other pages
 ### Footer
 - [x] How to cite and License: titles to be swapped
 - [x] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)
