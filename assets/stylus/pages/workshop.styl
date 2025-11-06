@@ -5,11 +5,15 @@
     h1
         @extend .serif-title
         margin-top: 7vh
-        margin-bottom: 1rem
+        margin-bottom: 1.5rem
         width: 100%
 
         +media(tablet-h)
             margin-top: 10vh
+            margin-bottom: 2rem
+        
+        +media(desktop)
+            margin-bottom: 3rem
 
     p
         @extend .serif-subtitle
@@ -31,17 +35,19 @@
     h2
         @extend .sans-caption
         text-transform: uppercase
-        margin-bottom: 0.5rem
-        
+        margin-bottom: 1rem
+        font-size: .7rem
 
         +media(tablet-h)
             margin-bottom: 0
             min-width:15%
             position: relative
             top: calc(1rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
+            font-size: 1.1rem
 
         +media(desktop)
             top: calc(2.5rem - (1.4rem*1.15))
+            font-size: 1.1rem
 
     p
         @extend .serif-paragraph 
