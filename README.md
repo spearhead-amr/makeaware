@@ -67,6 +67,7 @@ Within this list are included all the fix to perform before the merge of the rep
 - [x] numbers near words: not in the format ⑨ but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>`
 - [x] Favicon to be changed with transparent background
 - [x] ADDED 5/11: Web manifest and theme colors
+- [x] ADDED 6/11: external links & downloads all in target blank with the correct formatting
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
@@ -97,6 +98,8 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Internal workshop page
 - [x] button back to workshops: to be changed with two buttons one on the left with "previous" and one on the right with "next"
 - [x] button "previous" "next": text smaller as previous explore button
+- [x] ADDED 6/11: styling alignment with figma
+- [ ] ADDED 6/11: fix protocol for the viz the res workshop - align to the grid
 - [ ] External link (will be the same for publications): first column year + conference name (OPT.1), second column title + conference short title (without year - OPT.2) + third column authors + fourth column "Read the article" with arrow top-right before read
 ### Story-collection tool
 - [ ] About the tool will go above instructions
