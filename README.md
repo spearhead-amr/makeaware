@@ -88,7 +88,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED 5/11: fix on mobile for data and legenda
 - [x] footer is not displayed
 - [ ] ADDED 5/11: widget-petri to check on multiple mobile devices
-- [ ] ADDED 5/11: widget-timeline is a bit fast to see
+- [x] ADDED 5/11: widget-timeline is a bit fast to see
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [x] card: it should not be anchor the entire card but only the explore button
@@ -126,4 +126,5 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Footer
 - [x] How to cite and License: titles to be swapped
 - [x] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)
-- [ ] ADDED 6/11: styling tablet and mobile
+- [x] ADDED 6/11: styling tablet and mobile
+- [ ] ADDED 6/11: OPT > footer homepage not going on top but scrolling with the page

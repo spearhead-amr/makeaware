@@ -43,6 +43,20 @@
         font-size: 3rem
         line-height: 1.17
 
+.serif-para-title
+    font-size: 1.2rem
+    line-height: 1.11
+    font-family: 'PP Editorial New', serif
+    font-weight: 200
+    
+    +media(tablet-h)
+        font-size: 2.4rem
+        line-height: 1.11
+    
+    +media(desktop)
+        font-size: 2.3rem
+        line-height: 1.17
+
 .serif-paragraph
     font-size: 1rem
     line-height: 1.11
@@ -78,14 +92,17 @@
         line-height: calc(1.9rem*1.15)
 
 .serif-caption
-    font-size: calc(0.7rem*1.5) // old 0.7rem
-    line-height: calc(0.7rem*1.15*1.5)
+    font-size: .8rem
+    line-height: 1
     font-family: 'PP Editorial New', serif
     font-weight: 200
 
+    +media(tablet-h)
+        font-size: 1.5rem
+
     +media(desktop)
-        font-size: 1.4rem
-        line-height: calc(1.4rem*1.15)
+        font-size: 1.3rem
+        line-height: 1.11
 
 
 .sans-logo
@@ -139,6 +156,17 @@
     +media(desktop)
         font-size: 1.4rem
         line-height: 1.15
+
+.sans-captiontitle
+    font-size: 1.2rem
+    line-height: 1.15
+    font-family: 'Suisse Intl', sans-serif
+    font-weight: 300
+
+    +media(desktop)
+        font-size: 1.4rem
+        line-height: 1.15
+
 
 .sans-scheme
     font-size: 0.55rem

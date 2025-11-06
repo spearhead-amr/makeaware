@@ -107,10 +107,10 @@
 
         +media(tablet-h)
             margin-bottom: 1rem
-            font-size: 1.1rem
+            font-size: 1.2rem
 
         +media(desktop)
-            font-size: 1rem
+            font-size: 1.1rem
 
     img
         width: 100%
@@ -134,9 +134,10 @@
     display: flex
     align-items: center
     justify-content: space-between
+    flex-direction: row
 
     +media(mobile)
-        flex-direction: column
+        flex-direction: row
         gap: .5rem
 
 button
@@ -161,7 +162,7 @@ button
     display: inline-flex
     align-items: center
     justify-content: center
-    padding: 9px 60px
+    padding: 9px 30px
     background-image: url("/assets/img/pages/workshops/makeaware-botton1.png")
     background-size: 100% 100%
     background-repeat: no-repeat

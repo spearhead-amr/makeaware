@@ -17,13 +17,30 @@
         height: auto
         display: flex
         flex-direction: row
+        flex-wrap: wrap
         gap: 4rem
         padding-bottom: 4rem
+    
+    +media(desktop)
+        display: flex
+        flex-wrap: nowrap
+        flex-direction: row
+
 
     li
         list-style: none
         line-height: 160%
-        @extend .serif-caption
+        @extend .sans-caption
+        font-size: .8rem
+        line-height: 1.2
+
+        +media(tablet-h)
+            font-size: 1.2rem
+        
+        +media(desktop)
+            font-size: 1.3rem
+            line-height: 1.11
+
 
     //li:not(:first-child)
         //line-height: 200%
@@ -33,20 +50,47 @@
         color: brand-black
         //text-decoration: none
         text-align: left
-        @extend .serif-caption
+        @extend .sans-caption
+        font-size: .8rem
+        line-height: 1.2
+
+        +media(tablet-h)
+            font-size: 1.2rem
+        
+        +media(desktop)
+            font-size: 1.3rem
+            line-height: 1.11
 
     h2
         @extend .serif-captiontitle
         margin-bottom: 1rem
+        font-size: 1rem
+
+        +media(tablet-h)
+            font-size: 1.4rem
+        
+        +media(desktop)
+            font-size: 1.5rem
 
     p
-        @extend .serif-caption
-        line-height: 160%
+        @extend .sans-caption
+        font-size: .8rem
+        line-height: 1.2
+
+        +media(tablet-h)
+            font-size: 1.2rem
+        
+        +media(desktop)
+            font-size: 1.3rem
+            line-height: 1.11
 
 #footer-team
     width: 100%
 
     +media(tablet-h)
+        width: calc(50% - 4rem)
+
+    +media(desktop)
         width: 20%
 
     ul
@@ -56,12 +100,18 @@
     width: 100%
 
     +media(tablet-h)
+        width: calc(50% - 4rem)
+
+    +media(desktop)
         width: 20%
 
 #footer-license
     width: 100%
 
     +media(tablet-h)
+        width: calc(50% - 4rem)
+
+    +media(desktop)
         width: 20%
         
     img
@@ -75,6 +125,9 @@
     width: 100%
 
     +media(tablet-h)
+        width: calc(50% - 4rem)
+
+    +media(desktop)
         width: 40%
 
     img

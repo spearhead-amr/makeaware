@@ -24,7 +24,7 @@ class TimelineVizHandler {
         this.breakpoints = {
             mobile: 599,
             tablet: 900,
-            desktop: 1200
+            desktop: 1400
         };
         
         this.periods = [

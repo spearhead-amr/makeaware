@@ -12,8 +12,8 @@ class DeathVizHandler {
         // Configuration for the visualization
         this.config = {
             margin: { 
-                mobile: { top: 20, right: 0, bottom: 20, left: 0 },
-                desktop: { top: 30, right: 0, bottom: 30, left: 0 }
+                mobile: { top: 20, right: 0, bottom: 140, left: 0 },
+                desktop: { top: 30, right: 0, bottom: 60, left: 0 }
             },
             gap: {
                 mobile: 1, // Gap between bars on mobile
