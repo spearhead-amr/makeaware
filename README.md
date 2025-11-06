@@ -120,7 +120,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Chatbot
 - [ ] check the sources regex function: waiting for a feedback from Gooey
 ### Publications
-- [ ] External links (follow the same logic as internal workshop page): publications "Read the article", "Read the chapter", presentation "See more", posts "Read the post", exhibition "See more", others "See more"
+- [x] External links (follow the same logic as internal workshop page): publications "Read the article", "Read the chapter", presentation "See more", posts "Read the post", exhibition "See more", others "See more"
 ### Privacy and DMP page
 - [ ] Check the style to be aligned with other pages
 ### Footer
