@@ -89,7 +89,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [ ] ADDED 5/11: widget-petri to check on multiple mobile devices
 - [ ] ADDED 5/11: widget-timeline is a bit fast to see
 ### Workshop
-- [ ] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
+- [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [ ] card: it should not be anchor the entire card but only the explore button
 - [ ] card > explore button: on hover just change cursor
 - [ ] card > explore button: text smaller as Figma (1.5rem)
