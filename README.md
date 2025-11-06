@@ -100,6 +100,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] button "previous" "next": text smaller as previous explore button
 - [x] ADDED 6/11: styling alignment with figma
 - [x] ADDED 6/11: fix protocol for the viz the res workshop - align to the grid
+- [x] ADDED 6/11: styling mobile for page (just missing external links - will be done with the following task)
 - [ ] External link (will be the same for publications): first column year + conference name (OPT.1), second column title + conference short title (without year - OPT.2) + third column authors + fourth column "Read the article" with arrow top-right before read
 ### Story-collection tool
 - [ ] About the tool will go above instructions
