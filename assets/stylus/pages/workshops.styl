@@ -195,6 +195,10 @@ button
         @extend .sans-caption
         text-transform: uppercase
         margin-bottom: 0.5rem
+        font-size: .7rem
+
+        +media(tablet-h)
+            font-size: 1.1rem
 
 .activities-list
     overflow: hidden
@@ -212,22 +216,24 @@ button
     border-bottom: 1px solid brand-black
     display: flex
     align-items: flex-start
-    flex-direction: row
+    flex-direction: column
     justify-content: space-between
     @extend .sans-caption
-    gap: 0.5rem
+    gap: 1.2rem
     padding-top: 0.5rem
     padding-bottom: 0.5rem
+    font-size: .8rem
 
     &:last-child
         border-bottom:none
 
     +media(tablet-h)
-        gap: 0
+        gap: 1rem
         margin-left: 15%
         flex-direction: row
         padding-top: 1rem
         padding-bottom: 1rem
+        font-size: 1.3rem
 
 .activity-info
     display: flex
@@ -236,11 +242,17 @@ button
     flex-direction: column
     width: 100% // Reserve space for discover tag space
     min-width: 0 // Allow flex items to shrink
+    margin-left: 5.5rem
+
+    &:first-child
+        flex-direction: row
+        margin-left: 0
 
     +media(tablet-h)
         gap: 8vw
         flex-direction: row
         width: 50%
+        margin-left: 0
 
 
 
@@ -264,10 +276,14 @@ button
     .activity-bottom-detail
         color: brand-black
         @extend .sans-scheme
+        font-size: .6rem
+
+        +media(tablet-h)
+            font-size: 1.1rem
 
     +media(tablet-h)
         gap: 0.5rem
-
+    
 
 // Discover tag styling - fixed positioning
 .discover-tag
