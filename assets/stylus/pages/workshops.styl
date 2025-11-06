@@ -7,7 +7,7 @@
 
 #abstract-text
     @extend .serif-subtitle
-    font-size: 1.5rem
+    font-size: 1.2rem
     line-height: 1.11
 
     +media(tablet-h)
@@ -89,14 +89,28 @@
     h2
         @extend .serif-paragraph
         margin-bottom: 0.5rem
+        font-size: 1.3rem
+        line-height: 1.11
+
+        +media(tablet-h)
+            font-size: 2rem
+
+        +media(desktop)
+            font-size: 2.1rem
 
     p
         @extend .sans-caption
         margin-bottom: 0.5rem
         flex-grow: 0  // Paragraph shouldn't expand
+        font-size: .6rem
+        line-height: 1.11
 
         +media(tablet-h)
             margin-bottom: 1rem
+            font-size: 1.1rem
+
+        +media(desktop)
+            font-size: 1rem
 
     img
         width: 100%
@@ -108,10 +122,10 @@
             margin-bottom: 1rem
     
     i
-        display: block;
-        width: fit-content;
-        margin-left: auto;
-        font-size: 1rem;
+        display: block
+        width: fit-content
+        margin-left: auto
+        font-size: .9rem
 
         +media(desktop)
             font-size: 1.5rem
@@ -124,29 +138,38 @@ button
     background-color: brand-white
 
 .card-button
+    z-index: 2
+    text-transform: uppercase
+    cursor: pointer
+    color: brand-black
+
+.card-button-anchor
+    @extend .serif-captiontitle
+    z-index: 3
+    text-decoration: none
+    color: brand-black
+    font-size: .8rem
     display: inline-flex
     align-items: center
     justify-content: center
-    padding: 13px 28px 9px
+    padding: 9px 60px
     background-image: url("/assets/img/pages/workshops/makeaware-botton1.png")
     background-size: 100% 100%
     background-repeat: no-repeat
     background-position: center // Very high radius to create oval shape
     color: brand-black
     text-decoration: none
-    @extend .serif-captiontitle
-    text-transform: uppercase
-    cursor: pointer
     margin-left: auto
     display: block
     width: fit-content
 
     +media(tablet-h)
-        padding: 13px 28px 9px
+        font-size: 1.2rem
+        padding: 12px 60px
 
-    a
-        text-decoration: none
-        color: brand-black
+    +media(desktop)
+        font-size: 1.4rem
+        padding: 9px 60px
 
 #back-button
     margin-left:0
@@ -216,7 +239,7 @@ button
 
 .date 
     flex: 1
-    align-self: flex-start;
+    align-self: flex-start
     max-width: 5rem
 
 .activity-details 

@@ -91,8 +91,8 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [x] card: it should not be anchor the entire card but only the explore button
-- [ ] card > explore button: on hover just change cursor
-- [ ] card > explore button: text smaller as Figma (1.5rem)
+- [x] card > explore button: on hover just change cursor
+- [x] card > explore button: text smaller as Figma (1.5rem)
 - [x] last card with chatbot workshop: remove link and align right the text available soon
 ### Internal workshop page
 - [ ] button back to workshops: to be changed with two buttons one on the left with "previous" and one on the right with "next"
