@@ -130,6 +130,10 @@
         +media(desktop)
             font-size: 1.5rem
 
+.btn-container
+    display: flex
+    align-items: center
+    justify-content: space-between
 
 button
     border: none
@@ -142,6 +146,7 @@ button
     text-transform: uppercase
     cursor: pointer
     color: brand-black
+    background-color: transparent
 
 .card-button-anchor
     @extend .serif-captiontitle
@@ -170,12 +175,9 @@ button
     +media(desktop)
         font-size: 1.4rem
         padding: 9px 60px
-
-#back-button
-    margin-left:0
-
-    +media(tablet-h)
-        padding: 15px 35px 11px
+    
+.previous-next-btn
+    margin: 0
 
 
 

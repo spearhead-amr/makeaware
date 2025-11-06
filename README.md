@@ -95,8 +95,8 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] card > explore button: text smaller as Figma (1.5rem)
 - [x] last card with chatbot workshop: remove link and align right the text available soon
 ### Internal workshop page
-- [ ] button back to workshops: to be changed with two buttons one on the left with "previous" and one on the right with "next"
-- [ ] button "previous" "next": text smaller as previous explore button
+- [x] button back to workshops: to be changed with two buttons one on the left with "previous" and one on the right with "next"
+- [x] button "previous" "next": text smaller as previous explore button
 - [ ] External link (will be the same for publications): first column year + conference name (OPT.1), second column title + conference short title (without year - OPT.2) + third column authors + fourth column "Read the article" with arrow top-right before read
 ### Story-collection tool
 - [ ] About the tool will go above instructions
