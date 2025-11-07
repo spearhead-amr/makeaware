@@ -86,6 +86,30 @@ const headerStories = {
     "location": "based in"
 }
 
+// mapping between story headers and their filter categories
+const headerToFilter = {
+    "decided": "diagnosis",
+    "with": "diagnosis", 
+    "because": "symptoms",
+    "feeling": "symptoms",
+    "every_time": "symptoms",
+    "told_by": "diagnosis",
+    "suffering": "diagnosis",
+    "happened": "diagnosis",
+    "when": "diagnosis",
+    "doctor": "treatment",
+    "to_me_that": "treatment",
+    "started": "treatment",
+    "cure": "treatment",
+    "started_feeling": "follow-up",
+    "noticed": "follow-up",
+    "tried": "follow-up",
+    "now": "follow-up",
+    "gender": "demographics",
+    "age": "demographics",
+    "location": "demographics"
+}
+
 function loadData() {
     fetch('assets/json/stories-collection.json')
         .then(Response => Response.json())
@@ -426,7 +450,17 @@ function generateTermsLists(data) {
                 //console.log(story);
                 const liStory = document.createElement("li");
                 const regex = new RegExp(`\\b(${key})\\b`, 'gi');
-                storyHighlighted = story.replace(regex, '<span class="current-key">$1</span>');    // add the world hightlight
+                
+                // Get the filter category for this header to apply the appropriate color class
+                const filterCategory = headerToFilter[header];
+                const colorClass = filterCategory ? `filter-${filterCategory}` : '';
+                
+                // Apply color class to the entire li element
+                if (colorClass) {
+                    liStory.classList.add(colorClass);
+                }
+                
+                storyHighlighted = story.replace(regex, '<span class="current-key">$1</span>');    // add the key highlight
                 liStory.innerHTML = storyHighlighted;
                 ulStoryList.appendChild(liStory);
             });

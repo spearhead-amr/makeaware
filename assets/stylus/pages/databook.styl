@@ -326,6 +326,9 @@
         #terms-container-description
             max-width: calc(100% - 4rem)
 
+            +media(desktop)
+                font-size: 1.2rem
+
         #terms-collection-container
             
             &>section
@@ -340,7 +343,8 @@
                 */
 
             h3
-                margin-top 2rem
+                margin-top: 0.2rem
+                font-weight: 400
 
             h3 + .terms-ul-key
                 margin-top 1rem
@@ -351,9 +355,26 @@
             .terms-ul-key
                 list-style: none
                 padding-left: 0
+                font-weight: bold
 
                 li + li
-                    margin-top: 1rem
+                    margin-top: .2rem
+                
+                // Color styling for entire sentences based on filter category
+                li.filter-diagnosis
+                    color: diagnosis-color
+                    
+                li.filter-symptoms
+                    color: symptoms-color
+                    
+                li.filter-treatment
+                    color: treatment-color
+                    
+                li.filter-follow-up
+                    color: follow-up-color
+                    
+                li.filter-demographics
+                    color: demographics-color
 
             &>section.current-key-active
                 display: block
@@ -378,9 +399,13 @@
 
             +media(desktop)
                 h3, li
-                    font-size: 2.5rem
+                    font-size: 1.2rem
 
 .databook-citations
     color: brand-grey2
     .number-container
         border-color: brand-grey2
+
+// Highlighted key text styling
+.current-key
+    text-decoration: underline
