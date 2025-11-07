@@ -1,0 +1,300 @@
+#main-workshops
+    @extend .content-margins
+    margin-top: 10vh
+
+    +media(tablet-h)
+        margin-top: 15vh
+
+#abstract-text
+    @extend .serif-subtitle
+    font-size: 1.2rem
+    line-height: 1.11
+
+    +media(tablet-h)
+        font-size: 2.8rem
+
+    +media(desktop)
+        font-size: 3.4rem
+        
+
+.descriptive-text
+    display: flex
+    flex-direction: column
+    width:100%
+    margin-top: 1.5rem
+
+    +media(tablet-h)
+        flex-direction: row
+        gap:2rem
+        margin-top:3rem
+
+
+    p
+        @extend .sans-paragraph
+        width: 100%
+
+        +media(tablet-h)
+            width: 50%
+
+
+#hidden
+    display: none
+
+
+.container
+    margin-top: 10vh
+    display: flex
+    flex-wrap: wrap
+    flex-direction: row
+    gap: 0.5rem
+    justify-content: flex-start
+    margin-bottom: 5rem
+    align-items: flex-start
+    padding-left: 0
+    padding-right: 0
+
+    +media(tablet-h)
+        gap: 1rem
+        margin-bottom: 10rem
+        margin-top: 15vh
+        
+
+.workshops-card
+    background-color: brand-white
+    border: 1px solid brand-black
+    border-radius: 16px
+    overflow: hidden
+    width: 100%
+    @extend .content-margins
+    padding-top: 0.5rem
+    padding-bottom: 0.5rem
+    display: flex
+    flex-direction: column
+    height: auto
+    box-sizing: border-box
+    text-decoration: none
+    color: brand-black
+
+    +media(tablet-v)
+        width: calc((100% - 0.5rem) / 2)
+        padding-top: 1rem
+        padding-bottom: 1rem
+
+    +media(tablet-h)
+        width: calc((100% - 2rem) / 3)
+
+    +media(desktop-w)
+        width: calc((100% - 3rem) / 4)
+
+    h2
+        @extend .serif-paragraph
+        margin-bottom: 0.5rem
+        font-size: 1.3rem
+        line-height: 1.11
+
+        +media(tablet-h)
+            font-size: 2rem
+
+        +media(desktop)
+            font-size: 2.1rem
+
+    p
+        @extend .sans-caption
+        margin-bottom: 0.5rem
+        flex-grow: 0  // Paragraph shouldn't expand
+        font-size: .6rem
+        line-height: 1.11
+
+        +media(tablet-h)
+            margin-bottom: 1rem
+            font-size: 1.2rem
+
+        +media(desktop)
+            font-size: 1.1rem
+
+    img
+        width: 100%
+        height: auto
+        object-fit: cover
+        margin-bottom: 0.5rem
+
+        +media(tablet-h)
+            margin-bottom: 1rem
+    
+    i
+        display: block
+        width: fit-content
+        margin-left: auto
+        font-size: .9rem
+
+        +media(desktop)
+            font-size: 1.5rem
+
+.btn-container
+    display: flex
+    align-items: center
+    justify-content: space-between
+    flex-direction: row
+
+    +media(mobile)
+        flex-direction: row
+        gap: .5rem
+
+button
+    border: none
+    margin: 0
+    text-decoration: none
+    background-color: brand-white
+
+.card-button
+    z-index: 2
+    text-transform: uppercase
+    cursor: pointer
+    color: brand-black
+    background-color: transparent
+
+.card-button-anchor
+    @extend .serif-captiontitle
+    z-index: 3
+    text-decoration: none
+    font-size: .8rem
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    padding: 9px 30px
+    background-image: url("/assets/img/pages/workshops/makeaware-botton1.png")
+    background-size: 100% 100%
+    background-repeat: no-repeat
+    background-position: center // Very high radius to create oval shape
+    color: brand-black
+    text-decoration: none
+    margin-left: auto
+    display: block
+    width: fit-content
+
+    +media(tablet-h)
+        font-size: 1.2rem
+        padding: 12px 60px
+
+    +media(desktop)
+        font-size: 1.4rem
+        padding: 9px 60px
+    
+.previous-next-btn
+    margin: 0
+    
+
+
+
+
+.past-activities
+    position: relative
+    border-bottom: 1px solid brand-black
+
+    h2
+        @extend .sans-caption
+        text-transform: uppercase
+        margin-bottom: 0.5rem
+        font-size: .7rem
+
+        +media(tablet-h)
+            font-size: 1.1rem
+
+.activities-list
+    overflow: hidden
+    margin-bottom: 5rem
+    padding-left: 0
+    list-style: none
+
+
+    +media(tablet-h)
+        margin-bottom: 5rem
+
+    
+
+.activity-item
+    border-bottom: 1px solid brand-black
+    display: flex
+    align-items: flex-start
+    flex-direction: column
+    justify-content: space-between
+    @extend .sans-caption
+    gap: .5rem
+    padding-top: 0.5rem
+    padding-bottom: 0.5rem
+    font-size: .8rem
+
+    &:last-child
+        border-bottom:none
+
+    +media(tablet-h)
+        gap: 1rem
+        margin-left: 15%
+        flex-direction: row
+        padding-top: 1rem
+        padding-bottom: 1rem
+        font-size: 1.3rem
+
+.activity-info
+    display: flex
+    align-items: flex-start
+    gap: 0.5rem
+    flex-direction: column
+    width: 100% // Reserve space for discover tag space
+    min-width: 0 // Allow flex items to shrink
+    margin-left: 5.5rem
+
+    &:first-child
+        flex-direction: row
+        margin-left: 0
+
+    +media(tablet-h)
+        gap: 8vw
+        flex-direction: row
+        width: 50%
+        margin-left: 0
+
+
+
+.date 
+    flex: 1
+    align-self: flex-start
+    max-width: 5rem
+
+.activity-details 
+    display: flex
+    flex-direction: column
+    gap: 0.2rem
+    flex: 1
+    align-items: flex-start 
+    text-align: left 
+    max-width: 35rem
+
+    .activity-top-detail
+        color: brand-black
+
+    .activity-bottom-detail
+        color: brand-black
+        @extend .sans-scheme
+        font-size: .6rem
+
+        +media(tablet-h)
+            font-size: 1.1rem
+
+    +media(tablet-h)
+        gap: 0.5rem
+    
+
+// Discover tag styling - fixed positioning
+.discover-tag
+    margin-top: 0.5rem
+    color: brand-grey2
+    text-transform: uppercase
+    text-decoration: underline
+    text-align: center
+    flex-shrink: 0 // Prevent tag from shrinking
+    align-self: flex-start
+
+    +media(tablet-h)
+        margin-top: 0
+        @extend .sans-scheme

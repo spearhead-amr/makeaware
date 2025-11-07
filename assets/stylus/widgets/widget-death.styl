@@ -1,0 +1,76 @@
+// widget-death.styl - Enhanced styles for Death causes visualization with dynamic container height
+
+// Specific styles for widget-death-viz
+#widget-death-viz
+    .viz-container
+        margin: 0
+        margin-top: 0
+        width: 100% // Full width to expand to container edges
+        padding: 0 !important // No padding to maximize space usage
+        // Remove fixed height - will be set dynamically by JavaScript
+         // IMPORTANT: Hide overflow to create mask effect for scaling rectangles
+        position: relative // For proper clipping context
+        min-height: 100vh
+        
+        +media(tablet-v)
+            width: 100%
+            padding: 0
+            
+        +media(tablet-h)
+            width: 100%
+            padding: 0
+        
+        +media(desktop)
+            // No height restrictions on desktop either
+
+    svg
+        width: 100%
+        // Height will be set dynamically by JavaScript
+        display: block
+        overflow: visible // SVG can overflow, but container will clip it
+
+    // Bar container styles
+    .death-bar
+        cursor: default // No interaction for now
+
+    // Rectangle styles with smooth transitions
+    .bar-rect
+        // Ensure rectangles maintain rounded corners
+        shape-rendering: geometricPrecision
+
+    // Text styling inside bars - positioned top left
+    .bar-text
+        pointer-events: none // Text should not interfere with interactions
+        
+        
+        // Death cause name label
+        .death-name-label
+            @extend .sans-paragraph
+            fill: brand-white // Use brand-white color
+            text-anchor: start // Left aligned
+
+            +media(tablet-h)
+                @extend .sans-caption
+            
+        // Death count number label
+        .death-count-label
+            @extend .sans-scheme
+            fill: brand-white // Use brand-white color
+            text-anchor: start // Left aligned
+
+// Enhanced animation state for better performance
+#widget-death-viz.expand-bars
+/*     .bar-rect
+        transition: y 0.1s , height 0.1s */
+    
+    .bar-text
+        transition: opacity 0.1s ease 0.1s, transform 0.1s cubic-bezier(0.23, 1, 0.32, 1) // Delayed text fade for better UX
+
+// Ensure the frame doesn't have conflicting scroll behavior for this widget
+#widget-death-viz
+    .frame
+        overflow: hidden // Ensure no frame-level scrolling
+        
+        // Override any frame-scrollable behavior for this interactive widget
+        &.frame-scrollable
+            overflow: hidden // Force hidden even if frame-scrollable is applied

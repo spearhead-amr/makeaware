@@ -1,0 +1,106 @@
+.header-bar
+  background-color: brand-white
+   // for responsive
+  //align-items: center
+  display: block // layout to position elements in row or column
+  justify-content: space-around
+  position: fixed // fixed bar at top
+  top: 0
+  z-index: 300
+  width: 100%
+  margin: 0
+  padding: 0
+  padding-right: 1rem
+  padding-left: 1rem
+  height: 6vh
+
+
+
+
+.nav-links
+    background-color: brand-white
+    position: absolute
+    right: 0
+    height: 100vh
+    padding-top: 45vh
+    padding-bottom: 10vh
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 100%
+    transform: translateX(100%)
+    @extend .content-margins
+    margin: 0
+    vertical-align: center
+    align-items: left   
+    //gap:2rem
+        
+    +media(tablet-h)
+        position: relative
+        height: auto
+        top: 1rem
+        padding: 0
+        display: flex
+        flex-direction: row
+        justify-content: flex-start // align to left
+        transform: translateX(0%)
+        width: 100% // or 100vw if you want full width
+        gap: 1.5rem // uniform spacing between links, more controllable than margin on <a>
+    
+    li
+            list-style: none
+            display: flex
+            align-items: center
+
+        li:last-child
+            margin-left: auto // this pushes SPEARHEAD to the right
+
+    a
+        color: brand-black
+        text-decoration: none
+        text-transform: uppercase
+        text-align: left
+        font-size: 1rem;
+        @extend .sans-menu
+
+        +media(tablet-h)
+            text-align: left
+
+.nav-active // transformation on js menucell
+    transform: translateX(0%)
+
+
+#hamburger-menu
+    display: block
+    cursor: pointer
+    right: 0.5rem
+    top: 0.5rem
+    padding: 0
+    position: absolute
+
+    div
+        width: 2rem
+        height: 0.15rem
+        background-color: brand-black
+        margin-bottom: 5px
+
+    +media(tablet-h)
+        display: none
+
+    
+#spearhead
+    text-transform: none
+    text-align: right
+    display: none
+
+    +media(tablet-h)
+        display: block
+
+#spearhead-mobile
+
+    +media(tablet-h)
+        display:none
+
+.active-link
+    text-decoration: underline
+    //border-bottom: 1px solid brand-black

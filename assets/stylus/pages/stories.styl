@@ -1,0 +1,183 @@
+// shared classes
+.section-title-stories
+    @extend .sans-caption
+    text-transform: uppercase
+    margin-bottom: 1rem
+    font-size: .7rem
+
+    +media(tablet-h)
+        margin-bottom: 0
+        min-width:15%
+        position: relative
+        top: calc(1rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
+        font-size: 1.1rem
+
+    +media(desktop)
+        top: calc(2.5rem - (1.4rem*1.15))
+        font-size: 1.1rem
+
+
+#main-stories-collection
+    @extend .content-margins
+    margin-top: 15vh
+
+    #story-collection-introduction
+        h1
+            display: none
+
+        #story-collection-instructions
+            @extend .sans-paragraph
+            margin-top 2rem
+
+            +media(tablet-h)
+                @extend .grid-container
+
+            +media(desktop)
+                margin-top calc(2rem * 2.5)
+
+            h2
+                @extend .section-title-stories
+
+            p
+                column-count: 2
+                column-gap: 2rem
+                
+                +media(mobile)
+                    column-count: 1
+
+    
+    #story-collection-form-container
+        @extend .sans-paragraph
+        margin-top 2rem
+
+        +media(tablet-h)
+                @extend .grid-container
+
+        +media(desktop)
+            margin-top calc(2rem * 2.5)
+
+        h2
+            @extend .section-title-stories
+
+        #story-form
+            @extend .serif-paragraph
+            display: float;
+            flex-wrap: warp;
+            justify-content: flex-start;
+            align-content: flex-start;
+            color: #AAA9AA;
+            border: none;
+            outline-width: 0;
+            line-height: 148%;
+
+            .color-symptoms
+                color: brand-red !important
+                // background-color: #FF3A17;
+                // border-radius: 1.9rem;
+                //-webkit-box-decoration-break: clone;
+                //-o-box-decoration-break: clone;
+                //box-decoration-break: clone;
+                // padding-right: 0.5rem;
+                // padding-left: 0.5rem;
+
+            .color-diagnosis
+                color: brand-purple !important
+                //background-color: #AAA9AA;
+                //border-radius: 1.9rem;
+                //-webkit-box-decoration-break: clone;
+                //-o-box-decoration-break: clone;
+                //box-decoration-break: clone;
+                //padding-right: 0.5rem;
+                //padding-left: 0.5rem;
+
+            .color-treatment
+                color: brand-pink !important
+
+            .color-follow-up
+                color: brand-lightblue !important
+
+            .color-demographics
+                color: brand-green !important
+                //background-color: #FF46ED;
+                //border-radius: 1.9rem;
+                //-webkit-box-decoration-break: clone;
+                //-o-box-decoration-break: clone;
+                //box-decoration-break: clone;
+                //padding-right: 0.5rem;
+                //padding-left: 0.5rem;
+
+            .editable
+                -webkit-user-select: none; /* Safari */
+                user-select: none;
+                color: #AAA9AA;
+                outline-width: 0;
+                text-transform: lowercase;
+
+            .editable:focus-visible
+                outline: none;
+
+            .fixed
+                color: black;
+                margin-left: -0.1rem;
+
+            .not-filled
+                text-decoration: red dotted underline;
+
+        .stories-button-container-2
+            display: flex
+            align-content: center;
+            justify-content: center;
+            margin-top: 3rem
+            margin-bottom: 3rem
+
+            +media(mobile)
+                margin-top: 1rem
+                margin-bottom: 1rem
+
+        #button-story-submit
+            @extend .serif-captiontitle
+            z-index: 3
+            text-decoration: none
+            color: brand-white
+            font-size: .8rem
+            display: inline-flex
+            align-items: center
+            justify-content: center
+            padding: 20px 20px
+            background-image: url("/assets/img/pages/workshops/makeaware-button-fill.svg")
+            background-size: 100% 100%
+            background-repeat: no-repeat
+            background-position: center // Very high radius to create oval shape
+            text-decoration: none
+            display: block
+            width: fit-content
+            font-size: .6rem
+
+            +media(tablet-h)
+                font-size: 1.3rem
+                padding: 20px 40px
+
+            +media(desktop)
+                font-size: 1.4rem
+                padding: 20px 20px
+
+
+    #story-collection-about-container
+        @extend .sans-paragraph
+        margin-top 2rem
+
+        +media(tablet-h)
+            @extend .grid-container
+
+        +media(desktop)
+            margin-top calc(2rem * 2.5)
+
+        h2
+            @extend .section-title-stories
+
+        p
+            column-count: 2
+            column-gap: 2rem
+
+            +media(mobile)
+                    column-count: 1

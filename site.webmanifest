@@ -1,0 +1,21 @@
+{
+  "name": "MAKEAWARE! Raising the awareness of antimicrobial resistance - Powered by Spearhead",
+  "short_name": "MAKEAWARE!",
+  "description": "Data pills and workshops to raise awareness on antibiotic consumption and AMR with data.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "../assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

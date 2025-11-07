@@ -1,0 +1,59 @@
+// widget-swiss-svg.styl - Styles for Swiss SVG visualization in Stylus
+
+// Specific styles for widget-swiss-viz with SVG files
+#widget-swiss-viz
+    .viz-container
+        margin: 0
+        margin-top: 1rem
+        width: 100% // Full width to expand to container edges
+        padding: 0 // No padding to maximize space usage
+        min-height: 100vh // Ensure minimum height for visibility
+
+   
+    // Main SVG container styles
+    svg
+        width: 100%
+        height: auto
+        display: block
+        
+       
+
+    // Zone headers styling (top labels)
+    .zone-header
+        @extend .sans-scheme
+        fill: brand-black
+        pointer-events: none
+        text-anchor: middle
+        
+
+
+    // Year labels styling (left labels)  
+    .year-label
+        @extend .sans-scheme
+        fill: brand-black
+        pointer-events: none
+        text-anchor: end
+
+
+    // Ensure imported SVG elements maintain their styling
+    g[transform*="scale"]
+        
+        
+        // Preserve SVG mask and path styles
+        mask
+            // Ensure masks work correctly when scaled
+            maskUnits: userSpaceOnUse
+            
+        path
+            // Maintain original path styling
+            fill: inherit
+            stroke: inherit
+            
+        circle
+            // Maintain original circle styling  
+            fill: inherit
+            stroke: inherit
+
+    // Mobile-specific adjustments
+   
+

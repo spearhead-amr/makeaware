@@ -1,0 +1,53 @@
+#main-story-sent
+    @extend .content-margins
+    overflow-x: hidden
+        
+#story-sent
+    h1
+        @extend .serif-title
+        margin-top: 7vh
+        margin-bottom: 1rem
+        width: 100%
+        text-wrap: balance
+
+        +media(tablet-h)
+            margin-top: 10vh
+    
+    h2
+        @extend .serif-paragraph
+        margin-bottom: 0.5rem
+        font-size: 1.3rem
+        line-height: 1.11
+
+        +media(tablet-h)
+            font-size: 2rem
+
+        +media(desktop)
+            font-size: 2.1rem
+
+    p
+        @extend .sans-caption
+        margin-bottom: 0.5rem
+        flex-grow: 0  // Paragraph shouldn't expand
+        font-size: .6rem
+        line-height: 1.30
+        margin-top: 1rem
+        max-width: 100%
+
+        +media(tablet-h)
+            max-width: 40vw
+            margin-bottom: 1rem
+            font-size: 1.2rem
+
+        +media(desktop)
+            max-width: 30vw
+            font-size: 1.1rem
+
+    .card-button-anchor
+        margin-left: auto
+        margin-right: auto
+        margin-bottom: 2rem
+        margin-top: 30vh
+
+        +media(tablet-h)
+            margin-top: 40vh

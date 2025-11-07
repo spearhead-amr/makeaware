@@ -1,0 +1,486 @@
+// shared classes
+.section-title-databook
+    @extend .sans-caption
+    text-transform: uppercase
+    margin-bottom: 1rem
+    font-size: .7rem
+
+    +media(tablet-h)
+        margin-bottom: 0
+        min-width:15%
+        position: relative
+        top: calc(1rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
+        font-size: 1.1rem
+
+    +media(desktop)
+        top: calc(2.5rem - (1.4rem*1.15))
+        font-size: 1.1rem
+
+#main-databook
+    @extend .content-margins
+    margin-top: 15vh
+
+    // text color classes
+    .filter-diagnosis
+        color: diagnosis-color
+    .filter-symptoms
+        color: symptoms-color
+    .filter-treatment
+        color: treatment-color
+    .filter-follow-up
+        color: follow-up-color
+    .filter-demographics
+        color: demographics-color
+
+    // introduction and instructions
+    #stories-introduction
+        margin-bottom:
+            3rem
+
+        h1
+            display: none
+
+        #abstract-text
+            margin-bottom: 3rem
+
+        #header-grid-container
+
+            #stories-instructions
+                margin-top 2rem
+
+            #stories-about-databook, #stories-instructions
+                @extend .sans-paragraph
+
+                h2
+                    @extend .section-title-databook            
+    
+            // filters
+            #stories-filters
+                margin-top 2rem
+
+                h2
+                    @extend .section-title-databook
+                
+                #stories-filters-container
+                    @extend .serif-paragraph
+                    list-style: none
+                    padding-inline-start: 0
+                    font-size: .8rem
+
+                    +media(tablet-h)
+                        font-size: 1.6rem
+
+                    li
+                        display: inline-block
+                        padding: 0.2rem 0.7rem
+                        border: solid
+                        border-width: 1px
+                        border-radius: 2rem
+                        box-sizing: border-box
+                        text-transform: lowercase
+                        margin-right: 0.5rem
+                        margin-bottom: 0.5rem
+                        user-select: none;
+
+                        &:last-child
+                            margin-right: 0
+                        
+                        &:hover
+                            cursor: pointer
+
+                        &[data-filters="diagnosis"]
+                            border-color: diagnosis-color
+                            @extend .filter-diagnosis
+                            &.story-active
+                                background-color: diagnosis-color
+
+                        &[data-filters="symptoms"]
+                            border-color: symptoms-color
+                            @extend .filter-symptoms
+                            &.story-active
+                                background-color: symptoms-color
+
+                        &[data-filters="treatment"]
+                            border-color: treatment-color
+                            @extend .filter-treatment
+                            &.story-active
+                                background-color: treatment-color
+
+                        &[data-filters="follow-up"]
+                            border-color: follow-up-color
+                            @extend .filter-follow-up
+                            &.story-active
+                                background-color: follow-up-color
+
+                        &[data-filters="demographics"]
+                            border-color: demographics-color
+                            @extend .filter-demographics
+                            &.story-active
+                                background-color: demographics-color
+
+                        &.story-active
+                            color: white
+
+                        +media(desktop)
+                            border-radius: 2rem
+                            padding: .3rem .5rem
+                            border-width: 1px
+
+    +media(tablet-h)
+
+        #header-grid-container
+            display: grid
+            margin-top: 6rem
+            @extend .grid-container
+
+            #stories-instructions, #stories-about-databook, #stories-filters
+                display: contents
+
+            #stories-instructions
+                h2
+                    grid-column: 1
+                
+                p
+                    grid-column: 2
+                    column-count: 2
+                    column-gap: 2rem
+                
+            #stories-about-databook
+                h2
+                    grid-column: 1
+
+                p
+                    grid-column: 2
+                    column-count: 2
+                    column-gap: 2rem
+
+            #stories-filters
+                h2
+                    grid-column: 1
+
+                #stories-filters-container
+                    grid-column: 2
+
+
+    // stories collection
+    #stories-collection-container
+        @extend .serif-paragraph
+        border-top: 1px solid black
+        margin-top 2rem
+        margin-bottom 5rem
+
+        // Wrapper for stories and terms
+        #stories-with-terms-wrapper
+            display: flex
+            flex-direction: column
+            
+            +media(tablet-h)
+                &.terms-active
+                    display: grid
+                    grid-template-columns: 1fr minmax(20%, 400px)
+                    gap: 2rem
+                    
+                    #stories-list
+                        // Stories list stays in first column
+                        grid-column: 1
+                        
+                    #terms-container
+                        // Terms container goes to second column (right side)
+                        grid-column: 2
+                        
+            +media(desktop)
+                &.terms-active
+                    gap: 3rem
+                    grid-template-columns: 1fr minmax(20%, 450px)
+
+        #stories-list
+            list-style: none
+            padding-inline-start: 0
+            margin-top: 1rem
+            
+            h3
+                @extend .serif-paragraph
+                margin-bottom 0.5rem
+
+            li+li
+                margin-top: 1rem
+
+            span[data-filter="diagnosis"],
+            span[data-filter="symptoms"],
+            span[data-filter="treatment"],
+            span[data-filter="follow-up"],
+            span[data-filter="demographics"]
+                display: inline
+
+            
+            &.diagnosis, &.symptoms, &.treatment, &.follow-up, &.demographics
+                span[data-filter="diagnosis"],
+                span[data-filter="symptoms"],
+                span[data-filter="treatment"],
+                span[data-filter="follow-up"],
+                span[data-filter="demographics"]
+                    display: none
+            
+
+            &.diagnosis
+                span[data-filter="diagnosis"]
+                    display: inline
+            
+            &.symptoms
+                span[data-filter="symptoms"]
+                    display: inline
+
+            &.treatment
+                span[data-filter="treatment"]
+                    display: inline
+
+            &.follow-up
+                span[data-filter="follow-up"]
+                    display: inline
+
+            &.demographics
+                span[data-filter="demographics"]
+                    display: inline
+            
+
+            /* old, one filter at the time only
+        
+            &[data-current-filter="diagnosis"]
+                span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="symptoms"]
+                span[data-filter="diagnosis"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="treatment"]
+                span[data-filter="symptoms"], span[data-filter="diagnosis"], span[data-filter="follow-up"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="follow-up"]
+                span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="diagnosis"], span[data-filter="demographics"]
+                    display: none
+
+            &[data-current-filter="demographics"]
+                span[data-filter="symptoms"], span[data-filter="treatment"], span[data-filter="follow-up"], span[data-filter="diagnosis"]
+                    display: none
+
+            */
+
+            li
+                .glyph
+                    color: brand-grey2
+                    cursor: pointer
+                
+                .key-counter
+                    display: inline-block
+
+    +media(tablet-h)
+
+        #stories-collection-container
+            margin-bottom: 7rem
+
+            #stories-list
+                display: grid
+                @extend .grid-container
+
+                h3
+                    grid-column: 1
+                    text-align: right
+
+                .story-container-div
+                    grid-column: 2
+
+                li
+                    display: contents  // allows to use the li content as a column without interference
+                    //gap: 2rem
+
+                li + li
+                    margin: 0
+
+
+
+    #terms-container
+        z-index: 10
+        overflow: auto;
+        display: none
+        @extend .sans-paragraph
+
+        &.terms-container-active
+            display: block
+
+        // Default mobile overlay behavior
+        position: fixed
+        bottom: 0
+        left: 0
+        height: 50%
+        background-color: white
+        width: 100vw
+        padding: 2rem 0.5rem 0 0.5rem
+        border-top: 1px solid black
+
+        +media(tablet-h)
+            // Override mobile positioning and width for all tablet+ screens
+            position: static
+            width: auto
+            height: auto
+            bottom: auto
+            left: auto
+            background-color: transparent
+            
+            // Side column mode for tablet and desktop when terms are active
+            &.terms-container-active
+                position: sticky  // Stick to viewport when scrolling
+                top: 4vw  // 5vw distance from top when stuck
+                height: calc(100vh - 5vw)  // Full screen height minus top spacing
+                overflow-y: auto  // Enable vertical scrolling
+                overflow-x: hidden  // Prevent horizontal scrolling
+                border-top: none !important
+                border-left: 1px solid black
+                padding: 1rem 0 0 2rem !important
+                box-sizing: border-box !important
+                    
+
+        #terms-close-button
+            height: 1rem
+            width 1rem
+            position: absolute
+            right: 1rem
+            top: 2rem;
+            
+            &:hover
+                cursor: pointer
+
+            +media(tablet-h)
+                // Override fixed positioning for tablet/desktop
+                position: absolute
+                height: 3rem
+                width 3rem
+                top: 1rem
+                right: 1rem
+                bottom: auto
+                z-index: 12  // Higher z-index to stay above sticky container
+
+            &:before
+                content: ""
+                width: 100%
+                position: relative
+                display: block
+                height: 1px
+                border-bottom: 1px solid black
+                transform: rotate(-45deg)
+                top: 50%
+
+            &:after
+                content: ""
+                width: 100%
+                position: relative
+                display: block
+                height: 1px
+                border-bottom: 1px solid black
+                transform: rotate(45deg)
+                top: 50%
+
+        #terms-container-description
+            max-width: calc(100% - 4rem)
+
+            +media(desktop)
+                font-size: 1.2rem
+
+        #terms-collection-container
+            
+            &>section
+                display: none
+                margin-top: 2rem
+                margin-bottom: 3rem
+
+                +media(mobile)
+                    margin-top: 1rem
+                    margin-bottom: 1rem
+
+                /*
+                .terms-div-header
+                    display: flex
+                    margin-top: 2rem
+                */
+
+            h3
+                margin-top: 0.2rem
+                font-weight: 400
+
+                +media(mobile)
+                    font-size: .8rem
+
+            h3 + .terms-ul-key
+                margin-top 1rem
+
+            .terms-ul-key + h3
+                margin-top 3rem
+
+            .terms-ul-key
+                list-style: none
+                padding-left: 0
+                font-weight: bold
+
+                li + li
+                    margin-top: .2rem
+                
+                // Make clickable list items more obvious
+                li
+                    cursor: pointer
+                    padding: 0.3rem 0
+                    border-radius: 4px
+                    transition: background-color 0.2s ease
+                
+                // Color styling for entire sentences based on filter category
+                li.filter-diagnosis
+                    color: diagnosis-color
+                    
+                li.filter-symptoms
+                    color: symptoms-color
+                    
+                li.filter-treatment
+                    color: treatment-color
+                    
+                li.filter-follow-up
+                    color: follow-up-color
+                    
+                li.filter-demographics
+                    color: demographics-color
+
+                li:first-of-type
+                    margin-top: 1rem
+
+            &>section.current-key-active
+                display: block
+
+            +media(tablet-h)
+
+                .terms-ul-key + h3, h3 + .terms-ul-key
+                    margin: 0
+
+                h3
+                    grid-column: 1
+                    text-align: right
+                    margin: 0
+                    font-size: 1.2rem
+
+                .terms-ul-key
+                    grid-column: 2
+
+                &>section.current-key-active
+                    display: grid
+                    @extend .grid-container 
+
+            +media(desktop)
+                h3, li
+                    font-size: 1.2rem
+
+.databook-citations
+    color: brand-grey2
+    .number-container
+        border-color: brand-grey2
+
+// Highlighted key text styling
+.current-key
+    text-decoration: underline

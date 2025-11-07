@@ -1,0 +1,122 @@
+#main-workshop
+    @extend .content-margins
+        
+#workshop-introduction
+    h1
+        @extend .serif-title
+        margin-top: 7vh
+        margin-bottom: 1.5rem
+        width: 100%
+
+        +media(tablet-h)
+            margin-top: 10vh
+            margin-bottom: 2rem
+        
+        +media(desktop)
+            margin-bottom: 3rem
+
+    p
+        @extend .serif-subtitle
+
+#workshop-images
+    display: flex
+    flex-direction: column
+    gap:0.5rem
+
+    +media(tablet-h)
+
+        img
+            width:50%
+
+#workshop-detail
+    display: flex
+    flex-direction: column
+
+    h2
+        @extend .sans-caption
+        text-transform: uppercase
+        margin-bottom: 1rem
+        font-size: .7rem
+
+        +media(tablet-h)
+            margin-bottom: 0
+            min-width:15%
+            position: relative
+            top: calc(1rem - (0.6rem*1.15)) //calculated on p font-sixe to have them aligned on the text base line, if you change font size of the following p please update this
+            font-size: 1.1rem
+
+        +media(desktop)
+            top: calc(2.5rem - (1.4rem*1.15))
+            font-size: 1.1rem
+
+    p
+        @extend .serif-paragraph 
+
+    a
+        text-decoration: underline
+        //border-bottom: 1px solid brand-black
+        color: brand-black
+
+    img
+        width: 100%
+        height: auto
+        object-fit: cover
+
+    video
+        box-sizing: border-box
+        min-width: calc(100% - 15%)
+
+    +media(tablet-h)
+        flex-direction: row
+        
+        .video-embed
+            flex: 1 1 auto
+            width: 100%
+
+#workshop-images
+    display: flex
+    flex-direction: column
+    gap:0.5rem
+
+    +media(tablet-v)
+        flex-direction: row
+        flex-wrap: wrap
+        gap: 0.5rem
+
+        img
+            width: calc(50% - 0.5rem)
+
+        #workshop-single-image
+            width: 100%
+
+    +media(tablet-h)
+        gap: 1rem
+        
+        img
+            width: calc(50% - 0.5rem)
+
+
+#protocol-viz-resistance
+
+    +media(tablet-h)
+        margin-left: 15%
+
+    img
+        width: 100%
+        height: auto
+        object-fit: cover
+        min-width: 0
+        flex-shrink: 1
+
+        +media(mobile)
+            margin-top: 3rem
+
+    .protocol-step
+        width: 100%
+
+        p
+            margin-top: 2rem
+            width: 100%
+            
+            +media(mobile)
+                margin-top:1.5rem

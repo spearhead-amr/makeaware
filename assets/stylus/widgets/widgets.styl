@@ -1,0 +1,430 @@
+// Updated content sticky styles
+#content-sticky.locked
+    left: 0
+    right: 0
+    width: auto
+    padding-left: 0.5rem
+    padding-right: 0.5rem
+    
+    +media(tablet-v)
+        left: 0
+        right: 0
+        width: auto
+        padding-left: 0.5rem
+        padding-right: 0.5rem
+    
+    +media(tablet-h)
+        left: 0
+        right: 0
+        width: auto
+        padding-left: 1rem
+        padding-right: 1rem
+
+// Mixin for all widget overlays
+widget-overlay-base()
+    position: absolute
+    top: 100vh
+    left: 0
+    right: 0
+    visibility: hidden
+    
+    &.active
+        position: fixed
+        top: 0
+        visibility: visible
+
+// Base styles for the frame common to all widgets
+.frame
+    background: brand-white
+    border-top: 1px solid brand-black
+    height: 100vh
+    min-height: 100vh
+    @extend .content-margins
+    padding-top: 7vh
+    padding-bottom: 5vh
+    transform: translateY(100%)
+    will-change: transform, opacity
+    transition: transform 0.1s linear, opacity 0.3s ease
+    overflow: hidden  // Always hidden - no scrollbars
+    position: relative
+    
+    // Disable transitions on mobile to prevent flickering during JS-controlled sliding
+    +media(mobile)
+        transition: opacity 0.3s ease
+        // Transform transitions disabled on mobile to prevent flicker with JS scroll updates
+    
+    // Content wrapper for internal movement
+    .frame-content-wrapper
+        will-change: transform
+        // Add extra bottom padding for content that needs space
+        padding-bottom: 5rem
+    
+    h1
+        margin: 0
+        text-align: left
+        @extend .serif-title
+        margin-bottom: 1rem
+        text-wrap: balance
+
+    h2
+        margin: 0
+        text-align: left
+        @extend .serif-subtitle
+        margin-bottom: 0.5rem
+        text-wrap: balance
+        width: 100%
+
+        +media(tablet-h)
+            width: 60%   
+
+        +media(desktop)
+            width: 65%          
+
+    p
+        @extend .serif-para-title
+        text-align: left
+        margin: 0
+
+        
+
+    .widget-legenda-inline
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: flex-start
+
+    .widget-legenda-button 
+        padding: 5px 14px 5px
+        border-radius: 100px
+        border: 1px solid 
+        color: brand-black
+        text-decoration: none
+        @extend .serif-captiontitle
+        cursor: pointer
+        margin-left: auto
+        font-size: .8rem
+       
+
+        +media(tablet-h)
+            display: none
+
+#viz-paragraph
+    @extend .sans-paragraph
+    margin-bottom: 0.5rem
+
+    +media(tablet-h)
+        width: 65%
+
+#viz-data-sources
+    @extend .sans-caption
+    font-size: .6rem
+    position:relative
+    line-height: 1
+    margin: 0
+    padding: 0
+
+    +media(tablet-h)
+        margin-bottom: 1rem
+        font-size: 1.2rem
+    
+    +media(desktop)
+        font-size: 1rem
+
+    a
+        color: brand-black
+
+#glyph-world-viz:before
+        content: "●"
+        color: brand-red
+        
+
+// Specific widgets with increasing z-index
+#widget-world
+    widget-overlay-base()
+    z-index: 20
+
+#widget-world-viz
+    widget-overlay-base()
+    z-index: 21
+
+#widget-swiss
+    widget-overlay-base()
+    z-index: 22
+
+#widget-swiss-viz
+    widget-overlay-base()
+    z-index: 23
+
+#widget-death
+    widget-overlay-base()
+    z-index: 24
+
+#widget-death-viz
+    widget-overlay-base()
+    z-index: 25
+
+#widget-timeline
+    widget-overlay-base()
+    z-index: 26
+
+#widget-timeline-viz
+    widget-overlay-base()
+    z-index: 27
+
+/* // Home page footer integration - pushes last widget up when appearing
+#page-footer.home-footer
+    position: absolute
+    top: 100vh  // Start below viewport
+    left: 0
+    right: 0
+    z-index: 30  // Above all widgets
+    background: brand-white
+    width: 100%
+    visibility: hidden
+    opacity: 0
+    transition: none  // No CSS transitions, controlled by JavaScript
+
+ */
+
+// Specific styles for widgets with visualizations
+#widget-world-viz,
+#widget-swiss-viz,
+#widget-death-viz,
+#widget-timeline-viz
+    .frame
+        display: flex
+        flex-direction: column
+        padding-bottom: 5rem
+        
+        // Ensure text content comes first
+        h2, p
+            flex-shrink: 0
+            
+        .viz-container
+            flex: 1
+            padding: 0.5rem
+            min-height: 0
+            // Remove any absolute positioning or centering that might interfere
+            width: 100%
+            margin-top: 0.5rem // Small gap after text content
+
+
+.popup-overlay
+    position: fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background rgba(255,255,255, 0.5)
+    -webkit-backdrop-filter: blur(5px)
+    backdrop-filter: blur(5px)
+    z-index 9999
+    align-items center
+    justify-content center
+    display: none
+
+
+    &.active
+        display: flex
+
+    +media(tablet-h)
+        display: flex
+        z-index: 21
+        padding:0
+        width 100%
+        position: relative
+        height auto
+        top: 1rem
+        padding-right: 1rem
+        padding-top:0
+        justify-content flex-end
+        align-items: flex-end
+        background rgba(255,255,255, 0)
+        -webkit-backdrop-filter: blur(0)
+        backdrop-filter: blur(0)
+
+    +media(desktop)
+        top: 2rem
+
+        
+
+.popup-container
+    position relative
+    width 90%
+    height 60%
+
+    +media(tablet-h)
+        width: 100%
+        height: auto
+
+
+.popup-shadow
+    position absolute
+    top 8px
+    right 8px
+    width 100%
+    height 100%
+    background brand-white
+    border 1px solid brand-black
+    border-radius 20px
+    z-index 1
+
+    +media(tablet-h)
+        display:none
+
+.popup-main
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background brand-white
+    border 1px solid brand-black
+    border-radius 20px
+    z-index 2
+    padding 3rem
+    align-content: center
+    display flex
+    flex-direction: column
+    justify-content: space-between
+    align-items center
+    gap:1.5rem
+
+    +media(tablet-h)
+        align-items: flex-end
+        position: relative
+        flex-direction: row
+        background none
+        padding: 0
+        gap:0
+        border: 0
+    
+
+.close-btn
+    position absolute
+    top 20px
+    right 20px
+    width 24px
+    height 24px
+    cursor pointer
+    color brand-black
+    display flex
+    align-items center
+    justify-content center
+    border none
+    background none
+    transition color 0.2s ease
+
+    +media(tablet-h)
+        display: none
+
+.data-column
+    display flex
+    flex-direction column
+    align-items center
+    text-align center
+    max-width 100%
+
+    +media(tablet-h)
+        max-width 50%
+
+.column-title
+    color brand-black
+    @extend .sans-scheme
+    margin-bottom 1rem
+
+.data-visual
+    display flex
+    align-items center
+    gap 0.5rem
+
+.circle
+    border-radius 50%
+    position relative
+
+.circle-small
+    width 2rem
+    height 2rem
+    background brand-black
+    flex-shrink: 0 !important
+
+    +media(tablet-h)
+        width 1rem
+        height 1rem
+
+.circle-large
+    width 4rem
+    height 4rem
+    background brand-black
+
+    +media(tablet-h)
+        width 3rem
+        height 3rem
+
+    +media(desktop)
+        width 5rem
+        height 5rem
+
+.circle-outline-small
+    width 2rem
+    height 2rem
+    border 1px solid brand-black
+    background transparent
+    flex-shrink: 0 !important
+
+    +media(tablet-h)
+        width 1rem
+        height 1rem
+
+.circle-outline-large
+    width 4rem
+    height 4rem
+    border 1px solid brand-black
+    background transparent
+
+    +media(tablet-h)
+        width 3rem
+        height 3rem
+
+    +media(desktop)
+        width 5rem
+        height 5rem
+
+.data-number
+    @extend .sans-scheme
+    color brand-black
+
+
+// Swiss-specific legend styles - add these to widgets.styl
+
+// Specific overrides for Swiss legend
+#legenda-swiss
+    .popup-main
+        +media(tablet-h)
+            flex-direction: row
+            gap: 2rem
+            align-items: flex-start
+
+    // Left column with two rows
+    .swiss-left-column
+        display: flex !important
+        flex-direction: column !important
+        align-items: flex-start !important
+        gap: 1.5rem
+        max-width: 100%
+        width: 100%
+
+        +media(tablet-h)
+            max-width: 50%
+
+
+    // Right column
+    .swiss-right-column
+        display: flex !important
+        flex-direction: column !important
+        align-items: center !important
+        text-align: center
+        max-width: 100%
+
+        +media(tablet-h)
+            max-width: 50%

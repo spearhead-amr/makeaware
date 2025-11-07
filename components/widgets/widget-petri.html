@@ -1,0 +1,131 @@
+<div class="petri-frame">
+
+    <div class="petri-viz-container">
+        <div class="petri-content-block" id="petri-block-0">
+            <h2>How can the development of resistance be tested?</h2>
+            <p>Scientists test the development of antibiotic resistance using the diffusion susceptibility method called the Kirby-Bauer test. This procedure assesses whether a specific bacterium is sensitive or resistant to different antibiotics, providing essential information to help physicians select the most effective treatment options.
+                <span class="petri-content-only-desktop">First, scientists take a special dish called a Petri dish and cover its surface with bacteria that need to be tested. They do this by dipping a small swab into a liquid containing the bacteria and gently spreading it all over the dish so the bacteria can grow evenly across the surface.</span>
+            </p>
+        </div>
+        
+        <div class="petri-content-block" id="petri-block-1">
+            <h2>How are antibiotics tested against the bacteria?</h2>
+            <p>After the surface of the Petri dish is evenly covered with bacteria, a small paper disk soaked with a specific antibiotic is carefully placed on top. As the dish is kept warm, the antibiotic gradually diffuses outward from the disk into the surrounding area, interacting with the bacteria growing nearby.</p>
+        </div>
+        
+        <div class="petri-content-block" id="petri-block-2">
+            <h2>How do we know if an antibiotic works?</h2>
+            <p>After about 24 hours, scientists check the dish. If an antibiotic stops the bacteria from growing, clear circles called "zones of inhibition" appear around the disks. The size of these clear zones shows how effective the antibiotic is: the bigger the circle, the better it works. If there's no clear zone, it means the bacteria are resistant to that antibiotic<span class="petri-content-only-desktop"> and it won't be a good choice for treatment</span>.</p>
+        </div>
+
+        
+
+        
+
+        <div class="circle-container-wrapper">
+
+            <div id="petri-legenda">
+            <div class="petri-legenda-column">
+            <div class="petri-legenda-data-visual">
+                <div class="petri-legenda-circle petri-legenda-circle-antibiotics"></div>
+                <span class="petri-legenda-data-number">Antibiotic</span>
+            </div>
+            <div class="petri-legenda-data-visual">
+                <div class="petri-legenda-circle petri-legenda-circle-inhibition"></div>
+                <span class="petri-legenda-data-number">Antibiotic inhibition area</span>
+            </div>
+            </div>
+        </div>
+            
+            <div class="circle-container" id="bacterium-petri">
+                <svg class="circle-svg" viewBox="0 0 400 400">
+                    <!-- Define invisible paths for text to follow and mask -->
+                    <defs>
+                        <!-- Larger invisible circle path for text alignment -->
+                        <path id="circle-text-path-1" d="M 200,40 A 160,160 0 1,1 199.9,40" />
+                        
+                        <!-- Mask to clip growth circles to inner circle boundary -->
+                        <mask id="petri-mask-1">
+                            <rect width="100%" height="100%" fill="black" />
+                            <circle cx="200" cy="200" r="140" fill="white" />
+                        </mask>
+                    </defs>
+                    
+                    <!-- Visible outer circle outline -->
+                    <circle cx="200" cy="200" r="150" class="circle-outline outer" />
+                    
+                    <!-- Visible inner circle outline -->
+                    <circle cx="200" cy="200" r="140" class="circle-outline inner" />
+                    
+                    <!-- Animated growth circles group with mask -->
+                    <g mask="url(#petri-mask-1)">
+                        <circle cx="130" cy="150" r="0" class="growth-circle growth-circle-1" />
+                        <circle cx="80" cy="240" r="0" class="growth-circle growth-circle-1" />
+                        <circle cx="270" cy="130" r="0" class="growth-circle growth-circle-2" />
+                        <circle cx="200" cy="250" r="0" class="growth-circle growth-circle-3" />
+                        
+                        <!-- Inhibition zone circle - appears behind antibiotic in step 3 -->
+                        <circle cx="200" cy="200" r="0" class="inhibition-circle" />
+                        
+                        <!-- Antibiotic circle - appears at center in step 2 -->
+                        <circle cx="200" cy="200" r="0" class="antibiotic-circle" />
+                    </g>
+                    
+                    <!-- Text following the outer circle path -->
+                    <text class="circle-text">
+                        <textPath href="#circle-text-path-1" startOffset="75%">
+                            Bacterium
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+            
+            <div class="circle-container" id="resistant-bacterium-petri">
+                <svg class="circle-svg" viewBox="0 0 400 400">
+                    <!-- Define invisible paths for text to follow and mask -->
+                    <defs>
+                        <!-- Larger invisible circle path for text alignment -->
+                        <path id="circle-text-path-2" d="M 200,40 A 160,160 0 1,1 199.9,40" />
+                        
+                        <!-- Mask to clip growth circles to inner circle boundary -->
+                        <mask id="petri-mask-2">
+                            <rect width="100%" height="100%" fill="black" />
+                            <circle cx="200" cy="200" r="140" fill="white" />
+                        </mask>
+                    </defs>
+                    
+                    <!-- Visible outer circle outline -->
+                    <circle cx="200" cy="200" r="150" class="circle-outline outer" />
+                    
+                    <!-- Visible inner circle outline -->
+                    <circle cx="200" cy="200" r="140" class="circle-outline inner" />
+                    
+                    <!-- Animated growth circles group with mask -->
+                    <g mask="url(#petri-mask-2)">
+                        <circle cx="220" cy="110" r="0" class="growth-circle growth-circle-1" />
+                        <circle cx="290" cy="160" r="0" class="growth-circle growth-circle-1" />
+                        <circle cx="160" cy="200" r="0" class="growth-circle growth-circle-2" />
+                        <circle cx="240" cy="270" r="0" class="growth-circle growth-circle-3" />
+                        
+                        <!-- Inhibition zone circle - small zone that dissolves (resistant bacteria) -->
+                        <circle cx="200" cy="200" r="0" class="inhibition-circle resistant" />
+                        
+                        <!-- Antibiotic circle - appears at center in step 2 -->
+                        <circle cx="200" cy="200" r="0" class="antibiotic-circle" />
+                    </g>
+                    
+                    <!-- Text following the outer circle path -->
+                    <text class="circle-text">
+                        <textPath href="#circle-text-path-2" startOffset="75%">
+                            Resistant Bacterium
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- <img id="petri-legenda" src="assets/img/pages/home/makeaware-petri-legenda.svg"> -->
+</div>
+
+<script src="assets/js/widgets/widget-petri.js"></script>

@@ -1,0 +1,89 @@
+// world-viz.styl - Styles for world visualization in Stylus
+
+// Specific styles for widget-world-viz
+#widget-world-viz
+    .viz-container
+        margin: 0 auto // Center the container
+        margin-top: 0rem
+        width: 95%
+        padding: 0 1rem 10rem // Less padding on mobile
+            
+        +media(tablet-v)
+            width: 90%
+            padding: 0 1.5rem 5rem
+            
+        +media(tablet-h)
+            width: 85%
+            padding: 2rem 2rem 4rem
+
+    svg
+        width: 100%
+        height: auto
+        display: block
+        overflow: visible // Prevent SVG from cropping text
+
+    // Styles for country groups
+    .country-group
+        cursor: pointer
+        transition: opacity 0.2s ease
+
+        // Active state managed by JS class
+        &.active
+            .resistant-circle
+                fill: brand-pink
+                cursor: initial
+
+            .country-samples,
+            .country-resistant
+                opacity: 1
+
+    // Outer circle (samples taken)
+    .samples-circle
+        fill: none
+        stroke: brand-black
+        stroke-width: 1
+        cursor: initial
+
+    // Inner circle (resistant bacteria)
+    .resistant-circle
+        fill: brand-black
+        transition: fill 0.3s ease
+        cursor: initial
+
+        &.switzerland
+            fill: brand-red
+
+    // Country name labels - centered with circle
+    .country-label
+        @extend .sans-scheme
+        font-size: .8rem
+        fill: brand-black
+        text-anchor: middle
+        pointer-events: none
+
+        +media(tablet-h)
+            font-size: 1.1rem
+
+    // Data labels - now centered under country name
+
+    .country-resistant
+        fill: brand-pink
+        font-size: .5rem
+
+        +media(tablet-h)
+            font-size: 1rem
+
+    .country-samples
+        fill: brand-black
+        font-size: .5rem
+
+        +media(tablet-h)
+            font-size: 1rem
+
+    .country-samples,
+    .country-resistant
+        @extend .sans-scheme
+        text-anchor: middle // Changed from start to middle (centered)
+        pointer-events: none
+        opacity: 0
+        transition: opacity 0.3s ease

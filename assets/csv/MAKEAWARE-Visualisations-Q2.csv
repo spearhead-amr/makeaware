@@ -1,0 +1,58 @@
+Country,SamplesTaken,ResistantBacteria
+Cameron,1423,259
+israel,4522,626
+ivory coast,915,174
+jordan,627,146
+Kuwait,3802,554
+Morocco,3407,707
+nigeria,4819,1329
+qatar,1177,202
+saudi arabia,1237,235
+south africa,5982,1175
+china,7061,1537
+hong kong,1996,221
+india,15759,5474
+japan,3083,232
+south korea,7153,1172
+malaysia,2374,336
+philippines,3444,438
+taiwan,4979,814
+thailand,7233,1290
+belgium,7558,746
+croatia,5305,1128
+czech,4378,518
+denmark,978,70
+finland,929,34
+france,11390,1174
+germany,10572,914
+greece,4836,1321
+hungary,5344,825
+ireland,2021,217
+italy,10545,2004
+latvia,1249,207
+lithuania,2483,553
+netherlands,1580,103
+poland,4567,897
+portugal,4758,618
+romania,3366,917
+slovenia,1120,82
+spain,12545,1630
+sweden,937,44
+switzerland,1958,158
+turkey,4992,1281
+ukraine,3607,1132
+united kingdom,4306,300
+argentina,4819,1203
+brazil,10307,2418
+chile,3627,608
+colombia,4824,711
+costa rica,1149,117
+dominican rep,1262,148
+guatemala,3861,950
+mexico,7394,1547
+panama,2266,339
+venezuela,2657,484
+australia,5610,398
+canada,6245,469
+new zeland,2095,182
+united states,27577,2561

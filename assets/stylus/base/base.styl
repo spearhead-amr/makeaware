@@ -1,0 +1,79 @@
+html
+    font-size: 22px     // mobile first, it defines the rem unit
+    line-height: 115%
+    background-color: brand-white
+
+    +media(tablet-h)
+        font-size: 14px
+
+    //overflow-x: hidden
+
+@font-face
+    font-family: 'PP Editorial New'
+    src: url('../../assets/fonts/PPEditorialNew-Ultralight.woff2') format('woff2'),
+        url('../../assets/fonts/PPEditorialNew-Ultralight.woff') format('woff')
+    font-weight: 200
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'Suisse Intl'
+    src: url('../../assets/fonts/SuisseIntl-Light.woff2') format('woff2'),
+        url('../../assets/fonts/SuisseIntl-Light.woff') format('woff')
+    font-weight: 300
+    font-style: normal
+    font-display: swap
+
+
+
+.content-margins
+    padding-left: 0.5rem
+    padding-right: 0.5rem
+     
+    +media(tablet-h)
+        padding-left: 1rem
+        padding-right: 1rem
+
+.divider
+    height: 2.5rem
+
+    +media(tablet-h)
+        height: 6rem
+
+.in-text-citation
+    color: black
+
+/* Text selection highlight */
+*::-moz-selection
+    background: brand-pink
+    color: brand-black
+
+*::selection
+    background: brand-pink
+    color: brand-black
+
+.number-container
+    font-size:0.75em;
+    font-weight:bold;
+    font-family: 'PP Editorial New', serif;
+    display:inline-block;
+    width:1.25em;
+    height:1.2em;
+    border-radius:50%;
+    border:.07em solid brand-black;
+    text-align:center;
+    line-height:1.15em;
+
+.number-icon
+    display:inline-block;
+    transform:scale(.8,.9);
+
+/* grid layout (2 columns) story tool and databook */
+
+.grid-container
+    display: grid
+    +media(tablet-h)
+        grid-template-columns: 18% 1fr
+        gap: 3rem
+
+
