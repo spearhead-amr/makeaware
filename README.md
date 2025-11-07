@@ -121,7 +121,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] onclick on numbers: the modal is opening from the right and stretching the story column, in the story column are only visible the stories with the word selected (filter); we can avoid the number inside the modal and align the title (e.g. I decided to) to the title of the modal (e.g. Same term repeated...); the onclick is also filtering the stories that only contains the term.
 - [x] stories columns: stories should be aligned in two/three columns with the number on the left and text in second place, third column only visible when click on numbers
 - [x] term underlined in the modal: clicking on the term underlined in the modal (e.g. doctor) is sending me to the relative story
-- [ ] smaller mobile fixes in the terms-container
+- [x] smaller mobile fixes in the terms-container
 ### Chatbot
 - [ ] check the sources regex function: waiting for a feedback from Gooey
 ### Publications
