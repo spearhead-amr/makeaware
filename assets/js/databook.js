@@ -111,13 +111,13 @@ const headerToFilter = {
 }
 
 function loadData() {
+    let originalCleanData; // Store the original clean data
+    
     fetch('assets/json/stories-collection.json')
         .then(Response => Response.json())
         .then(data => {
-            return cleanData(data);
-        })
-        .then(data => {
-            return generateTermsLists(data);
+            originalCleanData = cleanData(data);
+            return JSON.parse(JSON.stringify(originalCleanData)); // Create a deep copy
         })
         .then(data => {
             return checkWords(data);
@@ -126,6 +126,9 @@ function loadData() {
             return appendData(data);
         })
         .then(data => addKeyCount(data))
+        .then(() => {
+            return generateTermsLists(originalCleanData); // Use original clean data
+        })
         .then(() => filterButtonsAddEventListener())
         .then(() => addWorldButtons())
         .then(() => termsButtonCloseAddEventListener())
@@ -167,9 +170,9 @@ function appendData(data) {
         story = data[i];
         // Format story number with leading zeros
         let formattedNumber;
-        if (i < 10) {
+        if (i < 9) {
             formattedNumber = "00" + (i+1);
-        } else if (i < 100) {
+        } else if (i < 99) {
             formattedNumber = "0" + (i+1);
         } else {
             formattedNumber = (i+1).toString();
@@ -358,9 +361,7 @@ function addWorldButtons() {
 // terms container toggle
 const toggleTermsButton = function(status) {
     const termsContainer = document.getElementById('terms-container');
-    console.log(termsContainer);
     if(status) {    // true, open
-        console.log(status);
         termsContainer.classList.add("terms-container-active");
     }
     else {  // false, close
@@ -374,8 +375,77 @@ function termsButtonCloseAddEventListener() {
     termButtonClose.addEventListener("click", toggleTermsButton.bind(this, false));
 }
 
+// Function to navigate to a specific story
+function navigateToStory(storyIndex) {
+    console.log('Navigating to story index:', storyIndex);
+    
+    // Don't close the terms container - keep it open
+    // toggleTermsButton(false);
+    
+    // Scroll to the specific story immediately
+    const targetStory = document.getElementById(`story-no-${storyIndex}`);
+    console.log('Target story element:', targetStory);
+    
+    if (targetStory) {
+        console.log('Scrolling to story:', storyIndex);
+        
+        // Since the story element has display: contents, find the first child element to scroll to
+        const storyHeading = targetStory.querySelector('h3');
+        const storyContainer = targetStory.querySelector('.story-container-div');
+        
+        // Try the heading first, then the container
+        const elementToScrollTo = storyHeading || storyContainer || targetStory.firstElementChild;
+        
+        console.log('Element to scroll to:', elementToScrollTo);
+        console.log('Element tag name:', elementToScrollTo ? elementToScrollTo.tagName : 'null');
+        
+        if (elementToScrollTo) {
+            // Check dimensions of the actual element we're scrolling to
+            const rect = elementToScrollTo.getBoundingClientRect();
+            console.log('Target element rect:', {
+                top: rect.top,
+                bottom: rect.bottom,
+                height: rect.height,
+                width: rect.width
+            });
+            
+            // Calculate position manually with offset
+            const elementRect = elementToScrollTo.getBoundingClientRect();
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Calculate target position: element's absolute position - 100px offset
+            const elementAbsolutePosition = elementRect.top + currentScroll;
+            const targetScrollPosition = Math.max(0, elementAbsolutePosition - 100);
+            
+            console.log('Element absolute position:', elementAbsolutePosition);
+            console.log('Target scroll position with offset:', targetScrollPosition);
+            
+            // Scroll to target position with offset
+            window.scrollTo({
+                top: targetScrollPosition,
+                behavior: 'smooth'
+            });
+            
+            setTimeout(() => {
+                targetStory.style.transition = 'font-weight 0.5s ease'; // Enable transition
+                targetStory.style.fontWeight = 'normal'; // Transition back to normal
+            }, 3000);
+            
+        } else {
+            console.error('No child element found to scroll to in story:', storyIndex);
+        }
+        
+    } else {
+        console.error('Story element not found for index:', storyIndex);
+        // Let's also check if there are any stories at all
+        const allStories = document.querySelectorAll('[id^="story-no-"]');
+        console.log('Total stories in DOM:', allStories.length);
+        console.log('Available story IDs:', Array.from(allStories).map(s => s.id).slice(0, 10));
+    }
+}
 
-function generateTermsLists(data) {
+
+function generateTermsLists(originalData) {
 
     /* build the object that rapresent all keys with all headers and story parts */
 
@@ -384,7 +454,7 @@ function generateTermsLists(data) {
     for (const key of Object.keys(keysList)) {
         termsObject[key] = {};
         
-        data.forEach((story) => {
+        originalData.forEach((story, storyIndex) => {
 
             for (const header of Object.keys(headerStories)) {
                 const storyPart = story[headerStories[header]];
@@ -393,7 +463,11 @@ function generateTermsLists(data) {
                     if(!termsObject[key][header]) {
                         termsObject[key][header] = []; // create header key if not existing, empty array
                     }
-                    termsObject[key][header].push(storyPart); // add to the array the current story part
+                    // Store both the story part and its index for navigation
+                    termsObject[key][header].push({
+                        text: storyPart,
+                        storyIndex: storyIndex
+                    });
                 }
             }
         });
@@ -414,31 +488,6 @@ function generateTermsLists(data) {
         Object.keys(termsObject[key]).forEach((header) => {
             //console.log(header);
             
-            /*
-            const headerDiv = document.createElement("div");
-            headerDiv.id = `div-${header}`;
-            headerDiv.classList = "terms-div-header";
-            headerDiv.innerHTML = `
-                <h3>${headerStories[header]}</h3>
-            `;
-
-            const ulStoryList = document.createElement("ul");
-            ulStoryList.id=`ul-${header}`;
-            ulStoryList.classList = "terms-ul-key";
-
-            Object.values(termsObject[key][header]).forEach((story) => {
-                //console.log(story);
-                const liStory = document.createElement("li");
-                const regex = new RegExp(`\\b(${key})\\b`, 'gi');
-                storyHighlighted = story.replace(regex, '<span class="current-key">$1</span>');    // add the world hightlight
-                liStory.innerHTML = storyHighlighted;
-                ulStoryList.appendChild(liStory);
-            });
-
-            headerDiv.appendChild(ulStoryList);
-            keyListElementSection.appendChild(headerDiv);
-            */
-
             const headingH3 = document.createElement("h3");
             headingH3.innerHTML = `${headerStories[header].toLowerCase()}`;
 
@@ -446,8 +495,8 @@ function generateTermsLists(data) {
             ulStoryList.id=`ul-${header}`;
             ulStoryList.classList = "terms-ul-key";
 
-            Object.values(termsObject[key][header]).forEach((story) => {
-                //console.log(story);
+            Object.values(termsObject[key][header]).forEach((storyData) => {
+                //console.log(storyData);
                 const liStory = document.createElement("li");
                 const regex = new RegExp(`\\b(${key})\\b`, 'gi');
                 
@@ -460,22 +509,25 @@ function generateTermsLists(data) {
                     liStory.classList.add(colorClass);
                 }
                 
-                storyHighlighted = story.replace(regex, '<span class="current-key">$1</span>');    // add the key highlight
+                // Add click functionality to navigate to the original story
+                liStory.style.cursor = 'pointer';
+                liStory.addEventListener('click', (event) => {
+                    console.log('Clicked on story data:', storyData);
+                    event.preventDefault();
+                    navigateToStory(storyData.storyIndex);
+                });
+                
+                storyHighlighted = storyData.text.replace(regex, '<span class="current-key">$1</span>');    // add the key highlight
                 liStory.innerHTML = storyHighlighted;
                 ulStoryList.appendChild(liStory);
             });
 
             keyListElementSection.appendChild(headingH3);
             keyListElementSection.appendChild(ulStoryList);
-
-
-
         })
     })
 
-
-
-    return data;
+    return originalData;
 }
 
 
