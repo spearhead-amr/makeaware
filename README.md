@@ -91,7 +91,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED 7/11: widgets after widget-petri are flickering when scrolling
 - [x] ADDED 7/11: widget-petri on desktop is not starting again after scrolling up
 - [x] ADDED 5/11: widget-timeline is a bit fast to see
-- [ ] ADDED 7/11: widget-petri black fill not reverting
+- [x] ADDED 7/11: widget-petri black fill not reverting
 - [ ] FUTURE: #widget-amr-content > img: to be changed as code - carefully for mobile
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem

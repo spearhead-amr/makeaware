@@ -745,9 +745,13 @@ class StickyScrollHandler {
 
     // Enhanced method to apply step classes with Safari fallback
     applyStepClasses(step, isReverse = false) {
+        if (this.isSafari) {
+                this.applySafariAnimations(step, isReverse);
+            }
+
         if (step === 0) {
             // Step 0: Complete reset to ensure transitions can retrigger
-            // console.log('STEP 0: Resetting all properties for transition restart');
+            //console.log('STEP 0: Resetting all properties for transition restart');
             
             // Stop all active animations and reset radii
             this.activeAnimations.forEach((animationId) => {
@@ -773,7 +777,7 @@ class StickyScrollHandler {
                     circle.setAttribute('r', '0');
                 });
             });
-            
+
             return;
         }
         
@@ -804,21 +808,30 @@ class StickyScrollHandler {
         elementsToUpdate.forEach(element => {
             element.classList.add(targetClass);
         });
-        
-        // If Safari, use JavaScript animation fallback
-        if (this.isSafari) {
-            this.applySafariAnimations(step, isReverse);
-        }
     }
 
     // Safari-specific animations using HTML div overlays instead of SVG
     applySafariAnimations(step, isReverse = false) {
-        // console.log('Applying Safari HTML overlay animations for step:', step, isReverse ? '(reverse)' : '(forward)');
+        console.log('Applying Safari HTML overlay animations for step:', step, isReverse ? '(reverse)' : '(forward)');
         
         // If step 0, cleanup and return
         if (step === 0) {
-            document.querySelectorAll('.safari-overlay-circle').forEach(el => el.remove());
-            document.querySelectorAll('[id^="safari-mask-"]').forEach(el => el.remove());
+            document.querySelectorAll('.safari-overlay-circle').forEach(el =>
+                {
+                    el.style.transition = 'transform 1s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 1s ease';
+                    el.style.webkitTransition = '-webkit-transform 1s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 1s ease';
+                    el.style.transform = 'scale(0)';
+                    el.style.webkitTransform = 'scale(0)';
+                }
+            );
+            document.querySelectorAll('[id^="safari-mask-"]').forEach(el =>
+                {
+                    el.style.transition = 'opacity 1s ease';
+                    el.style.webkitTransition = 'opacity 1s ease';
+                    el.style.opacity = '0';
+                    el.style.webkitOpacity = '0';
+                }
+            );
             // console.log('Step 0: Safari overlays cleaned up');
             return;
         }
@@ -875,7 +888,7 @@ class StickyScrollHandler {
         // Enhanced stabilization: wait longer and check multiple times
         let stabilizationAttempts = 0;
         const maxAttempts = 5;
-        const checkInterval = 150; // Check every 150ms
+        const checkInterval = 80; // Check every 150ms
         const stabilityThreshold = 10; // Consider stable if movement < 10px
         
         const waitForStableScroll = () => {
@@ -970,14 +983,14 @@ class StickyScrollHandler {
 
     // Handle reverse animations by scaling down circles from higher steps
     handleReverseAnimations(targetStep) {
-        // console.log(`Handling reverse animation to step ${targetStep}`);
+        console.log(`Handling reverse animation to step ${targetStep}`);
         
         // Find all circles from steps higher than the target step and animate them out
         for (let stepToRemove = targetStep + 1; stepToRemove <= 3; stepToRemove++) {
             const circlesToAnimateOut = document.querySelectorAll(`.safari-overlay-circle[data-step="${stepToRemove}"]`);
             
             circlesToAnimateOut.forEach(circle => {
-                // console.log(`Animating out step ${stepToRemove} circle: ${circle.className}`);
+                console.log(`Animating out step ${stepToRemove} circle: ${circle.className}`);
                 
                 // Use faster reverse animation
                 circle.style.transition = 'transform 1s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 1s ease';
