@@ -118,9 +118,10 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] About the databook / Instructions: follow the same logic as story-collection tool for the instructions about paragraphs
 - [x] Filters: follow the same logic as instructions, title should be on the left, buttons should be smaller
 - [x] numbers near words in the stories: not in the format [9] but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>` to mimic the unicode ones and inside parenthesis.
-- [ ] onclick on numbers: the modal is opening from the right and stretching the story column, in the story column are only visible the stories with the word selected (filter); we can avoid the number inside the modal and align the title (e.g. I decided to) to the title of the modal (e.g. Same term repeated...); the onclick is also filtering the stories that only contains the term.
-- [ ] stories columns: stories should be aligned in two/three columns with the number on the left and text in second place, third column only visible when click on numbers
+- [x] onclick on numbers: the modal is opening from the right and stretching the story column, in the story column are only visible the stories with the word selected (filter); we can avoid the number inside the modal and align the title (e.g. I decided to) to the title of the modal (e.g. Same term repeated...); the onclick is also filtering the stories that only contains the term.
+- [x] stories columns: stories should be aligned in two/three columns with the number on the left and text in second place, third column only visible when click on numbers
 - [x] term underlined in the modal: clicking on the term underlined in the modal (e.g. doctor) is sending me to the relative story
+- [ ] smaller mobile fixes in the terms-container
 ### Chatbot
 - [ ] check the sources regex function: waiting for a feedback from Gooey
 ### Publications

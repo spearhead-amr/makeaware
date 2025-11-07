@@ -361,11 +361,22 @@ function addWorldButtons() {
 // terms container toggle
 const toggleTermsButton = function(status) {
     const termsContainer = document.getElementById('terms-container');
+    const storiesWrapper = document.getElementById('stories-with-terms-wrapper');
+    
+    console.log('toggleTermsButton called with status:', status);
+    console.log('termsContainer element:', termsContainer);
+    console.log('storiesWrapper element:', storiesWrapper);
+    
     if(status) {    // true, open
         termsContainer.classList.add("terms-container-active");
+        storiesWrapper.classList.add("terms-active");
+        console.log('Added classes - termsContainer classes:', termsContainer.className);
+        console.log('Added classes - storiesWrapper classes:', storiesWrapper.className);
     }
     else {  // false, close
         termsContainer.classList = "";
+        storiesWrapper.classList.remove("terms-active");
+        console.log('Removed classes');
     }
 }
 
