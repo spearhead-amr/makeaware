@@ -325,8 +325,12 @@ class StickyScrollHandler {
         this.currentTargetBlock = 0;
         this.isTransitioning = false;
         
-        // Reset petri animations
+        // Reset petri animations and ALL animation state
         this.resetPetriAnimations();
+        
+        // Ensure animation step is fully reset
+        this.currentAnimationStep = 0;
+        this.previousAnimationStep = 0;
         
         // Reset circle container animations
         this.resetCircleContainers();
@@ -373,6 +377,11 @@ class StickyScrollHandler {
         if (this.currentAnimationStep !== 0) {
             this.setGrowthAnimationStep(0);
             this.currentAnimationStep = 0;
+        }
+        
+        // Reset circles animated flag if going back to blur phase start
+        if (progress < 0.1 && this.circlesAnimated) {
+            this.circlesAnimated = false;
         }
         
         // Trigger circle container animation when progress starts
@@ -442,7 +451,6 @@ class StickyScrollHandler {
         // Only update if the step has changed
         if (targetStep !== this.currentAnimationStep) {
             const isReverse = targetStep < this.currentAnimationStep;
-            // console.log(`Animation step change: ${this.currentAnimationStep} → ${targetStep} (${isReverse ? 'reverse' : 'forward'})`);
             
             this.setGrowthAnimationStep(targetStep, isReverse);
             this.previousAnimationStep = this.currentAnimationStep;
@@ -738,8 +746,8 @@ class StickyScrollHandler {
     // Enhanced method to apply step classes with Safari fallback
     applyStepClasses(step, isReverse = false) {
         if (step === 0) {
-            // Step 0: Reset state - all animations cleared
-            // console.log('Petri animations reset (step 0)');
+            // Step 0: Complete reset to ensure transitions can retrigger
+            // console.log('STEP 0: Resetting all properties for transition restart');
             
             // Stop all active animations and reset radii
             this.activeAnimations.forEach((animationId) => {
@@ -747,38 +755,59 @@ class StickyScrollHandler {
             });
             this.activeAnimations.clear();
             
-            // Reset all circle radii and transforms
-            const allCircles = document.querySelectorAll('.growth-circle, .antibiotic-circle, .inhibition-circle');
-            allCircles.forEach(circle => {
-                circle.setAttribute('r', '0');
-                circle.style.transform = 'scale(0)';
+            // Get all petri containers and completely reset them
+            const petriContainers = [this.bacteriumPetri, this.resistantBacteriumPetri].filter(Boolean);
+            petriContainers.forEach(container => {
+                // Remove all step classes - this triggers CSS reset rules
+                container.classList.remove('step-1-active', 'step-2-active', 'step-3-active');
+                
+                // Clear any inline styles that might override CSS
+                const circles = container.querySelectorAll('.growth-circle, .antibiotic-circle, .inhibition-circle');
+                circles.forEach(circle => {
+                    circle.style.r = '';
+                    circle.style.opacity = '';
+                    circle.style.transition = '';
+                    circle.style.animation = '';
+                    circle.style.transform = '';
+                    // Force the SVG attribute to 0 as well
+                    circle.setAttribute('r', '0');
+                });
             });
             
             return;
         }
         
         const targetClass = `step-${step}-active`;
+        // console.log(`STEP ${step}: Applying ${targetClass}`);
         
         // Apply class to both petri dishes simultaneously
         const elementsToUpdate = [this.bacteriumPetri, this.resistantBacteriumPetri].filter(Boolean);
         
+        // Force transition retrigger by ensuring clean state transition
+        elementsToUpdate.forEach(container => {
+            // First ensure all step classes are removed (clean slate)
+            container.classList.remove('step-1-active', 'step-2-active', 'step-3-active');
+            
+            // Clear any inline styles that might interfere
+            const circles = container.querySelectorAll('.growth-circle, .antibiotic-circle, .inhibition-circle');
+            circles.forEach(circle => {
+                circle.style.r = '';
+                circle.style.opacity = '';
+                circle.style.transition = '';
+            });
+        });
+        
+        // Force reflow to ensure CSS reset rules are applied
+        elementsToUpdate[0].offsetHeight;
+        
+        // Now apply the target class
         elementsToUpdate.forEach(element => {
             element.classList.add(targetClass);
         });
         
-        // console.log(`Applied ${targetClass} to ${elementsToUpdate.length} petri dishes ${isReverse ? '(reverse)' : '(forward)'}`);
-        
         // If Safari, use JavaScript animation fallback
         if (this.isSafari) {
             this.applySafariAnimations(step, isReverse);
-        }
-        
-        // Log detailed status for debugging
-        if (this.bacteriumPetri) {
-            // console.log('Bacterium petri classes:', Array.from(this.bacteriumPetri.classList));
-        }
-        if (this.resistantBacteriumPetri) {
-            // console.log('Resistant petri classes:', Array.from(this.resistantBacteriumPetri.classList));
         }
     }
 
