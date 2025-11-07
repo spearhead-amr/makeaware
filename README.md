@@ -89,7 +89,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] footer is not displayed
 - [x] ADDED 5/11: widget-petri to check on multiple mobile devices
 - [x] ADDED 7/11: widget-petri to be fixed on mobile, scroll goes blank
-- [ ] ADDED 7/11: widgets after widget-petri are flickering when scrolling
+- [x] ADDED 7/11: widgets after widget-petri are flickering when scrolling
 - [ ] ADDED 7/11: widget-petri on desktop is not starting again after scrolling up
 - [x] ADDED 5/11: widget-timeline is a bit fast to see
 ### Workshop

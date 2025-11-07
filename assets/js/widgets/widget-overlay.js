@@ -21,6 +21,11 @@ class WidgetOverlayHandler {
         this.widgetScrollRange = 0; // Range of scroll for each widget
         this.totalScrollRange = 0;
         
+        // Add scroll throttling for mobile to reduce flickering
+        this.isThrottling = false;
+        this.throttleFrame = null;
+        this.isMobile = () => window.innerWidth <= 599; // Match stylus breakpoint
+        
         this.breakpoints = {
             mobile: 599,
             tabletV: 600,
@@ -89,8 +94,22 @@ class WidgetOverlayHandler {
     }
 
     setupScrollHandlers() {
-        // Main scroll handler
-        window.addEventListener('scroll', this.handleOverlayScroll.bind(this));
+        // Main scroll handler with mobile throttling
+        const scrollHandler = () => {
+            if (this.isMobile() && !this.isThrottling) {
+                // Throttle on mobile using requestAnimationFrame
+                this.isThrottling = true;
+                this.throttleFrame = requestAnimationFrame(() => {
+                    this.handleOverlayScroll();
+                    this.isThrottling = false;
+                });
+            } else if (!this.isMobile()) {
+                // No throttling on desktop
+                this.handleOverlayScroll();
+            }
+        };
+        
+        window.addEventListener('scroll', scrollHandler);
         
         // Setup internal scroll detection for each frame (skip interactive widgets)
         this.widgets.forEach(widget => {
@@ -315,6 +334,11 @@ class WidgetOverlayHandler {
                 widget.element.classList.remove('active');
             }
             if (widget.frame) {
+                // On mobile, disable transitions during reset to prevent flicker
+                if (this.isMobile()) {
+                    widget.frame.style.transition = 'none';
+                }
+                
                 widget.frame.style.transform = 'translateY(100%)';
                 widget.frame.style.opacity = '1';
                 // Disable internal scrolling and reset scroll state (except interactive widgets)
@@ -417,6 +441,11 @@ class WidgetOverlayHandler {
             widget.element.classList.add('active');
         }
         if (widget.frame) {
+            // Re-enable transitions for completed state
+            if (this.isMobile()) {
+                widget.frame.style.transition = 'opacity 0.3s ease';
+            }
+            
             widget.frame.style.transform = 'translateY(0%)';
             widget.frame.style.opacity = '1';
             
@@ -455,6 +484,12 @@ class WidgetOverlayHandler {
                     
                     // Calculate Y position (from 100% to 0%)
                     const translateY = 100 - (easedProgress * 100);
+                    
+                    // On mobile, disable CSS transitions during JS-controlled sliding to prevent flicker
+                    if (this.isMobile()) {
+                        widget.frame.style.transition = 'none';
+                    }
+                    
                     widget.frame.style.transform = `translateY(${translateY}%)`;
                     
                     // Reset interactive state
@@ -465,6 +500,11 @@ class WidgetOverlayHandler {
                 } else {
                     // Interactive phase: widget is at top, run interactive scaling
                     widget.frame.style.transform = 'translateY(0%)';
+                    
+                    // Re-enable transitions for opacity changes if needed
+                    if (this.isMobile()) {
+                        widget.frame.style.transition = 'opacity 0.3s ease';
+                    }
                     
                     // Calculate progress in interactive phase (0-1)
                     const interactiveProgress = (progress - slidingPhase) / (1 - slidingPhase);
@@ -486,6 +526,11 @@ class WidgetOverlayHandler {
                     // Calculate Y position (from 100% to 0%)
                     const translateY = 100 - (easedProgress * 100);
                     
+                    // On mobile, disable CSS transitions during JS-controlled sliding to prevent flicker
+                    if (this.isMobile()) {
+                        widget.frame.style.transition = 'none';
+                    }
+                    
                     widget.frame.style.transform = `translateY(${translateY}%)`;
                     widget.frame.classList.remove('frame-scrollable');
                     
@@ -497,6 +542,12 @@ class WidgetOverlayHandler {
                 } else {
                     // Content scroll phase: widget is at top, scroll internal content
                     widget.frame.style.transform = 'translateY(0%)';
+                    
+                    // Re-enable transitions for opacity changes if needed
+                    if (this.isMobile()) {
+                        widget.frame.style.transition = 'opacity 0.3s ease';
+                    }
+                    
                     widget.frame.classList.add('frame-scrollable');
                     widget.isScrollingContent = true;
                     
@@ -524,6 +575,11 @@ class WidgetOverlayHandler {
             widget.element.classList.remove('active');
         }
         if (widget.frame) {
+            // On mobile, disable transitions during hiding to prevent flicker
+            if (this.isMobile()) {
+                widget.frame.style.transition = 'none';
+            }
+            
             widget.frame.style.transform = 'translateY(100%)';
             widget.frame.style.opacity = '1';
             
@@ -542,6 +598,15 @@ class WidgetOverlayHandler {
             widget.isScrollingContent = false;
             widget.lastScrollTop = 0;
         }
+    }
+
+    // Cleanup method for proper disposal
+    cleanup() {
+        if (this.throttleFrame) {
+            cancelAnimationFrame(this.throttleFrame);
+            this.throttleFrame = null;
+        }
+        this.isThrottling = false;
     }
 
     easeOutCubic(t) {

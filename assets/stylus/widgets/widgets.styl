@@ -48,6 +48,11 @@ widget-overlay-base()
     overflow: hidden  // Always hidden - no scrollbars
     position: relative
     
+    // Disable transitions on mobile to prevent flickering during JS-controlled sliding
+    +media(mobile)
+        transition: opacity 0.3s ease
+        // Transform transitions disabled on mobile to prevent flicker with JS scroll updates
+    
     // Content wrapper for internal movement
     .frame-content-wrapper
         will-change: transform
