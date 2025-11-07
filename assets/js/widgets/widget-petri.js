@@ -46,15 +46,15 @@ class StickyScrollHandler {
         this.scrollStabilizationTimeout = null;
         this.isScrollStabilizing = false;
         
-        console.log("isSticky: " + this.contentSticky);
-        console.log("isWidgetPetri: " + this.widgetPetri);
-        console.log("isPetriFrame: " + this.petriFrame);
-        console.log("isSafari: " + this.isSafari);
+        // console.log("isSticky: " + this.contentSticky);
+        // console.log("isWidgetPetri: " + this.widgetPetri);
+        // console.log("isPetriFrame: " + this.petriFrame);
+        // console.log("isSafari: " + this.isSafari);
         
 
         if (this.contentSticky && this.widgetPetri && this.petriFrame) {
             this.init();
-            console.log("Attivo");
+            // console.log("Attivo");
         }
 
     }
@@ -153,7 +153,7 @@ class StickyScrollHandler {
         const totalScrollHeight = this.contentLockPosition + (windowHeight * scrollMultiplier);
         document.body.style.minHeight = `${totalScrollHeight}px`;
         
-        console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px, ScrollMultiplier: ${scrollMultiplier}`);
+        // console.log(`Viewport: ${viewportType}, Lock position: ${this.contentLockPosition}px, ScrollMultiplier: ${scrollMultiplier}`);
     }
 
     calculateScrollMilestones() {
@@ -226,16 +226,16 @@ class StickyScrollHandler {
         
         // Enhanced debug logging for mobile white bar issue
         if (this.getViewportType() === 'mobile') {
-            console.log(`MOBILE SCROLL DEBUG: scrollTop=${scrollTop}, milestone=${currentMilestone.phase}, locked=${this.isContentLocked}, lockThreshold=${lockThreshold}, unlockThreshold=${unlockThreshold}`);
+            // console.log(`MOBILE SCROLL DEBUG: scrollTop=${scrollTop}, milestone=${currentMilestone.phase}, locked=${this.isContentLocked}, lockThreshold=${lockThreshold}, unlockThreshold=${unlockThreshold}`);
         }
         
         // Handle lock/unlock based on milestone with hysteresis
         if (currentMilestone.phase === 'unlock' && this.isContentLocked && scrollTop < unlockThreshold) {
-            console.log(`MOBILE: Unlocking at scrollTop=${scrollTop}, threshold=${unlockThreshold}`);
+            // console.log(`MOBILE: Unlocking at scrollTop=${scrollTop}, threshold=${unlockThreshold}`);
             this.unlockContent();
             return;
         } else if (currentMilestone.phase !== 'unlock' && !this.isContentLocked && scrollTop >= lockThreshold) {
-            console.log(`MOBILE: Locking at scrollTop=${scrollTop}, threshold=${lockThreshold}`);
+            // console.log(`MOBILE: Locking at scrollTop=${scrollTop}, threshold=${lockThreshold}`);
             this.lockContent();
         }
         
@@ -263,7 +263,7 @@ class StickyScrollHandler {
                 // On mobile, use minimal or zero offset to prevent content being pushed too high
                 // and covering parts of the resistant bacterium circle
                 appliedOffset = 0; // No negative offset on mobile
-                console.log('Mobile: Using zero offset to prevent content coverage');
+                // console.log('Mobile: Using zero offset to prevent content coverage');
             } else {
                 // Desktop and tablet can use moderate offsets
                 const maxOffset = Math.max(0, windowHeight * 0.4); // Reduced from 0.6
@@ -271,10 +271,10 @@ class StickyScrollHandler {
             }
             
             this.contentSticky.style.top = `-${appliedOffset}px`;
-            console.log(`lockContent: viewport=${viewportType}, appliedOffset=${appliedOffset}, contentLockPosition=${this.contentLockPosition}`);
+            // console.log(`lockContent: viewport=${viewportType}, appliedOffset=${appliedOffset}, contentLockPosition=${this.contentLockPosition}`);
         } catch (e) {
             // Fallback to 0 if anything goes wrong
-            console.log('lockContent: error computing offset, falling back to 0', e);
+            // console.log('lockContent: error computing offset, falling back to 0', e);
             this.contentSticky.style.top = '0px';
         }
         // DON'T recalculate milestones during lock - this causes bouncing
@@ -287,7 +287,7 @@ class StickyScrollHandler {
     unlockContent() {
         this.isContentLocked = false;
         
-        console.log(`MOBILE DEBUG: Unlocking content, resetting styles`);
+        // console.log(`MOBILE DEBUG: Unlocking content, resetting styles`);
         
         this.contentSticky.classList.remove('locked');
         this.contentSticky.style.position = '';
@@ -299,7 +299,7 @@ class StickyScrollHandler {
         // Log current content sticky bounds for debugging
         if (this.getViewportType() === 'mobile') {
             const rect = this.contentSticky.getBoundingClientRect();
-            console.log(`MOBILE: Content sticky bounds after unlock: top=${rect.top}, bottom=${rect.bottom}, height=${rect.height}`);
+            // console.log(`MOBILE: Content sticky bounds after unlock: top=${rect.top}, bottom=${rect.bottom}, height=${rect.height}`);
         }
         
         // Reset all effects to initial state
@@ -442,7 +442,7 @@ class StickyScrollHandler {
         // Only update if the step has changed
         if (targetStep !== this.currentAnimationStep) {
             const isReverse = targetStep < this.currentAnimationStep;
-            console.log(`Animation step change: ${this.currentAnimationStep} → ${targetStep} (${isReverse ? 'reverse' : 'forward'})`);
+            // console.log(`Animation step change: ${this.currentAnimationStep} → ${targetStep} (${isReverse ? 'reverse' : 'forward'})`);
             
             this.setGrowthAnimationStep(targetStep, isReverse);
             this.previousAnimationStep = this.currentAnimationStep;
@@ -488,7 +488,7 @@ class StickyScrollHandler {
             this.fadeInSafariMasks();
         }
         
-        console.log('Circle containers animation triggered');
+        // console.log('Circle containers animation triggered');
     }
 
     resetCircleContainers() {
@@ -503,7 +503,7 @@ class StickyScrollHandler {
         }
         
         this.circlesAnimated = false;
-        console.log('Circle containers animation reset');
+        // console.log('Circle containers animation reset');
     }
 
     cleanupSafariOverlays() {
@@ -515,7 +515,7 @@ class StickyScrollHandler {
             el.remove();
         });
         
-        console.log('Safari overlay circles and masks cleaned up');
+        // console.log('Safari overlay circles and masks cleaned up');
     }
 
     resetPetriAnimations() {
@@ -555,7 +555,7 @@ class StickyScrollHandler {
         }
         
         this.currentAnimationStep = 0;
-        console.log('All petri animations reset');
+        // console.log('All petri animations reset');
     }
 
     transitionToBlock(newIndex) {
@@ -625,13 +625,13 @@ class StickyScrollHandler {
         // Return true for Safari on any platform that might have SVG animation issues
         const needsFallback = isIOS || isTabletSafari || isMobileSafari || isDesktopSafari || isAndroidWebView;
 
-        console.log("User Agent: " + userAgent);
-        console.log("Is iOS: " + isIOS);
-        console.log("Is Tablet Safari: " + isTabletSafari);
-        console.log("Is Mobile Safari: " + isMobileSafari);
-        console.log("Is Desktop Safari: " + isDesktopSafari);
-        console.log("Is Android WebView: " + isAndroidWebView);
-        console.log("Needs Safari fallback: " + needsFallback);
+        // console.log("User Agent: " + userAgent);
+        // console.log("Is iOS: " + isIOS);
+        // console.log("Is Tablet Safari: " + isTabletSafari);
+        // console.log("Is Mobile Safari: " + isMobileSafari);
+        // console.log("Is Desktop Safari: " + isDesktopSafari);
+        // console.log("Is Android WebView: " + isAndroidWebView);
+        // console.log("Needs Safari fallback: " + needsFallback);
         
         return needsFallback;
     }
@@ -640,12 +640,12 @@ class StickyScrollHandler {
     // Web Animations API approach for Safari - more reliable than requestAnimationFrame
     animateCircleRadius(circle, targetRadius, duration = 2000, delay = 0) {
         if (!circle) {
-            console.log('animateCircleRadius: circle is null');
+            // console.log('animateCircleRadius: circle is null');
             return;
         }
 
         const circleId = circle.getAttribute('cx') + '-' + circle.getAttribute('cy') + '-' + circle.classList.toString();
-        console.log(`Starting Web Animation for circle ${circleId} to radius ${targetRadius} over ${duration}ms`);
+        // console.log(`Starting Web Animation for circle ${circleId} to radius ${targetRadius} over ${duration}ms`);
         
         // Cancel existing animation for this circle
         if (this.activeAnimations.has(circleId)) {
@@ -665,7 +665,7 @@ class StickyScrollHandler {
             const cy = circle.getAttribute('cy');
             circle.style.transformOrigin = `${cx}px ${cy}px`;
             
-            console.log(`Starting Web Animation: scaling to ${targetScale}x (target radius: ${targetRadius})`);
+            // console.log(`Starting Web Animation: scaling to ${targetScale}x (target radius: ${targetRadius})`);
             
             try {
                 const animation = circle.animate([
@@ -680,7 +680,7 @@ class StickyScrollHandler {
                 this.activeAnimations.set(circleId, animation);
                 
                 animation.addEventListener('finish', () => {
-                    console.log(`Web Animation completed for circle ${circleId}`);
+                    // console.log(`Web Animation completed for circle ${circleId}`);
                     this.activeAnimations.delete(circleId);
                 });
                 
@@ -700,7 +700,7 @@ class StickyScrollHandler {
                 requestAnimationFrame(updateRadius);
                 
             } catch (error) {
-                console.log('Web Animations API failed, using fallback:', error);
+                // console.log('Web Animations API failed, using fallback:', error);
                 // Fallback to direct attribute manipulation
                 this.fallbackDirectAnimation(circle, targetRadius, duration);
             }
@@ -728,7 +728,7 @@ class StickyScrollHandler {
             if (progress < 1) {
                 requestAnimationFrame(animate);
             } else {
-                console.log(`Fallback animation completed for radius ${targetRadius}`);
+                // console.log(`Fallback animation completed for radius ${targetRadius}`);
             }
         };
         
@@ -739,7 +739,7 @@ class StickyScrollHandler {
     applyStepClasses(step, isReverse = false) {
         if (step === 0) {
             // Step 0: Reset state - all animations cleared
-            console.log('Petri animations reset (step 0)');
+            // console.log('Petri animations reset (step 0)');
             
             // Stop all active animations and reset radii
             this.activeAnimations.forEach((animationId) => {
@@ -766,7 +766,7 @@ class StickyScrollHandler {
             element.classList.add(targetClass);
         });
         
-        console.log(`Applied ${targetClass} to ${elementsToUpdate.length} petri dishes ${isReverse ? '(reverse)' : '(forward)'}`);
+        // console.log(`Applied ${targetClass} to ${elementsToUpdate.length} petri dishes ${isReverse ? '(reverse)' : '(forward)'}`);
         
         // If Safari, use JavaScript animation fallback
         if (this.isSafari) {
@@ -775,22 +775,22 @@ class StickyScrollHandler {
         
         // Log detailed status for debugging
         if (this.bacteriumPetri) {
-            console.log('Bacterium petri classes:', Array.from(this.bacteriumPetri.classList));
+            // console.log('Bacterium petri classes:', Array.from(this.bacteriumPetri.classList));
         }
         if (this.resistantBacteriumPetri) {
-            console.log('Resistant petri classes:', Array.from(this.resistantBacteriumPetri.classList));
+            // console.log('Resistant petri classes:', Array.from(this.resistantBacteriumPetri.classList));
         }
     }
 
     // Safari-specific animations using HTML div overlays instead of SVG
     applySafariAnimations(step, isReverse = false) {
-        console.log('Applying Safari HTML overlay animations for step:', step, isReverse ? '(reverse)' : '(forward)');
+        // console.log('Applying Safari HTML overlay animations for step:', step, isReverse ? '(reverse)' : '(forward)');
         
         // If step 0, cleanup and return
         if (step === 0) {
             document.querySelectorAll('.safari-overlay-circle').forEach(el => el.remove());
             document.querySelectorAll('[id^="safari-mask-"]').forEach(el => el.remove());
-            console.log('Step 0: Safari overlays cleaned up');
+            // console.log('Step 0: Safari overlays cleaned up');
             return;
         }
         
@@ -804,7 +804,7 @@ class StickyScrollHandler {
             // Check if this step has already been animated to avoid duplicates
             const existingStepCircles = document.querySelectorAll(`.safari-overlay-circle[data-step="${step}"]`);
             if (existingStepCircles.length > 0) {
-                console.log(`Step ${step} circles already exist, skipping creation`);
+                // console.log(`Step ${step} circles already exist, skipping creation`);
                 return;
             }
         }
@@ -814,11 +814,11 @@ class StickyScrollHandler {
         const resistantSvg = this.resistantBacteriumPetri ? this.resistantBacteriumPetri.querySelector('.circle-svg') : null;
         
         if (!bacteriumSvg && !resistantSvg) {
-            console.log('No SVG containers found for overlays');
+            // console.log('No SVG containers found for overlays');
             return;
         }
         
-        console.log('Creating HTML overlay circles for Safari');
+        // console.log('Creating HTML overlay circles for Safari');
         
         // Use scroll-stabilized positioning approach
         this.createOverlaysWithStabilization(bacteriumSvg, resistantSvg, step, isReverse);
@@ -838,10 +838,10 @@ class StickyScrollHandler {
         // If currently scrolling fast, wait for stabilization
         this.isScrollStabilizing = true;
         
-        console.log(`=== SCROLL STABILIZATION DEBUG ===`);
-        console.log(`Starting stabilization for step ${step}`);
-        console.log(`Initial scroll position: ${initialScrollPos}`);
-        console.log(`Time: ${startTime}`);
+        // console.log(`=== SCROLL STABILIZATION DEBUG ===`);
+        // console.log(`Starting stabilization for step ${step}`);
+        // console.log(`Initial scroll position: ${initialScrollPos}`);
+        // console.log(`Time: ${startTime}`);
         
         // Enhanced stabilization: wait longer and check multiple times
         let stabilizationAttempts = 0;
@@ -854,7 +854,7 @@ class StickyScrollHandler {
             const scrollDelta = Math.abs(currentScrollPos - initialScrollPos);
             stabilizationAttempts++;
             
-            console.log(`Stabilization attempt ${stabilizationAttempts}: current=${currentScrollPos}, delta=${scrollDelta}px`);
+            // console.log(`Stabilization attempt ${stabilizationAttempts}: current=${currentScrollPos}, delta=${scrollDelta}px`);
             
             // If scroll is stable OR we've tried enough times, proceed
             if (scrollDelta < stabilityThreshold || stabilizationAttempts >= maxAttempts) {
@@ -862,12 +862,12 @@ class StickyScrollHandler {
                 const finalScrollPos = window.pageYOffset;
                 const totalScrollDelta = Math.abs(finalScrollPos - initialScrollPos);
                 
-                console.log(`=== STABILIZATION COMPLETE ===`);
-                console.log(`Final scroll position: ${finalScrollPos}`);
-                console.log(`Total scroll delta: ${totalScrollDelta}px`);
-                console.log(`Stabilization time: ${endTime - startTime}ms`);
-                console.log(`Attempts required: ${stabilizationAttempts}`);
-                console.log(`Final stability: ${totalScrollDelta < stabilityThreshold ? 'STABLE' : 'FORCED_PROCEED'}`);
+                // console.log(`=== STABILIZATION COMPLETE ===`);
+                // console.log(`Final scroll position: ${finalScrollPos}`);
+                // console.log(`Total scroll delta: ${totalScrollDelta}px`);
+                // console.log(`Stabilization time: ${endTime - startTime}ms`);
+                // console.log(`Attempts required: ${stabilizationAttempts}`);
+                // console.log(`Final stability: ${totalScrollDelta < stabilityThreshold ? 'STABLE' : 'FORCED_PROCEED'}`);
                 
                 this.isScrollStabilizing = false;
                 
@@ -879,7 +879,7 @@ class StickyScrollHandler {
                     
                     const dishName = dishIndex === 0 ? 'bacterium' : 'resistant';
                     
-                    console.log(`Creating overlays for ${dishName} after stabilization`);
+                    // console.log(`Creating overlays for ${dishName} after stabilization`);
                     
                     // Get SVG dimensions from attributes for stability
                     const svgViewBox = svg.getAttribute('viewBox').split(' ');
@@ -899,7 +899,7 @@ class StickyScrollHandler {
                         for (let stepToCreate = 1; stepToCreate <= step; stepToCreate++) {
                             const existingCirclesForStep = document.querySelectorAll(`.safari-overlay-circle[data-step="${stepToCreate}"][data-dish="${dishName}"]`);
                             if (existingCirclesForStep.length === 0) {
-                                console.log(`Creating missing step ${stepToCreate} circles for ${dishName} (stabilized)`);
+                                // console.log(`Creating missing step ${stepToCreate} circles for ${dishName} (stabilized)`);
                                 this.createOverlayCircles(svg, null, scaleX, scaleY, dishName, stepToCreate, actualWidth, actualHeight);
                             }
                         }
@@ -908,7 +908,7 @@ class StickyScrollHandler {
             };
             
             createOverlays();
-            console.log(`Safari overlays created after enhanced scroll stabilization (step ${step})`);
+            // console.log(`Safari overlays created after enhanced scroll stabilization (step ${step})`);
         } else {
             // Continue waiting - check again after interval
             this.scrollStabilizationTimeout = setTimeout(waitForStableScroll, checkInterval);
@@ -923,32 +923,32 @@ class StickyScrollHandler {
     fadeInSafariMasks() {
         const safariMasks = document.querySelectorAll('[id^="safari-mask-"]');
         safariMasks.forEach(mask => {
-            console.log(`Fading in mask: ${mask.id}, current opacity: ${mask.style.opacity}`);
+            // console.log(`Fading in mask: ${mask.id}, current opacity: ${mask.style.opacity}`);
             mask.style.opacity = '1';
         });
-        console.log(`Faded in ${safariMasks.length} Safari overlay masks`);
+        // console.log(`Faded in ${safariMasks.length} Safari overlay masks`);
     }
     
     // Fade out Safari overlay masks
     fadeOutSafariMasks() {
         const safariMasks = document.querySelectorAll('[id^="safari-mask-"]');
         safariMasks.forEach(mask => {
-            console.log(`Fading out mask: ${mask.id}, current opacity: ${mask.style.opacity}`);
+            // console.log(`Fading out mask: ${mask.id}, current opacity: ${mask.style.opacity}`);
             mask.style.opacity = '0';
         });
-        console.log(`Faded out ${safariMasks.length} Safari overlay masks`);
+        // console.log(`Faded out ${safariMasks.length} Safari overlay masks`);
     }
 
     // Handle reverse animations by scaling down circles from higher steps
     handleReverseAnimations(targetStep) {
-        console.log(`Handling reverse animation to step ${targetStep}`);
+        // console.log(`Handling reverse animation to step ${targetStep}`);
         
         // Find all circles from steps higher than the target step and animate them out
         for (let stepToRemove = targetStep + 1; stepToRemove <= 3; stepToRemove++) {
             const circlesToAnimateOut = document.querySelectorAll(`.safari-overlay-circle[data-step="${stepToRemove}"]`);
             
             circlesToAnimateOut.forEach(circle => {
-                console.log(`Animating out step ${stepToRemove} circle: ${circle.className}`);
+                // console.log(`Animating out step ${stepToRemove} circle: ${circle.className}`);
                 
                 // Use faster reverse animation
                 circle.style.transition = 'transform 1s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 1s ease';
@@ -964,7 +964,7 @@ class StickyScrollHandler {
                 // Remove the circle after animation completes
                 setTimeout(() => {
                     circle.remove();
-                    console.log(`Removed step ${stepToRemove} circle after reverse animation`);
+                    // console.log(`Removed step ${stepToRemove} circle after reverse animation`);
                 }, 1000);
             });
         }
@@ -1056,24 +1056,24 @@ class StickyScrollHandler {
             const maskTop = svgOffsetTop + innerCircleCenterY - innerRadius;
             
             // COMPREHENSIVE DEBUG LOGGING for positioning issues
-            console.log(`=== MASK POSITIONING DEBUG for ${dishName} ===`);
-            console.log(`SVG viewBox: ${svg.getAttribute('viewBox')}`);
+            // console.log(`=== MASK POSITIONING DEBUG for ${dishName} ===`);
+            // console.log(`SVG viewBox: ${svg.getAttribute('viewBox')}`);
             
             // Use provided dimensions or get them from computed style
             const actualWidth = providedWidth || parseFloat(window.getComputedStyle(svg).width);
             const actualHeight = providedHeight || parseFloat(window.getComputedStyle(svg).height);
             
-            console.log(`SVG computed dimensions: ${actualWidth}x${actualHeight}`);
-            console.log(`Scale factors: X=${scaleX}, Y=${scaleY}`);
-            console.log(`SVG getBoundingClientRect: left=${svgRect.left}, top=${svgRect.top}, width=${svgRect.width}, height=${svgRect.height}`);
-            console.log(`Parent getBoundingClientRect: left=${parentRect.left}, top=${parentRect.top}`);
-            console.log(`SVG offset relative to parent: left=${svgOffsetLeft}, top=${svgOffsetTop}`);
-            console.log(`Inner circle center (SVG coords): (200, 200)`);
-            console.log(`Inner circle center (actual pixels): (${innerCircleCenterX}, ${innerCircleCenterY})`);
-            console.log(`Inner radius: ${innerRadius}px`);
-            console.log(`CALCULATED mask position: left=${maskLeft}, top=${maskTop}`);
-            console.log(`Current scroll position: ${window.pageYOffset}`);
-            console.log(`=== END DEBUG ===`);
+            // console.log(`SVG computed dimensions: ${actualWidth}x${actualHeight}`);
+            // console.log(`Scale factors: X=${scaleX}, Y=${scaleY}`);
+            // console.log(`SVG getBoundingClientRect: left=${svgRect.left}, top=${svgRect.top}, width=${svgRect.width}, height=${svgRect.height}`);
+            // console.log(`Parent getBoundingClientRect: left=${parentRect.left}, top=${parentRect.top}`);
+            // console.log(`SVG offset relative to parent: left=${svgOffsetLeft}, top=${svgOffsetTop}`);
+            // console.log(`Inner circle center (SVG coords): (200, 200)`);
+            // console.log(`Inner circle center (actual pixels): (${innerCircleCenterX}, ${innerCircleCenterY})`);
+            // console.log(`Inner radius: ${innerRadius}px`);
+            // console.log(`CALCULATED mask position: left=${maskLeft}, top=${maskTop}`);
+            // console.log(`Current scroll position: ${window.pageYOffset}`);
+            // console.log(`=== END DEBUG ===`);
             
             maskContainer.style.cssText = `
                 position: absolute;
@@ -1100,10 +1100,10 @@ class StickyScrollHandler {
             // Append to SVG's parent for relative positioning stability
             if (svgParent) {
                 svgParent.appendChild(maskContainer);
-                console.log(`Created stable mask container for ${dishName} (${viewportType}) at`, maskContainer.style.left, maskContainer.style.top);
+                // console.log(`Created stable mask container for ${dishName} (${viewportType}) at`, maskContainer.style.left, maskContainer.style.top);
             } else {
                 document.body.appendChild(maskContainer);
-                console.log(`Fallback: Created mask container for ${dishName} (${viewportType}) in body`);
+                // console.log(`Fallback: Created mask container for ${dishName} (${viewportType}) in body`);
             }
         }
 
@@ -1168,7 +1168,7 @@ class StickyScrollHandler {
             
             overlay.style.cssText = baseStyles;
             
-            console.log(`Creating ${data.className} (${viewportType}): size=${size}px, pos=(${leftPos},${topPos}), color=${data.color}`);
+            // console.log(`Creating ${data.className} (${viewportType}): size=${size}px, pos=(${leftPos},${topPos}), color=${data.color}`);
             
             // Only add to mask container (not body)
             maskContainer.appendChild(overlay);
@@ -1194,7 +1194,7 @@ class StickyScrollHandler {
             
             if (shouldAnimate) {
                 setTimeout(() => {
-                    console.log(`Triggering step ${data.step} animation for ${data.className} with delay ${animationDelay}ms`);
+                    // console.log(`Triggering step ${data.step} animation for ${data.className} with delay ${animationDelay}ms`);
                     overlay.style.transform = 'scale(1)';
                     
                     // Also set webkit-specific transform for better Safari/tablet support
@@ -1205,7 +1205,7 @@ class StickyScrollHandler {
                     // Special behavior for right petri dish grey bubble (disappear after growing)
                     if (data.behavior === 'disappear') {
                         setTimeout(() => {
-                            console.log(`Making ${data.className} disappear`);
+                            // console.log(`Making ${data.className} disappear`);
                             overlay.style.transition = 'transform 2s ease, opacity 2s ease';
                             overlay.style.webkitTransition = '-webkit-transform 2s ease, opacity 2s ease';
                             overlay.style.transform = 'scale(0)';
@@ -1217,7 +1217,7 @@ class StickyScrollHandler {
                     // Check if animation worked after a delay
                     setTimeout(() => {
                         const computedTransform = window.getComputedStyle(overlay).transform;
-                        console.log(`Animation check for ${data.className}: transform = ${computedTransform}`);
+                        // console.log(`Animation check for ${data.className}: transform = ${computedTransform}`);
                     }, 1000);
                 }, animationDelay);
             }
@@ -1238,11 +1238,11 @@ class StickyScrollHandler {
         if (step >= 1) {
             // Step 1+: Growth circles - try direct CSS approach for Safari
             [...bacteriumCircles, ...resistantCircles].forEach((circle, index) => {
-                console.log(`Circle ${index}:`, circle.classList.toString());
-                console.log(`Circle position: cx=${circle.getAttribute('cx')}, cy=${circle.getAttribute('cy')}`);
+                // console.log(`Circle ${index}:`, circle.classList.toString());
+                // console.log(`Circle position: cx=${circle.getAttribute('cx')}, cy=${circle.getAttribute('cy')}`);
                 
                 if (circle.classList.contains('growth-circle-1')) {
-                    console.log('Animating growth-circle-1 to radius 90');
+                    // console.log('Animating growth-circle-1 to radius 90');
                     circle.style.opacity = '1';
                     // Try direct CSS approach for Safari
                     circle.style.transition = 'transform 7s ease';
@@ -1253,7 +1253,7 @@ class StickyScrollHandler {
                     // Also try JS fallback
                     this.animateCircleRadius(circle, 90, 7000, 0);
                 } else if (circle.classList.contains('growth-circle-2')) {
-                    console.log('Animating growth-circle-2 to radius 200');
+                    // console.log('Animating growth-circle-2 to radius 200');
                     circle.style.opacity = '1';
                     // Try direct CSS approach for Safari
                     circle.style.transition = 'transform 7s ease';
@@ -1264,7 +1264,7 @@ class StickyScrollHandler {
                     // Also try JS fallback
                     this.animateCircleRadius(circle, 200, 7000, 0);
                 } else if (circle.classList.contains('growth-circle-3')) {
-                    console.log('Animating growth-circle-3 to radius 160');
+                    // console.log('Animating growth-circle-3 to radius 160');
                     circle.style.opacity = '1';
                     // Try direct CSS approach for Safari
                     circle.style.transition = 'transform 7s ease';
@@ -1326,7 +1326,7 @@ class StickyScrollHandler {
             }, 100);
         });
         
-        console.log('Forced Safari repaint for', allSVGs.length, 'SVG elements');
+        // console.log('Forced Safari repaint for', allSVGs.length, 'SVG elements');
     }
 
     // Special animation for resistant inhibition zone (replicates CSS keyframe) using transforms
