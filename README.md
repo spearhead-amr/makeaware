@@ -63,11 +63,11 @@ Examples main.css files, footer and header HTML files
 Within this list are included all the fix to perform before the merge of the repo.
 ### Overall website
 - [x] Header menu: text smaller following Figma
-- [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
 - [x] numbers near words: not in the format ⑨ but following the format `<span style="font-size:0.9rem;font-weight:bold;font-family: 'PP Editorial New', serif;display:inline-block;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #000;text-align:center;line-height:1.7em;"><span style="display:inline-block;transform:scale(1,1.2);">193</span></span>`
 - [x] Favicon to be changed with transparent background
 - [x] ADDED 5/11: Web manifest and theme colors
 - [x] ADDED 6/11: external links & downloads all in target blank with the correct formatting
+- [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
@@ -80,7 +80,6 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] h3 (e.g. #widget-amr): text smaller as Figma
 - [x] ADDED 5/11: major-fix for animation on the first widget, it was not working on mobile ans Safari
 - [x] #widget-amr-abstract: text smaller as Figma
-- [ ] #widget-amr-content > img: to be changed as code - carefully for mobile
 - [x] #widget-amr-content > p: text smaller as previous (.descriptive-content > p)
 - [x] .petri-content-block > p: text smaller as previous (.descriptive-content > p)
 - [x] .circle-text > ResistanceBacterium -> Resistance baterium
@@ -92,6 +91,8 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED 7/11: widgets after widget-petri are flickering when scrolling
 - [x] ADDED 7/11: widget-petri on desktop is not starting again after scrolling up
 - [x] ADDED 5/11: widget-timeline is a bit fast to see
+- [ ] ADDED 7/11: widget-petri black fill not reverting
+- [ ] FUTURE: #widget-amr-content > img: to be changed as code - carefully for mobile
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [x] card: it should not be anchor the entire card but only the explore button
