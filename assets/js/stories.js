@@ -97,7 +97,8 @@ function storyFormValidation(action) {
         }
       })
 
-      alert('Thank you! The form has been successfully collected.');
+      //alert('Thank you! The form has been successfully collected.');
+      window.location.href = "story-sent.html";
 
     }
 

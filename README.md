@@ -113,7 +113,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] Submit your story: background black and foreground white, text smaller as the other buttons
 - [x] Explore the databook: remove the button and anchor the last "databook" word to the databook page.
 - [x] share your story: the input part should not have background but the color should be in foreground (for color references follow the databook)
-- [ ] share your story button: instead of receiving an alert into the browser open a new page following the style as Figma
+- [x] share your story button: instead of receiving an alert into the browser open a new page following the style as Figma
 ### Databook
 - [x] About the databook / Instructions: follow the same logic as story-collection tool for the instructions about paragraphs
 - [x] Filters: follow the same logic as instructions, title should be on the left, buttons should be smaller
