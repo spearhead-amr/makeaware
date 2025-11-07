@@ -107,12 +107,12 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED 6/11: styling mobile for page (just missing external links - will be done with the following task)
 - [x] External link (will be the same for publications): first column year + conference name (OPT.1), second column title + conference short title (without year - OPT.2) + third column authors + fourth column "Read the article" with arrow top-right before read
 ### Story-collection tool
-- [ ] About the tool will go above instructions
-- [ ] Instruction/share your story paragraph: title should be on the left side and text on two columns as Figma (check the internal workshop page for reference)
-- [ ] About the tool: follow the same logic as intructions
-- [ ] Submit your story: background black and foreground white, text smaller as the other buttons
-- [ ] Explore the databook: remove the button and anchor the last "databook" word to the databook page.
-- [ ] share your story: the input part should not have background but the color should be in foreground (for color references follow the databook)
+- [x] About the tool will go above instructions
+- [x] Instruction/share your story paragraph: title should be on the left side and text on two columns as Figma (check the internal workshop page for reference)
+- [x] About the tool: follow the same logic as intructions
+- [x] Submit your story: background black and foreground white, text smaller as the other buttons
+- [x] Explore the databook: remove the button and anchor the last "databook" word to the databook page.
+- [x] share your story: the input part should not have background but the color should be in foreground (for color references follow the databook)
 - [ ] share your story button: instead of receiving an alert into the browser open a new page following the style as Figma
 ### Databook
 - [ ] About the databook / Instructions: follow the same logic as story-collection tool for the instructions about paragraphs
