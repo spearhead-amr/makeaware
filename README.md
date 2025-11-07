@@ -131,4 +131,4 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] How to cite and License: titles to be swapped
 - [x] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)
 - [x] ADDED 6/11: styling tablet and mobile
-- [ ] ADDED 6/11: OPT > footer homepage not going on top but scrolling with the page
+- [ ] ADDED 6/11: OPT > footer homepage not going on top but scrolling with the page (this is probably requesting to rebuild the html, skipped for now)
