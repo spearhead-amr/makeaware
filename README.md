@@ -123,7 +123,7 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] term underlined in the modal: clicking on the term underlined in the modal (e.g. doctor) is sending me to the relative story
 - [x] smaller mobile fixes in the terms-container
 ### Chatbot
-- [ ] check the sources regex function: waiting for a feedback from Gooey
+- [x] check the sources regex function: waiting for a feedback from Gooey
 ### Publications
 - [x] External links (follow the same logic as internal workshop page): publications "Read the article", "Read the chapter", presentation "See more", posts "Read the post", exhibition "See more", others "See more"
 ### Privacy and DMP page

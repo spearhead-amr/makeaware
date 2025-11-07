@@ -45,6 +45,21 @@ function detectCitationType(line) {
   return null;
 }
 
+// Utility function to convert URLs in text to clickable anchors
+function convertLinksToAnchors(text) {
+  // Regular expression to match URLs (http, https, www)
+  const urlRegex = /(https?:\/\/[^\s<>"{}|\\^`[\]]+)|(www\.[^\s<>"{}|\\^`[\]]+)/gi;
+  
+  return text.replace(urlRegex, function(match) {
+    let url = match;
+    // Add protocol for www links
+    if (match.startsWith('www.')) {
+      url = 'https://' + match;
+    }
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${match}</a>`;
+  });
+}
+
 //Chatbot description animation
 (function() {
   const container = document.querySelector('#description-rect-content');
@@ -329,7 +344,7 @@ function detectCitationType(line) {
           assistantCitations.appendChild(titleP);
           const primaryP = document.createElement('p');
           primaryP.className = 'primary-sources';
-          primaryP.innerHTML = msg.citations.primary_citation.map(c => c).join('<br>');
+          primaryP.innerHTML = msg.citations.primary_citation.map(c => convertLinksToAnchors(c)).join('<br>');
           assistantCitations.appendChild(primaryP);
         }
         if (msg.citations.secondary_citation && msg.citations.secondary_citation.length) {
@@ -338,7 +353,7 @@ function detectCitationType(line) {
           assistantCitations.appendChild(titleP2);
           const secondaryP = document.createElement('p');
           secondaryP.className = 'secondary-sources';
-          secondaryP.innerHTML = msg.citations.secondary_citation.map(c => c).join('<br>');
+          secondaryP.innerHTML = msg.citations.secondary_citation.map(c => convertLinksToAnchors(c)).join('<br>');
           assistantCitations.appendChild(secondaryP);
         }
       }
@@ -638,7 +653,7 @@ function detectCitationType(line) {
                   citation = citation.substring(1).trim();
                 }
               }
-              primaryP.innerHTML += citation + '<br>';
+              primaryP.innerHTML += convertLinksToAnchors(citation) + '<br>';
               assistantCitations.appendChild(primaryP);
             });
 
@@ -670,7 +685,7 @@ function detectCitationType(line) {
                   citation = citation.substring(1).trim();
                 }
               }
-              secondaryP.innerHTML += citation + '<br>';
+              secondaryP.innerHTML += convertLinksToAnchors(citation) + '<br>';
               assistantCitations.appendChild(secondaryP);
             });
           } else if (primaryCitationPresent && !secondaryCitationPresent) {
@@ -702,7 +717,7 @@ function detectCitationType(line) {
                   citation = citation.substring(1).trim();
                 }
               }
-              primaryP.innerHTML += citation + '<br>';
+              primaryP.innerHTML += convertLinksToAnchors(citation) + '<br>';
               assistantCitations.appendChild(primaryP);
             });
           } else if (secondaryCitationPresent && !primaryCitationPresent) {
@@ -735,7 +750,7 @@ function detectCitationType(line) {
                   citation = citation.substring(1).trim();
                 }
               }
-              secondaryP.innerHTML += citation + '<br>';
+              secondaryP.innerHTML += convertLinksToAnchors(citation) + '<br>';
               assistantCitations.appendChild(secondaryP);
             });
           } else {
