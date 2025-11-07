@@ -139,11 +139,21 @@ function appendData(data) {
 
     let story;
     //console.log(data.length);
-    for(let i=data.length-1; i>=0; i--) {
+    for(let i=0; i<data.length; i++) {
         story = data[i];
+        // Format story number with leading zeros
+        let formattedNumber;
+        if (i < 10) {
+            formattedNumber = "00" + (i+1);
+        } else if (i < 100) {
+            formattedNumber = "0" + (i+1);
+        } else {
+            formattedNumber = (i+1).toString();
+        }
+        
         output += `
             <li id="story-no-${i}">
-                <h3>#${i}</h3>
+                <h3>#${formattedNumber}</h3>
                 <div class="story-container-div">
                     <span data-filter="diagnosis">I decided to <span class="filter-diagnosis">${story[headerStories["decided"]]} ${story[headerStories["with"]]}</span></span> <span data-filter="symptoms">because <span class="filter-symptoms">${story[headerStories["because"]]}</span>.</span>
                     <span data-filter="symptoms">I was feeling <span class="filter-symptoms">${story[headerStories["feeling"]]}</span> every time <span class="filter-symptoms">${story[headerStories["every_time"]]}</span>.</span>
@@ -280,7 +290,8 @@ function addKeyCount(data) {
 
     for(const element of dataKeysElements) {
         currentKey = element.getAttribute('data-key');
-        element.innerHTML = ` <span class="glyph">[<div class=\"key-counter\">${keysList[currentKey]}</div>]</span>`;
+        //element.innerHTML = ` <span class="glyph">[<div class=\"key-counter\">${keysList[currentKey]}</div>]</span>`;
+        element.innerHTML = ` <span class="databook-citations">(<span class="number-container"><span class="number-icon">${keysList[currentKey]}</span></span>)</span>`;
     }
 
     const keyButtons = document.querySelectorAll('[data-key]');
