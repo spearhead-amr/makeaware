@@ -97,13 +97,13 @@ class TimelineVizHandler {
                 }));
             } else {
                 try {
-                    this.data = await d3.csv('assets/csv/MAKEAWARE-Visualisations-Q5.csv', d => ({
+                    this.data = await d3.csv('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q5.csv', d => ({
                         antibiotic: d.Antibiotic,
                         releaseDate: +d.ReleaseDate
                     }));
                 } catch (d3Error) {
                     console.log('Trying with fetch...');
-                    const response = await fetch('assets/csv/MAKEAWARE-Visualisations-Q5.csv');
+                    const response = await fetch('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q5.csv');
                     if (!response.ok) {
                         throw new Error('HTTP error! status: ' + response.status);
                     }

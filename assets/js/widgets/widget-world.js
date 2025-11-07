@@ -64,7 +64,7 @@ class WorldVizHandler {
             } else {
                 // Fallback for normal browser
                 try {
-                    this.data = await d3.csv('assets/csv/MAKEAWARE-Visualisations-Q2.csv', d => ({
+                    this.data = await d3.csv('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q2.csv', d => ({
                         country: d.Country,
                         samplesTaken: +d.SamplesTaken,
                         resistantBacteria: +d.ResistantBacteria,
@@ -72,7 +72,7 @@ class WorldVizHandler {
                     }));
                 } catch (d3Error) {
                     console.log('Trying with fetch...');
-                    const response = await fetch('assets/csv/MAKEAWARE-Visualisations-Q2.csv');
+                    const response = await fetch('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q2.csv');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }

@@ -79,7 +79,7 @@ class SwissVizHandler {
             } else {
                 // Fallback for normal browser
                 try {
-                    this.data = await d3.csv('assets/csv/MAKEAWARE-Visualisations-Q3.csv', d => ({
+                    this.data = await d3.csv('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q3.csv', d => ({
                         year: +d.Year,
                         zone: d.SwitzerlandZone,
                         samples: +d.Samples,
@@ -88,7 +88,7 @@ class SwissVizHandler {
                     }));
                 } catch (d3Error) {
                     console.log('Trying with fetch...');
-                    const response = await fetch('assets/csv/MAKEAWARE-Visualisations-Q3.csv');
+                    const response = await fetch('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q3.csv');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }

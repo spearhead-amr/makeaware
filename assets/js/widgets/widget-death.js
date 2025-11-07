@@ -66,13 +66,13 @@ class DeathVizHandler {
             } else {
                 // Fallback for normal browser
                 try {
-                    this.data = await d3.csv('assets/csv/MAKEAWARE-Visualisations-Q4.csv', d => ({
+                    this.data = await d3.csv('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q4.csv', d => ({
                         name: d.Name,
                         deaths: +d.NumberOfDeaths
                     }));
                 } catch (d3Error) {
                     console.log('Trying with fetch...');
-                    const response = await fetch('assets/csv/MAKEAWARE-Visualisations-Q4.csv');
+                    const response = await fetch('/makeaware/assets/csv/MAKEAWARE-Visualisations-Q4.csv');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }

@@ -113,7 +113,7 @@ const headerToFilter = {
 function loadData() {
     let originalCleanData; // Store the original clean data
     
-    fetch('assets/json/stories-collection.json')
+    fetch('/makeaware/assets/json/stories-collection.json')
         .then(Response => Response.json())
         .then(data => {
             originalCleanData = cleanData(data);

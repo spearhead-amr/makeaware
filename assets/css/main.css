@@ -54,14 +54,14 @@ html {
 }
 @font-face {
   font-family: 'PP Editorial New';
-  src: url("../../assets/fonts/PPEditorialNew-Ultralight.woff2") format('woff2'), url("../../assets/fonts/PPEditorialNew-Ultralight.woff") format('woff');
+  src: url("/makeaware/assets/fonts/PPEditorialNew-Ultralight.woff2") format('woff2'), url("/makeaware/assets/fonts/PPEditorialNew-Ultralight.woff") format('woff');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Suisse Intl';
-  src: url("../../assets/fonts/SuisseIntl-Light.woff2") format('woff2'), url("../../assets/fonts/SuisseIntl-Light.woff") format('woff');
+  src: url("/makeaware/assets/fonts/SuisseIntl-Light.woff2") format('woff2'), url("/makeaware/assets/fonts/SuisseIntl-Light.woff") format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -3531,16 +3531,16 @@ html {
   }
 }
 #home-intro h2 #glyph-1:before {
-  mask-image: url("/assets/img/pages/home/icon1.svg");
-  -webkit-mask-image: url("/assets/img/pages/home/icon1.svg");
+  mask-image: url("/makeaware/assets/img/pages/home/icon1.svg");
+  -webkit-mask-image: url("/makeaware/assets/img/pages/home/icon1.svg");
 }
 #home-intro h2 #glyph-2:before {
-  mask-image: url("/assets/img/pages/home/icon2.svg");
-  -webkit-mask-image: url("/assets/img/pages/home/icon2.svg");
+  mask-image: url("/makeaware/assets/img/pages/home/icon2.svg");
+  -webkit-mask-image: url("/makeaware/assets/img/pages/home/icon2.svg");
 }
 #home-intro h2 #glyph-3:before {
-  mask-image: url("/assets/img/pages/home/icon3.svg");
-  -webkit-mask-image: url("/assets/img/pages/home/icon3.svg");
+  mask-image: url("/makeaware/assets/img/pages/home/icon3.svg");
+  -webkit-mask-image: url("/makeaware/assets/img/pages/home/icon3.svg");
 }
 @media (min-width: 900px) {
   #home-intro {
@@ -3680,7 +3680,7 @@ html {
 /* Definisce l'animazione */
   animation: changeBackground 4s step-start infinite;
 /* Background image iniziale */
-  background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+  background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
@@ -3699,82 +3699,82 @@ html {
 }
 @-moz-keyframes changeBackground {
   0% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
   20% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
   }
   40% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
   }
   60% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
   }
   80% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
   }
   100% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
 }
 @-webkit-keyframes changeBackground {
   0% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
   20% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
   }
   40% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
   }
   60% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
   }
   80% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
   }
   100% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
 }
 @-o-keyframes changeBackground {
   0% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
   20% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
   }
   40% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
   }
   60% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
   }
   80% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
   }
   100% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
 }
 @keyframes changeBackground {
   0% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
   20% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png");
   }
   40% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png");
   }
   60% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png");
   }
   80% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png");
   }
   100% {
-    background-image: url("/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
+    background-image: url("/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png");
   }
 }
 #main-publications {
@@ -3917,7 +3917,7 @@ html {
   align-items: center;
   justify-content: center;
   padding: 20px 20px;
-  background-image: url("/assets/img/pages/workshops/makeaware-button-fill.svg");
+  background-image: url("/makeaware/assets/img/pages/workshops/makeaware-button-fill.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -4327,7 +4327,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 9px 30px;
-  background-image: url("/assets/img/pages/workshops/makeaware-botton1.png");
+  background-image: url("/makeaware/assets/img/pages/workshops/makeaware-botton1.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
