@@ -87,7 +87,10 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] .viz-containter: align the space in between rows as Figma (careful to mouse hover) 
 - [x] ADDED 5/11: fix on mobile for data and legenda
 - [x] footer is not displayed
-- [ ] ADDED 5/11: widget-petri to check on multiple mobile devices
+- [x] ADDED 5/11: widget-petri to check on multiple mobile devices
+- [x] ADDED 7/11: widget-petri to be fixed on mobile, scroll goes blank
+- [ ] ADDED 7/11: widgets after widget-petri are flickering when scrolling
+- [ ] ADDED 7/11: widget-petri on desktop is not starting again after scrolling up
 - [x] ADDED 5/11: widget-timeline is a bit fast to see
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
