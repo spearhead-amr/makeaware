@@ -35,13 +35,16 @@
 
     h2
         @extend .serif-home
-        text-wrap: balance
+        text-wrap: auto
         color: brand-white
         mix-blend-mode: difference
         user-select: none
         -webkit-user-select: none
         -moz-user-select: none
         -ms-user-select: none
+
+        +media(tablet-h)
+            text-wrap: balance
 
         #glyph-1:before, #glyph-2:before, #glyph-3:before
             content: ""
