@@ -601,7 +601,7 @@ function convertLinksToAnchors(text) {
               }
             });
           } else {
-            assistantResponseP.innerHTML += 'There was an error processing your answer, please report it to the project owners by including this reference number' + data.run_id + ' and try again.';
+            responseContentString = responseText;
           }
 
           assistantResponseP.innerHTML = responseContentString;
@@ -754,6 +754,7 @@ function convertLinksToAnchors(text) {
               assistantCitations.appendChild(secondaryP);
             });
           } else {
+
             console.log("no citations found");
           }
 
