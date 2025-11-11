@@ -48,15 +48,20 @@
             @extend .sans-paragraph
             fill: brand-white // Use brand-white color
             text-anchor: start // Left aligned
+            font-size: .9rem
 
             +media(tablet-h)
                 @extend .sans-caption
+                font-size: 1.4rem
             
         // Death count number label
         .death-count-label
             @extend .sans-scheme
             fill: brand-white // Use brand-white color
             text-anchor: start // Left aligned
+
+            +media(mobile)
+                font-size: .4rem
 
 // Enhanced animation state for better performance
 #widget-death-viz.expand-bars

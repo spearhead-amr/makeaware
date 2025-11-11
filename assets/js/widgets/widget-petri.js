@@ -222,7 +222,7 @@ class StickyScrollHandler {
         
         // Add hysteresis to prevent bouncing between lock/unlock
         const lockThreshold = this.contentLockPosition;
-        const unlockThreshold = this.contentLockPosition - 200;
+        const unlockThreshold = this.contentLockPosition;
         
         // Enhanced debug logging for mobile white bar issue
         if (this.getViewportType() === 'mobile') {
@@ -266,16 +266,16 @@ class StickyScrollHandler {
                 // console.log('Mobile: Using zero offset to prevent content coverage');
             } else {
                 // Desktop and tablet can use moderate offsets
-                const maxOffset = Math.max(0, windowHeight * 0.4); // Reduced from 0.6
+                const maxOffset = Math.max(0, windowHeight * 0.2); // Reduced from 0.6
                 appliedOffset = Math.min(this.contentLockPosition, maxOffset);
             }
             
-            this.contentSticky.style.top = `-${appliedOffset}px`;
+            this.contentSticky.style.bottom = `-${appliedOffset}px`;
             // console.log(`lockContent: viewport=${viewportType}, appliedOffset=${appliedOffset}, contentLockPosition=${this.contentLockPosition}`);
         } catch (e) {
             // Fallback to 0 if anything goes wrong
             // console.log('lockContent: error computing offset, falling back to 0', e);
-            this.contentSticky.style.top = '0px';
+            this.contentSticky.style.bottom = '0px';
         }
         // DON'T recalculate milestones during lock - this causes bouncing
         // this.calculateScrollMilestones();
@@ -291,7 +291,7 @@ class StickyScrollHandler {
         
         this.contentSticky.classList.remove('locked');
         this.contentSticky.style.position = '';
-        this.contentSticky.style.top = '';
+        this.contentSticky.style.bottom = '';
         this.contentSticky.style.zIndex = '';
         
         this.widgetPetri.classList.remove('active');
@@ -1142,7 +1142,7 @@ class StickyScrollHandler {
             // Append to SVG's parent for relative positioning stability
             if (svgParent) {
                 svgParent.appendChild(maskContainer);
-                // console.log(`Created stable mask container for ${dishName} (${viewportType}) at`, maskContainer.style.left, maskContainer.style.top);
+                // console.log(`Created stable mask container for ${dishName} (${viewportType}) at`, maskContainer.style.left, maskContainer.style.bottom);
             } else {
                 document.body.appendChild(maskContainer);
                 // console.log(`Fallback: Created mask container for ${dishName} (${viewportType}) in body`);

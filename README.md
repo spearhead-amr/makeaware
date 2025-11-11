@@ -67,7 +67,7 @@ Within this list are included all the fix to perform before the merge of the rep
 - [x] ADDED 6/11: external links & downloads all in target blank with the correct formatting
 - [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
 - [ ] CSS loading issues (the website is loading faster than css)
-- [ ] Menu on mobile: spearhead double space + "Powered by SPEARHEAD"
+- [x] Menu on mobile: spearhead double space + "Powered by SPEARHEAD"
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
@@ -92,9 +92,9 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED 7/11: widget-petri on desktop is not starting again after scrolling up
 - [x] ADDED 5/11: widget-timeline is a bit fast to see
 - [x] ADDED 7/11: widget-petri black fill not reverting
+- [x] widget-petri first, when going out do not show petri outlines
+- [x] widget-death on mobile style fix
 - [ ] FUTURE: #widget-amr-content > img: to be changed as code - carefully for mobile
-- [ ] widget-petri first, when going out do not show petri outlines
-- [ ] widget-death on mobile numbers under the title, make each step slightly bigger
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [x] card: it should not be anchor the entire card but only the explore button
