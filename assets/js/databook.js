@@ -166,16 +166,17 @@ function appendData(data) {
 
     let story;
     //console.log(data.length);
-    for(let i=0; i<data.length; i++) {
+    for(let i=data.length-1; i>=0; i--) {
         story = data[i];
-        // Format story number with leading zeros
+        // Format story number with leading zeros - use original index for numbering
+        let storyNumber = i + 1;
         let formattedNumber;
-        if (i < 9) {
-            formattedNumber = "00" + (i+1);
-        } else if (i < 99) {
-            formattedNumber = "0" + (i+1);
+        if (storyNumber < 10) {
+            formattedNumber = "00" + storyNumber;
+        } else if (storyNumber < 100) {
+            formattedNumber = "0" + storyNumber;
         } else {
-            formattedNumber = (i+1).toString();
+            formattedNumber = storyNumber.toString();
         }
         
         output += `
@@ -437,10 +438,13 @@ function navigateToStory(storyIndex) {
                 behavior: 'smooth'
             });
             
+            // Make the story bold immediately
+            targetStory.style.fontWeight = 'bold';
+            
+            // After 2 seconds, transition back to normal weight
             setTimeout(() => {
-                targetStory.style.transition = 'font-weight 0.5s ease'; // Enable transition
-                targetStory.style.fontWeight = 'normal'; // Transition back to normal
-            }, 3000);
+                targetStory.style.fontWeight = 'normal';
+            }, 2000);
             
         } else {
             console.error('No child element found to scroll to in story:', storyIndex);
@@ -506,7 +510,7 @@ function generateTermsLists(originalData) {
             ulStoryList.id=`ul-${header}`;
             ulStoryList.classList = "terms-ul-key";
 
-            Object.values(termsObject[key][header]).forEach((storyData) => {
+            Object.values(termsObject[key][header]).reverse().forEach((storyData) => {
                 //console.log(storyData);
                 const liStory = document.createElement("li");
                 const regex = new RegExp(`\\b(${key})\\b`, 'gi');

@@ -65,9 +65,9 @@ Within this list are included all the fix to perform before the merge of the rep
 - [x] Favicon to be changed with transparent background
 - [x] ADDED 5/11: Web manifest and theme colors
 - [x] ADDED 6/11: external links & downloads all in target blank with the correct formatting
+- [x] CSS loading issues (the website is loading faster than css)
+- [x] Menu on mobile: spearhead double space + "Powered by SPEARHEAD"
 - [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
-- [ ] CSS loading issues (the website is loading faster than css)
-- [ ] Menu on mobile: spearhead double space + "Powered by SPEARHEAD"
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
 awareness on ✧ antibiotic consumption and antimicrobial resistance" following the same visual (border/empty) as the actual
@@ -92,17 +92,17 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] ADDED 7/11: widget-petri on desktop is not starting again after scrolling up
 - [x] ADDED 5/11: widget-timeline is a bit fast to see
 - [x] ADDED 7/11: widget-petri black fill not reverting
+- [x] widget-petri first, when going out do not show petri outlines
+- [x] widget-death on mobile style fix
 - [ ] FUTURE: #widget-amr-content > img: to be changed as code - carefully for mobile
-- [ ] widget-petri first, when going out do not show petri outlines
-- [ ] widget-death on mobile numbers under the title, make each step slightly bigger
 ### Workshop
 - [x] #abstract-text > h2: text smaller as Figma (it should be different than project-description) -> font-size: 3rem
 - [x] card: it should not be anchor the entire card but only the explore button
 - [x] card > explore button: on hover just change cursor
 - [x] card > explore button: text smaller as Figma (1.5rem)
 - [x] last card with chatbot workshop: remove link and align right the text available soon
-- [ ] Workshop description on mobile make text a bit bigger
-- [ ] Past workshop list, title of the WS need to go on multiple lines (on internal pages is correct)
+- [x] Workshop description on mobile make text a bit bigger
+- [x] Past workshop list, title of the WS need to go on multiple lines (on internal pages is correct)
 ### Internal workshop page
 - [x] button back to workshops: to be changed with two buttons one on the left with "previous" and one on the right with "next"
 - [x] button "previous" "next": text smaller as previous explore button
@@ -126,19 +126,19 @@ awareness on ✧ antibiotic consumption and antimicrobial resistance" following 
 - [x] stories columns: stories should be aligned in two/three columns with the number on the left and text in second place, third column only visible when click on numbers
 - [x] term underlined in the modal: clicking on the term underlined in the modal (e.g. doctor) is sending me to the relative story
 - [x] smaller mobile fixes in the terms-container
-- [ ] inside the container for reading more stories connected leave the header with closing btn stick to the top
-- [ ] leave the order of stories from the newest to the oldest 
-- [ ] make the story bold when scrolled to after clicking on the container for reading more stories
-- [ ] align the stories container to the left, the container including list of keywords align it to the second right paragraph 
+- [x] inside the container for reading more stories connected leave the header with closing btn stick to the top
+- [x] leave the order of stories from the newest to the oldest > made also the links within the terms container from the newest to the oldest
+- [x] make the story bold when scrolled to after clicking on the container for reading more stories
+- [x] align the stories container to the left, the container including list of keywords align it to the second right paragraph > after some tests it was aligned the left part of the paragraph to keep consistency
 ### Chatbot
 - [x] check the sources regex function: waiting for a feedback from Gooey
 ### Publications
 - [x] External links (follow the same logic as internal workshop page): publications "Read the article", "Read the chapter", presentation "See more", posts "Read the post", exhibition "See more", others "See more"
-- [ ] Check multiline text on title and authors on mobile
+- [x] Check multiline text on title and authors on mobile
 ### Privacy and DMP page
 - [x] Check the style to be aligned with other pages
 ### Footer
 - [x] How to cite and License: titles to be swapped
 - [x] License to be changed into CC BY-SA 4.0 anchor to creative commons page (check the guideline)
 - [x] ADDED 6/11: styling tablet and mobile
-- [ ] check the SUPSI logo on mobile
+- [x] check the SUPSI logo on mobile

@@ -6,6 +6,7 @@ class StickyScrollHandler {
         this.contentSticky = document.getElementById('content-sticky');
         this.widgetPetri = document.getElementById('widget-petri');
         this.petriFrame = this.widgetPetri ? this.widgetPetri.querySelector('.petri-frame') : null;
+        this.circleContainerWrapper = this.petriFrame ? this.petriFrame.querySelector('.circle-container-wrapper') : null;
         this.widgetAmr = document.getElementById('widget-amr');
         
         this.isContentLocked = false;
@@ -222,7 +223,7 @@ class StickyScrollHandler {
         
         // Add hysteresis to prevent bouncing between lock/unlock
         const lockThreshold = this.contentLockPosition;
-        const unlockThreshold = this.contentLockPosition - 200;
+        const unlockThreshold = this.contentLockPosition;
         
         // Enhanced debug logging for mobile white bar issue
         if (this.getViewportType() === 'mobile') {
@@ -266,16 +267,16 @@ class StickyScrollHandler {
                 // console.log('Mobile: Using zero offset to prevent content coverage');
             } else {
                 // Desktop and tablet can use moderate offsets
-                const maxOffset = Math.max(0, windowHeight * 0.4); // Reduced from 0.6
+                const maxOffset = Math.max(0, windowHeight * 0.2); // Reduced from 0.6
                 appliedOffset = Math.min(this.contentLockPosition, maxOffset);
             }
             
-            this.contentSticky.style.top = `-${appliedOffset}px`;
+            this.contentSticky.style.bottom = `-${appliedOffset}px`;
             // console.log(`lockContent: viewport=${viewportType}, appliedOffset=${appliedOffset}, contentLockPosition=${this.contentLockPosition}`);
         } catch (e) {
             // Fallback to 0 if anything goes wrong
             // console.log('lockContent: error computing offset, falling back to 0', e);
-            this.contentSticky.style.top = '0px';
+            this.contentSticky.style.bottom = '0px';
         }
         // DON'T recalculate milestones during lock - this causes bouncing
         // this.calculateScrollMilestones();
@@ -291,7 +292,7 @@ class StickyScrollHandler {
         
         this.contentSticky.classList.remove('locked');
         this.contentSticky.style.position = '';
-        this.contentSticky.style.top = '';
+        this.contentSticky.style.bottom = '';
         this.contentSticky.style.zIndex = '';
         
         this.widgetPetri.classList.remove('active');
@@ -307,6 +308,11 @@ class StickyScrollHandler {
         // Safari (iOS) requires the webkit-prefixed property when setting via JS
         this.petriFrame.style.webkitBackdropFilter = 'blur(0px)';
         this.petriFrame.style.background = 'rgba(255, 255, 255, 0)';
+        
+        // Reset circle-container-wrapper to initial state
+        if (this.circleContainerWrapper) {
+            this.circleContainerWrapper.style.opacity = '0';
+        }
         
         if (this.circle) {
             this.circle.style.opacity = '0';
@@ -363,14 +369,15 @@ class StickyScrollHandler {
         // Update blur and background
         const blurAmount = easedProgress * 10; // Max 10px blur
         const backgroundOpacity = easedProgress * 1; // Max 100% opacity
+        const itemOpacity = backgroundOpacity * 0.01; // opacity goes from 0 to 1 instead of 0 to 100
         this.petriFrame.style.backdropFilter = `blur(${blurAmount}px)`;
         // Also set webkit-prefixed property for Safari/iOS
         this.petriFrame.style.webkitBackdropFilter = `blur(${blurAmount}px)`;
         this.petriFrame.style.background = `rgba(255, 255, 255, ${backgroundOpacity})`;
         
-        // Update circle opacity (same as blur)
-        if (this.circle) {
-            this.circle.style.opacity = easedProgress;
+        // Apply the same transparency transition to circle-container-wrapper
+        if (this.circleContainerWrapper) {
+            this.circleContainerWrapper.style.opacity = `${itemOpacity}`;
         }
         
         // IMPORTANT: Reset petri animations during blur phase (before first text)
@@ -407,6 +414,12 @@ class StickyScrollHandler {
         this.petriFrame.style.backdropFilter = 'blur(10px)';
         this.petriFrame.style.webkitBackdropFilter = 'blur(10px)';
         this.petriFrame.style.background = 'rgba(255, 255, 255, 1)';
+        
+        // Ensure circle-container-wrapper is also at 100%
+        if (this.circleContainerWrapper) {
+            this.circleContainerWrapper.style.opacity = `1`;
+        }
+        
         if (this.circle) {
             this.circle.style.opacity = '1';
         }
@@ -1142,7 +1155,7 @@ class StickyScrollHandler {
             // Append to SVG's parent for relative positioning stability
             if (svgParent) {
                 svgParent.appendChild(maskContainer);
-                // console.log(`Created stable mask container for ${dishName} (${viewportType}) at`, maskContainer.style.left, maskContainer.style.top);
+                // console.log(`Created stable mask container for ${dishName} (${viewportType}) at`, maskContainer.style.left, maskContainer.style.bottom);
             } else {
                 document.body.appendChild(maskContainer);
                 // console.log(`Fallback: Created mask container for ${dishName} (${viewportType}) in body`);

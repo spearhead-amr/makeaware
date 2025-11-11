@@ -148,10 +148,22 @@
 
     #footer-supsi-logo
         width: 25%
-
+        image-rendering: -webkit-optimize-contrast
+        image-rendering: crisp-edges
+        image-rendering: pixelated
+        transform: translateZ(0)
+        will-change: transform
+        height: auto
+        
+        +media(mobile)
+            width: 20%
+            
         +media(tablet-h)
             width 25%
             position: relative
+            image-rendering: auto
+            transform: none
+            will-change: auto
 
     #footer-spearhead-logo
         width: 30%
