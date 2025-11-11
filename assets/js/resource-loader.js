@@ -7,7 +7,17 @@ class ResourceLoader {
   constructor() {
     this.cssLoaded = false;
     this.fontsLoaded = false;
+    this.imagesLoaded = false;
     this.resourcesReady = false;
+    
+    // Background sequence images that need to be preloaded
+    this.backgroundImages = [
+      '/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop01.png',
+      '/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop02.png',
+      '/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop03.png',
+      '/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop04.png',
+      '/makeaware/assets/img/pages/home/background-hero-sequence/makeaware-background-loop05.png'
+    ];
   }
 
   // Check if CSS is loaded
@@ -66,15 +76,50 @@ class ResourceLoader {
     });
   }
 
+  // Preload background sequence images
+  preloadBackgroundImages() {
+    return new Promise((resolve) => {
+      let loadedCount = 0;
+      const totalImages = this.backgroundImages.length;
+
+      if (totalImages === 0) {
+        this.imagesLoaded = true;
+        resolve();
+        return;
+      }
+
+      const checkAllLoaded = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          this.imagesLoaded = true;
+          resolve();
+        }
+      };
+
+      this.backgroundImages.forEach((imageSrc) => {
+        const img = new Image();
+        
+        img.onload = checkAllLoaded;
+        img.onerror = () => {
+          console.warn(`Failed to load image: ${imageSrc}`);
+          checkAllLoaded(); // Continue even if an image fails to load
+        };
+        
+        img.src = imageSrc;
+      });
+    });
+  }
+
   // Wait for both CSS and fonts to be ready
   async waitForResources() {
     if (this.resourcesReady) return;
 
     try {
-      // Wait for both CSS and fonts in parallel
+      // Wait for CSS, fonts, and background images in parallel
       await Promise.all([
         this.checkCSSLoaded(),
-        this.checkFontsLoaded()
+        this.checkFontsLoaded(),
+        this.preloadBackgroundImages()
       ]);
 
       this.resourcesReady = true;
@@ -94,7 +139,8 @@ class ResourceLoader {
     const event = new CustomEvent('resourcesLoaded', {
       detail: {
         cssLoaded: this.cssLoaded,
-        fontsLoaded: this.fontsLoaded
+        fontsLoaded: this.fontsLoaded,
+        imagesLoaded: this.imagesLoaded
       }
     });
     document.dispatchEvent(event);
