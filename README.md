@@ -11,19 +11,19 @@ Using stories and data sharing to empower people in the fight against antimicrob
 It is the official branch that hosts the online website:  
 https://github.com/spearhead-amr/makeaware  
 
-#### dev  
+#### old-backup  
 
 Old repo built during the project.  
 
-#### dev-final  
+#### dev-new  
 
-Final and updated version of the repo.  
+Final and updated development version of the repo.  
 
 ### Merging Process  
 
 The `dev` or `dev-final` branches, once merged into the `main` branch, will update the website visible at https://github.com/spearhead-amr/makeaware.  
 
-### Dev-final Structure and Organization  
+### dev-new Structure and Organization  
 
 #### assets Folder  
 
@@ -51,13 +51,11 @@ Have a look at the Stylus documentation here: https://stylus-lang.com/
 
 ## Build and Serve (Gulp)  
 
-Start the local server by running `gulp` in the terminal. It will build the `assets/css/main.css` file from the Stylus files and serve the website locally, usually at `localhost:3000`.  
+Start the local server by running `gulp dev` in the terminal. It will build the `dev` folder, that will stay local, and the `/dev/assets/css/main.css` file from the Stylus files and serve the website locally, usually at `localhost:3000`.  
 
-Every time the Stylus files are changed, the `main.css` is updated, and the page is refreshed. 
+Every time the Stylus files are changed, the `main.css` is updated, and the page is refreshed.
 
-## Absolute Path for Links
-Currently all the assets are absolute for local host for development. When published it has to be changed to the online URL.
-Examples main.css files, footer and header HTML files
+Before pushing modifications on Github, be sure to update modifications done to the styling files by using `gulp prod`. This command will update the `assets/css/main.css` file from the Stylus files, and so you are ready for pushing mods in production.  
 
 ## Fix before merging
 Within this list are included all the fix to perform before the merge of the repo.

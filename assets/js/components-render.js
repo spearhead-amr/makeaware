@@ -12,7 +12,23 @@ function loadComponent(url, targetId) {
         tempDiv.innerHTML = html;
 
         // Move all non-script content into the target
-        target.innerHTML = '';
+        // Special handling for head element - preserve existing critical content
+        if (targetId === 'page-head') {
+          // Preserve existing title and stylesheet links
+          const existingTitle = target.querySelector('title');
+          const existingStylesheets = target.querySelectorAll('link[rel="stylesheet"]');
+          const existingScripts = target.querySelectorAll('script');
+          
+          target.innerHTML = '';
+          
+          // Re-add preserved elements first
+          if (existingTitle) target.appendChild(existingTitle);
+          existingStylesheets.forEach(link => target.appendChild(link));
+          existingScripts.forEach(script => target.appendChild(script));
+        } else {
+          target.innerHTML = '';
+        }
+        
         Array.from(tempDiv.childNodes).forEach(node => {
           if (node.tagName !== 'SCRIPT') {
             target.appendChild(node.cloneNode(true));

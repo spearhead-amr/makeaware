@@ -6,6 +6,7 @@
         "gulp": "^5.0.0",
         "gulp-connect-php": "^1.0.3",
         "gulp-postcss": "^10.0.0",
+        "gulp-replace": "^1.1.4",
         "gulp-sourcemaps": "^3.0.0",
         "gulp-stylus": "^3.0.1",
         "path": ">=0.12.7"
