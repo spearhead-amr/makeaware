@@ -116,9 +116,8 @@ function serve() {
 //     gulp.watch("*.html").on('change', browserSync.reload);
 // }
 
-gulp.task('default', gulp.series(gulp.parallel(replacePaths, copyAssets), cssUpdateDev, serve));
-gulp.task('dev', gulp.series(gulp.parallel(replacePaths, copyAssets), cssUpdateDev, serve));
-gulp.task('prod', gulp.parallel(cssUpdate));
+gulp.task('default', gulp.series(gulp.parallel(replacePaths, copyAssets), cssUpdateDev, cssUpdate, serve));
+gulp.task('dev', gulp.series(gulp.parallel(replacePaths, copyAssets), cssUpdateDev, cssUpdate, serve));
 gulp.task('cssUpdate', gulp.parallel(cssUpdate));
 gulp.task('replacePaths', replacePaths);
 gulp.task('copyAssets', copyAssets);
