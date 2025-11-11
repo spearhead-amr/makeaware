@@ -51,11 +51,10 @@ Have a look at the Stylus documentation here: https://stylus-lang.com/
 
 ## Build and Serve (Gulp)  
 
-Start the local server by running `gulp dev` in the terminal. It will build the `dev` folder, that will stay local, and the `/dev/assets/css/main.css` file from the Stylus files and serve the website locally, usually at `localhost:3000`.  
+Start the local server by running `gulp` in the terminal. It will build the `dev` folder, that will stay local, and the `/dev/assets/css/main.css` file from the Stylus files and serve the website locally, usually at `localhost:3000`.  
 
+Be sure to not change the files into the dev folder, work in the main ones. In fact, as soon as you save the main files a copy is automatically generated in the dev folder.
 Every time the Stylus files are changed, the `main.css` is updated, and the page is refreshed.
-
-Before pushing modifications on Github, be sure to update modifications done to the styling files by using `gulp prod`. This command will update the `assets/css/main.css` file from the Stylus files, and so you are ready for pushing mods in production.  
 
 ## Fix before merging
 Within this list are included all the fix to perform before the merge of the repo.
