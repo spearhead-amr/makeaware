@@ -46,7 +46,7 @@ function replacePaths() {
 
 // Copy assets (images, fonts, etc.) to dev folder
 function copyAssets() {
-    return gulp.src(['assets/img/**/*', 'assets/fonts/**/*', 'assets/icons/**/*', 'assets/csv/**/*', 'site.webmanifest', 'robots.txt'], { 
+    return gulp.src(['assets/img/**/*', 'assets/fonts/**/*', 'assets/icons/**/*', 'assets/csv/**/*', 'assets/json/**/*', 'site.webmanifest', 'robots.txt'], { 
         base: '.',
         encoding: false  // Treat files as binary to prevent corruption
     })
@@ -94,7 +94,7 @@ function serve() {
     gulp.watch(cssWatch, cssUpdateDev);
     gulp.watch(htmlFiles, replacePaths);
     gulp.watch(jsFiles, replacePaths);
-    gulp.watch(['assets/img/**/*', 'assets/fonts/**/*', 'assets/icons/**/*', 'assets/csv/**/*'], copyAssets);
+    gulp.watch(['assets/img/**/*', 'assets/fonts/**/*', 'assets/icons/**/*', 'assets/csv/**/*', 'assets/json/**/*'], copyAssets);
     gulp.watch("dev/*.html").on('change', browserSync.reload);
     gulp.watch("dev/**/*.html").on('change', browserSync.reload);
     gulp.watch("dev/**/*.js").on('change', browserSync.reload);
