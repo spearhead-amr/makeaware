@@ -66,7 +66,7 @@ Within this list are included all the fix to perform before the merge of the rep
 - [x] ADDED 5/11: Web manifest and theme colors
 - [x] ADDED 6/11: external links & downloads all in target blank with the correct formatting
 - [ ] OPT: Text on multiple columns -> automatise the split to have around 50% on one side and 50% on the other.
-- [ ] CSS loading issues (the website is loading faster than css)
+- [x] CSS loading issues (the website is loading faster than css)
 - [x] Menu on mobile: spearhead double space + "Powered by SPEARHEAD"
 ### Homepage
 - [x] #home-intro > h2: to be chaned into "Data pills ✤ and workshops ⑨ to raise
